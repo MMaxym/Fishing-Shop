@@ -1,0 +1,102 @@
++------------------+
+|      roles       |
++------------------+
+| role_ID (PK)     |
+| role_name        |
++------------------+
+         |
+         | 1
+         |
+         | N
++------------------+          +---------------------+
+|      users       |          |    categories       |
++------------------+          +---------------------+
+| user_ID (PK)     |          | category_ID (PK)    |
+| user_login       |          | category_name       |
+| user_password    |          +---------------------+
+| user_surname     |
+| user_name        |                +-----------------------+
+| user_email       |                |        products       |
+| user_phone       |                +-----------------------+
+| user_address     |                | product_ID (PK)       |
+| user_role (FK)   |                | product_category (FK) |
++------------------+                | product_article       |
+         |                          | product_name          |
+         | 1                        | product_description   |
+         |                          | product_size          |
+         | N                        | product_other         |
+         |                          | product_image         |
+         |                          | product_quantity      |
++------------------------+          | product_price         |
+|         orders         |          | discount_ID (FK)      |
++------------------------+          | is_active             |
+| order_ID (PK)          |          +-----------------------+
+| user_ID (FK)           |                         |
+| address                |                         |
+| total_amount           |                         |
+| order_status           |                         |
+| created_at             |                         |
+| payment_method_ID (FK) |                         |
+| shipping_method_ID (FK)|                         |
+| discount_ID (FK)       |                         |
++------------------------+                         |
+         |                                         |
+         | 1                                       | 1
+         |                                         |
+         | N                                       | N
++-------------------------+           +------------------+
+|     productsInOrders    |           |  product_images  |
++-------------------------+           +------------------+
+| product_in_order_ID (PK)|           | image_ID (PK)    |
+| product_ID (FK)         |           | product_ID (FK)  |
+| order_ID (FK)           |           | image_url        |
+| quantity                |           +------------------+
+| price                   |
+| size                    |
++-------------------------+
+         |
+         | 1
+         |
+         | N
++------------------+            +-----------------------+
+|  order_tracking  |            |     payment_methods   |
++------------------+            +-----------------------+
+| tracking_ID (PK) |            | payment_method_ID (PK)|
+| order_ID (FK)    |            | payment_method_name   |
+| status           |            +-----------------------+
+| updated_at       |
++------------------+
+         |
+         | N
+         |
+         | 1
++------------------------+
+|     shipping_methods   |
++------------------------+
+| shipping_method_ID (PK)|
+| shipping_method_name   |
+| shipping_cost          |
++------------------------+
+
+
+
++---------------------+
+|      discounts      |
++---------------------+
+| discount_ID (PK)    |
+| discount_name       |
+| discount_percentage |
+| start_date          |
+| end_date            |
++---------------------+
+
+
+
++--------------------+
+|       coupons      |
++--------------------+
+| coupon_ID (PK)     |
+| coupon_code        |
+| discount_percentage|
+| valid_until        |
++--------------------+
