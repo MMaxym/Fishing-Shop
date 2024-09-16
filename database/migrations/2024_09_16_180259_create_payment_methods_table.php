@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('discounts', function (Blueprint $table) {
-            $table->id('discount_ID');
-            $table->string('discount_name', 100);
-            $table->decimal('discount_percentage', 5, 2);
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('type_discount', 100);
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('discounts');
+        Schema::dropIfExists('payment_methods');
     }
 };
