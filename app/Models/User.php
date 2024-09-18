@@ -5,18 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'login',
+        'surname',
         'name',
         'email',
-        'password',
         'phone',
         'address',
+        'password',
         'role_id',
+        'email_verified_at',
+        'remember_token',
     ];
 
     protected $hidden = [
@@ -28,12 +34,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'password' => 'hashed_password',
         'role_id' => 'integer',
     ];
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
     public function role()
     {
-        return $this->belongsTo(User::class, 'role_id');
+        return $this->belongsTo(Role::class);
     }
 }
