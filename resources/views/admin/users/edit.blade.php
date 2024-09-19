@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" style="max-width: 500px; margin: 0 auto; padding-bottom: 50px;">
-        <div class="card">
+        <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);">
             <div class="card-header" style="background-color: #d6d6d6;">
                 <h2>Edit User</h2>
             </div>
@@ -112,35 +112,11 @@
                     </div>
 
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary">Update User</button>
-                        <button type="button" class="btn btn-warning" id="back-button">Back <-</button>
+                        <button type="submit" class="btn btn-warning">Update User</button>
+                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">Back <-</button>
                     </div>
 
                     <script>
-                        document.getElementById('back-button').addEventListener('click', function() {
-                            window.location.href = "{{ route('admin.users.index') }}";
-                        });
-
-                        document.getElementById('toggle-password').addEventListener('click', function() {
-                            const passwordField = document.getElementById('password');
-                            const passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                            passwordField.setAttribute('type', passwordFieldType);
-
-                            const icon = this.querySelector('i');
-                            icon.classList.toggle('fa-eye');
-                            icon.classList.toggle('fa-eye-slash');
-                        });
-
-                        document.getElementById('toggle-password-confirmation').addEventListener('click', function() {
-                            const passwordConfirmationField = document.getElementById('password_confirmation');
-                            const passwordFieldType = passwordConfirmationField.getAttribute('type') === 'password' ? 'text' : 'password';
-                            passwordConfirmationField.setAttribute('type', passwordFieldType);
-
-                            const icon = this.querySelector('i');
-                            icon.classList.toggle('fa-eye');
-                            icon.classList.toggle('fa-eye-slash');
-                        });
-
                         document.addEventListener('DOMContentLoaded', function() {
                             const phoneInputField = document.querySelector("#phone");
                             if (phoneInputField) {
@@ -159,6 +135,30 @@
                                 });
                             }
                         });
+
+                        document.getElementById('back-button').addEventListener('click', function() {
+                            window.location.href = "{{ route('admin.users.index') }}";
+                        });
+
+                        // document.getElementById('toggle-password').addEventListener('click', function() {
+                        //     const passwordField = document.getElementById('password');
+                        //     const passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                        //     passwordField.setAttribute('type', passwordFieldType);
+                        //
+                        //     const icon = this.querySelector('i');
+                        //     icon.classList.toggle('fa-eye');
+                        //     icon.classList.toggle('fa-eye-slash');
+                        // });
+                        //
+                        // document.getElementById('toggle-password-confirmation').addEventListener('click', function() {
+                        //     const passwordConfirmationField = document.getElementById('password_confirmation');
+                        //     const passwordFieldType = passwordConfirmationField.getAttribute('type') === 'password' ? 'text' : 'password';
+                        //     passwordConfirmationField.setAttribute('type', passwordFieldType);
+                        //
+                        //     const icon = this.querySelector('i');
+                        //     icon.classList.toggle('fa-eye');
+                        //     icon.classList.toggle('fa-eye-slash');
+                        // });
                     </script>
                 </form>
             </div>

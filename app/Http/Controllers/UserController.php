@@ -31,8 +31,8 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'phone' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -77,9 +77,9 @@ class UserController extends Controller
             'surname' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8',
-            'phone' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
+            //'password' => 'required|string|min:8',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -88,7 +88,7 @@ class UserController extends Controller
             'surname' => $validated['surname'],
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => $validated['password'] ? Hash::make($validated['password']) : $user->password,
+            //'password' => $validated['password'] ? Hash::make($validated['password']) : $user->password,
             'phone' => $validated['phone'],
             'address' => $validated['address'],
             'role_id' => $validated['role_id'],

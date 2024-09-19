@@ -1,15 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Users</h1>
+    <div class="container" style="max-width: 1200px;">
+        <div class="d-flex justify-content-between align-items-center mb-4" >
+            <h1 class="mb-0">Users</h1>
+            <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">Back to main page <-</a>
+        </div>
 
         <div class="row mb-3">
             <div class="col-md-8">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add New User +</a>
+                <a href="{{ route('admin.users.create') }}" class="btn btn-success">Add New User +</a>
             </div>
             <div class="col-md-4">
-                <div class="input-group">
+                <div class="input-group"  style="width: 300px; margin-left: auto;">
                     <input type="text" class="form-control" id="search" placeholder="Search by login">
                     <div class="input-group-append">
                         <span class="input-group-text">

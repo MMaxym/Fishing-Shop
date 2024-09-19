@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" style="max-width: 500px; margin: 0 auto; padding-bottom: 50px;">
-        <div class="card">
+        <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);">
             <div class="card-header" style="background-color: #d6d6d6;">
                 <h2>Create New User</h2>
             </div>
@@ -111,8 +111,8 @@
                     </div>
 
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary">Create User</button>
-                        <button type="button" class="btn btn-warning" id="back-button">Back <-</button>
+                        <button type="submit" class="btn btn-warning">Create User</button>
+                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">Back <-</button>
                     </div>
 
                     <script>
