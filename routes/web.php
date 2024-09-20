@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
+use App\Http\Controllers\DiscountController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,4 +62,17 @@ Route::prefix('admin/products/{product}')->group(function () {
     Route::put('/images/{images}', [ProductImageController::class, 'update'])->name('admin.products.images.update');
     Route::delete('/images/{images}', [ProductImageController::class, 'destroy'])->name('admin.products.images.delete');
 });
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/discounts', [DiscountController::class, 'index'])->name('admin.discounts.index');
+    Route::get('/discounts/create', [DiscountController::class, 'create'])->name('admin.discounts.create'); // Виправлено
+    Route::post('/discounts', [DiscountController::class, 'store'])->name('admin.discounts.store');
+    Route::get('/discounts/{discount}/edit', [DiscountController::class, 'edit'])->name('admin.discounts.edit');
+    Route::put('/discounts/{discount}', [DiscountController::class, 'update'])->name('admin.discounts.update');
+    Route::delete('/discounts/{discount}', [DiscountController::class, 'destroy'])->name('admin.discounts.destroy');
+});
+
+Route::get('/admin/discounts/search', [DiscountController::class, 'search'])->name('admin.discounts.search');
 

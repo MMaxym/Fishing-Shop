@@ -17,18 +17,12 @@
                         <a href="{{ route('admin.products.index') }}" class="nav-link btn btn-primary mx-3">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary mx-3">Orders</a>
+                        <a href="{{ route('admin.discounts.index') }}" class="nav-link btn btn-primary">Discounts</a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link btn btn-primary mx-3">Discounts</a>
+                        <a  class="nav-link btn btn-primary mx-3">Orders</a>
                     </li>
 
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('admin.orders.index') }}" class="nav-link btn btn-outline-primary">Orders</a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('admin.discounts.index') }}" class="nav-link btn btn-outline-primary">Discounts</a>--}}
-{{--                    </li>--}}
                 </ul>
             </nav>
         </header>

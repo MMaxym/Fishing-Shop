@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order_tracking extends Model
+class OrderTracking extends Model
 {
     use HasFactory;
+
+    protected $table = 'order_tracking';
 
     protected $fillable =[
         'order_id',

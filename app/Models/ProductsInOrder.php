@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Products_in_order extends Model
+class ProductsInOrder extends Model
 {
     use HasFactory;
+
+    protected $table = 'products_in_order';
 
     protected $fillable = [
         'product_id',
