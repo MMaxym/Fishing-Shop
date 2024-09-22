@@ -18,18 +18,19 @@ class ProductImageController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'images' => 'required|images|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
 
-        $imagePath = $request->file('images')->store('product_images', 'public');
+        $imagePath = $request->file('image')->store('product_images', 'public');
 
         ProductImage::create([
             'product_id' => $product->id,
             'image_url' => $imagePath,
         ]);
 
-        return redirect()->route('admin.products.images.edit', $product)->with('success', 'Image added successfully.');
+        return redirect()->route('admin.products.index', $product)->with('success', 'Зображення додано успішно !!!');
     }
+
 
     public function edit(Product $product)
     {
@@ -37,21 +38,15 @@ class ProductImageController extends Controller
         return view('admin.products.images.edit', compact('product', 'images'));
     }
 
-
-    public function update(Request $request, Product $product, ProductImage $image)
-    {
-        // Implement update logic here
-    }
-
     public function destroy(Product $product, ProductImage $image)
     {
-        // Видаляємо зображення з файлової системи
-        if (Storage::disk('public')->exists($image->image_url)) {
+        if ($image->image_url && Storage::disk('public')->exists($image->image_url)) {
             Storage::disk('public')->delete($image->image_url);
         }
-
         $image->delete();
 
-        return redirect()->route('admin.products.images.edit', $product)->with('success', 'Image deleted successfully.');
+        return redirect()->route('admin.products.images.edit', ['product' => $product->id])->with('error', 'Зображення видалено успішно !!!');
     }
+
+
 }

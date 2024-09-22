@@ -3,17 +3,19 @@
 @section('content')
     <div class="container" style="max-width: 1200px;">
         <div class="d-flex justify-content-between align-items-center mb-4" >
-            <h1 class="mb-0">Users</h1>
-            <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">Back to main page <-</a>
+            <h1 class="mb-0">Користувачі</h1>
+            <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">Повернутися на головну <-</a>
         </div>
 
         <div class="row mb-3">
             <div class="col-md-8">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success">Add New User +</a>
+                <a href="{{ route('admin.users.create') }}" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Додати нового користувача
+                </a>
             </div>
             <div class="col-md-4">
                 <div class="input-group"  style="width: 300px; margin-left: auto;">
-                    <input type="text" class="form-control" id="search" placeholder="Search by login">
+                    <input type="text" class="form-control" id="search" placeholder="Пошук за логіном">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fas fa-search"></i>
@@ -30,14 +32,14 @@
         <table class="table table-bordered" style="background-color: #ffffff;">
             <thead>
             <tr>
-                <th>Login</th>
-                <th>Surname</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>Логін</th>
+                <th>Прізвище</th>
+                <th>Імʼя</th>
+                <th>Електронна пошта</th>
+                <th>Телефон</th>
+                <th>Адреса</th>
+                <th>Роль</th>
+                <th style="width: 105px;">Дії</th>
             </tr>
             </thead>
             <tbody id="user-table-body">

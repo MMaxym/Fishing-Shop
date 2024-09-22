@@ -9,7 +9,11 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = [
+        'id',
         'user_id',
         'payment_method_id',
         'shipping_method_id',
@@ -37,14 +41,30 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class, 'discount_id');
+    }
+
 
     public function paymentMethod()
     {
-        return $this->belongsTo(Payment_method::class, 'payment_method_id');
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id');
     }
 
     public function shippingMethod()
     {
-        return $this->belongsTo(Shipping_method::class, 'shipping_method_id');
+        return $this->belongsTo(ShippingMethod::class, 'shipping_method_id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            do {
+                $order->id = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+            } while (self::where('id', $order->id)->exists());
+        });
     }
 }

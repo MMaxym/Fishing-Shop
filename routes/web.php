@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,7 +34,6 @@ Route::prefix('admin')->group(function () {
     Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
-
 Route::get('/admin/users/search', [UserController::class, 'search'])->name('admin.users.search');
 
 
@@ -51,7 +51,6 @@ Route::prefix('admin')->group(function () {
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::get('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
 });
-
 Route::get('/admin/products/search', [ProductController::class, 'search'])->name('admin.products.search');
 
 
@@ -59,20 +58,34 @@ Route::prefix('admin/products/{product}')->group(function () {
     Route::get('/images/add', [ProductImageController::class, 'create'])->name('admin.products.images.add');
     Route::post('/images', [ProductImageController::class, 'store'])->name('admin.products.images.store');
     Route::get('/images/edit', [ProductImageController::class, 'edit'])->name('admin.products.images.edit');
-    Route::put('/images/{images}', [ProductImageController::class, 'update'])->name('admin.products.images.update');
-    Route::delete('/images/{images}', [ProductImageController::class, 'destroy'])->name('admin.products.images.delete');
+    Route::put('/images/{image}', [ProductImageController::class, 'update'])->name('admin.products.images.update');
+    Route::delete('/images/{image}', [ProductImageController::class, 'destroy'])->name('admin.products.images.delete');
 });
 
 
 
 Route::prefix('admin')->group(function () {
     Route::get('/discounts', [DiscountController::class, 'index'])->name('admin.discounts.index');
-    Route::get('/discounts/create', [DiscountController::class, 'create'])->name('admin.discounts.create'); // Виправлено
+    Route::get('/discounts/create', [DiscountController::class, 'create'])->name('admin.discounts.create');
     Route::post('/discounts', [DiscountController::class, 'store'])->name('admin.discounts.store');
     Route::get('/discounts/{discount}/edit', [DiscountController::class, 'edit'])->name('admin.discounts.edit');
     Route::put('/discounts/{discount}', [DiscountController::class, 'update'])->name('admin.discounts.update');
     Route::delete('/discounts/{discount}', [DiscountController::class, 'destroy'])->name('admin.discounts.destroy');
 });
-
 Route::get('/admin/discounts/search', [DiscountController::class, 'search'])->name('admin.discounts.search');
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('admin.orders.create');
+    Route::post('/orders', [OrderController::class, 'store'])->name('admin.orders.store');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('admin.orders.show');
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('admin.orders.edit');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('admin.orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
+});
+Route::get('/admin/orders/search', [OrderController::class, 'search'])->name('admin.orders.search');
+Route::get('/admin/orders/{order}/products', [OrderController::class, 'showProducts'])->name('admin.orders.products');
+
+
 

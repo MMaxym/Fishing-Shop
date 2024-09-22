@@ -4,7 +4,7 @@
     <div class="container" style="max-width: 500px; margin: 0 auto; padding-bottom: 50px;">
         <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);">
             <div class="card-header" style="background-color: #d6d6d6;">
-                <h2>Create New User</h2>
+                <h2>Створення нового користувача</h2>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.users.store') }}" method="POST">
@@ -19,7 +19,7 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <label for="login">Login</label>
+                        <label for="login">Логін</label>
                         <input type="text" class="form-control" id="login" name="login" value="{{ old('login') }}" required>
                         @error('login')
                         <div class="text-danger">{{ $message }}</div>
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Пароль</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="password" name="password" required>
                             <div class="input-group-append">
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">Confirm Password</label>
+                        <label for="password_confirmation">Підтвердити парорль</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                             <div class="input-group-append">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="surname">Surname</label>
+                        <label for="surname">Прізвище</label>
                         <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname') }}" required>
                         @error('surname')
                         <div class="text-danger">{{ $message }}</div>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Імʼя</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                         @error('name')
                         <div class="text-danger">{{ $message }}</div>
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Електронна пошта</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                         @error('email')
                         <div class="text-danger">{{ $message }}</div>
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Телефон</label>
                         <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
                         @error('phone')
                         <div class="text-danger">{{ $message }}</div>
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Address</label>
+                        <label for="address">Адреса</label>
                         <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
                         @error('address')
                         <div class="text-danger">{{ $message }}</div>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="role_id">Role</label>
+                        <label for="role_id">Роль</label>
                         <select class="form-control" id="role_id" name="role_id" required>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}" {{ old('role_id', 2) == $role->id ? 'selected' : '' }}>
@@ -111,8 +111,8 @@
                     </div>
 
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-warning">Create User</button>
-                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">Back <-</button>
+                        <button type="submit" class="btn btn-warning">Створити користувача</button>
+                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">Назад <-</button>
                     </div>
 
                     <script>
