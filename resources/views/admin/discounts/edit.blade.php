@@ -66,7 +66,8 @@
 
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-warning">Зберегти зміни</button>
-                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">Назад <-</button>
+                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">
+                            <i class="fas fa-arrow-left"></i> Назад</button>
                     </div>
 
                     <script>

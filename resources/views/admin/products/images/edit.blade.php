@@ -13,7 +13,7 @@
                         <form action="{{ route('admin.products.images.delete', [$product, $image]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" style="margin-left: 30px">
+                            <button type="submit" class="btn btn-danger" style="margin-left: 30px" onclick="return confirmDelete()">
                                 <i class="fas fa-trash"></i> Видалити
                             </button>
                         </form>
@@ -23,7 +23,8 @@
                 <a href="{{ route('admin.products.images.add', $product) }}" class="btn btn-success mt-3">
                     <i class="fas fa-plus"></i> Додати нове зображення
                 </a>
-                <button type="button" class="btn btn-outline-primary mx-3 mt-3" id="back-button">Назад <-</button>
+                <button type="button" class="btn btn-outline-primary mx-3 mt-3" id="back-button">
+                    <i class="fas fa-arrow-left"></i> Назад</button>
             </div>
         </div>
     </div>
@@ -32,5 +33,9 @@
         document.getElementById('back-button').addEventListener('click', function() {
             window.location.href = "{{ route('admin.products.index') }}";
         });
+
+        function confirmDelete() {
+            return confirm(`Ви точно бажаєте видалити зображення?`);
+        }
     </script>
 @endsection

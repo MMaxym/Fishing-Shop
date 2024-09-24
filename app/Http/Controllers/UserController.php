@@ -13,8 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $users = User::with('role')->get();
+        $roles = Role::all();
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     public function create()
@@ -107,6 +108,23 @@ class UserController extends Controller
     {
         $query = $request->input('query');
         $users = User::where('login', 'like', "%{$query}%")->with('role')->get();
+
+        return response()->json(['users' => $users]);
+    }
+
+    public function filter(Request $request)
+    {
+        $query = $request->input('query');
+        $role = $request->input('role');
+
+        $users = User::with('role')
+            ->when($query, function($queryBuilder) use ($query) {
+                $queryBuilder->where('login', 'like', "%{$query}%");
+            })
+            ->when($role, function($queryBuilder) use ($role) {
+                $queryBuilder->where('role_id', $role);
+            })
+            ->get();
 
         return response()->json(['users' => $users]);
     }

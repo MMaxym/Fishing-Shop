@@ -69,4 +69,31 @@ class DiscountController extends Controller
         ]);
     }
 
+    public function filter(Request $request)
+    {
+        $query = $request->input('query');
+        $filterType = $request->input('filter_type');
+        $filterStatus = $request->input('filter_status');
+
+        $discounts = Discount::query();
+
+        if ($filterType) {
+            $discounts->where('type', $filterType);
+        }
+
+        if ($filterStatus === 'active') {
+            $discounts->where('end_date', '>', now());
+        } elseif ($filterStatus === 'expired') {
+            $discounts->where('end_date', '<=', now());
+        }
+
+        if ($query) {
+            $discounts->where('name', 'like', '%' . $query . '%');
+        }
+
+        return response()->json([
+            'discounts' => $discounts->get()
+        ]);
+    }
+
 }

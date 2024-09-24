@@ -11,6 +11,8 @@ use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\OrderController;
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,6 +28,12 @@ Route::get('/hobbies', [LabController::class, 'hobbies'])->middleware(CheckName:
 
 
 
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.admin');
+});
+
+
 Route::prefix('admin')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
@@ -33,12 +41,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
-});
-Route::get('/admin/users/search', [UserController::class, 'search'])->name('admin.users.search');
-
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.admin');
+    Route::get('/users/search', [UserController::class, 'search'])->name('admin.users.search');
+    Route::get('/users/filter', [UserController::class, 'filter'])->name('admin.users.filter');
 });
 
 
@@ -50,8 +54,9 @@ Route::prefix('admin')->group(function () {
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::get('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
+    Route::get('/products/filter', [ProductController::class, 'filter'])->name('admin.products.filter');
+    Route::get('/products/export', [ProductController::class, 'export'])->name('admin.products.export');
 });
-Route::get('/admin/products/search', [ProductController::class, 'search'])->name('admin.products.search');
 
 
 Route::prefix('admin/products/{product}')->group(function () {
@@ -63,7 +68,6 @@ Route::prefix('admin/products/{product}')->group(function () {
 });
 
 
-
 Route::prefix('admin')->group(function () {
     Route::get('/discounts', [DiscountController::class, 'index'])->name('admin.discounts.index');
     Route::get('/discounts/create', [DiscountController::class, 'create'])->name('admin.discounts.create');
@@ -71,8 +75,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/discounts/{discount}/edit', [DiscountController::class, 'edit'])->name('admin.discounts.edit');
     Route::put('/discounts/{discount}', [DiscountController::class, 'update'])->name('admin.discounts.update');
     Route::delete('/discounts/{discount}', [DiscountController::class, 'destroy'])->name('admin.discounts.destroy');
+    Route::get('/discounts/search', [DiscountController::class, 'search'])->name('admin.discounts.search');
+    Route::get('/discounts/filter', [DiscountController::class, 'filter'])->name('admin.discounts.filter');
 });
-Route::get('/admin/discounts/search', [DiscountController::class, 'search'])->name('admin.discounts.search');
 
 
 Route::prefix('admin')->group(function () {
@@ -83,9 +88,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('admin.orders.edit');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('admin.orders.update');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
+    Route::get('/orders/search', [OrderController::class, 'search'])->name('admin.orders.search');
+    Route::get('/orders/{order}/products', [OrderController::class, 'showProducts'])->name('admin.orders.products');
+    Route::get('/orders/filter', [OrderController::class, 'filter'])->name('admin.orders.filter');
 });
-Route::get('/admin/orders/search', [OrderController::class, 'search'])->name('admin.orders.search');
-Route::get('/admin/orders/{order}/products', [OrderController::class, 'showProducts'])->name('admin.orders.products');
-
 
 

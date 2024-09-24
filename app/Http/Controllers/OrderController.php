@@ -8,15 +8,25 @@ use App\Models\PaymentMethod;
 use App\Models\ShippingMethod;
 use App\Models\ProductsInOrder;
 use App\Models\Discount;
+use App\Models\OrderTracking;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::with(['user', 'paymentMethod', 'shippingMethod', 'discount'])->get();
+        $query = Order::with(['user', 'paymentMethod', 'shippingMethod', 'discount']);
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('id', 'like', '%' . $search . '%');
+        }
+
+        $orders = $query->get();
+
         return view('admin.orders.index', compact('orders'));
     }
+
 
     public function create()
     {
@@ -30,6 +40,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        // Валідація даних
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'payment_method_id' => 'required|exists:payment_methods,id',
@@ -40,10 +51,17 @@ class OrderController extends Controller
             'status' => 'required|string|max:50',
         ]);
 
-        Order::create($validated);
+        $order = Order::create($validated);
+
+        OrderTracking::create([
+            'order_id' => $order->id,
+            'status' => $order->status,
+            'updated' => now(),
+        ]);
 
         return redirect()->route('admin.orders.index')->with('success', 'Замовлення створено успішно !!!');
     }
+
 
     public function show(Order $order)
     {
@@ -68,24 +86,20 @@ class OrderController extends Controller
 
         $order->update($validated);
 
+        OrderTracking::create([
+            'order_id' => $order->id,
+            'status' => $order->status,
+            'updated' => now(),
+        ]);
+
         return redirect()->route('admin.orders.index')->with('success', 'Статус замовлення оновлено успішно !!!');
     }
+
 
     public function destroy(Order $order)
     {
         $order->delete();
         return redirect()->route('admin.orders.index')->with('error', 'Замовлення видалено успішно !!!');
-    }
-
-    public function search(Request $request)    //не працює пошук, тому що id типу string
-    {
-        $query = $request->input('query');
-
-        $orders = Order::where('id', 'like', "%$query%")
-            ->with(['user', 'paymentMethod', 'shippingMethod', 'discount'])
-            ->get();
-
-        return response()->json(['orders' => $orders]);
     }
 
     public function showProducts($orderId)
@@ -95,6 +109,4 @@ class OrderController extends Controller
 
         return view('admin.orders.products', compact('order', 'products'));
     }
-
-
 }

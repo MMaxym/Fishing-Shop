@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Exports\ProductsExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $products = Product::all();
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products', 'categories'));
     }
+
 
     public function create()
     {
@@ -44,7 +48,7 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->route('admin.products.index')->with('success', 'Продукт створено успішно !!!');
+        return redirect()->route('admin.products.index')->with('success', 'Товар створено успішно !!!');
     }
 
     public function edit(Product $product)
@@ -76,14 +80,14 @@ class ProductController extends Controller
         $product->is_active = $request->has('is_active') ? 1 : 0;
         $product->update($request->except('is_active'));
         $product->save();
-        return redirect()->route('admin.products.index')->with('success', 'Продукт оновлено успішно !!!');
+        return redirect()->route('admin.products.index')->with('success', 'Товар оновлено успішно !!!');
     }
 
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('admin.products.index')->with('error', 'Продукт успішно видалено !!!');
+        return redirect()->route('admin.products.index')->with('error', 'Товар успішно видалено !!!');
     }
 
     public function search(Request $request)
@@ -96,5 +100,79 @@ class ProductController extends Controller
 
         return response()->json(['products' => $products]);
     }
+
+    public function filter(Request $request)
+    {
+        $query = $request->input('query');
+        $category = $request->input('category');
+        $priceMin = $request->input('price_min');
+        $priceMax = $request->input('price_max');
+        $status = $request->input('status');
+        $quantity = $request->input('quantity');
+
+        $products = Product::query();
+
+        if ($query) {
+            $products->where('name', 'like', '%' . $query . '%');
+        }
+
+        if ($category) {
+            $products->where('category_id', $category);
+        }
+
+        if ($priceMin) {
+            $products->where('price', '>=', $priceMin);
+        }
+
+        if ($priceMax) {
+            $products->where('price', '<=', $priceMax);
+        }
+
+        if ($status) {
+            $products->where('is_active', $status === 'active');
+        }
+
+        if ($quantity) {
+            $products->where('quantity', '>=', $quantity);
+        }
+
+        return response()->json([
+            'products' => $products->with('category', 'discount')->get()
+        ]);
+    }
+    public function export(Request $request)
+    {
+        $filteredProducts = Product::query();
+
+        if ($request->filled('query')) {
+            $filteredProducts->where('name', 'like', '%' . $request->input('query') . '%');
+        }
+
+        if ($request->filled('category')) {
+            $filteredProducts->where('category_id', $request->input('category'));
+        }
+
+        if ($request->filled('price_min')) {
+            $filteredProducts->where('price', '>=', $request->input('price_min'));
+        }
+
+        if ($request->filled('price_max')) {
+            $filteredProducts->where('price', '<=', $request->input('price_max'));
+        }
+
+        if ($request->filled('status')) {
+            $filteredProducts->where('is_active', $request->input('status') === 'active');
+        }
+
+        if ($request->filled('quantity')) {
+            $filteredProducts->where('quantity', '>=', $request->input('quantity'));
+        }
+
+        $products = $filteredProducts->get(['article', 'name', 'category_id', 'description', 'size', 'quantity', 'price', 'discount_id', 'is_active']);
+
+        return Excel::download(new ProductsExport($products), 'products_report_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.xlsx');
+    }
+
+
 
 }
