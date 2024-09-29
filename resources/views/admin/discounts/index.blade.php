@@ -9,7 +9,7 @@
             <a href="{{ route('admin.discounts.create') }}" class="btn btn-success">
                 <i class="fas fa-plus"></i> Додати нову знижку
             </a>
-            <a href="" class="btn btn-dark me-2" style="width: 220px; margin-right: 270px; white-space: nowrap;">
+            <a href="" class="btn btn-dark me-2" style="width: auto; margin-right: 310px; white-space: nowrap;">
                 <i class="fas fa-file-alt"></i> Сформувати звіт
             </a>
             <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">

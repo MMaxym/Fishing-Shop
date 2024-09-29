@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\Models\PaymentMethod;
 use App\Models\ShippingMethod;
@@ -22,9 +23,13 @@ class OrderController extends Controller
             $query->where('id', 'like', '%' . $search . '%');
         }
 
+        $paymentMethods = PaymentMethod::all();
+        $shippingMethods = ShippingMethod::all();
+        $discounts = Discount::all();
+
         $orders = $query->get();
 
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders.index', compact('orders', 'paymentMethods', 'shippingMethods', 'discounts'));
     }
 
 
@@ -40,7 +45,6 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        // Валідація даних
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'payment_method_id' => 'required|exists:payment_methods,id',
@@ -109,4 +113,50 @@ class OrderController extends Controller
 
         return view('admin.orders.products', compact('order', 'products'));
     }
+
+    public function filter(Request $request)
+    {
+        $query = $request->input('query');
+        $paymentMethod = $request->input('paymentMethod');
+        $shippingMethod = $request->input('shippingMethod');
+        $discount = $request->input('discount');
+        $priceMin = $request->input('price_min');
+        $priceMax = $request->input('price_max');
+        $status = $request->input('status');
+
+        $orders = Product::query();
+
+        if ($query) {
+            $orders->where('name', 'like', '%' . $query . '%');
+        }
+
+        if ($paymentMethod) {
+            $orders->where('paymentMethod', $paymentMethod);
+        }
+
+        if ($shippingMethod) {
+            $orders->where('shippingMethod', $shippingMethod);
+        }
+
+        if ($discount) {
+            $orders->where('discount', '>=', $discount);
+        }
+
+        if ($priceMin) {
+            $orders->where('price', '>=', $priceMin);
+        }
+
+        if ($priceMax) {
+            $orders->where('price', '<=', $priceMax);
+        }
+
+        if ($status) {
+            $orders->where('status', $status);
+        }
+
+        return response()->json([
+            'orders' => $orders->with('paymentMethod', 'shippingMethod', 'discount')->get()
+        ]);
+    }
+
 }

@@ -14,7 +14,7 @@
                 <a href="{{ route('admin.orders.create') }}" class="btn btn-success">
                     <i class="fas fa-plus"></i> Додати нове замовлення
                 </a>
-                <a href="" class="btn btn-dark me-2" style="width: 220px; margin-left: 30px; white-space: nowrap;">
+                <a href="" class="btn btn-dark me-2" style="width: auto; margin-left: 30px; white-space: nowrap;">
                     <i class="fas fa-file-alt"></i> Сформувати звіт
                 </a>
             </div>
@@ -42,20 +42,128 @@
 
 
 
+{{--            <div class="row mb-4 g-1" style="max-width: 1600px;">--}}
+{{--                <div class="col">--}}
+{{--                    <label for="payment-method-filter" class="form-label">Фільтр за методом оплати</label>--}}
+{{--                    <div class="input-group">--}}
+{{--                        <div class="input-group-prepend">--}}
+{{--                <span class="input-group-text">--}}
+{{--                    <i class="fas fa-tags"></i>--}}
+{{--                </span>--}}
+{{--                        </div>--}}
+{{--                        <select id="payment-method-filter" class="form-control" onchange="filter()">--}}
+{{--                            <option value="">Усі методи оплати</option>--}}
+{{--                             @foreach ($paymentMethods as $paymentMethod)--}}
+{{--                             <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option>--}}
+{{--                             @endforeach--}}
+{{--                        </select>--}}
+{{--                        <div class="input-group-append">--}}
+{{--                            <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('payment-method-filter')">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="col">--}}
+{{--                    <label for="shipping-method-filter" class="form-label">Фільтр за методом доставки</label>--}}
+{{--                    <div class="input-group">--}}
+{{--                        <div class="input-group-prepend">--}}
+{{--                <span class="input-group-text">--}}
+{{--                    <i class="fas fa-tags"></i>--}}
+{{--                </span>--}}
+{{--                        </div>--}}
+{{--                        <select id="delivery-method-filter" class="form-control" onchange="filter()">--}}
+{{--                            <option value="">Усі методи доставки</option>--}}
+{{--                             @foreach ($shippingMethods as $shippingMethod)--}}
+{{--                             <option value="{{ $shippingMethod->id }}">{{ $shippingMethod->name }}</option>--}}
+{{--                             @endforeach--}}
+{{--                        </select>--}}
+{{--                        <div class="input-group-append">--}}
+{{--                            <button id="reset-delivery-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('delivery-method-filter')">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="col">--}}
+{{--                    <label for="discount-filter" class="form-label">Фільтр за знижкою</label>--}}
+{{--                    <div class="input-group">--}}
+{{--                        <div class="input-group-prepend">--}}
+{{--                <span class="input-group-text">--}}
+{{--                    <i class="fas fa-tags"></i>--}}
+{{--                </span>--}}
+{{--                        </div>--}}
+{{--                        <select id="discount-filter" class="form-control" onchange="filter()">--}}
+{{--                            <option value="">Усі знижки</option>--}}
+{{--                             @foreach ($discounts as $discount)--}}
+{{--                             <option value="{{ $discount->id }}">{{ $discount->name }}</option>--}}
+{{--                             @endforeach--}}
+{{--                        </select>--}}
+{{--                        <div class="input-group-append">--}}
+{{--                            <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('discount-filter')">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="col">--}}
+{{--                    <label for="price-filter" class="form-label">Фільтр за сумою</label>--}}
+{{--                    <div class="input-group">--}}
+{{--                        <div class="input-group-prepend">--}}
+{{--                <span class="input-group-text">--}}
+{{--                    <i class="fas fa-dollar-sign"></i>--}}
+{{--                </span>--}}
+{{--                        </div>--}}
+{{--                        <input type="number" id="price-min" class="form-control" placeholder="Мін" oninput="filter()">--}}
+{{--                        <input type="number" id="price-max" class="form-control" placeholder="Макс" oninput="filter()">--}}
+{{--                        <div class="input-group-append">--}}
+{{--                            <button id="reset-price-filter" class="btn btn-outline-secondary" type="button" onclick="resetPriceFilter()">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="col">--}}
+{{--                    <label for="status-filter" class="form-label">Фільтр за статусом</label>--}}
+{{--                    <div class="input-group">--}}
+{{--                        <div class="input-group-prepend">--}}
+{{--                <span class="input-group-text">--}}
+{{--                    <i class="fas fa-check-circle"></i>--}}
+{{--                </span>--}}
+{{--                        </div>--}}
+{{--                        <select id="status-filter" class="form-control" onchange="filter()">--}}
+{{--                            <option value="">Усі замовлення</option>--}}
+{{--                            <option value="active">В обробці</option>--}}
+{{--                            <option value="completed">Завершено</option>--}}
+{{--                            <option value="canceled">Скасовано</option>--}}
+{{--                            <option value="pending">Очікує на оплату</option>--}}
+{{--                            <option value="delivered">Доставлено</option>--}}
+{{--                        </select>--}}
+{{--                        <div class="input-group-append">--}}
+{{--                            <button id="reset-status-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('status-filter')">--}}
+{{--                                <i class="fas fa-times"></i>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
             <div class="row mb-4 g-1" style="max-width: 1600px;">
                 <div class="col">
                     <label for="payment-method-filter" class="form-label">Фільтр за методом оплати</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-tags"></i>
-                </span>
+                            <span class="input-group-text"><i class="fas fa-tags"></i></span>
                         </div>
-                        <select id="payment-method-filter" class="form-control" onchange="filter()">
+                        <select id="payment-method-filter" class="form-control" onchange="filterOrders()">
                             <option value="">Усі методи оплати</option>
-                            {{-- @foreach ($paymentMethods as $paymentMethod) --}}
-                            {{-- <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option> --}}
-                            {{-- @endforeach --}}
+                            @foreach ($paymentMethods as $paymentMethod)
+                                <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option>
+                            @endforeach
                         </select>
                         <div class="input-group-append">
                             <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('payment-method-filter')">
@@ -66,21 +174,19 @@
                 </div>
 
                 <div class="col">
-                    <label for="delivery-method-filter" class="form-label">Фільтр за методом доставки</label>
+                    <label for="shipping-method-filter" class="form-label">Фільтр за методом доставки</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-tags"></i>
-                </span>
+                            <span class="input-group-text"><i class="fas fa-tags"></i></span>
                         </div>
-                        <select id="delivery-method-filter" class="form-control" onchange="filter()">
+                        <select id="shipping-method-filter" class="form-control" onchange="filterOrders()">
                             <option value="">Усі методи доставки</option>
-                            {{-- @foreach ($deliveryMethods as $deliveryMethod) --}}
-                            {{-- <option value="{{ $deliveryMethod->id }}">{{ $deliveryMethod->name }}</option> --}}
-                            {{-- @endforeach --}}
+                            @foreach ($shippingMethods as $shippingMethod)
+                                <option value="{{ $shippingMethod->id }}">{{ $shippingMethod->name }}</option>
+                            @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-delivery-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('delivery-method-filter')">
+                            <button id="reset-shipping-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('shipping-method-filter')">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -91,15 +197,14 @@
                     <label for="discount-filter" class="form-label">Фільтр за знижкою</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-tags"></i>
-                </span>
+                            <span class="input-group-text"><i class="fas fa-tags"></i></span>
                         </div>
-                        <select id="discount-filter" class="form-control" onchange="filter()">
+                        <select id="discount-filter" class="form-control" onchange="filterOrders()">
                             <option value="">Усі знижки</option>
-                            {{-- @foreach ($discounts as $discount) --}}
-                            {{-- <option value="{{ $discount->id }}">{{ $discount->name }}</option> --}}
-                            {{-- @endforeach --}}
+                            <option value="1">Усі знижки</option>
+                            @foreach ($discounts->where('type', 'На замовлення')->unique('percentage')->sortBy('percentage') as $discount)
+                                <option value="{{ $discount->id }}">{{ $discount->percentage }} %</option>
+                            @endforeach
                         </select>
                         <div class="input-group-append">
                             <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('discount-filter')">
@@ -113,12 +218,10 @@
                     <label for="price-filter" class="form-label">Фільтр за сумою</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-dollar-sign"></i>
-                </span>
+                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                         </div>
-                        <input type="number" id="price-min" class="form-control" placeholder="Мін" oninput="filter()">
-                        <input type="number" id="price-max" class="form-control" placeholder="Макс" oninput="filter()">
+                        <input type="number" id="price-min" class="form-control" placeholder="Мін" oninput="filterOrders()">
+                        <input type="number" id="price-max" class="form-control" placeholder="Макс" oninput="filterOrders()">
                         <div class="input-group-append">
                             <button id="reset-price-filter" class="btn btn-outline-secondary" type="button" onclick="resetPriceFilter()">
                                 <i class="fas fa-times"></i>
@@ -131,11 +234,9 @@
                     <label for="status-filter" class="form-label">Фільтр за статусом</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-check-circle"></i>
-                </span>
+                            <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                         </div>
-                        <select id="status-filter" class="form-control" onchange="filter()">
+                        <select id="status-filter" class="form-control" onchange="filterOrders()">
                             <option value="">Усі замовлення</option>
                             <option value="active">В обробці</option>
                             <option value="completed">Завершено</option>
@@ -151,9 +252,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
 
             <div class="table-responsive" style="max-height: 555px; overflow-y: auto;">
@@ -249,10 +347,75 @@
                 }
             });
 
-            document.getElementById('no-results').style.display = found ? 'none' : '';
+            document.getElementById('no-results').style.display = found ? 'none' : 'block';
         }
 
+        function filterOrders() {
+            const paymentMethod = document.getElementById('payment-method-filter').value;
+            const shippingMethod = document.getElementById('shipping-method-filter').value;
+            const discount = document.getElementById('discount-filter').value;
+            const status = document.getElementById('status-filter').value;
+            const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
+            const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
 
+            const orders = document.querySelectorAll('#order-table-body tr');
+            let found = false;
+
+            orders.forEach(order => {
+                const orderPaymentMethod = order.querySelector('td:nth-child(3)').textContent.trim();
+                const orderShippingMethod = order.querySelector('td:nth-child(4)').textContent.trim();
+                const orderDiscount = order.querySelector('td:nth-child(5)').textContent.trim();
+                const orderStatus = order.querySelector('td:nth-child(8)').textContent.trim();
+                const orderPrice = parseFloat(order.querySelector('td:nth-child(7)').textContent.replace(' грн', '').replace(',', ''));
+
+                let matches = true;
+
+                // Перевірка методу оплати
+                if (paymentMethod && orderPaymentMethod !== paymentMethod) {
+                    matches = false;
+                }
+
+                // Перевірка методу доставки
+                if (shippingMethod && orderShippingMethod !== shippingMethod) {
+                    matches = false;
+                }
+
+                // Перевірка знижки
+                if (discount && (orderDiscount !== `${discount} %` && orderDiscount !== 'Немає')) {
+                    matches = false;
+                }
+
+                // Перевірка статусу
+                if (status && orderStatus !== status) {
+                    matches = false;
+                }
+
+                // Перевірка ціни
+                if (orderPrice < priceMin || orderPrice > priceMax) {
+                    matches = false;
+                }
+
+                if (matches) {
+                    order.style.display = '';
+                    found = true;
+                } else {
+                    order.style.display = 'none';
+                }
+            });
+
+            document.getElementById('no-results').style.display = found ? 'none' : 'block';
+        }
+
+        function resetFilter(filterId) {
+            document.getElementById(filterId).value = '';
+            filterOrders();
+        }
+
+        function resetPriceFilter() {
+            document.getElementById('price-min').value = '';
+            document.getElementById('price-max').value = '';
+            filterOrders();
+        }
 
         let sortOrder = {};
 
@@ -292,5 +455,24 @@
             }
         }
 
+        // Додайте обробники подій для фільтрів
+        document.addEventListener("DOMContentLoaded", function() {
+            const filters = [
+                'payment-method-filter',
+                'shipping-method-filter',
+                'discount-filter',
+                'status-filter',
+                'price-min',
+                'price-max'
+            ];
+
+            filters.forEach(filter => {
+                document.getElementById(filter).addEventListener('change', filterOrders);
+            });
+
+            document.getElementById('search').addEventListener('keyup', searchOrders);
+        });
     </script>
+
+
 @endsection
