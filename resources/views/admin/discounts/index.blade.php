@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="max-width: 1000px;">
+    @include('layouts.heder-admin')
+    <div class="container" style="max-width: 1000px; margin-top: 100px;">
         <div class="d-flex justify-content-left align-items-center mb-4">
             <h1 class="mb-0">Знижки</h1>
         </div>
@@ -232,7 +233,7 @@
         }
 
         function updateSortIcons(columnIndex, ascending) {
-            for (let i = 0; i < 5; i++) { // Всього 5 колонок з можливістю сортування
+            for (let i = 0; i < 5; i++) {
                 const icon = document.getElementById(`sortIcon${i}`);
                 if (i === columnIndex) {
                     icon.className = ascending ? "fas fa-sort-up" : "fas fa-sort-down";

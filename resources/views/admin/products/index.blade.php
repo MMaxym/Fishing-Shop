@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="max-width: 1500px;">
+    @include('layouts.heder-admin')
+    <div class="container" style="max-width: 1500px; margin-top: 100px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Товари</h1>
             <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">

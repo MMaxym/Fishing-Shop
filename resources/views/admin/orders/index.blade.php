@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="max-width: 1600px;">
+    @include('layouts.heder-admin')
+    <div class="container" style="max-width: 1600px; margin-top: 100px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Замовлення</h1>
             <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">
@@ -370,27 +371,22 @@
 
                 let matches = true;
 
-                // Перевірка методу оплати
                 if (paymentMethod && orderPaymentMethod !== paymentMethod) {
                     matches = false;
                 }
 
-                // Перевірка методу доставки
                 if (shippingMethod && orderShippingMethod !== shippingMethod) {
                     matches = false;
                 }
 
-                // Перевірка знижки
                 if (discount && (orderDiscount !== `${discount} %` && orderDiscount !== 'Немає')) {
                     matches = false;
                 }
 
-                // Перевірка статусу
                 if (status && orderStatus !== status) {
                     matches = false;
                 }
 
-                // Перевірка ціни
                 if (orderPrice < priceMin || orderPrice > priceMax) {
                     matches = false;
                 }
@@ -455,7 +451,6 @@
             }
         }
 
-        // Додайте обробники подій для фільтрів
         document.addEventListener("DOMContentLoaded", function() {
             const filters = [
                 'payment-method-filter',

@@ -59,7 +59,7 @@
             Користувачів не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 560px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 620px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
