@@ -31,6 +31,7 @@ Route::get('/hobbies', [LabController::class, 'hobbies'])->middleware(CheckName:
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.admin');
+    Route::get('/{order}/products', [AdminController::class, 'showProducts'])->name('admin.orders.products');
 });
 
 

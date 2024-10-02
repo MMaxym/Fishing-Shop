@@ -2,11 +2,9 @@
 
 @section('content')
     @include('layouts.heder-admin')
-    <div class="container" style="max-width: 1300px; margin-top: 100px;">
+    <div class="container" style="max-width: 1300px; margin-top: 130px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Користувачі</h1>
-            <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">
-                <i class="fas fa-arrow-left"></i> Повернутися на головну</a>
         </div>
 
         <div class="row mb-4">
@@ -59,7 +57,7 @@
             Користувачів не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 620px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 590px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>

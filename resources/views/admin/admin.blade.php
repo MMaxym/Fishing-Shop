@@ -1,17 +1,153 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-
+    <div class="container" style="max-width: 1600px;">
         @include('layouts.heder-admin')
 
-        <div class="jumbotron jumbotron-fluid" style="border-radius: 10px; margin-top: 100px; background-color: #cedde6;">
-            <div class="container">
-                <h2 class="display-4" style="margin-bottom: 40px;">Вас вітає панель адміністратора!</h2>
-                <p class="lead">Тут ви можете керувати користувачами, товарами, замовленнями та знижками вашого інтернет-магазину. Щоб почати, виберіть відповідний розділ у навігаційному меню.</p>
-                <p>Якщо у вас виникли запитання чи проблеми, зверніться до нашої документації або зверніться до технічної підтримки.</p>
+        <div style="margin-top: 150px;">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="row mt-6">
+                        <div class="col-md-12">
+                            <div class="card text-white bg-secondary mb-3 shadow">
+                                <div class="card-header">Користувачі</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Управління користувачами</h5>
+                                    <p class="card-text">Додавайте, редагуйте або видаляйте користувачів системи.</p>
+                                    <a href="{{ route('admin.users.index') }}" class="btn btn-light">Перейти</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card text-white bg-primary mb-3 shadow">
+                                <div class="card-header">Товари</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Управління товарами</h5>
+                                    <p class="card-text">Додавайте, редагуйте або видаляйте товари.</p>
+                                    <a href="{{ route('admin.products.index') }}" class="btn btn-light">Перейти</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card text-white bg-success mb-3 shadow">
+                                <div class="card-header">Замовлення</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Управління замовленнями</h5>
+                                    <p class="card-text">Переглядайте та обробляйте інформацію про замовлення.</p>
+                                    <a href="{{ route('admin.orders.index') }}" class="btn btn-light">Перейти</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card text-white bg-danger mb-3 shadow">
+                                <div class="card-header">Знижки</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Управління знижками</h5>
+                                    <p class="card-text">Переглядайте та обробляйте інформацію про знижки.</p>
+                                    <a href="{{ route('admin.discounts.index') }}" class="btn btn-light">Перейти</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-3 shadow">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">Нові замовлення за сьогодні ({{ now()->format('d.m.Y') }})</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @if($newOrders->isEmpty() || !$newOrders->contains(function ($order) {
+                                    return $order->status === 'В обробці' && \Carbon\Carbon::parse($order->created_at)->isToday();
+                                }))
+                                    <li class="list-group-item text-center">
+                                        <em>Нових замовлень за сьогодні немає.</em>
+                                    </li>
+                                @else
+                                    @foreach($newOrders as $order)
+                                        @if($order->status === 'В обробці' && \Carbon\Carbon::parse($order->created_at)->isToday())
+                                            <li class="list-group-item d-flex justify-content-between align-items-center border-bottom">
+                                                <div>
+                                                    <strong>Замовлення:</strong> #{{ $order->id }}
+                                                    <span class="mx-2">|</span>
+                                                    <strong>Статус:</strong> {{ $order->status }}
+                                                    <span class="mx-2">|</span>
+                                                    <strong>Створено:</strong> {{ $order->created_at->format('d.m.Y H:i') }}
+                                                </div>
+                                                <a href="{{ route('admin.orders.products', $order->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-list-ul"></i>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-14">
+                        <div class="card mb-3 shadow">
+                            <div class="card-header bg-dark text-white">
+                               <h5 class="mb-0">Календар подій</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <style>
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+                    initialView: 'dayGridMonth',
+                    editable: true,
+                    selectable: true,
+                    events: [
+                        { title: 'Новий продукт', date: '2024-10-10' },
+                        { title: 'Зустріч з постачальниками', date: '2024-10-15' },
+                        { title: 'Кінцевий термін знижок', date: '2024-10-20' },
+                    ],
+                    dateClick: function(info) {
+                        var title = prompt('Введіть назву події:');
+                        if (title) {
+                            calendar.addEvent({
+                                title: title,
+                                start: info.dateStr,
+                                allDay: true
+                            });
+                        }
+                    },
+                    eventClick: function(info) {
+                        if (confirm("Видалити цю подію?")) {
+                            info.event.remove();
+                        }
+                    }
+                });
+                calendar.render();
+            });
+        </script>
+    @endpush
+
 @endsection

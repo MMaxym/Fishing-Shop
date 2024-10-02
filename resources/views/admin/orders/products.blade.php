@@ -10,9 +10,12 @@
             <a href="{{ route('admin.orders.index') }}" class="btn btn-info" style="white-space: nowrap; margin-left: 30px;">
                 <i class="fas fa-arrow-left"></i> Назад до замовлень
             </a>
+            <a href="{{ route('admin.admin') }}" class="btn btn-danger" style="white-space: nowrap; margin-left: 30px;">
+                <i class="fas fa-arrow-left"></i> На головну сторінку
+            </a>
         </div>
 
-        <div class="table-responsive" style="max-height: 685px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 750px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>

@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.heder-admin')
-    <div class="container" style="max-width: 1000px; margin-top: 100px;">
+    <div class="container" style="max-width: 1000px; margin-top: 130px;">
         <div class="d-flex justify-content-left align-items-center mb-4">
             <h1 class="mb-0">Знижки</h1>
         </div>
@@ -10,11 +10,8 @@
             <a href="{{ route('admin.discounts.create') }}" class="btn btn-success">
                 <i class="fas fa-plus"></i> Додати нову знижку
             </a>
-            <a href="" class="btn btn-dark me-2" style="width: auto; margin-right: 310px; white-space: nowrap;">
+            <a href="" class="btn btn-dark me-2" style="width: auto; margin-right: 570px; white-space: nowrap;">
                 <i class="fas fa-file-alt"></i> Сформувати звіт
-            </a>
-            <a href="{{ url('/admin') }}" class="btn btn-outline-secondary">
-                <i class="fas fa-arrow-left"></i> Повернутися на головну
             </a>
         </div>
 
@@ -77,7 +74,7 @@
             Знижки не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 550px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 535px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
