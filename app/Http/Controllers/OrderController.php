@@ -124,18 +124,19 @@ class OrderController extends Controller
         $priceMax = $request->input('price_max');
         $status = $request->input('status');
 
-        $orders = Product::query();
+        $orders = Order::query();
+
 
         if ($query) {
             $orders->where('name', 'like', '%' . $query . '%');
         }
 
         if ($paymentMethod) {
-            $orders->where('paymentMethod', $paymentMethod);
+            $orders->where('payment_method_id', $paymentMethod);
         }
 
         if ($shippingMethod) {
-            $orders->where('shippingMethod', $shippingMethod);
+            $orders->where('shipping_method_id', $shippingMethod);
         }
 
         if ($discount) {
@@ -158,5 +159,4 @@ class OrderController extends Controller
             'orders' => $orders->with('paymentMethod', 'shippingMethod', 'discount')->get()
         ]);
     }
-
 }

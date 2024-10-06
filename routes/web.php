@@ -10,6 +10,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MainUserController;
+use App\Http\Controllers\ForgotPasswordController;
 
 
 
@@ -25,8 +28,6 @@ Route::get('/hobbies', [LabController::class, 'hobbies']);
 
 Route::get('/about', [LabController::class, 'about'])->middleware(CheckAge::class);
 Route::get('/hobbies', [LabController::class, 'hobbies'])->middleware(CheckName::class);
-
-
 
 
 Route::prefix('admin')->group(function () {
@@ -93,5 +94,32 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders/{order}/products', [OrderController::class, 'showProducts'])->name('admin.orders.products');
     Route::get('/orders/filter', [OrderController::class, 'filter'])->name('admin.orders.filter');
 });
+
+
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/reset', [ForgotPasswordController::class, 'reset'])->name('password.update');
+Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+
+
+
+
+
+Route::prefix('user/')->group(function () {
+    Route::get('/main', [MainUserController::class, 'index'])->name('user.main');
+});
+
+
 
 

@@ -4,7 +4,7 @@
     <div class="container" style="max-width: 1600px;">
         @include('layouts.heder-admin')
 
-        <div style="margin-top: 150px;">
+        <div style="margin-top: 150px; margin-bottom: 50px;">
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="row mt-6">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <div class="card text-white bg-danger mb-3 shadow">
+                            <div class="card text-white bg-danger mb-3 shadow" >
                                 <div class="card-header">Знижки</div>
                                 <div class="card-body">
                                     <h5 class="card-title">Управління знижками</h5>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="card mb-3 shadow">
+                    <div class="card mb-3 shadow" style="height: 450px;">
                         <div class="card-header bg-info text-white">
                             <h5 class="mb-0">Нові замовлення за сьогодні ({{ now()->format('d.m.Y') }})</h5>
                         </div>
@@ -90,12 +90,14 @@
                         </div>
                     </div>
                     <div class="col-md-14">
-                        <div class="card mb-3 shadow">
+                        <div class="card mb-3 shadow" style="height: 450px;">
                             <div class="card-header bg-dark text-white">
                                <h5 class="mb-0">Календар подій</h5>
                             </div>
                             <div class="card-body">
                                 <div id="calendar"></div>
+                                <div>ТУТ ЗРОБИТИ ЯКИЙСЬ КОНТЕНТ, ТИПУ КАЛЕНДАР АБО ЩОСЬ ІНШЕ ЦІКАВЕ</div>
+                                <div>МОЖЛИВО ЯКУСЬ АНАЛІТИКУ, ТИПУ КІЛЬКІСТЬ ЗАМОВЛЕНЬ ЗА ОСТАННІЙ МІСЯЦЬ, ЗАГАЛЬНИЙ ПРИБУТОК І Т.Д.</div>
                             </div>
                         </div>
                     </div>
@@ -114,40 +116,5 @@
             transform: scale(1.05);
         }
     </style>
-
-    @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var calendarEl = document.getElementById('calendar');
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
-                    initialView: 'dayGridMonth',
-                    editable: true,
-                    selectable: true,
-                    events: [
-                        { title: 'Новий продукт', date: '2024-10-10' },
-                        { title: 'Зустріч з постачальниками', date: '2024-10-15' },
-                        { title: 'Кінцевий термін знижок', date: '2024-10-20' },
-                    ],
-                    dateClick: function(info) {
-                        var title = prompt('Введіть назву події:');
-                        if (title) {
-                            calendar.addEvent({
-                                title: title,
-                                start: info.dateStr,
-                                allDay: true
-                            });
-                        }
-                    },
-                    eventClick: function(info) {
-                        if (confirm("Видалити цю подію?")) {
-                            info.event.remove();
-                        }
-                    }
-                });
-                calendar.render();
-            });
-        </script>
-    @endpush
 
 @endsection

@@ -4,7 +4,7 @@
     @include('layouts.heder-admin')
     <div class="container" style="max-width: 1600px; margin-top: 130px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0">Замовлення</h1>
+            <h1 class="mb-0">Замовлення ---------//НЕ ПРАЦЮЮТЬ ФІЛЬТРИ</h1>
         </div>
 
         <div class="row mb-3">
@@ -37,118 +37,6 @@
                 <p>Жодних замовлень не знайдено!</p>
             </div>
         @else
-
-
-
-{{--            <div class="row mb-4 g-1" style="max-width: 1600px;">--}}
-{{--                <div class="col">--}}
-{{--                    <label for="payment-method-filter" class="form-label">Фільтр за методом оплати</label>--}}
-{{--                    <div class="input-group">--}}
-{{--                        <div class="input-group-prepend">--}}
-{{--                <span class="input-group-text">--}}
-{{--                    <i class="fas fa-tags"></i>--}}
-{{--                </span>--}}
-{{--                        </div>--}}
-{{--                        <select id="payment-method-filter" class="form-control" onchange="filter()">--}}
-{{--                            <option value="">Усі методи оплати</option>--}}
-{{--                             @foreach ($paymentMethods as $paymentMethod)--}}
-{{--                             <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option>--}}
-{{--                             @endforeach--}}
-{{--                        </select>--}}
-{{--                        <div class="input-group-append">--}}
-{{--                            <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('payment-method-filter')">--}}
-{{--                                <i class="fas fa-times"></i>--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col">--}}
-{{--                    <label for="shipping-method-filter" class="form-label">Фільтр за методом доставки</label>--}}
-{{--                    <div class="input-group">--}}
-{{--                        <div class="input-group-prepend">--}}
-{{--                <span class="input-group-text">--}}
-{{--                    <i class="fas fa-tags"></i>--}}
-{{--                </span>--}}
-{{--                        </div>--}}
-{{--                        <select id="delivery-method-filter" class="form-control" onchange="filter()">--}}
-{{--                            <option value="">Усі методи доставки</option>--}}
-{{--                             @foreach ($shippingMethods as $shippingMethod)--}}
-{{--                             <option value="{{ $shippingMethod->id }}">{{ $shippingMethod->name }}</option>--}}
-{{--                             @endforeach--}}
-{{--                        </select>--}}
-{{--                        <div class="input-group-append">--}}
-{{--                            <button id="reset-delivery-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('delivery-method-filter')">--}}
-{{--                                <i class="fas fa-times"></i>--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col">--}}
-{{--                    <label for="discount-filter" class="form-label">Фільтр за знижкою</label>--}}
-{{--                    <div class="input-group">--}}
-{{--                        <div class="input-group-prepend">--}}
-{{--                <span class="input-group-text">--}}
-{{--                    <i class="fas fa-tags"></i>--}}
-{{--                </span>--}}
-{{--                        </div>--}}
-{{--                        <select id="discount-filter" class="form-control" onchange="filter()">--}}
-{{--                            <option value="">Усі знижки</option>--}}
-{{--                             @foreach ($discounts as $discount)--}}
-{{--                             <option value="{{ $discount->id }}">{{ $discount->name }}</option>--}}
-{{--                             @endforeach--}}
-{{--                        </select>--}}
-{{--                        <div class="input-group-append">--}}
-{{--                            <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('discount-filter')">--}}
-{{--                                <i class="fas fa-times"></i>--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col">--}}
-{{--                    <label for="price-filter" class="form-label">Фільтр за сумою</label>--}}
-{{--                    <div class="input-group">--}}
-{{--                        <div class="input-group-prepend">--}}
-{{--                <span class="input-group-text">--}}
-{{--                    <i class="fas fa-dollar-sign"></i>--}}
-{{--                </span>--}}
-{{--                        </div>--}}
-{{--                        <input type="number" id="price-min" class="form-control" placeholder="Мін" oninput="filter()">--}}
-{{--                        <input type="number" id="price-max" class="form-control" placeholder="Макс" oninput="filter()">--}}
-{{--                        <div class="input-group-append">--}}
-{{--                            <button id="reset-price-filter" class="btn btn-outline-secondary" type="button" onclick="resetPriceFilter()">--}}
-{{--                                <i class="fas fa-times"></i>--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--                <div class="col">--}}
-{{--                    <label for="status-filter" class="form-label">Фільтр за статусом</label>--}}
-{{--                    <div class="input-group">--}}
-{{--                        <div class="input-group-prepend">--}}
-{{--                <span class="input-group-text">--}}
-{{--                    <i class="fas fa-check-circle"></i>--}}
-{{--                </span>--}}
-{{--                        </div>--}}
-{{--                        <select id="status-filter" class="form-control" onchange="filter()">--}}
-{{--                            <option value="">Усі замовлення</option>--}}
-{{--                            <option value="active">В обробці</option>--}}
-{{--                            <option value="completed">Завершено</option>--}}
-{{--                            <option value="canceled">Скасовано</option>--}}
-{{--                            <option value="pending">Очікує на оплату</option>--}}
-{{--                            <option value="delivered">Доставлено</option>--}}
-{{--                        </select>--}}
-{{--                        <div class="input-group-append">--}}
-{{--                            <button id="reset-status-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('status-filter')">--}}
-{{--                                <i class="fas fa-times"></i>--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
 
             <div class="row mb-4 g-1" style="max-width: 1600px;">
                 <div class="col">
@@ -199,7 +87,7 @@
                         </div>
                         <select id="discount-filter" class="form-control" onchange="filterOrders()">
                             <option value="">Усі знижки</option>
-                            <option value="1">Усі знижки</option>
+                            <option value="1">Немає</option>
                             @foreach ($discounts->where('type', 'На замовлення')->unique('percentage')->sortBy('percentage') as $discount)
                                 <option value="{{ $discount->id }}">{{ $discount->percentage }} %</option>
                             @endforeach
@@ -409,6 +297,22 @@
             document.getElementById('price-max').value = '';
             filterOrders();
         }
+        document.addEventListener("DOMContentLoaded", function() {
+            const filters = [
+                'payment-method-filter',
+                'shipping-method-filter',
+                'discount-filter',
+                'status-filter',
+                'price-min',
+                'price-max'
+            ];
+
+            filters.forEach(filter => {
+                document.getElementById(filter).addEventListener('change', filterOrders);
+            });
+
+            document.getElementById('search').addEventListener('keyup', searchOrders);
+        });
 
         let sortOrder = {};
 
@@ -447,24 +351,5 @@
                 }
             }
         }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const filters = [
-                'payment-method-filter',
-                'shipping-method-filter',
-                'discount-filter',
-                'status-filter',
-                'price-min',
-                'price-max'
-            ];
-
-            filters.forEach(filter => {
-                document.getElementById(filter).addEventListener('change', filterOrders);
-            });
-
-            document.getElementById('search').addEventListener('keyup', searchOrders);
-        });
     </script>
-
-
 @endsection

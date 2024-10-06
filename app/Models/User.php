@@ -37,11 +37,6 @@ class User extends Authenticatable
         'role_id' => 'integer',
     ];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-
     public function role()
     {
         return $this->belongsTo(Role::class);

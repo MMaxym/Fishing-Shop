@@ -15,13 +15,14 @@
             opacity: 1;
             transition: opacity 1s ease-out;
             text-align: center;
+            z-index: 1001;
         }
         .alert.fade-out {
             opacity: 0;
         }
     </style>
 </head>
-<body style="background-color: #f2f2f2;">
+<body style="background-color: #E1E7F6;">
 @if (session('success'))
     <div class="alert alert-success" id="success-alert">
         {{ session('success') }}
@@ -42,8 +43,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -67,7 +66,7 @@
                     errorAlert.remove();
                 }
             }, 1000);
-        }, 3000);
+        }, 2000);
     });
 </script>
 </body>

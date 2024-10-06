@@ -27,15 +27,14 @@
 
     <div class="d-flex align-items-center mr-4">
         <i class="bi bi-person-circle mr-3" style="font-size: 2rem; color: #04396E;"></i>
-        <span class="mr-3" style="font-size: 22px; color: #04396E;">Admin</span>
-        {{--        <span class="text-white mr-3">{{ Auth::user()->name }}</span>--}}
+                <span class="mr-3" style="font-size: 22px; color: #04396E;">{{ Auth::user()->login }}</span>
 
-        {{--        <form action="{{ route('logout') }}" method="POST" style="display: inline;">--}}
-        {{--            @csrf--}}
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
                         <button type="submit" class="btn btn-outline-light px-3 py-2" style="border: none; background: transparent;">
                             <i class="fas fa-sign-out-alt" style="font-size: 1.3rem; color: #04396E;"></i>
                         </button>
-        {{--        </form>--}}
+                </form>
     </div>
 
 </header>
