@@ -25,7 +25,7 @@
 
                     <div class="form-group">
                         <label for="email">Електронна пошта</label>
-                        <input type="email" class="form-control" id="email" name="email" required autofocus>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
 
                     <button type="submit" class="btn btn-email" id="btn-email">Надіслати посилання для скидання пароля</button>

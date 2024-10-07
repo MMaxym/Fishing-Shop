@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainUserController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\GoogleAuthController;
 
 
 
@@ -105,8 +106,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-
-
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/reset', [ForgotPasswordController::class, 'reset'])->name('password.update');
@@ -114,6 +113,8 @@ Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showRese
 
 
 
+Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
 
 
 Route::prefix('user/')->group(function () {

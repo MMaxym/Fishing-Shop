@@ -53,11 +53,12 @@
                     <div class="divider">Або</div>
 
                     <div class="btn-google" style="margin-top: 20px;">
-                        <a href="#" class="btn btn-danger d-flex align-items-center justify-content-center" style="width: 100%;">
+                        <a href="{{ route('google.redirect') }}"class="btn btn-danger d-flex align-items-center justify-content-center" style="width: 100%;">
                             <i class="fab fa-google" style="margin-right: 8px;"></i>
                             Увійти через Google
                         </a>
                     </div>
+
 
                     <div style="margin-top: 20px; text-align: center;">
                         <p>У Вас немає акаунта? <a href="{{ route('register') }}">Зареєструватися</a></p>
