@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.heder-admin')
+    @include('layouts.header-admin')
     <div class="container" style="max-width: 1000px; margin-top: 130px;">
         <div class="d-flex justify-content-left align-items-center mb-4">
             <h1 class="mb-0">Знижки</h1>
@@ -26,8 +26,11 @@
                     </div>
                     <select id="discount-type-filter" class="form-control">
                         <option value="">Усі знижки</option>
-                        <option value="На товар" {{ request('filter_type') == 'На товар' ? 'selected' : '' }}>На товар</option>
-                        <option value="На замовлення" {{ request('filter_type') == 'На замовлення' ? 'selected' : '' }}>На замовлення</option>
+                        <option value="На товар" {{ request('filter_type') == 'На товар' ? 'selected' : '' }}>На товар
+                        </option>
+                        <option value="На замовлення" {{ request('filter_type') == 'На замовлення' ? 'selected' : '' }}>
+                            На замовлення
+                        </option>
                     </select>
                     <div class="input-group-append">
                         <button id="reset-type-filter" class="btn btn-outline-secondary" type="button">
@@ -47,8 +50,12 @@
                     </div>
                     <select id="discount-status-filter" class="form-control">
                         <option value="">Усі знижки</option>
-                        <option value="active" {{ request('filter_status') == 'active' ? 'selected' : '' }}>Діючі знижки</option>
-                        <option value="expired" {{ request('filter_status') == 'expired' ? 'selected' : '' }}>Завершені знижки</option>
+                        <option value="active" {{ request('filter_status') == 'active' ? 'selected' : '' }}>Діючі
+                            знижки
+                        </option>
+                        <option value="expired" {{ request('filter_status') == 'expired' ? 'selected' : '' }}>Завершені
+                            знижки
+                        </option>
                     </select>
                     <div class="input-group-append">
                         <button id="reset-status-filter" class="btn btn-outline-secondary" type="button">
@@ -78,19 +85,24 @@
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(0)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(0)">
                         Назва <i id="sortIcon0" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(1)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(1)">
                         Відсоток <i id="sortIcon1" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(2)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(2)">
                         Дата початку <i id="sortIcon2" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(3)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(3)">
                         Дата завершення <i id="sortIcon3" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(4)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(4)">
                         Тип <i id="sortIcon4" class="fas fa-sort"></i>
                     </th>
                     <th style="min-width: 105px; position: sticky; top: 0; z-index: 1;">
@@ -110,7 +122,8 @@
                             <a href="{{ route('admin.discounts.edit', $discount) }}" class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.discounts.destroy', $discount) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete('{{ $discount->name }}')">
+                            <form action="{{ route('admin.discounts.destroy', $discount) }}" method="POST"
+                                  style="display:inline;" onsubmit="return confirmDelete('{{ $discount->name }}')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" style="margin-left: 10px">
@@ -167,32 +180,32 @@
                 });
         }
 
-        document.getElementById('reset-type-filter').addEventListener('click', function() {
+        document.getElementById('reset-type-filter').addEventListener('click', function () {
             document.getElementById('discount-type-filter').value = '';
             const query = document.getElementById('search').value;
             const filterStatus = document.getElementById('discount-status-filter').value;
             fetchDiscounts(query, '', filterStatus);
         });
 
-        document.getElementById('reset-status-filter').addEventListener('click', function() {
+        document.getElementById('reset-status-filter').addEventListener('click', function () {
             document.getElementById('discount-status-filter').value = '';
             const query = document.getElementById('search').value;
             const filterType = document.getElementById('discount-type-filter').value;
             fetchDiscounts(query, filterType, '');
         });
 
-        document.getElementById('search').addEventListener('input', function() {
+        document.getElementById('search').addEventListener('input', function () {
             const query = this.value;
             fetchDiscounts(query, document.getElementById('discount-type-filter').value, document.getElementById('discount-status-filter').value);
         });
 
-        document.getElementById('discount-type-filter').addEventListener('change', function() {
+        document.getElementById('discount-type-filter').addEventListener('change', function () {
             const query = document.getElementById('search').value;
             const filterType = this.value;
             fetchDiscounts(query, filterType, document.getElementById('discount-status-filter').value);
         });
 
-        document.getElementById('discount-status-filter').addEventListener('change', function() {
+        document.getElementById('discount-status-filter').addEventListener('change', function () {
             const query = document.getElementById('search').value;
             const filterStatus = this.value;
             fetchDiscounts(query, document.getElementById('discount-type-filter').value, filterStatus);

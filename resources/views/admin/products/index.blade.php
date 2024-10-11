@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.heder-admin')
+    @include('layouts.header-admin')
     <div class="container" style="max-width: 1500px; margin-top: 130px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Товари</h1>
@@ -12,7 +12,8 @@
                 <a href="{{ route('admin.products.create') }}" class="btn btn-success me-2">
                     <i class="fas fa-plus"></i> Додати новий товар
                 </a>
-                <a href="{{ route('admin.products.export', request()->all()) }}" class="btn btn-dark me-2" style="margin-left: 30px;">
+                <a href="{{ route('admin.products.export', request()->all()) }}" class="btn btn-dark me-2"
+                   style="margin-left: 30px;">
                     <i class="fas fa-file-alt"></i> Сформувати звіт
                 </a>
                 <div class="ms-auto" style="width: 300px; margin-left: 771px;">
@@ -117,34 +118,44 @@
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
-                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(0)">
+                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(0)">
                         Артикул <i id="sortIcon0" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(1)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(1)">
                         Назва <i id="sortIcon1" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(2)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(2)">
                         Категорія <i id="sortIcon2" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 200px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(3)">
+                    <th style="min-width: 200px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(3)">
                         Опис <i id="sortIcon3" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(4)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(4)">
                         Розмір <i id="sortIcon4" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(5)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(5)">
                         Інше <i id="sortIcon5" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(6)">
+                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(6)">
                         Кількість <i id="sortIcon6" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(7)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(7)">
                         Ціна <i id="sortIcon7" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(8)">
+                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(8)">
                         Знижка <i id="sortIcon8" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(9)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(9)">
                         Статус <i id="sortIcon9" class="fas fa-sort"></i>
                     </th>
                     <th style="min-width: 100px; position: sticky; top: 0; z-index: 1;">
@@ -171,10 +182,12 @@
                         <td>{{ $product->is_active ? 'Активний' : 'Неактивний' }}</td>
                         <td style="width: 140px; white-space: nowrap;">
                             <div class="btn-group-vertical" role="group">
-                                <a href="{{ route('admin.products.images.add', $product->id) }}" class="btn btn-success btn-sm mb-2">
+                                <a href="{{ route('admin.products.images.add', $product->id) }}"
+                                   class="btn btn-success btn-sm mb-2">
                                     <i class="fas fa-plus"></i> Додати
                                 </a>
-                                <a href="{{ route('admin.products.images.edit', $product->id) }}" class="btn btn-primary btn-sm mb-2">
+                                <a href="{{ route('admin.products.images.edit', $product->id) }}"
+                                   class="btn btn-primary btn-sm mb-2">
                                     <i class="fas fa-edit"></i> Редагувати
                                 </a>
                             </div>
@@ -184,7 +197,9 @@
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST" style="display:inline;" onsubmit="return confirmDeleteProduct('{{ $product->name }}')">
+                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
+                                  style="display:inline;"
+                                  onsubmit="return confirmDeleteProduct('{{ $product->name }}')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px;">
@@ -200,48 +215,48 @@
     </div>
 
     <script>
-        document.getElementById('search').addEventListener('input', function() {
+        document.getElementById('search').addEventListener('input', function () {
             const query = document.getElementById('search').value;
             fetchProducts(query);
         });
 
-        document.getElementById('category-filter').addEventListener('change', function() {
+        document.getElementById('category-filter').addEventListener('change', function () {
             fetchProducts(document.getElementById('search').value);
         });
 
-        document.getElementById('price-min').addEventListener('input', function() {
+        document.getElementById('price-min').addEventListener('input', function () {
             fetchProducts(document.getElementById('search').value);
         });
 
-        document.getElementById('price-max').addEventListener('input', function() {
+        document.getElementById('price-max').addEventListener('input', function () {
             fetchProducts(document.getElementById('search').value);
         });
 
-        document.getElementById('status-filter').addEventListener('change', function() {
+        document.getElementById('status-filter').addEventListener('change', function () {
             fetchProducts(document.getElementById('search').value);
         });
 
-        document.getElementById('quantity-filter').addEventListener('input', function() {
+        document.getElementById('quantity-filter').addEventListener('input', function () {
             fetchProducts(document.getElementById('search').value);
         });
 
-        document.getElementById('reset-category-filter').addEventListener('click', function() {
+        document.getElementById('reset-category-filter').addEventListener('click', function () {
             document.getElementById('category-filter').value = '';
             fetchProducts();
         });
 
-        document.getElementById('reset-price-filter').addEventListener('click', function() {
+        document.getElementById('reset-price-filter').addEventListener('click', function () {
             document.getElementById('price-min').value = '';
             document.getElementById('price-max').value = '';
             fetchProducts();
         });
 
-        document.getElementById('reset-status-filter').addEventListener('click', function() {
+        document.getElementById('reset-status-filter').addEventListener('click', function () {
             document.getElementById('status-filter').value = '';
             fetchProducts();
         });
 
-        document.getElementById('reset-quantity-filter').addEventListener('click', function() {
+        document.getElementById('reset-quantity-filter').addEventListener('click', function () {
             document.getElementById('quantity-filter').value = '';
             fetchProducts();
         });

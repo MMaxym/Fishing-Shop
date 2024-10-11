@@ -25,6 +25,7 @@
         }
     </style>
 </head>
+
 <body style="background-color: #E1E7F6;">
 @if (session('success'))
     <div class="alert alert-success" id="success-alert">
@@ -38,7 +39,7 @@
     </div>
 @endif
 
-<div class="container mt-5" style="max-width: 2000px;">
+<div class="container mt-5" style="max-width: 2000px; margin: 0; padding: 0;">
     @yield('content')
 </div>
 

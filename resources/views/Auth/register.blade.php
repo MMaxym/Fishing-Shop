@@ -109,7 +109,8 @@
                         background-attachment: fixed;
                         background-size: cover;
                         background-position: center;
-                        min-height: 140vh
+                        min-height: 140vh;
+                        background-color: #4851c0;
                     }
 
                     .container{
@@ -180,7 +181,7 @@
                     }
 
                     .form-control:focus {
-                        border-color: #007bff;
+                        border-color: #2C73BB;
                         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
                     }
 

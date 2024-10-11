@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.heder-admin')
+    @include('layouts.header-admin')
     <div class="container" style="max-width: 1600px; margin-top: 130px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Замовлення ---------//НЕ ПРАЦЮЮТЬ ФІЛЬТРИ</h1>
@@ -18,7 +18,8 @@
             </div>
             <div class="col-md-4">
                 <div class="input-group" style="width: 300px; margin-left: auto;">
-                    <input type="text" class="form-control" id="search" placeholder="Пошук за № замовлення" onkeyup="searchOrders()">
+                    <input type="text" class="form-control" id="search" placeholder="Пошук за № замовлення"
+                           onkeyup="searchOrders()">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fas fa-search"></i>
@@ -52,7 +53,8 @@
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('payment-method-filter')">
+                            <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button"
+                                    onclick="resetFilter('payment-method-filter')">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -72,7 +74,8 @@
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-shipping-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('shipping-method-filter')">
+                            <button id="reset-shipping-filter" class="btn btn-outline-secondary" type="button"
+                                    onclick="resetFilter('shipping-method-filter')">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -93,7 +96,8 @@
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('discount-filter')">
+                            <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button"
+                                    onclick="resetFilter('discount-filter')">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -106,10 +110,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                         </div>
-                        <input type="number" id="price-min" class="form-control" placeholder="Мін" oninput="filterOrders()">
-                        <input type="number" id="price-max" class="form-control" placeholder="Макс" oninput="filterOrders()">
+                        <input type="number" id="price-min" class="form-control" placeholder="Мін"
+                               oninput="filterOrders()">
+                        <input type="number" id="price-max" class="form-control" placeholder="Макс"
+                               oninput="filterOrders()">
                         <div class="input-group-append">
-                            <button id="reset-price-filter" class="btn btn-outline-secondary" type="button" onclick="resetPriceFilter()">
+                            <button id="reset-price-filter" class="btn btn-outline-secondary" type="button"
+                                    onclick="resetPriceFilter()">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -131,7 +138,8 @@
                             <option value="delivered">Доставлено</option>
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-status-filter" class="btn btn-outline-secondary" type="button" onclick="resetFilter('status-filter')">
+                            <button id="reset-status-filter" class="btn btn-outline-secondary" type="button"
+                                    onclick="resetFilter('status-filter')">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -144,31 +152,40 @@
                 <table class="table table-bordered" style="background-color: #ffffff;">
                     <thead class="thead-light">
                     <tr>
-                        <th style="min-width: 170px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(0)">
+                        <th style="min-width: 170px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(0)">
                             № Замовлення <i id="sortIcon0" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 140px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(1)">
+                        <th style="min-width: 140px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(1)">
                             Користувач <i id="sortIcon1" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 160px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(2)">
+                        <th style="min-width: 160px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(2)">
                             Метод оплати <i id="sortIcon2" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 170px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(3)">
+                        <th style="min-width: 170px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(3)">
                             Метод доставки <i id="sortIcon3" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 110px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(4)">
+                        <th style="min-width: 110px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(4)">
                             Знижка <i id="sortIcon4" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(5)">
+                        <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(5)">
                             Адреса <i id="sortIcon5" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 130px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(6)">
+                        <th style="min-width: 130px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(6)">
                             Сума <i id="sortIcon6" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(7)">
+                        <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(7)">
                             Статус <i id="sortIcon7" class="fas fa-sort"></i>
                         </th>
-                        <th style="min-width: 220px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(8)">
+                        <th style="min-width: 220px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                            onclick="sortTable(8)">
                             Замовлення створено <i id="sortIcon8" class="fas fa-sort"></i>
                         </th>
                         <th style="min-width: 110px; position: sticky; top: 0; z-index: 1;">Усі товари</th>
@@ -197,7 +214,8 @@
                                     <i class="fas fa-edit"></i>
                                 </a>
 
-                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete('{{ $order->id }}')">
+                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST"
+                                      style="display:inline;" onsubmit="return confirmDelete('{{ $order->id }}')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px">
@@ -236,7 +254,8 @@
             document.getElementById('no-results').style.display = found ? 'none' : 'block';
         }
 
-        function filterOrders() {
+
+        function filterOrders(query = '') {
             const paymentMethod = document.getElementById('payment-method-filter').value;
             const shippingMethod = document.getElementById('shipping-method-filter').value;
             const discount = document.getElementById('discount-filter').value;
@@ -244,48 +263,121 @@
             const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
             const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
 
-            const orders = document.querySelectorAll('#order-table-body tr');
-            let found = false;
+            const url = `{{ route('admin.orders.filter') }}`;
 
-            orders.forEach(order => {
-                const orderPaymentMethod = order.querySelector('td:nth-child(3)').textContent.trim();
-                const orderShippingMethod = order.querySelector('td:nth-child(4)').textContent.trim();
-                const orderDiscount = order.querySelector('td:nth-child(5)').textContent.trim();
-                const orderStatus = order.querySelector('td:nth-child(8)').textContent.trim();
-                const orderPrice = parseFloat(order.querySelector('td:nth-child(7)').textContent.replace(' грн', '').replace(',', ''));
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Мережевий запит не був успішним');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const tableBody = document.getElementById('product-table-body');
+                    const noResults = document.getElementById('no-results');
+                    tableBody.innerHTML = '';
 
-                let matches = true;
-
-                if (paymentMethod && orderPaymentMethod !== paymentMethod) {
-                    matches = false;
-                }
-
-                if (shippingMethod && orderShippingMethod !== shippingMethod) {
-                    matches = false;
-                }
-
-                if (discount && (orderDiscount !== `${discount} %` && orderDiscount !== 'Немає')) {
-                    matches = false;
-                }
-
-                if (status && orderStatus !== status) {
-                    matches = false;
-                }
-
-                if (orderPrice < priceMin || orderPrice > priceMax) {
-                    matches = false;
-                }
-
-                if (matches) {
-                    order.style.display = '';
-                    found = true;
-                } else {
-                    order.style.display = 'none';
-                }
-            });
-
-            document.getElementById('no-results').style.display = found ? 'none' : 'block';
+                    if (data.products.length === 0) {
+                        noResults.style.display = 'block';
+                    } else {
+                        noResults.style.display = 'none';
+                        data.products.forEach(product => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                        <td>${product.article}</td>
+                        <td>${product.name}</td>
+                        <td>${product.category.name}</td>
+                        <td>${product.description}</td>
+                        <td>${product.size}</td>
+                        <td>${product.other}</td>
+                        <td>${product.quantity}</td>
+                        <td>${product.price}</td>
+                        <td>${product.discount ? product.discount.percentage + '%' : 'Немає'}</td>
+                        <td>${product.is_active ? 'Активний' : 'Неактивний'}</td>
+                        <td style="width: 140px; white-space: nowrap;">
+                            <div class="btn-group-vertical" role="group">
+                                <a href="/admin/products/${product.id}/images/add" class="btn btn-success btn-sm mb-2">
+                                    <i class="fas fa-plus"></i> Додати
+                                </a>
+                                <a href="/admin/products/${product.id}/images/edit" class="btn btn-primary btn-sm mb-2">
+                                    <i class="fas fa-edit"></i> Редагувати
+                                </a>
+                            </div>
+                        </td>
+                        <td style="width: 50px; max-width:50px; white-space: nowrap;">
+                            <a href="/admin/products/${product.id}/edit" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="/admin/products/${product.id}" method="POST" onsubmit="return confirmDeleteProduct('${product.name}')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                    `;
+                            tableBody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Помилка:', error);
+                });
         }
+
+
+
+        // function filterOrders() {
+        //     const paymentMethod = document.getElementById('payment-method-filter').value;
+        //     const shippingMethod = document.getElementById('shipping-method-filter').value;
+        //     const discount = document.getElementById('discount-filter').value;
+        //     const status = document.getElementById('status-filter').value;
+        //     const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
+        //     const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
+        //
+        //     const orders = document.querySelectorAll('#order-table-body tr');
+        //     let found = false;
+        //
+        //     orders.forEach(order => {
+        //         const orderPaymentMethod = order.querySelector('td:nth-child(3)').textContent.trim();
+        //         const orderShippingMethod = order.querySelector('td:nth-child(4)').textContent.trim();
+        //         const orderDiscount = order.querySelector('td:nth-child(5)').textContent.trim();
+        //         const orderStatus = order.querySelector('td:nth-child(8)').textContent.trim();
+        //         const orderPrice = parseFloat(order.querySelector('td:nth-child(7)').textContent.replace(' грн', '').replace(',', ''));
+        //
+        //         let matches = true;
+        //
+        //         if (paymentMethod && orderPaymentMethod !== paymentMethod) {
+        //             matches = false;
+        //         }
+        //
+        //         if (shippingMethod && orderShippingMethod !== shippingMethod) {
+        //             matches = false;
+        //         }
+        //
+        //         if (discount && (orderDiscount !== `${discount} %` && orderDiscount !== 'Немає')) {
+        //             matches = false;
+        //         }
+        //
+        //         if (status && orderStatus !== status) {
+        //             matches = false;
+        //         }
+        //
+        //         if (orderPrice < priceMin || orderPrice > priceMax) {
+        //             matches = false;
+        //         }
+        //
+        //         if (matches) {
+        //             order.style.display = '';
+        //             found = true;
+        //         } else {
+        //             order.style.display = 'none';
+        //         }
+        //     });
+        //
+        //     document.getElementById('no-results').style.display = found ? 'none' : 'block';
+        // }
 
         function resetFilter(filterId) {
             document.getElementById(filterId).value = '';
@@ -297,7 +389,8 @@
             document.getElementById('price-max').value = '';
             filterOrders();
         }
-        document.addEventListener("DOMContentLoaded", function() {
+
+        document.addEventListener("DOMContentLoaded", function () {
             const filters = [
                 'payment-method-filter',
                 'shipping-method-filter',

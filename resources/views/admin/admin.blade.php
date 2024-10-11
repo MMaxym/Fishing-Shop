@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" style="max-width: 1600px;">
-        @include('layouts.heder-admin')
+        @include('layouts.header-admin')
 
         <div style="margin-top: 150px; margin-bottom: 50px;">
             <div class="row justify-content-center">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <div class="card text-white bg-danger mb-3 shadow" >
+                            <div class="card text-white bg-danger mb-3 shadow">
                                 <div class="card-header">Знижки</div>
                                 <div class="card-body">
                                     <h5 class="card-title">Управління знижками</h5>
@@ -79,7 +79,8 @@
                                                     <span class="mx-2">|</span>
                                                     <strong>Створено:</strong> {{ $order->created_at->format('d.m.Y H:i') }}
                                                 </div>
-                                                <a href="{{ route('admin.orders.products', $order->id) }}" class="btn btn-info btn-sm">
+                                                <a href="{{ route('admin.orders.products', $order->id) }}"
+                                                   class="btn btn-info btn-sm">
                                                     <i class="fas fa-list-ul"></i>
                                                 </a>
                                             </li>
@@ -92,12 +93,18 @@
                     <div class="col-md-14">
                         <div class="card mb-3 shadow" style="height: 450px;">
                             <div class="card-header bg-dark text-white">
-                               <h5 class="mb-0">Календар подій</h5>
+                                <h5 class="mb-0">Календар подій</h5>
                             </div>
                             <div class="card-body">
                                 <div id="calendar"></div>
                                 <div>ТУТ ЗРОБИТИ ЯКИЙСЬ КОНТЕНТ, ТИПУ КАЛЕНДАР АБО ЩОСЬ ІНШЕ ЦІКАВЕ</div>
-                                <div>МОЖЛИВО ЯКУСЬ АНАЛІТИКУ, ТИПУ КІЛЬКІСТЬ ЗАМОВЛЕНЬ ЗА ОСТАННІЙ МІСЯЦЬ, ЗАГАЛЬНИЙ ПРИБУТОК І Т.Д.</div>
+                                <div>МОЖЛИВО ЯКУСЬ АНАЛІТИКУ, ТИПУ КІЛЬКІСТЬ ЗАМОВЛЕНЬ ЗА ОСТАННІЙ МІСЯЦЬ, ЗАГАЛЬНИЙ
+                                    ПРИБУТОК І Т.Д.
+
+                                    графік якої категорії скільки товарів продалося за останній місяць
+
+                                    додати іконки на карточки переходу на адмінці
+                                </div>
                             </div>
                         </div>
                     </div>

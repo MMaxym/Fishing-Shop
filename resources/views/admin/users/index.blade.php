@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.heder-admin')
+    @include('layouts.header-admin')
     <div class="container" style="max-width: 1300px; margin-top: 130px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Користувачі</h1>
@@ -9,7 +9,8 @@
 
         <div class="row mb-4">
             <div class="col-md-4 d-flex align-items-end">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success" style="width: 260px; white-space: nowrap;">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-success"
+                   style="width: 260px; white-space: nowrap;">
                     <i class="fas fa-plus"></i> Додати нового користувача
                 </a>
                 <a href="" class="btn btn-dark me-2" style="width: 220px; margin-left: 30px; white-space: nowrap;">
@@ -18,7 +19,8 @@
             </div>
 
             <div class="col-md-4">
-                <label for="user-role-filter" class="form-label" style="margin-left: 200px; width: 250px;">Фільтр за типом користувача</label>
+                <label for="user-role-filter" class="form-label" style="margin-left: 200px; width: 250px;">Фільтр за
+                    типом користувача</label>
                 <div class="input-group" style="width: 250px; margin-left: 200px;">
                     <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -52,7 +54,6 @@
         </div>
 
 
-
         <div id="no-results" class="alert alert-info" style="display: none; text-align: center;">
             Користувачів не знайдено.
         </div>
@@ -61,25 +62,32 @@
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
-                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(0)">
+                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(0)">
                         Логін <i id="sortIcon0" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(1)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(1)">
                         Прізвище <i id="sortIcon1" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(2)">
+                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(2)">
                         Імʼя <i id="sortIcon2" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 200px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(3)">
+                    <th style="min-width: 200px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(3)">
                         Електронна пошта <i id="sortIcon3" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(4)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(4)">
                         Телефон <i id="sortIcon4" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 200px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(5)">
+                    <th style="min-width: 200px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(5)">
                         Адреса <i id="sortIcon5" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(6)">
+                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                        onclick="sortTable(6)">
                         Роль <i id="sortIcon6" class="fas fa-sort"></i>
                     </th>
                     <th style="min-width: 105px; position: sticky; top: 0; z-index: 1;">
@@ -102,7 +110,8 @@
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete('{{ $user->login }}')">
+                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST"
+                                  style="display:inline;" onsubmit="return confirmDelete('{{ $user->login }}')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" style="margin-left: 10px;">
@@ -118,19 +127,19 @@
     </div>
 
     <script>
-        document.getElementById('search').addEventListener('input', function() {
+        document.getElementById('search').addEventListener('input', function () {
             const query = document.getElementById('search').value;
             const role = document.getElementById('role-filter').value;
             fetchUsers(query, role);
         });
 
-        document.getElementById('role-filter').addEventListener('change', function() {
+        document.getElementById('role-filter').addEventListener('change', function () {
             const query = document.getElementById('search').value;
             const role = document.getElementById('role-filter').value;
             fetchUsers(query, role);
         });
 
-        document.getElementById('reset-filter').addEventListener('click', function() {
+        document.getElementById('reset-filter').addEventListener('click', function () {
             document.getElementById('search').value = '';
             document.getElementById('role-filter').value = '';
 
