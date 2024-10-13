@@ -47,7 +47,10 @@
             </button>
 
             @if (!empty(Auth::user()->login))
-                <span class="mr-3" style="font-size: 22px; color: #2C73BB;">{{ Auth::user()->login }}</span>
+                <span class="mr-3" style="font-size: 22px; color: #2C73BB;">
+                            {{ Auth::user()->login }}
+                           <i class="fas fa-circle-check" style="color: green; margin-left: 5px;"></i>
+                        </span>
             @endif
 
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">

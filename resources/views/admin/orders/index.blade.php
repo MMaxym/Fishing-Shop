@@ -254,16 +254,66 @@
             document.getElementById('no-results').style.display = found ? 'none' : 'block';
         }
 
+        document.getElementById('payment-method-filter').addEventListener('change', function () {
+            fetchOrders(document.getElementById('search').value);
+        });
 
-        function filterOrders(query = '') {
-            const paymentMethod = document.getElementById('payment-method-filter').value;
+        document.getElementById('shipping-method-filter').addEventListener('input', function () {
+            fetchOrders(document.getElementById('search').value);
+        });
+
+        document.getElementById('discount-filter').addEventListener('input', function () {
+            fetchOrders(document.getElementById('search').value);
+        });
+
+        document.getElementById('status-filter').addEventListener('change', function () {
+            fetchOrders(document.getElementById('search').value);
+        });
+
+        document.getElementById('price-min').addEventListener('input', function () {
+            fetchProducts(document.getElementById('search').value);
+        });
+
+        document.getElementById('price-max').addEventListener('input', function () {
+            fetchProducts(document.getElementById('search').value);
+        });
+
+        document.getElementById('reset-price-filter').addEventListener('click', function () {
+            document.getElementById('price-min').value = '';
+            document.getElementById('price-max').value = '';
+            fetchOrders();
+        });
+
+        document.getElementById('reset-status-filter').addEventListener('click', function () {
+            document.getElementById('status-filter').value = '';
+            fetchOrders();
+        });
+
+        document.getElementById('reset-discount-filter').addEventListener('click', function () {
+            document.getElementById('discount-filter').value = '';
+            fetchOrders();
+        });
+
+        document.getElementById('reset-payment-filter').addEventListener('click', function () {
+            document.getElementById('payment-method-filter').value = '';
+            fetchOrders();
+        });
+
+        document.getElementById('reset-shipping-filter').addEventListener('click', function () {
+            document.getElementById('shipping-method-filter').value = '';
+            fetchOrders();
+        });
+
+
+        function fetchOrders(query = '') {
             const shippingMethod = document.getElementById('shipping-method-filter').value;
+            const paymentMethod = document.getElementById('payment-method-filter').value;
             const discount = document.getElementById('discount-filter').value;
             const status = document.getElementById('status-filter').value;
             const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
             const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
 
-            const url = `{{ route('admin.orders.filter') }}`;
+            const url = `{{ route('admin.orders.filter') }}?query=${encodeURIComponent(query)}&shippingMethod=${shippingMethod}&paymentMethod=${paymentMethod}&discount=${discount}&status=${status}&priceMin=${priceMin}&priceMax=${priceMax}`;
 
             fetch(url)
                 .then(response => {
@@ -273,50 +323,45 @@
                     return response.json();
                 })
                 .then(data => {
-                    const tableBody = document.getElementById('product-table-body');
+                    const tableBody = document.getElementById('order-table-body');
                     const noResults = document.getElementById('no-results');
                     tableBody.innerHTML = '';
 
-                    if (data.products.length === 0) {
+                    if (data.orders.length === 0) {
                         noResults.style.display = 'block';
                     } else {
                         noResults.style.display = 'none';
-                        data.products.forEach(product => {
+                        data.orders.forEach(order => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                        <td>${product.article}</td>
-                        <td>${product.name}</td>
-                        <td>${product.category.name}</td>
-                        <td>${product.description}</td>
-                        <td>${product.size}</td>
-                        <td>${product.other}</td>
-                        <td>${product.quantity}</td>
-                        <td>${product.price}</td>
-                        <td>${product.discount ? product.discount.percentage + '%' : 'Немає'}</td>
-                        <td>${product.is_active ? 'Активний' : 'Неактивний'}</td>
-                        <td style="width: 140px; white-space: nowrap;">
-                            <div class="btn-group-vertical" role="group">
-                                <a href="/admin/products/${product.id}/images/add" class="btn btn-success btn-sm mb-2">
-                                    <i class="fas fa-plus"></i> Додати
-                                </a>
-                                <a href="/admin/products/${product.id}/images/edit" class="btn btn-primary btn-sm mb-2">
-                                    <i class="fas fa-edit"></i> Редагувати
-                                </a>
-                            </div>
+                        <td>${order.id}</td>
+                        <td>${order.user ? order.user.login : 'Користувача не знайдено'}</td>
+                        <td>${order.paymentMethod ? order.paymentMethod.name : 'Метод не знайдено'}</td>
+                        <td>${order.shippingMethod ? order.shippingMethod.name : 'Метод доставки не знайдено'}</td>
+                        <td>${order.discount_id ? (order.discount ? order.discount.percentage + '%' : 'Немає') : 'Немає'}</td>
+                        <td>${order.address}</td>
+                        <td>${numberFormat(order.total_amount) + ' грн'}</td>
+                        <td>${order.status}</td>
+                        <td>${order.created_at}</td>
+                        <td style="text-align: center;">
+                            <a href="/admin/orders/${order.id}" class="btn btn-info btn-sm">
+                                <i class="fas fa-list-ul"></i>
+                            </a>
+
                         </td>
-                        <td style="width: 50px; max-width:50px; white-space: nowrap;">
-                            <a href="/admin/products/${product.id}/edit" class="btn btn-warning btn-sm">
+                        <td>
+                             <a href="/admin/orders/${order.id}/edit" class="btn btn-primary btn-sm mb-2">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="/admin/products/${product.id}" method="POST" onsubmit="return confirmDeleteProduct('${product.name}')">
-                                <input type="hidden" name="_method" value="DELETE">
+                             <form action="/admin/orders/${order.id}" method="POST" onsubmit="return confirmDeleteProduct('${order.name}')">
                                 @csrf
+                            @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
                     </td>
-                    `;
+`;
                             tableBody.appendChild(row);
                         });
                     }
@@ -328,84 +373,14 @@
 
 
 
-        // function filterOrders() {
-        //     const paymentMethod = document.getElementById('payment-method-filter').value;
-        //     const shippingMethod = document.getElementById('shipping-method-filter').value;
-        //     const discount = document.getElementById('discount-filter').value;
-        //     const status = document.getElementById('status-filter').value;
-        //     const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
-        //     const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
-        //
-        //     const orders = document.querySelectorAll('#order-table-body tr');
-        //     let found = false;
-        //
-        //     orders.forEach(order => {
-        //         const orderPaymentMethod = order.querySelector('td:nth-child(3)').textContent.trim();
-        //         const orderShippingMethod = order.querySelector('td:nth-child(4)').textContent.trim();
-        //         const orderDiscount = order.querySelector('td:nth-child(5)').textContent.trim();
-        //         const orderStatus = order.querySelector('td:nth-child(8)').textContent.trim();
-        //         const orderPrice = parseFloat(order.querySelector('td:nth-child(7)').textContent.replace(' грн', '').replace(',', ''));
-        //
-        //         let matches = true;
-        //
-        //         if (paymentMethod && orderPaymentMethod !== paymentMethod) {
-        //             matches = false;
-        //         }
-        //
-        //         if (shippingMethod && orderShippingMethod !== shippingMethod) {
-        //             matches = false;
-        //         }
-        //
-        //         if (discount && (orderDiscount !== `${discount} %` && orderDiscount !== 'Немає')) {
-        //             matches = false;
-        //         }
-        //
-        //         if (status && orderStatus !== status) {
-        //             matches = false;
-        //         }
-        //
-        //         if (orderPrice < priceMin || orderPrice > priceMax) {
-        //             matches = false;
-        //         }
-        //
-        //         if (matches) {
-        //             order.style.display = '';
-        //             found = true;
-        //         } else {
-        //             order.style.display = 'none';
-        //         }
-        //     });
-        //
-        //     document.getElementById('no-results').style.display = found ? 'none' : 'block';
-        // }
-
-        function resetFilter(filterId) {
-            document.getElementById(filterId).value = '';
-            filterOrders();
+        function numberFormat(number) {
+            return new Intl.NumberFormat('uk-UA', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format(number);
         }
 
-        function resetPriceFilter() {
-            document.getElementById('price-min').value = '';
-            document.getElementById('price-max').value = '';
-            filterOrders();
-        }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const filters = [
-                'payment-method-filter',
-                'shipping-method-filter',
-                'discount-filter',
-                'status-filter',
-                'price-min',
-                'price-max'
-            ];
-
-            filters.forEach(filter => {
-                document.getElementById(filter).addEventListener('change', filterOrders);
-            });
-
-            document.getElementById('search').addEventListener('keyup', searchOrders);
-        });
 
         let sortOrder = {};
 

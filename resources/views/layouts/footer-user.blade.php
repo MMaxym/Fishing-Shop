@@ -163,7 +163,7 @@
             height: 40px;
             border-radius: 8px;
             color: white;
-            border: none;
+            border: 1px solid #ccc;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -186,15 +186,16 @@
         }
 
         .horizontal-line {
-            position: absolute; /* Абсолютне позиціонування для горизонтальної лінії */
-            left: 50%; /* Розташування по центру */
-            top: calc(50% - 1px); /* Розташування посередині з урахуванням товщини лінії */
-            width: 70%; /* Ширина лінії */
-            height: 1px; /* Товщина лінії */
-            background-color: #bababa; /* Колір лінії */
-            z-index: 1001; /* Зберегти порядок шарів, щоб лінія була зверху */
-            transform: translateX(-50%); /* Центрування лінії по горизонталі */
+            position: absolute;
+            left: 50%;
+            top: calc(50% - 1px);
+            width: 70%;
+            height: 1px;
+            background-color: #bababa;
+            z-index: 1001;
+            transform: translateX(-50%);
         }
+
 
 
 

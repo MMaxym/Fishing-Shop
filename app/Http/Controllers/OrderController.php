@@ -126,7 +126,6 @@ class OrderController extends Controller
 
         $orders = Order::query();
 
-
         if ($query) {
             $orders->where('name', 'like', '%' . $query . '%');
         }

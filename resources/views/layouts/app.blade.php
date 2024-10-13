@@ -70,7 +70,7 @@
                     errorAlert.remove();
                 }
             }, 1000);
-        }, 2000);
+        }, 1500);
     });
 </script>
 </body>

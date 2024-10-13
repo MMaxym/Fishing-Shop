@@ -46,6 +46,10 @@ class Order extends Model
         return $this->belongsTo(Discount::class, 'discount_id');
     }
 
+    public function products()
+    {
+        return $this->hasMany(ProductsInOrder::class, 'order_id');
+    }
 
     public function paymentMethod()
     {
