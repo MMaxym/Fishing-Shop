@@ -128,11 +128,11 @@
                         </div>
                         <select id="status-filter" class="form-control">
                             <option value="">Усі замовлення</option>
-                            <option value="active">В обробці</option>
-                            <option value="completed">Завершено</option>
-                            <option value="canceled">Скасовано</option>
-                            <option value="pending">Очікує на оплату</option>
-                            <option value="delivered">Доставлено</option>
+                            <option value="В обробці">В обробці</option>
+                            <option value="Завершено">Завершено</option>
+                            <option value="Скасовано">Скасовано</option>
+                            <option value="Очікує на оплату">Очікує на оплату</option>
+                            <option value="Доставлено">Доставлено</option>
                         </select>
                         <div class="input-group-append">
                             <button id="reset-status-filter" class="btn btn-outline-secondary" type="button">
@@ -282,11 +282,11 @@
         });
 
         document.getElementById('price-min').addEventListener('input', function () {
-            fetchProducts(document.getElementById('search').value);
+            fetchOrders(document.getElementById('search').value);
         });
 
         document.getElementById('price-max').addEventListener('input', function () {
-            fetchProducts(document.getElementById('search').value);
+            fetchOrders(document.getElementById('search').value);
         });
 
         document.getElementById('reset-price-filter').addEventListener('click', function () {
@@ -344,16 +344,18 @@
                         noResults.style.display = 'none';
                         data.orders.forEach(order => {
                             const row = document.createElement('tr');
+                            console.log(order);
+
                             row.innerHTML = `
                         <td>${order.id}</td>
-                        <td>${order.user ? order.user.login : 'Користувача не знайдено'}</td>
-                        <td>${order.paymentMethod ? order.paymentMethod.name : 'Метод не знайдено'}</td>
-                        <td>${order.shippingMethod ? order.shippingMethod.name : 'Метод доставки не знайдено' }</td>
-                        <td> ${order.discount_id && order.discount ? `${order.discount.percentage}%` : 'Немає'}</td>
+                       <td> ${order.user ? order.user.login : 'Користувача не знайдено'}</td>
+                        <td>${order.payment_method ? order.payment_method.name : 'Метод не знайдено'}</td>
+                        <td>${order.shipping_method ? order.shipping_method.name : 'Метод доставки не знайдено' }</td>
+                        <td>${order.discount ? order.discount.percentage + '%' : 'Немає'}</td>
                         <td>${order.address}</td>
                         <td>${numberFormat(order.total_amount) + ' грн'}</td>
                         <td>${order.status}</td>
-                        <td>${order.created_at}</td>
+                        <td>${order.created_at.split('T')[0]+" "+ order.created_at.split('T')[1].substring(0,8)}</td>
                         <td style="text-align: center;">
                             <a href="/admin/orders/${order.id}" class="btn btn-info btn-sm">
                                 <i class="fas fa-list-ul"></i>

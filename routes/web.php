@@ -90,7 +90,6 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/orders/excelExport', [OrderController::class, 'excelExport'])->name('admin.orders.excelExport');
-
     Route::get('/orders/filter', [OrderController::class, 'filter'])->name('admin.orders.filter');
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders.index');
     Route::get('/orders/create', [OrderController::class, 'create'])->name('admin.orders.create');
@@ -102,9 +101,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders/search', [OrderController::class, 'search'])->name('admin.orders.search');
     Route::get('/orders/{order}/products', [OrderController::class, 'showProducts'])->name('admin.orders.products');
     Route::get('/orders/{orderId}/export-products-pdf', [OrderController::class, 'pdfExportProductsInOrder'])->name('admin.orders.exportProductsPdf');
-
-
-
     Route::get('/orders/export/pdf', [OrderController::class, 'pdfExport'])->name('pdf.export.orders');
 });
 

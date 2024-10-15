@@ -34,7 +34,6 @@ class OrderController extends Controller
         $discounts = Discount::all();
 
         $orders = $query->get();
-
         return view('admin.orders.index', compact('orders', 'paymentMethods', 'shippingMethods', 'discounts'));
     }
 
@@ -126,8 +125,8 @@ class OrderController extends Controller
         $paymentMethod = $request->input('paymentMethod');
         $shippingMethod = $request->input('shippingMethod');
         $discount = $request->input('discount');
-        $priceMin = $request->input('price_min');
-        $priceMax = $request->input('price_max');
+        $priceMin = $request->input('priceMin');
+        $priceMax = $request->input('priceMax');
         $status = $request->input('status');
 
         $orders = Order::query();
@@ -145,23 +144,22 @@ class OrderController extends Controller
         }
 
         if ($discount) {
-            $orders->where('discount', '>=', $discount);
+            $orders->where('discount_id', $discount);
         }
 
         if ($priceMin) {
-            $orders->where('price', '>=', $priceMin);
+            $orders->where('total_amount', '>=', $priceMin);
         }
 
-        if ($priceMax) {
-            $orders->where('price', '<=', $priceMax);
+        if ($priceMax && $priceMax!="Infinity") {
+            $orders->where('total_amount', '<=', $priceMax);
         }
 
         if ($status) {
             $orders->where('status', $status);
         }
-
         return response()->json([
-            'orders' => $orders->with('paymentMethod', 'shippingMethod', 'discount')->get()
+            'orders' => $orders->with(['user', 'paymentMethod', 'shippingMethod', 'discount'])->get()
         ]);
     }
 

@@ -7,6 +7,8 @@
         <div style="margin-top: 150px; margin-bottom: 50px;">
 
             <h1>Головна сторінка для користувача</h1>
+            <h2>Головна сторінка для користувача</h2>
+            <h3>Головна сторінка для користувача</h3>
             @if (!empty(Auth::user()->login))
                 <span class="mr-3" style="font-size: 22px; color: #04396E;">{{ Auth::user()->login }}</span>
             @endif
