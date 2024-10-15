@@ -16,14 +16,14 @@ class ProductsExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        // Повертаємо відфільтровані продукти з необхідними полями
         return $this->products->map(function($product) {
             return [
                 'article' => $product->article,
                 'name' => $product->name,
-                'category' => $product->category->name,  // Виведення назви категорії
+                'category' => $product->category->name,
                 'description' => $product->description,
                 'size' => $product->size,
+                'other' => $product->other,
                 'quantity' => $product->quantity,
                 'price' => $product->price,
                 'discount' => $product->discount ? $product->discount->percentage . '%' : 'Немає',
@@ -35,15 +35,16 @@ class ProductsExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'Артикул',
-            'Назва',
-            'Категорія',
-            'Опис',
-            'Розмір',
-            'Кількість',
-            'Ціна',
-            'Знижка',
-            'Статус'
+            'АРТИКУЛ',
+            'НАЗВА',
+            'КАТЕГОРІЯ',
+            'ОПИС',
+            'РОЗМІР',
+            'ІНШЕ',
+            'КІЛЬКІСТЬ',
+            'ЦІНА',
+            'ЗНИЖКА',
+            'СТАТУС',
         ];
     }
 }

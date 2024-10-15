@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Discount;
 use App\Exports\ProductsExport;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
@@ -168,11 +170,45 @@ class ProductController extends Controller
             $filteredProducts->where('quantity', '>=', $request->input('quantity'));
         }
 
-        $products = $filteredProducts->get(['article', 'name', 'category_id', 'description', 'size', 'quantity', 'price', 'discount_id', 'is_active']);
+        $products = $filteredProducts->get(['article', 'name', 'category_id', 'description', 'size', 'other', 'quantity', 'price', 'discount_id', 'is_active']);
 
         return Excel::download(new ProductsExport($products), 'products_report_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.xlsx');
     }
 
+    public function pdfExport(Request $request)
+    {
+        $filteredProducts = Product::query();
 
+        if ($request->filled('query')) {
+            $filteredProducts->where('name', 'like', '%' . $request->input('query') . '%');
+        }
+
+        if ($request->filled('category')) {
+            $filteredProducts->where('category_id', $request->input('category'));
+        }
+
+        if ($request->filled('price_min')) {
+            $filteredProducts->where('price', '>=', $request->input('price_min'));
+        }
+
+        if ($request->filled('price_max')) {
+            $filteredProducts->where('price', '<=', $request->input('price_max'));
+        }
+
+        if ($request->filled('status')) {
+            $filteredProducts->where('is_active', $request->input('status') === 'active');
+        }
+
+        if ($request->filled('quantity')) {
+            $filteredProducts->where('quantity', '>=', $request->input('quantity'));
+        }
+
+        $products = $filteredProducts->get(['article', 'name', 'category_id', 'description', 'size', 'other', 'quantity', 'price', 'discount_id', 'is_active']);
+
+        $pdf = PDF::loadView('admin.products.export.pdf.invoice', compact('products'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('products_report_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.pdf');
+    }
 
 }

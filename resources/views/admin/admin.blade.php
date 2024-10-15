@@ -71,7 +71,7 @@
                                     </h5>
                                     <p class="card-text">Переглядайте та обробляйте інформацію про знижки.
                                     </p>
-                                    <a href="{{ route('admin.discounts.index') }}" class="btn btn-light" style="margin-top: 27px;">
+                                    <a href="{{ route('admin.discounts.index') }}" class="btn btn-light" style="margin-top: 28px;">
                                         Перейти <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="graphic"></div>
-                                    <h4 style="margin-top: 30px;">Динаміка прибутку інтернет-магазину (по місяцям)</h4>
+                                    <h4 style="margin-top: 30px;">Динаміка прибутку інтернет-магазину (за останні 12 місяців)</h4>
                                     <canvas id="graphic" width="400" height="200"></canvas>
                                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                     <script>
@@ -190,26 +190,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    {{--                    <div class="col-md-14">--}}
-{{--                        <div class="card mb-3 shadow" style="height: 573px;">--}}
-{{--                            <div class="card-header bg-dark text-white">--}}
-{{--                                <h5 class="mb-0">Календар подій</h5>--}}
-{{--                            </div>--}}
-{{--                            <div class="card-body">--}}
-{{--                                <div id="calendar"></div>--}}
-{{--                                <div>ТУТ ЗРОБИТИ ЯКИЙСЬ КОНТЕНТ, ТИПУ КАЛЕНДАР АБО ЩОСЬ ІНШЕ ЦІКАВЕ</div>--}}
-{{--                                <div>МОЖЛИВО ЯКУСЬ АНАЛІТИКУ, ТИПУ КІЛЬКІСТЬ ЗАМОВЛЕНЬ ЗА ОСТАННІЙ МІСЯЦЬ, ЗАГАЛЬНИЙ--}}
-{{--                                    ПРИБУТОК І Т.Д.--}}
-
-{{--                                    графік якої категорії скільки товарів продалося за останній місяць--}}
-
-{{--                                    додати іконки на карточки переходу на адмінці--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>

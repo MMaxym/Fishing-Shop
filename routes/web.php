@@ -36,7 +36,6 @@ Route::get('/hobbies', [LabController::class, 'hobbies'])->middleware(CheckName:
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.admin');
     Route::get('/{order}/products', [AdminController::class, 'showProducts'])->name('admin.orders.products');
-   // Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 
@@ -49,6 +48,8 @@ Route::prefix('admin')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('/users/search', [UserController::class, 'search'])->name('admin.users.search');
     Route::get('/users/filter', [UserController::class, 'filter'])->name('admin.users.filter');
+    Route::get('/users/excelExport', [UserController::class, 'excelExport'])->name('admin.users.excelExport');
+    Route::get('/users/export/pdf', [UserController::class, 'pdfExport'])->name('pdf.export');
 });
 
 
@@ -62,6 +63,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
     Route::get('/products/filter', [ProductController::class, 'filter'])->name('admin.products.filter');
     Route::get('/products/export', [ProductController::class, 'export'])->name('admin.products.export');
+    Route::get('/products/export/pdf', [ProductController::class, 'pdfExport'])->name('pdf.export.product');
 });
 
 
@@ -87,6 +89,8 @@ Route::prefix('admin')->group(function () {
 
 
 Route::prefix('admin')->group(function () {
+    Route::get('/orders/excelExport', [OrderController::class, 'excelExport'])->name('admin.orders.excelExport');
+
     Route::get('/orders/filter', [OrderController::class, 'filter'])->name('admin.orders.filter');
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders.index');
     Route::get('/orders/create', [OrderController::class, 'create'])->name('admin.orders.create');
@@ -97,11 +101,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
     Route::get('/orders/search', [OrderController::class, 'search'])->name('admin.orders.search');
     Route::get('/orders/{order}/products', [OrderController::class, 'showProducts'])->name('admin.orders.products');
+    Route::get('/orders/{orderId}/export-products-pdf', [OrderController::class, 'pdfExportProductsInOrder'])->name('admin.orders.exportProductsPdf');
+
+
+
+    Route::get('/orders/export/pdf', [OrderController::class, 'pdfExport'])->name('pdf.export.orders');
 });
-
-
-
-
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

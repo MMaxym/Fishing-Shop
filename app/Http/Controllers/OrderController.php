@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersExport;
+use App\Exports\ProductsExport;
+use App\Exports\UsersExport;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -10,7 +13,10 @@ use App\Models\ShippingMethod;
 use App\Models\ProductsInOrder;
 use App\Models\Discount;
 use App\Models\OrderTracking;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use League\CommonMark\Node\Query\OrExpr;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -158,4 +164,45 @@ class OrderController extends Controller
             'orders' => $orders->with('paymentMethod', 'shippingMethod', 'discount')->get()
         ]);
     }
+
+    public function pdfExportProductsInOrder(Request $request, $orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        $products = ProductsInOrder::where('order_id', $orderId)->with('product')->get();
+
+        $pdf = PDF::loadView('admin.orders.export.pdf.invoiceProductsInOrder', compact('order', 'products'))
+            ->setPaper('a4');
+
+        return $pdf->download('check_' . now()->addHours(3)->format('Y-m-d_H_i_s') . '.pdf');
+    }
+
+    public function excelExport(Request $request)
+    {
+        $filteredOrder = Order::query();
+
+        if ($request->filled('query')) {
+            $filteredOrder->where('name', 'like', '%' . $request->input('query') . '%');
+        }
+
+        $orders = $filteredOrder->get(['id', 'user_id', 'payment_method_id', 'shipping_method_id', 'discount_id', 'address', 'total_amount', 'status', 'created_at']);
+
+        return Excel::download(new OrdersExport($orders), 'orders_export_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.xlsx');
+    }
+
+    public function pdfExport(Request $request)
+    {
+        $filteredOrder = Order::query();
+
+        if ($request->filled('query')) {
+            $filteredOrder->where('name', 'like', '%' . $request->input('query') . '%');
+        }
+
+        $orders = $filteredOrder->get(['id', 'user_id', 'payment_method_id', 'shipping_method_id', 'discount_id', 'address', 'total_amount', 'status', 'created_at']);
+
+        $pdf = PDF::loadView('admin.orders.export.pdf.invoice', compact('orders'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('orders_report_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.pdf');
+    }
+
 }

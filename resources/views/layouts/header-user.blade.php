@@ -55,8 +55,8 @@
 
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
-                <button type="submit" class="btn btn-outline-light px-3 py-2" style="border: none; background: transparent;">
-                    <i class="fas fa-sign-out-alt" style="font-size: 1.3rem; color: #04396E;"></i>
+                <button type="button" class="button" style="border: none; background: transparent;" onClick="confirmLogout()">
+                    <i class="fas fa-sign-out-alt" id="logout-btn" style="font-size: 1.3rem; color: #04396E;"></i>
                 </button>
             </form>
         @endauth
@@ -175,5 +175,12 @@
     </style>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function confirmLogout() {
+            if (confirm("Ви дійсно бажаєте вийти з акаунта?")) {
+                document.querySelector('form').submit();
+            }
+        }
+    </script>
 
 </header>

@@ -23,7 +23,7 @@
                 <a href="{{ route('admin.products.images.add', $product) }}" class="btn btn-success mt-3">
                     <i class="fas fa-plus"></i> Додати нове зображення
                 </a>
-                <button type="button" class="btn btn-outline-primary mx-3 mt-3" id="back-button">
+                <button type="button" class="btn btn-outline-dark mx-3 mt-3" id="back-button">
                     <i class="fas fa-arrow-left"></i> Назад</button>
             </div>
         </div>

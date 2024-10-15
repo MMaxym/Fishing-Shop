@@ -12,11 +12,13 @@
                 <a href="{{ route('admin.products.create') }}" class="btn btn-success me-2">
                     <i class="fas fa-plus"></i> Додати новий товар
                 </a>
-                <a href="{{ route('admin.products.export', request()->all()) }}" class="btn btn-dark me-2"
-                   style="margin-left: 30px;">
-                    <i class="fas fa-file-alt"></i> Сформувати звіт
+                <a href="{{ route('pdf.export.product') }}" class="btn me-2" id="pdf">
+                    <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
                 </a>
-                <div class="ms-auto" style="width: 300px; margin-left: 771px;">
+                <a href="{{ route('admin.products.export', request()->all()) }}" class="btn btn-secondary me-2" style="z-index:1000; width: 230px; margin-left: 20px; white-space: nowrap;">
+                    <i class="fas fa-file-alt"></i> Експортувати дані в .xslx
+                </a>
+                <div class="ms-auto" style="width: 300px; margin-left: 482px;">
                     <div class="input-group">
                         <input type="text" class="form-control" id="search" placeholder="Пошук за назвою">
                         <div class="input-group-append">
@@ -114,7 +116,7 @@
             Товарів не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 535px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 482px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
@@ -187,7 +189,7 @@
                                     <i class="fas fa-plus"></i> Додати
                                 </a>
                                 <a href="{{ route('admin.products.images.edit', $product->id) }}"
-                                   class="btn btn-primary btn-sm mb-2">
+                                   class="btn btn-warning btn-sm mb-2">
                                     <i class="fas fa-edit"></i> Редагувати
                                 </a>
                             </div>
@@ -213,6 +215,21 @@
             </table>
         </div>
     </div>
+
+    <style>
+        #pdf{
+            width: 220px;
+            margin-left: 20px;
+            white-space: nowrap;
+            background-color: #2C73BB;
+            color: white;
+            z-index:1000;
+        }
+
+        #pdf:hover{
+            background-color: #235b93;
+        }
+    </style>
 
     <script>
         document.getElementById('search').addEventListener('input', function () {

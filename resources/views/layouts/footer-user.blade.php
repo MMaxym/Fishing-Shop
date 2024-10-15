@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://unpkg.com/@clr/icons@5.7.0/clr-icons.min.css">
 
 <footer class="footer-style" style="width: 100%; background-color: #D0DAF3; padding: 0; margin: 0;">
-    <div class="container" style="background: #D0DAF3; color: #2C73BB;">
-        <div class="container py-5">
-            <div class="row g-5">
+    <div class="container" style="background: #D0DAF3; color: #2C73BB; margin: 0;  width: 100%; padding-left: 50px; padding-right: 50px;">
+        <div class="container py-5" style="margin: 0; width: 100%;">
+            <div class="row g-5" style="border-bottom: 1px solid #888888; padding-bottom: 40px;">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text mb-4" style="color: #04396E;">Наша адреса</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3" style="color:#04396E; margin-right: 10px;"></i> Зарічанська 10, Хмельницький, Україна</p>
@@ -56,16 +56,16 @@
             <div class="horizontal-line"></div>
             <div class="copyright">
                 <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <div class="col-md-6 text-center text-md-start">
                         &copy; <a class="border-bottom" href="#">АВТОСЕРВІС</a>, Усі права захищені.
                         <br>
                         Розроблено <a class="border-bottom" href="https://github.com/MMaxym">Melnyk Maksym</a>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
-                            <a href="@Url.Action("Index", "User")">Головна</a>
-                            <a href="#about-section">Про нас</a>
-                            <a href="#services-section">Послуги</a>
+                            <a href="@Url.Action("Index", "User")">Головна</a> |
+                            <a href="#about-section">Про нас</a> |
+                            <a href="#services-section">Послуги</a> |
                             <a href="#contact-section">Контакти</a>
                         </div>
                     </div>
@@ -184,21 +184,6 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
-        .horizontal-line {
-            position: absolute;
-            left: 50%;
-            top: calc(50% - 1px);
-            width: 70%;
-            height: 1px;
-            background-color: #bababa;
-            z-index: 1001;
-            transform: translateX(-50%);
-        }
-
-
-
-
 
     </style>
 

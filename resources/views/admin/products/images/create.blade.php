@@ -45,11 +45,9 @@
                         });
                     </script>
 
-
-
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-warning">Додати зображення</button>
-                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">
+                        <button type="submit" class="btn btn-success">Додати зображення</button>
+                        <button type="button" class="btn btn-outline-dark mx-3" id="back-button">
                             <i class="fas fa-arrow-left"></i> Назад</button>
                     </div>
 

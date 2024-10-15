@@ -4,7 +4,7 @@
     @include('layouts.header-admin')
     <div class="container" style="max-width: 1600px; margin-top: 130px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0">Замовлення ---------//НЕ ПРАЦЮЮТЬ ФІЛЬТРИ</h1>
+            <h1 class="mb-0">Замовлення</h1>
         </div>
 
         <div class="row mb-3">
@@ -12,8 +12,11 @@
                 <a href="{{ route('admin.orders.create') }}" class="btn btn-success">
                     <i class="fas fa-plus"></i> Додати нове замовлення
                 </a>
-                <a href="" class="btn btn-dark me-2" style="width: auto; margin-left: 30px; white-space: nowrap;">
-                    <i class="fas fa-file-alt"></i> Сформувати звіт
+                <a href="{{ route('pdf.export.orders') }}" class="btn me-2" id="pdf">
+                    <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
+                </a>
+                <a href="{{ route('admin.orders.excelExport', request()->all()) }}" class="btn btn-secondary me-2" style="z-index:1000; width: 230px; margin-left: 20px; white-space: nowrap;">
+                    <i class="fas fa-file-alt"></i> Експортувати дані в .xslx
                 </a>
             </div>
             <div class="col-md-4">
@@ -46,15 +49,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-tags"></i></span>
                         </div>
-                        <select id="payment-method-filter" class="form-control" onchange="filterOrders()">
+                        <select id="payment-method-filter" class="form-control">
                             <option value="">Усі методи оплати</option>
                             @foreach ($paymentMethods as $paymentMethod)
                                 <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option>
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button"
-                                    onclick="resetFilter('payment-method-filter')">
+                            <button id="reset-payment-filter" class="btn btn-outline-secondary" type="button">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -67,15 +69,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-tags"></i></span>
                         </div>
-                        <select id="shipping-method-filter" class="form-control" onchange="filterOrders()">
+                        <select id="shipping-method-filter" class="form-control">
                             <option value="">Усі методи доставки</option>
                             @foreach ($shippingMethods as $shippingMethod)
                                 <option value="{{ $shippingMethod->id }}">{{ $shippingMethod->name }}</option>
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-shipping-filter" class="btn btn-outline-secondary" type="button"
-                                    onclick="resetFilter('shipping-method-filter')">
+                            <button id="reset-shipping-filter" class="btn btn-outline-secondary" type="button">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -88,7 +89,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-tags"></i></span>
                         </div>
-                        <select id="discount-filter" class="form-control" onchange="filterOrders()">
+                        <select id="discount-filter" class="form-control">
                             <option value="">Усі знижки</option>
                             <option value="1">Немає</option>
                             @foreach ($discounts->where('type', 'На замовлення')->unique('percentage')->sortBy('percentage') as $discount)
@@ -96,8 +97,7 @@
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button"
-                                    onclick="resetFilter('discount-filter')">
+                            <button id="reset-discount-filter" class="btn btn-outline-secondary" type="button">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -110,13 +110,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                         </div>
-                        <input type="number" id="price-min" class="form-control" placeholder="Мін"
-                               oninput="filterOrders()">
-                        <input type="number" id="price-max" class="form-control" placeholder="Макс"
-                               oninput="filterOrders()">
+                        <input type="number" id="price-min" class="form-control" placeholder="Мін">
+                        <input type="number" id="price-max" class="form-control" placeholder="Макс">
                         <div class="input-group-append">
-                            <button id="reset-price-filter" class="btn btn-outline-secondary" type="button"
-                                    onclick="resetPriceFilter()">
+                            <button id="reset-price-filter" class="btn btn-outline-secondary" type="button">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -129,7 +126,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                         </div>
-                        <select id="status-filter" class="form-control" onchange="filterOrders()">
+                        <select id="status-filter" class="form-control">
                             <option value="">Усі замовлення</option>
                             <option value="active">В обробці</option>
                             <option value="completed">Завершено</option>
@@ -138,8 +135,7 @@
                             <option value="delivered">Доставлено</option>
                         </select>
                         <div class="input-group-append">
-                            <button id="reset-status-filter" class="btn btn-outline-secondary" type="button"
-                                    onclick="resetFilter('status-filter')">
+                            <button id="reset-status-filter" class="btn btn-outline-secondary" type="button">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -148,7 +144,7 @@
             </div>
 
 
-            <div class="table-responsive" style="max-height: 535px; overflow-y: auto;">
+            <div class="table-responsive" style="max-height: 480px; overflow-y: auto;">
                 <table class="table table-bordered" style="background-color: #ffffff;">
                     <thead class="thead-light">
                     <tr>
@@ -230,6 +226,21 @@
             </div>
         @endif
     </div>
+
+    <style>
+        #pdf{
+            width: 220px;
+            margin-left: 20px;
+            white-space: nowrap;
+            background-color: #2C73BB;
+            color: white;
+            z-index:1000;
+        }
+
+        #pdf:hover{
+            background-color: #235b93;
+        }
+    </style>
 
     <script>
         function confirmDelete(id) {
@@ -337,8 +348,8 @@
                         <td>${order.id}</td>
                         <td>${order.user ? order.user.login : 'Користувача не знайдено'}</td>
                         <td>${order.paymentMethod ? order.paymentMethod.name : 'Метод не знайдено'}</td>
-                        <td>${order.shippingMethod ? order.shippingMethod.name : 'Метод доставки не знайдено'}</td>
-                        <td>${order.discount_id ? (order.discount ? order.discount.percentage + '%' : 'Немає') : 'Немає'}</td>
+                        <td>${order.shippingMethod ? order.shippingMethod.name : 'Метод доставки не знайдено' }</td>
+                        <td> ${order.discount_id && order.discount ? `${order.discount.percentage}%` : 'Немає'}</td>
                         <td>${order.address}</td>
                         <td>${numberFormat(order.total_amount) + ' грн'}</td>
                         <td>${order.status}</td>
@@ -350,7 +361,7 @@
 
                         </td>
                         <td>
-                             <a href="/admin/orders/${order.id}/edit" class="btn btn-primary btn-sm mb-2">
+                             <a href="/admin/orders/${order.id}/edit" class="btn btn-warning btn-sm mb-2">
                                 <i class="fas fa-edit"></i>
                             </a>
                              <form action="/admin/orders/${order.id}" method="POST" onsubmit="return confirmDeleteProduct('${order.name}')">

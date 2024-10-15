@@ -27,7 +27,6 @@
 
     <div class="d-flex align-items-center mr-4">
         <i class="bi bi-person-circle mr-3" style="font-size: 2rem; color: #04396E;"></i>
-
                     @if (!empty(Auth::user()->login))
                         <span class="mr-3" style="font-size: 22px; color: #2C73BB;">
                             {{ Auth::user()->login }}
@@ -35,12 +34,12 @@
                         </span>
                     @endif
 
-                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                    @csrf
-                        <button type="submit" class="btn btn-outline-light px-3 py-2" style="border: none; background: transparent;">
-                            <i class="fas fa-sign-out-alt" style="font-size: 1.3rem; color: #04396E;"></i>
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="button" class="button" style="border: none; background: transparent;" onClick="confirmLogout()">
+                            <i class="fas fa-sign-out-alt" id="logout-btn" style="font-size: 1.3rem; color: #04396E;"></i>
                         </button>
-                </form>
+                    </form>
     </div>
 
 </header>
@@ -108,4 +107,22 @@
         left: 0;
         background-color: #04396E;
     }
+
+    #logout-btn {
+        transition: color 0.3s ease;
+    }
+
+    #logout-btn:hover {
+        color: #b62020;
+    }
+
 </style>
+
+<script>
+    function confirmLogout() {
+        if (confirm("Ви дійсно бажаєте вийти з акаунта?")) {
+            document.querySelector('form').submit();
+        }
+    }
+</script>
+

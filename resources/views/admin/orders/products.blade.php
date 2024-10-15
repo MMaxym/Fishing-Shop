@@ -4,10 +4,10 @@
     <div class="container" style="max-width: 1400px;">
         <div style="display: flex; align-items: center; margin-bottom: 30px;">
             <h1 style="margin-right: 30px;">Товари для замовлення №{{ $order->id }}</h1>
-            <a href="" class="btn btn-dark me-2" style="width: 220px; margin-left: auto; white-space: nowrap;">
-                <i class="fas fa-file-alt"></i> Сформувати звіт
+            <a href="{{ route('admin.orders.exportProductsPdf', $order->id) }}" class="btn me-2" id="pdf">
+                <i class="fas fa-file-alt"></i> Сформувати чек в .pdf
             </a>
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-info" style="white-space: nowrap; margin-left: 30px;">
+            <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary" style="white-space: nowrap; margin-left: 30px;">
                 <i class="fas fa-arrow-left"></i> Назад до замовлень
             </a>
             <a href="{{ route('admin.admin') }}" class="btn btn-danger" style="white-space: nowrap; margin-left: 30px;">
@@ -15,7 +15,7 @@
             </a>
         </div>
 
-        <div class="table-responsive" style="max-height: 750px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 695px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
@@ -76,6 +76,21 @@
             </table>
         </div>
     </div>
+
+    <style>
+        #pdf{
+            width: 220px;
+            margin-left: 20px;
+            white-space: nowrap;
+            background-color: #2C73BB;
+            color: white;
+            z-index:1000;
+        }
+
+        #pdf:hover{
+            background-color: #235b93;
+        }
+    </style>
 
     <script>
         let sortOrder = {};

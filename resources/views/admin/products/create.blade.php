@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="max-width: 500px; margin: 0 auto; padding-bottom: 50px;">
+    <div class="container" style="max-width: 450px; margin: 0 auto; padding-bottom: 50px;">
         <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);">
             <div class="card-header" style="background-color: #d6d6d6;">
                 <h2>Додавання нового товару</h2>
@@ -112,8 +112,8 @@
                     </div>
 
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-warning">Створити товар</button>
-                        <button type="button" class="btn btn-outline-primary mx-3" id="back-button">
+                        <button type="submit" class="btn btn-success">Створити товар</button>
+                        <button type="button" class="btn btn-outline-dark mx-3" id="back-button">
                             <i class="fas fa-arrow-left"></i> Назад</button>
                     </div>
 

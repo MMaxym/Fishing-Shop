@@ -13,15 +13,18 @@
                    style="width: 260px; white-space: nowrap;">
                     <i class="fas fa-plus"></i> Додати нового користувача
                 </a>
-                <a href="" class="btn btn-dark me-2" style="width: 220px; margin-left: 30px; white-space: nowrap;">
-                    <i class="fas fa-file-alt"></i> Сформувати звіт
+                <a href="{{ route('pdf.export') }}" class="btn me-2" id="pdf">
+                    <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
+                </a>
+                <a href="{{ route('admin.users.excelExport', request()->all()) }}" class="btn btn-secondary me-2" style="z-index:1000; width: 230px; margin-left: 20px; white-space: nowrap;">
+                    <i class="fas fa-file-alt"></i> Експортувати дані в .xslx
                 </a>
             </div>
 
             <div class="col-md-4">
-                <label for="user-role-filter" class="form-label" style="margin-left: 200px; width: 250px;">Фільтр за
+                <label for="user-role-filter" class="form-label" style="margin-left: 335px; width: 240px;">Фільтр за
                     типом користувача</label>
-                <div class="input-group" style="width: 250px; margin-left: 200px;">
+                <div class="input-group" style="width: 240px; margin-left: 335px; z-index:1000;">
                     <div class="input-group-prepend">
                 <span class="input-group-text">
                     <i class="fas fa-filter"></i>
@@ -42,7 +45,7 @@
             </div>
 
             <div class="col-md-4 d-flex align-items-end">
-                <div class="input-group" style="width: 300px; margin-left: auto;">
+                <div class="input-group" style="width: 240px; margin-left: auto;">
                     <input type="text" class="form-control" id="search" placeholder="Пошук за логіном">
                     <div class="input-group-append">
                 <span class="input-group-text">
@@ -58,7 +61,7 @@
             Користувачів не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 590px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 535px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
@@ -125,6 +128,21 @@
             </table>
         </div>
     </div>
+
+    <style>
+        #pdf{
+            width: 220px;
+            margin-left: 20px;
+            white-space: nowrap;
+            background-color: #2C73BB;
+            color: white;
+            z-index:1000;
+        }
+
+        #pdf:hover{
+            background-color: #235b93;
+        }
+    </style>
 
     <script>
         document.getElementById('search').addEventListener('input', function () {

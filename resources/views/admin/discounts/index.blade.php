@@ -10,9 +10,6 @@
             <a href="{{ route('admin.discounts.create') }}" class="btn btn-success">
                 <i class="fas fa-plus"></i> Додати нову знижку
             </a>
-            <a href="" class="btn btn-dark me-2" style="width: auto; margin-right: 570px; white-space: nowrap;">
-                <i class="fas fa-file-alt"></i> Сформувати звіт
-            </a>
         </div>
 
         <div class="d-flex justify-content-between mb-4">
@@ -81,7 +78,7 @@
             Знижки не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 535px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 480px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>

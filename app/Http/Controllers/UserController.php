@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\User;
 use App\Models\Role;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class UserController extends Controller
@@ -127,5 +130,42 @@ class UserController extends Controller
             ->get();
 
         return response()->json(['users' => $users]);
+    }
+
+    public function excelExport(Request $request)
+    {
+        $filteredUser = User::query();
+
+        if ($request->filled('query')) {
+            $filteredUser->where('name', 'like', '%' . $request->input('query') . '%');
+        }
+
+        if ($request->filled('role')) {
+            $filteredUser->where('role_id', $request->input('role'));
+        }
+
+        $users = $filteredUser->get(['login', 'surname', 'name', 'email', 'phone', 'address', 'role_id',]);
+
+        return Excel::download(new UsersExport($users), 'users_export_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.xlsx');
+    }
+
+    public function pdfExport(Request $request)
+    {
+        $filteredUser = User::query();
+
+        if ($request->filled('query')) {
+            $filteredUser->where('name', 'like', '%' . $request->input('query') . '%');
+        }
+
+        if ($request->filled('role')) {
+            $filteredUser->where('role_id', $request->input('role'));
+        }
+
+        $users = $filteredUser->get(['login', 'surname', 'name', 'email', 'phone', 'address', 'role_id']);
+
+        $pdf = PDF::loadView('admin.users.export.pdf.invoice', compact('users'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('users_report_' . now()->addHours(3)->format('Y-m-d_H:i:s') . '.pdf');
     }
 }
