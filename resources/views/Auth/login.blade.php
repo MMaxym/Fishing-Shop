@@ -5,12 +5,12 @@
 </head>
 
 @section('content')
-    <div class="container" style="max-width: 400px; margin: 0 auto; padding-bottom: 50px; margin-top: 120px;">
-        <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);">
-            <div class="card-header" style="background-color: #d6d6d6;">
+    <div class="container" style="max-width: 400px; margin: 0 auto; padding-bottom: 30px; margin-top: 120px;">
+        <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); margin-top: 130px;">
+            <div class="card-header" style="background-color: #becfff;">
                 <h2>Вхід в акаунт</h2>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 10px;">
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     @if ($errors->any())
@@ -50,14 +50,16 @@
 
                     <button type="submit" class="btn btn-login">Увійти</button>
 
-                    <div class="divider">Або</div>
+                    <div class="divider" style="margin-bottom: 5px; margin-top: 15px;">Або</div>
 
-                    <div class="btn-google" style="margin-top: 20px;">
-                        <a href="{{ route('google.redirect') }}"class="btn btn-danger d-flex align-items-center justify-content-center" style="width: 100%;">
-                            <i class="fab fa-google" style="margin-right: 8px;"></i>
-                            Увійти через Google
+
+                    <div class="btn-google" style="margin-top: 10px;">
+                        <a href="{{ route('google.redirect') }}" class="google-btn-link">
+                            <img src="{{ asset('images/Google.svg') }}" alt="Google Icon" class="google-icon">
+                            Продовжити через Google
                         </a>
                     </div>
+
 
 
                     <div style="margin-top: 20px; text-align: center;">
@@ -85,21 +87,45 @@
                         display: inline-block;
                         width: 38%;
                         height: 1px;
-                        background-color: #ddd;
+                        background-color: #b3b3b3;
                         vertical-align: middle;
                         margin: 0 10px;
                     }
 
                     .btn-google {
-                        background-color: #c53727;
+                        background-color: transparent;
+                        border: 1.5px solid #2c73bb;
+                        color: #2c73bb;
                         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
                         border-radius: 5px;
+                        text-align: center;
+                        padding: 3px 12px;
+                        display: inline-block;
+                        width: 100%;
                     }
 
-                    .btn-secondary{
-                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-                        width: 100%;
-                        margin-top: 20px;
+                    .google-btn-link {
+                        color: #2c73bb;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 16px;
+                    }
+
+                    .google-btn-link:hover {
+                        color: #2c73bb;
+                    }
+
+                    .btn-google:hover{
+                        background-color: #e6f1ff;
+                    }
+
+                    .google-icon {
+                        width: 29px;
+                        height: 29px;
+                        margin-right: 8px;
+                        vertical-align: middle;
                     }
 
                     .form-group label {
@@ -114,7 +140,7 @@
                     }
 
                     .form-control:focus {
-                        border-color: #2C73BB;
+                        border-color: #2c73bb;
                         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
                     }
 
@@ -140,6 +166,7 @@
                     a {
                         text-decoration: none;
                         font-size: 14px;
+                        color: #2c73bb;
                     }
 
                     a:hover {
@@ -156,7 +183,8 @@
                     .btn-link{
                         text-decoration: none;
                         margin-top: 0;
-                        margin-bottom: 20px;
+                        margin-bottom: 10px;
+                        color: #2c73bb;
                     }
 
                     .btn-link:hover{

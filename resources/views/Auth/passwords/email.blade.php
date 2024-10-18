@@ -3,7 +3,7 @@
 @section('content')
     <div class="container" style="max-width: 400px; margin: 0 auto; padding-bottom: 50px; margin-top: 190px;">
         <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);">
-            <div class="card-header" style="background-color: #d6d6d6;">
+            <div class="card-header" style="background-color: #becfff;">
                 <h2>Скидання пароля</h2>
             </div>
             <div class="card-body">

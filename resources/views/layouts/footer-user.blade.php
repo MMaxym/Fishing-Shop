@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://unpkg.com/@clr/icons@5.7.0/clr-icons.min.css">
 
-<footer class="footer-style" style="width: 100%; background-color: #D0DAF3; padding: 0; margin: 0; margin-bottom: 0;">
+<footer class="footer-style" style="width: 100%; background-color: #D0DAF3; padding: 0; margin: 0;">
     <div class="container" style="max-width:2000px; background: #D0DAF3; color: #2C73BB; padding-top: 80px;  width: 100%; padding-left: 150px; padding-right: 150px;">
             <div class="row g-5 custom-gap" style="border-bottom: 1px solid #888888; padding-bottom: 20px;">
                 <div class="col-lg-2 col-md-6" style="margin-right: 20px;">
@@ -55,17 +55,17 @@
 
             <div class="copyright" style="margin-top: 30px; padding-bottom: 50px;">
                 <div class="row">
-                    <div class="col-md-6 text-center text-md-start">
+                    <div class="col-md-6 text-left text-md-start">
                         &copy; <a class="border-bottom" href="">FISHING SHOP</a>, Усі права захищені.
                         <br>
                         Розроблено <a class="border-bottom" href="https://github.com/MMaxym">Melnyk Maksym</a>
                     </div>
-                    <div class="col-md-6 text-center text-md-end">
+                    <div class="col-md-6 text-right text-md-end">
                         <div class="footer-menu">
-                            <a href="">Головна</a> |
-                            <a href="">Про нас</a> |
-                            <a href="">Акції</a> |
-                            <a href="">Доставка</a>
+                            <a href="{{ route('user.main') }}">Головна</a> |
+                            <a href="{{ route('user.about') }}">Про нас</a> |
+                            <a href="{{ route('user.discount') }}">Знижки</a> |
+                            <a href="{{ route('user.delivery') }}">Доставка</a>
                         </div>
                     </div>
                 </div>
@@ -194,6 +194,14 @@
         a:hover {
             color: #c53727;
             text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container{
+                text-align: center;
+                padding-right: 50px;
+                padding-left: 50px;
+            }
         }
     </style>
 

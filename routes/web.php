@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HeaderUserController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Middleware\CheckName;
 use Illuminate\Support\Facades\Route;
@@ -125,8 +126,13 @@ Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCa
 
 Route::prefix('user/')->group(function () {
     Route::get('/main', [MainUserController::class, 'index'])->name('user.main');
+    Route::get('/about', [MainUserController::class, 'showAbout'])->name('user.about');
+    Route::get('/discount', [MainUserController::class, 'showDiscount'])->name('user.discount');
+    Route::get('/delivery', [MainUserController::class, 'showDelivery'])->name('user.delivery');
+    Route::get('/editProfile', [HeaderUserController::class, 'editProfile'])->name('user.editProfile');
+//    Route::get('/{user}/edit', [HeaderUserController::class, 'userEdit'])->name('user.edit');
+    Route::put('/{user}', [HeaderUserController::class, 'userUpdate'])->name('user.update');
 });
-
 
 
 
