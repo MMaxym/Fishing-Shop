@@ -1,4 +1,8 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<head>
+    <link rel="stylesheet" href="{{ asset('css/header-admin.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
 <header class="header-style">
     <div class="d-flex align-items-center ml-4">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="mr-3" style="width: 50px; height: auto;">
@@ -43,80 +47,6 @@
     </div>
 
 </header>
-
-<style>
-
-    .header-style {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        background: #D0DAF3;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        z-index: 1000;
-    }
-
-    .nav-link {
-        position: relative;
-        text-decoration: none;
-        color: #2C73BB;
-        transition: color 0.3s ease;
-    }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 3px;
-        bottom: 0;
-        left: 50%;
-        background-color: #04396E;
-        transition: width 0.4s ease, left 0.4s ease;
-    }
-
-    .nav-link:hover::after {
-        width: 100%;
-        left: 0;
-    }
-
-    .nav-link:hover {
-        color: #04396E;
-    }
-
-    .highlighted {
-        font-size: 20px;
-        color: #2C73BB;
-    }
-
-    .highlighted:hover {
-        color: #04396E;
-    }
-
-    .active {
-        color: #04396E;
-        font-weight: bold;
-    }
-
-    .active::after {
-        width: 100%;
-        left: 0;
-        background-color: #04396E;
-    }
-
-    #logout-btn {
-        transition: color 0.3s ease;
-    }
-
-    #logout-btn:hover {
-        color: #b62020;
-    }
-
-</style>
 
 <script>
     function confirmLogout() {

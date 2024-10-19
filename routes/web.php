@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoryBalancerController;
+use App\Http\Controllers\CategoryPilkerController;
+use App\Http\Controllers\CategoryTailSpinnerController;
 use App\Http\Controllers\HeaderUserController;
+use App\Http\Controllers\NewProductController;
+use App\Http\Controllers\SaleProductController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Middleware\CheckName;
 use Illuminate\Support\Facades\Route;
@@ -130,8 +135,12 @@ Route::prefix('user/')->group(function () {
     Route::get('/discount', [MainUserController::class, 'showDiscount'])->name('user.discount');
     Route::get('/delivery', [MainUserController::class, 'showDelivery'])->name('user.delivery');
     Route::get('/editProfile', [HeaderUserController::class, 'editProfile'])->name('user.editProfile');
-//    Route::get('/{user}/edit', [HeaderUserController::class, 'userEdit'])->name('user.edit');
     Route::put('/{user}', [HeaderUserController::class, 'userUpdate'])->name('user.update');
+    Route::get('/categoryBalancers', [CategoryBalancerController::class, 'index'])->name('user.categoryBalancers');
+    Route::get('/categoryPilkers', [CategoryPilkerController::class, 'index'])->name('user.categoryPilkers');
+    Route::get('/categoryTailSpinners', [CategoryTailSpinnerController::class, 'index'])->name('user.categoryTailSpinners');
+    Route::get('/newProducts', [NewProductController::class, 'index'])->name('user.newProducts');
+    Route::get('/saleProducts', [SaleProductController::class, 'index'])->name('user.saleProducts');
 });
 
 

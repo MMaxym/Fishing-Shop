@@ -1,0 +1,134 @@
+.container{
+    max-width: 400px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    z-index: 1;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    padding: 8px;
+}
+
+.btn-login {
+    margin-top: 15px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-header {
+    padding: 10px 15px;
+}
+
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    display: inline-block;
+    width: 38%;
+    height: 1px;
+    background-color: #ddd;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.btn-google {
+    background-color: #c53727;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.btn-secondary{
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #666;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: #2C73BB;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .toggle-password,
+.input-group .toggle-password-confirmation {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.toggle-password i,
+.toggle-password-confirmation i {
+    color: #dc3545;
+}
+
+.toggle-password i.fa-eye-slash,
+.toggle-password-confirmation i.fa-eye-slash {
+    color: #555555;
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #c53727;
+}
+
+p {
+    text-decoration: none;
+    font-size: 14px;
+    color: #666;
+}
+
+.btn-link{
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.btn-link:hover{
+    text-decoration: none;
+    color: #c53727;
+}
+
+.btn-login{
+    background-color: #2C73BB;
+    width: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    color: white;
+}
+
+.btn-login:hover{
+    background-color: #266198;
+    color: white;
+}

@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 <head>
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Авторизація</title>
 </head>
 
 @section('content')
@@ -94,7 +96,7 @@
 
                     .btn-google {
                         background-color: transparent;
-                        border: 1.5px solid #2c73bb;
+                        border: 1px solid #2c73bb;
                         color: #2c73bb;
                         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
                         border-radius: 5px;

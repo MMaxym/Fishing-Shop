@@ -8,78 +8,80 @@
 
     <div class="container" style="max-width: 1600px;">
         @include('layouts.header-user')
-        <div class="form-container">
-            <h2>Редагування персональної інформації користувача "{{ Auth::user()->surname }} {{ Auth::user()->name }}"</h2>
+        <div class="form-card">
+            <div class="form-container">
+                <h3>Редагування персональної інформації користувача "{{ Auth::user()->surname }} {{ Auth::user()->name }}"</h3>
 
-            <form action="{{ route('user.update', Auth::user()->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                <form action="{{ route('user.update', Auth::user()->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="form-group">
+                        <label for="login">Логін</label>
+                        <input type="text" class="form-control" id="login" name="login" value="{{ old('login', Auth::user()->login) }}" required>
+                        @error('login')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                @endif
-                <div class="form-group">
-                    <label for="login">Логін</label>
-                    <input type="text" class="form-control" id="login" name="login" value="{{ old('login', Auth::user()->login) }}" required>
-                    @error('login')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
 
-                <div class="form-group">
-                    <label for="surname">Прізвище</label>
-                    <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname', Auth::user()->surname) }}" required>
-                    @error('surname')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="surname">Прізвище</label>
+                        <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname', Auth::user()->surname) }}" required>
+                        @error('surname')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <div class="form-group">
-                    <label for="name">Імʼя</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" required>
-                    @error('name')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="name">Імʼя</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" required>
+                        @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Електронна пошта</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', Auth::user()->email) }}" required>
-                    @error('email')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="email">Електронна пошта</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', Auth::user()->email) }}" required>
+                        @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <div class="form-group">
-                    <label for="phone">Телефон</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone', Auth::user()->phone) }}" required style="width: 300px;">
-                    @error('phone')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone', Auth::user()->phone) }}" required style="width: 300px;">
+                        @error('phone')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <div class="form-group">
-                    <label for="address">Адреса</label>
-                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address', Auth::user()->address) }}">
-                    @error('address')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="address">Адреса</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ old('address', Auth::user()->address) }}">
+                        @error('address')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-warning">
-                        <i class="fas fa-save"></i> Зберегти зміни
-                    </button>
-                    <button type="button" class="btn btn-outline-dark mx-3" id="back-button">
-                        <i class="fas fa-arrow-left"></i> Назад
-                    </button>
-                </div>
-            </form>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-save"></i> Зберегти зміни
+                        </button>
+                        <button type="button" class="btn btn-outline-dark mx-3" id="back-button">
+                            <i class="fas fa-arrow-left"></i> Назад
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

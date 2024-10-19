@@ -53,35 +53,23 @@
                     <li class="dropdown-header">
                         Профіль користувача
                     </li>
-                    <li>
-                        <span class="dropdown-item-text">
-                            <strong>Імʼя:</strong> {{ Auth::user()->name }}
-                        </span>
+                    <li class="dropdown-item-user">
+                        <strong>Імʼя:</strong> {{ Auth::user()->name }}
                     </li>
-                    <li>
-                        <span class="dropdown-item-text">
-                            <strong>Прізвище:</strong> {{ Auth::user()->surname }}
-                        </span>
+                    <li class="dropdown-item-user">
+                        <strong>Прізвище:</strong> {{ Auth::user()->surname }}
                     </li>
-                    <li>
-                        <span class="dropdown-item-text">
-                            <strong>Email:</strong> {{ Auth::user()->email }}
-                        </span>
+                    <li class="dropdown-item-user">
+                        <strong>Email:</strong> {{ Auth::user()->email }}
                     </li>
-                    <li>
-                        <span class="dropdown-item-text">
-                            <strong>Логін:</strong> {{ Auth::user()->login }}
-                        </span>
+                    <li class="dropdown-item-user">
+                        <strong>Логін:</strong> {{ Auth::user()->login }}
                     </li>
-                    <li>
-                        <span class="dropdown-item-text">
-                            <strong>Телефон:</strong> {{ Auth::user()->phone }}
-                        </span>
+                    <li class="dropdown-item-user">
+                        <strong>Телефон:</strong> {{ Auth::user()->phone }}
                     </li>
-                    <li>
-                        <span class="dropdown-item-text">
-                            <strong>Адреса:</strong> {{ Auth::user()->address }}
-                        </span>
+                    <li class="dropdown-item-user">
+                        <strong>Адреса:</strong> {{ Auth::user()->address }}
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -93,9 +81,6 @@
                     </li>
                 </ul>
             </div>
-
-
-
         @if (!empty(Auth::user()->login))
                 <span class="mr-3" style="font-size: 22px; color: #2C73BB;">
                             {{ Auth::user()->login }}

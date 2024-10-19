@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
+    <title>Реєстрація</title>
+</head>
+
 @section('content')
     <div class="container">
         <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);">

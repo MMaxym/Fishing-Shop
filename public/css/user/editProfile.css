@@ -1,14 +1,23 @@
+.form-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.7);
+    max-width: 450px;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
-    margin-bottom: 100px;
 }
 
-h2 {
-    font-size: 24px;
+h3 {
+    font-size: 22px;
     font-weight: 600;
     color: #04396E;
     max-width: 600px;

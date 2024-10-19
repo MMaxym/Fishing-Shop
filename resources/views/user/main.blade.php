@@ -11,27 +11,27 @@
                 <div class="selectedCategory">
                     <div class="category">
                         <i class="foundation--burst-new" style="margin-left: 5px;"></i>
-                        <a href="" style="color: #00d109; margin-left: 3px;">Новинки</a>
+                        <a href="{{route('user.newProducts')}}" style="color: #00d109; margin-left: 3px;">Новинки</a>
                         <i class="fas fa-chevron-right" style="margin-left: 5px; color: #00d109;"></i>
                     </div>
                     <div class="category">
                         <i class="iconamoon--discount" style="margin-left: 5px;"></i>
-                        <a href="" style="color: #da0000; margin-left: 7px;">Знижки</a>
+                        <a href="{{route('user.saleProducts')}}" style="color: #da0000; margin-left: 7px;">Акційні товари</a>
                         <i class="fas fa-chevron-right" style="margin-left: 5px; color: #da0000;"></i>
                     </div>
                     <div class="category">
                         <i class="clarity--fish-line" style="margin-left: 5px;"></i>
-                        <a href="">Балансири</a>
+                        <a href="{{route('user.categoryTailSpinners')}}">Тейл-спінери</a>
                         <i class="fas fa-chevron-right" style="margin-left: 5px;"></i>
                     </div>
                     <div class="category">
                         <i class="clarity--fish-line" style="margin-left: 5px;"></i>
-                        <a href="">Пількери</a>
+                        <a href="{{route('user.categoryBalancers')}}">Балансири</a>
                         <i class="fas fa-chevron-right" style="margin-left: 5px;"></i>
                     </div>
                     <div class="category">
                         <i class="clarity--fish-line" style="margin-left: 5px;"></i>
-                        <a href="">Тейл-спінери</a>
+                        <a href="{{route('user.categoryPilkers')}}">Пількери</a>
                         <i class="fas fa-chevron-right" style="margin-left: 5px;"></i>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="parent">
                     <div class="frame-parent">
                         <div class="rectangle-parent" style="margin-right: 50px;">
-                            <a href="" style="text-decoration: none; color: inherit;">
+                            <a href="{{route('user.categoryTailSpinners')}}" style="text-decoration: none; color: inherit;">
                                 <img class="frame-child" alt="" src="{{ asset('images/category-3.png') }}">
                                 <div class="wrapper">
                                     <b class="b1">Тейл-спінери</b>
@@ -81,7 +81,7 @@
                             </a>
                         </div>
                         <div class="rectangle-parent" style="margin-right: 50px;">
-                            <a href="" style="text-decoration: none; color: inherit;">
+                            <a href="{{route('user.categoryBalancers')}}" style="text-decoration: none; color: inherit;">
                                 <img class="frame-child" alt="" src="{{ asset('images/category-2.png') }}">
                                 <div class="wrapper">
                                     <b class="b1">Балансири</b>
@@ -89,7 +89,7 @@
                             </a>
                         </div>
                         <div class="rectangle-parent">
-                            <a href="" style="text-decoration: none; color: inherit;">
+                            <a href="{{route('user.categoryPilkers')}}" style="text-decoration: none; color: inherit;">
                                 <img class="frame-child" alt="" src="{{ asset('images/category-1.png') }}">
                                 <div class="wrapper">
                                     <b class="b1">Пількери</b>
