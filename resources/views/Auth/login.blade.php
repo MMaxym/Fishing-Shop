@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <title>Авторизація</title>
+    <title>Fishing Shop - Авторизація</title>
 </head>
 
 @section('content')
@@ -96,7 +96,7 @@
 
                     .btn-google {
                         background-color: transparent;
-                        border: 1px solid #2c73bb;
+                        border: 2px solid #2c73bb;
                         color: #2c73bb;
                         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
                         border-radius: 5px;
@@ -165,6 +165,7 @@
                     .toggle-password i.fa-eye-slash {
                         color: #555555;
                     }
+
                     a {
                         text-decoration: none;
                         font-size: 14px;

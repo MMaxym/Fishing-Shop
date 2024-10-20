@@ -50,7 +50,7 @@
                     <div class="position-relative w-100">
                         <input type="text" class="form-control email-input" placeholder="Ваш email">
                         <button class="btn btn-email position-absolute top-50 end-0 translate-middle-y">
-                            <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane" style="margin-right: 0;"></i>
                         </button>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
-    <title>Реєстрація</title>
+    <title>Fishing Shop - Реєстрація</title>
 </head>
 
 @section('content')

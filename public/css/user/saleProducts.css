@@ -1,0 +1,232 @@
+.page-title {
+    font-size: 36px;
+    color: #04396E;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 370px;
+    height: 4px;
+    background-color: #c53727;
+    margin: 10px auto 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.product-card {
+    background-color: #D0DAF3;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 250px;
+    height: auto;
+    position: relative;
+}
+
+.product-card:hover{
+    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.5);
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #04396E;
+}
+
+.product-card p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c73bb;
+    margin-top: 15px;
+}
+
+.product-card button {
+    background-color: #2C73BB;
+    width: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.product-card button:hover {
+    background-color: #266198;
+    color: white;
+}
+
+button i {
+    margin-right: 8px;
+}
+
+#notImage {
+    display: inline-block;
+    margin-top: 66px;
+    margin-bottom: 66px;
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.product-card p {
+    margin: 5px 0;
+}
+
+.product-card .old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+}
+
+.product-card .discount-price {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sale-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.sale-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.new-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.new-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.pagination .pagination-links li {
+    margin: 0 7px;
+}
+
+.pagination .pagination-links a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    color: #2c73bb;
+    background-color: #D0DAF3;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+    font-weight: 500;
+}
+
+.pagination .pagination-links a:hover {
+    background-color: #2c73bb;
+    color: white;
+    border: 1px solid #2c73bb;
+}
+
+.pagination .pagination-links .active span {
+    background-color: #2c73bb;
+    color: white;
+    border: 1px solid #2c73bb;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#loadMore{
+    background-color: #E1E7F6;
+    border: 2px solid #2c73bb;
+    color: #2c73bb;
+    width: 10%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 7px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#loadMore:hover{
+    box-shadow: 0 5px 15px rgb(44, 115, 187, 0.5);
+    background-color: #d2dcf4;
+}
+
+.position-info{
+    margin-top: 40px;
+    text-align: center;
+    color: #04396E;
+    font-size: 16px;
+}
+
+.navigate {
+    text-align: left;
+    color: #04396E;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 180px;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-link {
+    color: #04396E;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.breadcrumb-link:hover {
+    color: #c53727;
+}
+
+.breadcrumb-link i {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #04396E;
+}
+
+

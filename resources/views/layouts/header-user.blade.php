@@ -6,7 +6,9 @@
 <header class="header-style">
     <div class="d-flex align-items-center ml-4">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="mr-3" style="width: 50px; height: auto;">
-        <h1 class="mb-0" style="font-size: 28px; font-weight: 500; color: #04396E;">Fishing Shop</h1>
+        <a href="{{ route('user.main') }}" class="mb-0" style="font-size: 28px; font-weight: 500; color: #04396E; text-decoration: none;">
+            <h1 style="margin: 0; font-size: 28px;">Fishing Shop</h1>
+        </a>
     </div>
 
     <div class="search-container d-flex align-items-center">
@@ -40,7 +42,7 @@
             </button>
 
             <button class="btn p-0 mr-3" style="border: none; background: transparent;">
-                <i class="fas fa-shopping-bag" style="font-size: 1.5rem; color: #04396E; margin-left: 5px;"></i>
+                <i class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #04396E; margin-left: 5px;"></i>
             </button>
 
             <div class="vr" style="height: 40px; width: 2px; background-color: #04396E; margin-left: 15px; margin-right: 25px;"></div>
