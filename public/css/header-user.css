@@ -68,8 +68,8 @@
     width: 100%;
     padding-right: 40px;
     border-radius: 8px;
-    border: 1px solid #ccc;
     height: 40px;
+    border: 1px solid #2C73BB;
 }
 
 .search-input::placeholder {

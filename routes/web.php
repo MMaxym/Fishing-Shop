@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryPilkerController;
 use App\Http\Controllers\CategoryTailSpinnerController;
 use App\Http\Controllers\HeaderUserController;
 use App\Http\Controllers\NewProductController;
+use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\SaleProductController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Middleware\CheckName;
@@ -141,6 +142,7 @@ Route::prefix('user/')->group(function () {
     Route::get('/categoryTailSpinners', [CategoryTailSpinnerController::class, 'index'])->name('user.categoryTailSpinners');
     Route::get('/newProducts', [NewProductController::class, 'index'])->name('user.newProducts');
     Route::get('/saleProducts', [SaleProductController::class, 'index'])->name('user.saleProducts');
+    Route::get('/orderHistory', [OrderHistoryController::class, 'index'])->name('user.orderHistory');
 });
 
 

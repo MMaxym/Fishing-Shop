@@ -30,6 +30,7 @@ class Product extends Model
         'is_active' => 'boolean',
     ];
 
+    protected $appends = ['test'];
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -44,5 +45,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
-
+    public function discountedPrice()
+    {
+        if ($this->discount) {
+            return $this->price * (1 - $this->discount->percentage / 100);
+        }
+        return $this->price;
+    }
 }

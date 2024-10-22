@@ -44,7 +44,7 @@
                                     {{ number_format($product->price, 2) }} грн
                                 </p>
                                 <p style="color: red;">
-                                    {{ number_format($product->price * (1 - $product->discount->percentage / 100), 2) }} грн
+                                    {{ number_format($product->discountedPrice(), 2) }} грн
                                 </p>
                                 <p style="color: red; font-weight: normal; font-size: 14px;">*Немає в наявності</p>
                             @elseif($product->quantity < 50)
@@ -52,7 +52,7 @@
                                     {{ number_format($product->price, 2) }} грн
                                 </p>
                                 <p style="color: red;">
-                                    {{ number_format($product->price * (1 - $product->discount->percentage / 100), 2) }} грн
+                                    {{ number_format($product->discountedPrice(), 2) }} грн
                                 </p>
                                 <p style="color: #ff8800; font-weight: normal; font-size: 14px;">*Товар закінчується</p>
                             @else
@@ -60,7 +60,7 @@
                                     {{ number_format($product->price, 2) }} грн
                                 </p>
                                 <p style="color: red; padding-bottom: 14px;">
-                                    {{ number_format($product->price * (1 - $product->discount->percentage / 100), 2) }} грн
+                                    {{ number_format($product->discountedPrice(), 2) }} грн
                                 </p>
                             @endif
                         @else

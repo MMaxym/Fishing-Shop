@@ -1,3 +1,6 @@
+@php use Illuminate\Http\Request; @endphp
+
+@php $param = str_replace([url()->current(),'?'], '', url()->full())@endphp
 @if ($paginator->hasPages())
     <nav>
         <ul class="pagination">
@@ -17,7 +20,7 @@
                         @if ($page == $paginator->currentPage())
                             <li class="active"><span>{{ $page }}</span></li>
                         @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                            <li><a href="{{ $url . '&' .$param}}">{{ $page }}</a></li>
                         @endif
                     @endforeach
                 @endif
@@ -30,4 +33,6 @@
             @endif
         </ul>
     </nav>
+
+
 @endif

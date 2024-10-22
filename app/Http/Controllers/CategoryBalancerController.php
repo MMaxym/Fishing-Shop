@@ -16,8 +16,7 @@ class CategoryBalancerController extends Controller
             ->where('is_active', 1)
             ->whereHas('category', function ($query) {
                 $query->where('name', 'Балансири');
-            })
-            ->paginate(12);
+            })->paginate(12);
 
 
         foreach ($products as $product) {

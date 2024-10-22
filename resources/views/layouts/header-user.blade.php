@@ -13,7 +13,7 @@
 
     <div class="search-container d-flex align-items-center">
         <div class="position-relative w-100">
-            <input type="text" class="form-control search-input" placeholder="Пошук">
+            <input type="text" class="form-control search-input" placeholder="Пошук за назвою">
             <i class="fa fa-search search-icon"></i>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
     <div class="d-flex align-items-center mr-4">
         @auth
-            <button class="btn p-0 mr-3" style="border: none; background: transparent;">
+            <button class="btn p-0 mr-3" style="border: none; background: transparent;" onclick="window.location.href='{{ route('user.orderHistory') }}';">
                 <i class="fas fa-history" style="font-size: 1.5rem; color: #04396E;"></i>
             </button>
 
