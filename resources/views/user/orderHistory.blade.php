@@ -13,7 +13,7 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                >> Історія замовлень користувача {{ Auth::user()->surname }} {{ Auth::user()->name }}
+                > Історія замовлень користувача {{ Auth::user()->surname }} {{ Auth::user()->name }}
             </p>
             <h2 class="page-title">ІСТОРІЯ ЗАМОВЛЕНЬ</h2>
         </div>

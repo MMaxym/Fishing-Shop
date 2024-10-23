@@ -13,7 +13,7 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                >> Акційні товари
+                > Акційні товари
             </p>
             <h2 class="page-title">АКЦІЙНІ ТОВАРИ</h2>
 

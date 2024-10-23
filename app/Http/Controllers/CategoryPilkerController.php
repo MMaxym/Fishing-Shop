@@ -16,13 +16,25 @@ class CategoryPilkerController extends Controller
         $minPrice = $request->get('min_price', null);
         $maxPrice = $request->get('max_price', null);
 
+//        DB::statement("UPDATE products, ".
+//            "(select  p.id,(price * (1 - d.percentage / 100)) as actual ".
+//            "from products p, discounts d ".
+//            "where p.discount_id IS NOT NULL and p.discount_id = d.id ".
+//            "union ".
+//            "select  p.id,(price) as actual ".
+//            "from products p ".
+//            "where p.discount_id IS NULL ) test ".
+//            "SET actual_price = test.actual ".
+//            "WHERE products.id = test.id");
+
+
         $minPriceFromDB = Product::whereHas('category', function ($query) {
             $query->where('name', 'Пількери');
-        })->min('price');
+        })->min('actual_price');
 
         $maxPriceFromDB = Product::whereHas('category', function ($query) {
             $query->where('name', 'Пількери');
-        })->max('price');
+        })->max('actual_price');
 
         $products = Product::with('images', 'discount')
             ->whereHas('category', function ($query) {
@@ -30,11 +42,11 @@ class CategoryPilkerController extends Controller
             });
 
         if ($minPrice !== null) {
-            $products->where( 'price', '>=', $minPrice);
+            $products->where( 'actual_price', '>=', $minPrice);
         }
 
         if ($maxPrice !== null) {
-            $products->where('price', '<=', $maxPrice);
+            $products->where('actual_price', '<=', $maxPrice);
         }
 
         $products = $this->applySorting($products, $sortOrder);
@@ -44,6 +56,7 @@ class CategoryPilkerController extends Controller
         foreach ($products as $product) {
             $product->isDiscounted = !is_null($product->discount);
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
+            $product->actual_price = $product->discountedPrice() ;
         }
 
         $currentPage = $products->currentPage();
@@ -57,16 +70,18 @@ class CategoryPilkerController extends Controller
         ));
     }
 
-
     private function applySorting($products, $sortOrder)
     {
         if ($sortOrder == 'low_to_high') {
-            return $products->orderBy('price', 'asc');
-        } elseif ($sortOrder == 'high_to_low') {
-            return $products->orderBy('price', 'desc');
-        } elseif ($sortOrder == 'a_to_z') {
+            return $products->orderBy('actual_price', 'asc');
+        }
+        elseif ($sortOrder == 'high_to_low') {
+            return $products->orderBy('actual_price', 'desc');
+        }
+        elseif ($sortOrder == 'a_to_z') {
             return $products->orderBy('name', 'asc');
-        } elseif ($sortOrder == 'z_to_a') {
+        }
+        elseif ($sortOrder == 'z_to_a') {
             return $products->orderBy('name', 'desc');
         }
 

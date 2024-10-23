@@ -96,7 +96,6 @@
 
                     .btn-google {
                         background-color: transparent;
-                        border: 2px solid #2c73bb;
                         color: #2c73bb;
                         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
                         border-radius: 5px;

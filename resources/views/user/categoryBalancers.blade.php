@@ -13,7 +13,7 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                >> Балансири
+                > Балансири
             </p>
             <h2 class="page-title">БАЛАНСИРИ</h2>
 

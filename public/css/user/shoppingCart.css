@@ -1,0 +1,241 @@
+.page-title {
+    font-size: 36px;
+    color: #04396E;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 4px;
+    background-color: #c53727;
+    margin: 10px auto 0;
+}
+
+.navigate {
+    text-align: left;
+    color: #04396E;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 180px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.breadcrumb-link {
+    color: #04396E;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.breadcrumb-link:hover {
+    color: #c53727;
+}
+
+.breadcrumb-link i {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #04396E;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #D0DAF3;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.5);
+    width: 50%;
+    margin: 40px auto;
+}
+
+
+.cart-item-image {
+    width: 180px;
+    height: auto;
+    margin-right: 30px;
+    border-radius: 8px;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.product-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #04396e;
+    margin-bottom: 5px;
+}
+
+.product-weight {
+    color: #2C73BB;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.row-price {
+    display: flex;
+    align-items: center;
+    border: 2px solid #2c73bb;
+    padding: 0;
+    border-radius: 8px;
+    margin-left: 0;
+    margin-bottom: 15px;
+    width: auto;
+    max-width: 115px;
+}
+
+
+.quantity-decrease{
+    background-color: #edf2f7;
+    padding: 5px 10px;
+    border-radius: 5px 0 0 5px ;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #2d3748;
+}
+
+.quantity-increase {
+    background-color: #edf2f7;
+    padding: 5px 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #2d3748;
+}
+
+.quantity-value {
+    margin: 0 10px;
+    font-size: 1.1rem;
+    color: #2d3748;
+    width: 25px;
+    text-align: center;
+}
+
+.product-price {
+    color: #2c73bb;
+    margin-bottom: 0;
+}
+
+.product-actual-price{
+    color: #ff0000;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.total-price{
+    font-size: 18px;
+    margin-top: 5px;
+    color: #04396e;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.remove-item {
+    background: none;
+    border: 3px solid #2c73bb;
+    border-radius: 30px;
+    color: #2c73bb;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.remove-item:hover {
+    color: #04396e;
+    border: 3px solid #04396e;
+}
+
+.empty-cart{
+    margin: 70px 180px;
+    margin-bottom: 150px;
+    font-size: 24px;
+    color: #04396e; background-color:
+    #D0DAF3; padding: 20px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.5);
+}
+
+.total{
+    margin: 0 385px;
+    width: 50%;
+    font-size: 24px;
+    font-weight: 600;
+    color: #04396e;
+    background-color: #D0DAF3;
+    padding: 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.5);
+    text-align: right;
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 150px;
+}
+
+.place-order {
+    background-color: #2C73BB;
+    width: auto;
+    padding: 15px 40px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.place-order i {
+    margin-right: 8px;
+}
+
+.place-order:hover{
+    background-color: #266198;
+    color: white;
+}
+
+.continue {
+    background-color: #E1E7F6;
+    border: 2px solid #2c73bb;
+    width: auto;
+    padding: 15px 40px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: #2C73BB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 50px;
+}
+
+.continue i {
+    margin-right: 8px;
+}
+
+.continue:hover {
+    background-color: #d5dff6;
+    color: #266198;
+}

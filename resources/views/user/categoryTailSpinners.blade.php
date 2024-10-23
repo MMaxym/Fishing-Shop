@@ -13,7 +13,7 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                >> Тейл-спінери
+                > Тейл-спінери
             </p>
             <h2 class="page-title">ТЕЙЛ-СПІНЕРИ</h2>
 

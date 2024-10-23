@@ -20,6 +20,7 @@ class Product extends Model
         'quantity',
         'price',
         'is_active',
+        'actual_price',
     ];
 
     protected $casts = [
@@ -27,6 +28,7 @@ class Product extends Model
         'discount_id' => 'integer',
         'quantity' => 'integer',
         'price' => 'decimal:2',
+        'actual_price' => 'decimal:2',
         'is_active' => 'boolean',
     ];
 

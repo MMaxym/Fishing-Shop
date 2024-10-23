@@ -7,6 +7,7 @@ use App\Http\Controllers\HeaderUserController;
 use App\Http\Controllers\NewProductController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\SaleProductController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Middleware\CheckName;
 use Illuminate\Support\Facades\Route;
@@ -143,6 +144,7 @@ Route::prefix('user/')->group(function () {
     Route::get('/newProducts', [NewProductController::class, 'index'])->name('user.newProducts');
     Route::get('/saleProducts', [SaleProductController::class, 'index'])->name('user.saleProducts');
     Route::get('/orderHistory', [OrderHistoryController::class, 'index'])->name('user.orderHistory');
+    Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('user.shoppingCart');
 });
 
 

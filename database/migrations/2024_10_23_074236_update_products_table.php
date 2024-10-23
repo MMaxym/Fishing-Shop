@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('id', 6)->primary()->change();
+        Schema::table('products', function (Blueprint $table) {
+            $table->decimal('actual_price', 10, 2)->nullable()->after('price');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->bigIncrements('id')->change();
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('actual_price');
         });
     }
 };

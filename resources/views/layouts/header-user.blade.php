@@ -41,7 +41,7 @@
                 <i class="fas fa-history" style="font-size: 1.5rem; color: #04396E;"></i>
             </button>
 
-            <button class="btn p-0 mr-3" style="border: none; background: transparent;">
+            <button class="btn p-0 mr-3" style="border: none; background: transparent;" onclick="window.location.href='{{ route('user.shoppingCart') }}';">
                 <i class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #04396E; margin-left: 5px;"></i>
             </button>
 

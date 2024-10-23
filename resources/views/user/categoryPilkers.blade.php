@@ -13,7 +13,7 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                >> Пількери
+                > Пількери
             </p>
             <h2 class="page-title">ПІЛЬКЕРИ</h2>
 
@@ -68,65 +68,66 @@
                          data-image="{{ $product->images->isNotEmpty() ? implode(',', $product->images->map(fn($img) => asset('storage/' . $img->image_url))->toArray()) : '' }}"
                          data-article="{{ $product->article }}"
                          data-price="{{ $product->price }}"
-                         data-discounted-price="{{ $product->discount ? $product->discountedPrice() : $product->price }}">
+                         data-discounted-price="{{ $product->discount ? $product->discountedPrice() : $product->price }}"
+                         data-actual-price="{{$product->actual_price}}">
 
-                    @if($product->isDiscounted)
-                            <div class="sale-icon">
-                                <img src="{{ asset('images/sale-icon.png') }}" alt="Sale">
-                            </div>
-                        @elseif($product->isNew)
-                            <div class="new-icon">
-                                <img src="{{ asset('images/new-icon-2.png') }}" alt="New">
-                            </div>
-                        @endif
+                        @if($product->isDiscounted)
+                                <div class="sale-icon">
+                                    <img src="{{ asset('images/sale-icon.png') }}" alt="Sale">
+                                </div>
+                            @elseif($product->isNew)
+                                <div class="new-icon">
+                                    <img src="{{ asset('images/new-icon-2.png') }}" alt="New">
+                                </div>
+                            @endif
 
-                    @if($product->images->isNotEmpty())
-                            <img src="{{ asset('storage/' . $product->images->first()->image_url) }}" alt="{{ $product->name }}" style="width: 220px; height: 170px;">
-                        @else
-                            <span id="notImage">Немає зображення</span>
-                        @endif
+                        @if($product->images->isNotEmpty())
+                                <img src="{{ asset('storage/' . $product->images->first()->image_url) }}" alt="{{ $product->name }}" style="width: 220px; height: 170px;">
+                            @else
+                                <span id="notImage">Немає зображення</span>
+                            @endif
 
-                        <h3>{{ $product->name }} ({{ $product->size}}) - {{ $product->article }}</h3>
+                            <h3>{{ $product->name }} ({{ $product->size}}) - {{ $product->article }}</h3>
 
-                        @if($product->discount)
-                            @if($product->quantity == 0)
-                                <p style="text-decoration: line-through; font-size: 14px;">
-                                    {{ number_format($product->price, 2) }} грн
-                                </p>
-                                <p style="color: red;">
-                                    {{ number_format($product->discountedPrice(), 2) }} грн
-                                </p>
-                                <p style="color: red; font-weight: normal; font-size: 14px;">*Немає в наявності</p>
-                            @elseif($product->quantity < 50)
+                            @if($product->discount)
+                                @if($product->quantity == 0)
                                     <p style="text-decoration: line-through; font-size: 14px;">
                                         {{ number_format($product->price, 2) }} грн
                                     </p>
                                     <p style="color: red;">
                                         {{ number_format($product->discountedPrice(), 2) }} грн
                                     </p>
-                                    <p style="color: #ff8800; font-weight: normal; font-size: 14px;">*Товар закінчується</p>
+                                    <p style="color: red; font-weight: normal; font-size: 14px;">*Немає в наявності</p>
+                                @elseif($product->quantity < 50)
+                                        <p style="text-decoration: line-through; font-size: 14px;">
+                                            {{ number_format($product->price, 2) }} грн
+                                        </p>
+                                        <p style="color: red;">
+                                            {{ number_format($product->discountedPrice(), 2) }} грн
+                                        </p>
+                                        <p style="color: #ff8800; font-weight: normal; font-size: 14px;">*Товар закінчується</p>
+                                @else
+                                        <p style="text-decoration: line-through; font-size: 14px; padding-top: 14px;">
+                                            {{ number_format($product->price, 2) }} грн
+                                        </p>
+                                        <p style="color: red; padding-bottom: 14px;">
+                                            {{ number_format($product->discountedPrice(), 2) }} грн
+                                        </p>
+                                @endif
                             @else
-                                    <p style="text-decoration: line-through; font-size: 14px; padding-top: 14px;">
-                                        {{ number_format($product->price, 2) }} грн
-                                    </p>
-                                    <p style="color: red; padding-bottom: 14px;">
-                                        {{ number_format($product->discountedPrice(), 2) }} грн
-                                    </p>
+                                @if($product->quantity == 0)
+                                    <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->price, 2) }} грн</p>
+                                    <p style="color: red; font-weight: normal; font-size: 14px; padding-bottom: 7px;">*Немає в наявності</p>
+                                @elseif($product->quantity < 50)
+                                    <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->price, 2) }} грн</p>
+                                    <p style="color: #ff8800; font-weight: normal; font-size: 14px; padding-bottom: 7px;">*Товар закінчується</p>
+                                @else
+                                    <p style="padding-top: 26px; padding-bottom: 27px;">{{ number_format($product->price, 2) }} грн</p>
+                                @endif
                             @endif
-                        @else
-                            @if($product->quantity == 0)
-                                <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->price, 2) }} грн</p>
-                                <p style="color: red; font-weight: normal; font-size: 14px; padding-bottom: 7px;">*Немає в наявності</p>
-                            @elseif($product->quantity < 50)
-                                <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->price, 2) }} грн</p>
-                                <p style="color: #ff8800; font-weight: normal; font-size: 14px; padding-bottom: 7px;">*Товар закінчується</p>
-                            @else
-                                <p style="padding-top: 26px; padding-bottom: 27px;">{{ number_format($product->price, 2) }} грн</p>
-                            @endif
-                        @endif
-                            <button class="open-modal">
-                                <i class="fas fa-shopping-cart"></i> Купити
-                            </button>
+                                <button class="open-modal">
+                                    <i class="fas fa-shopping-cart"></i> Купити
+                                </button>
                     </div>
                 @endforeach
             </div>
@@ -139,7 +140,7 @@
                     </div>
                     <div class="content">
                         <div class="modal-left">
-                            <button id="prevButton" class="slider-button" style="background-color: transparent; color: #2c73bb;">
+                            <button id="prevButton" class="slider-button" style="background-color: transparent; color: #04396e;">
                                 <i class="fas fa-chevron-left" style="font-size:25px; margin: 0;"></i>
                             </button>
                             <div id="productSlider" class="slider">
@@ -148,7 +149,7 @@
                                 </div>
                                 <div class="dots-container"></div>
                             </div>
-                            <button id="nextButton" class="slider-button" style="background-color: transparent; color: #2c73bb;">
+                            <button id="nextButton" class="slider-button" style="background-color: transparent; color: #04396e;">
                                 <i class="fas fa-chevron-right" style="font-size:25px; margin: 0;"></i>
                             </button>
                         </div>
@@ -169,9 +170,9 @@
                                 </div>
                                 <div class="two-but">
                                     <div class="quantity-container" style="margin-bottom: 15px;">
-                                        <button style="padding: 2px 12px" id="decreaseQuantity">-</button>
+                                        <div style="padding: 2px 12px; background-color: #2c73bb; color: white; cursor: pointer;" id="decreaseQuantity">-</div>
                                         <span id="quantity">1</span>
-                                        <button style="padding: 2px 12px" id="increaseQuantity">+</button>
+                                        <div style="padding: 2px 12px; background-color: #2c73bb; color: white; cursor: pointer;" id="increaseQuantity">+</div>
                                     </div>
                                     <button id="addToCart">Додати в кошик</button>
                                 </div>
@@ -317,145 +318,174 @@
 
 
 
+
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('productModal');
             const closeModal = document.getElementsByClassName('close')[0];
             const buyButtons = document.querySelectorAll('.product-card button.open-modal');
 
             buyButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const productCard = this.closest('.product-card');
+                const productCard = button.closest('.product-card');
 
-                    const productName = productCard.getAttribute('data-name');
-                    const productDescription = productCard.getAttribute('data-description');
-                    const productSize = productCard.getAttribute('data-size');
-                    const productArticle = productCard.getAttribute('data-article');
-                    const productPrice = parseFloat(productCard.getAttribute('data-price'));
-                    const discountedPrice = parseFloat(productCard.getAttribute('data-discounted-price'));
-                    let productQuantity = parseInt(productCard.getAttribute('data-quantity'));
+                button.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    openModal(productCard);
+                });
 
-                    const images = productCard.getAttribute('data-image').split(',').map(img => img.trim());
-
-                    document.getElementById('modalProductName').innerText = productName;
-                    document.getElementById('modalProductDescription').innerText = productDescription;
-                    document.getElementById('modalProductSize').innerText = productSize;
-                    document.getElementById('modalProductPrice').innerText = productPrice + " грн.";
-                    document.getElementById('modalProductDiscountedPrice').innerText = discountedPrice + " грн.";
-                    document.getElementById('modalProductArticle').innerText = "Артикул: " + productArticle;
-                    document.getElementById('modalProductQuantity').innerText = productQuantity;
-
-                    const priceElement = document.getElementById('modalProductPrice');
-                    const discountedPriceElement = document.getElementById('modalProductDiscountedPrice');
-
-                    if (productPrice !== discountedPrice) {
-                        priceElement.innerText = productPrice + " грн.";
-                        priceElement.style.fontSize = '20px';
-                        priceElement.style.textDecoration = 'line-through';
-                        priceElement.style.color = '#04396e';
-                        priceElement.style.marginTop = '15px';
-
-                        discountedPriceElement.innerText = discountedPrice + " грн.";
-                        discountedPriceElement.style.fontSize = '25px';
-                        discountedPriceElement.style.color = 'red';
-                        discountedPriceElement.style.fontWeight = 'bold';
-                    }
-                    else {
-                        priceElement.innerText = productPrice + " грн.";
-                        priceElement.style.fontSize = '25px';
-                        priceElement.style.color = '#04396e';
-                        priceElement.style.marginTop = '15px';
-                        priceElement.style.textDecoration = 'none';
-                        discountedPriceElement.innerText = '';
-                    }
-
-
-                    if (productQuantity === 0) {
-                        document.getElementById('modalProductQuantity').innerText = '*Немає в наявності';
-                        document.getElementById('modalProductQuantity').style.color = 'red';
-                    } else if (productQuantity < 50) {
-                        document.getElementById('modalProductQuantity').innerText = '*Товар закінчується';
-                        document.getElementById('modalProductQuantity').style.color = '#ff8800';
-                    } else {
-                        document.getElementById('modalProductQuantity').innerText = '';
-                        document.getElementById('modalProductQuantity').style.color = '';
-                    }
-
-
-                    let currentIndex = 0;
-                    let quantity = 1;
-
-                    function updateImage() {
-                        document.getElementById('modalImage').src = images[currentIndex];
-                        updateDots();
-                    }
-
-                    const dotsContainer = document.querySelector('.dots-container');
-                    dotsContainer.innerHTML = '';
-                    images.forEach((_, index) => {
-                        const dot = document.createElement('span');
-                        dot.classList.add('dot');
-                        dot.addEventListener('click', function() {
-                            currentIndex = index;
-                            updateImage();
-                        });
-                        dotsContainer.appendChild(dot);
-                    });
-
-                    function updateDots() {
-                        const dots = document.querySelectorAll('.dot');
-                        dots.forEach((dot, index) => {
-                            if (index === currentIndex) {
-                                dot.classList.add('active');
-                            } else {
-                                dot.classList.remove('active');
-                            }
-                        });
-                    }
-
-                    document.getElementById('prevButton').onclick = function() {
-                        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-                        updateImage();
-                    };
-
-                    document.getElementById('nextButton').onclick = function() {
-                        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-                        updateImage();
-                    };
-
-                    updateImage();
-
-                    document.getElementById('quantity').innerText = quantity;
-
-                    document.getElementById('decreaseQuantity').onclick = function() {
-                        if (quantity > 1) {
-                            quantity--;
-                            document.getElementById('quantity').innerText = quantity;
-                        }
-                    };
-
-                    document.getElementById('increaseQuantity').onclick = function() {
-                        if (quantity < productQuantity) {
-                            quantity++;
-                            document.getElementById('quantity').innerText = quantity;
-                        } else {
-                            alert('Ви не можете додати більше товарів, ніж є в наявності.');
-                        }
-                    };
-
-                    const addToCartButton = document.getElementById('addToCart');
-
-                    addToCartButton.onclick = function() {
-                        if (productQuantity === 0) {
-                            alert(`На жаль, даного товару немає в наявності. \n Вибачте за незручності.`);
-                        } else {
-                            alert(`Товар ${productName} додано в кошик з кількістю ${quantity}`);
-                            modal.style.display = 'none';
-                        }
-                    };
-
-                    modal.style.display = 'block';
+                productCard.addEventListener('click', function() {
+                    openModal(productCard);
                 });
             });
+
+            function openModal(productCard) {
+                const productName = productCard.getAttribute('data-name');
+                const productDescription = productCard.getAttribute('data-description');
+                const productSize = productCard.getAttribute('data-size');
+                const productArticle = productCard.getAttribute('data-article');
+                const productPrice = parseFloat(productCard.getAttribute('data-price'));
+                const discountedPrice = parseFloat(productCard.getAttribute('data-discounted-price'));
+                const actualPrice = parseFloat(productCard.getAttribute('data-actual-price'));
+                let productQuantity = parseInt(productCard.getAttribute('data-quantity'));
+
+                const images = productCard.getAttribute('data-image').split(',').map(img => img.trim());
+
+                document.getElementById('modalProductName').innerText = productName;
+                document.getElementById('modalProductDescription').innerText = productDescription;
+                document.getElementById('modalProductSize').innerText = productSize + " г";
+                document.getElementById('modalProductPrice').innerText = productPrice + " грн";
+                document.getElementById('modalProductDiscountedPrice').innerText = discountedPrice + " грн";
+                document.getElementById('modalProductArticle').innerText = "Артикул: " + productArticle;
+                document.getElementById('modalProductQuantity').innerText = productQuantity;
+
+                const priceElement = document.getElementById('modalProductPrice');
+                const discountedPriceElement = document.getElementById('modalProductDiscountedPrice');
+
+                if (productPrice !== discountedPrice) {
+                    priceElement.innerText = productPrice + " грн";
+                    priceElement.style.fontSize = '20px';
+                    priceElement.style.textDecoration = 'line-through';
+                    priceElement.style.color = '#04396e';
+                    priceElement.style.marginTop = '15px';
+
+                    discountedPriceElement.innerText = discountedPrice + " грн";
+                    discountedPriceElement.style.fontSize = '25px';
+                    discountedPriceElement.style.color = 'red';
+                    discountedPriceElement.style.fontWeight = 'bold';
+                } else {
+                    priceElement.innerText = productPrice + " грн";
+                    priceElement.style.fontSize = '25px';
+                    priceElement.style.color = '#04396e';
+                    priceElement.style.marginTop = '15px';
+                    priceElement.style.textDecoration = 'none';
+                    discountedPriceElement.innerText = '';
+                }
+
+                if (productQuantity === 0) {
+                    document.getElementById('modalProductQuantity').innerText = '*Немає в наявності';
+                    document.getElementById('modalProductQuantity').style.color = 'red';
+                } else if (productQuantity < 50) {
+                    document.getElementById('modalProductQuantity').innerText = '*Товар закінчується';
+                    document.getElementById('modalProductQuantity').style.color = '#ff8800';
+                } else {
+                    document.getElementById('modalProductQuantity').innerText = '';
+                    document.getElementById('modalProductQuantity').style.color = '';
+                }
+
+                let currentIndex = 0;
+                let quantity = 1;
+
+                function updateImage() {
+                    document.getElementById('modalImage').src = images[currentIndex];
+                    updateDots();
+                }
+
+                const dotsContainer = document.querySelector('.dots-container');
+                dotsContainer.innerHTML = '';
+                images.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', function() {
+                        currentIndex = index;
+                        updateImage();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+
+                function updateDots() {
+                    const dots = document.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        if (index === currentIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+
+                document.getElementById('prevButton').onclick = function() {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                    updateImage();
+                };
+
+                document.getElementById('nextButton').onclick = function() {
+                    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                    updateImage();
+                };
+
+                updateImage();
+
+                document.getElementById('quantity').innerText = quantity;
+
+                document.getElementById('decreaseQuantity').onclick = function() {
+                    if (quantity > 1) {
+                        quantity--;
+                        document.getElementById('quantity').innerText = quantity;
+                    }
+                };
+
+                document.getElementById('increaseQuantity').onclick = function() {
+                    if (quantity < productQuantity) {
+                        quantity++;
+                        document.getElementById('quantity').innerText = quantity;
+                    } else {
+                        alert('Ви не можете додати більше товарів, ніж є в наявності.');
+                    }
+                };
+
+                const addToCartButton = document.getElementById('addToCart');
+
+                addToCartButton.onclick = function() {
+                    if (productQuantity === 0) {
+                        alert(`На жаль, даного товару немає в наявності. \nВибачте за незручності.`);
+                    } else {
+                        const userId = '{{ auth()->user()->id }}';
+                        let cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
+
+                        const product = {
+                            name: productName,
+                            description: productDescription,
+                            size: productSize,
+                            article: productArticle,
+                            price: productPrice,
+                            actualPrice: actualPrice,
+                            quantity: quantity,
+                            quantityDB: productQuantity,
+                            images: images,
+                            dateAdded: new Date().getTime()
+                        };
+
+                        cart.push(product);
+
+                        localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
+
+                        alert(`Товар ${productName} додано в кошик з кількістю ${quantity}`);
+
+                        modal.style.display = 'none';
+                    }
+                };
+
+                modal.style.display = 'block';
+            }
 
             closeModal.onclick = function() {
                 modal.style.display = 'none';
@@ -467,6 +497,7 @@
                 }
             };
         });
+
 
 
     </script>
