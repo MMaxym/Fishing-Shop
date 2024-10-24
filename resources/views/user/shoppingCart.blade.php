@@ -20,13 +20,13 @@
 
         <div id="cart-items" class="cart-container"></div>
 
-        <p class="total">Загальна сума замовлення: <span id="total-price" style="margin-left: 20px;">0 грн</span></p>
+        <p class="total" id="total">Загальна сума замовлення: <span id="total-price" style="margin-left: 20px;">0 грн</span></p>
 
         <div id="container-button" class="container-button">
             <button class="continue" onclick="window.location.href='{{ route('user.main') }}'">
                 <i class="fas fa-arrow-circle-left"></i>Продовжити покупки
             </button>
-            <button class="place-order">
+            <button class="place-order" id="place-order">
                 <i class="fas fa-check"></i>Оформити замовлення
             </button>
         </div>
@@ -40,14 +40,16 @@
             const userId = '{{ auth()->user()->id }}';
             const cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
             const cartItemsContainer = document.getElementById('cart-items');
-            const containerButton = document.getElementById('container-button');
+            const placeOrder = document.getElementById('place-order');
             const totalPriceElement = document.getElementById('total-price');
+            const total = document.getElementById('total');
 
             let totalOrderPrice = 0;
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p class="empty-cart">Ваш кошик порожній.</p>';
-                containerButton.style.display = 'none';
+                placeOrder.style.display = 'none';
+                total.style.display = 'none';
             } else {
                 cart.forEach(product => {
                     const totalPrice = (product.actualPrice * product.quantity).toFixed(2);
@@ -103,7 +105,7 @@
                 if (newQuantity > 0 && newQuantity <= cart[index].quantityDB) {
                     cart[index].quantity = newQuantity;
                     localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
-                    location.reload(); 
+                    location.reload();
                 } else {
                     alert('Ви не можете додати більше товарів, ніж є в наявності.');
                 }

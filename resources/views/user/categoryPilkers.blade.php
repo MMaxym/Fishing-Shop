@@ -174,7 +174,9 @@
                                         <span id="quantity">1</span>
                                         <div style="padding: 2px 12px; background-color: #2c73bb; color: white; cursor: pointer;" id="increaseQuantity">+</div>
                                     </div>
-                                    <button id="addToCart">Додати в кошик</button>
+                                    <button id="addToCart" style="padding: 7px 15px;">
+                                        <i class="fas fa-plus-circle"></i> Додати в кошик
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -313,11 +315,6 @@
             const sort = document.getElementById('sort').value;
             window.location.href = `?sort=${sort}&min_price=0&max_price=1000`;
         }
-
-
-
-
-
 
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('productModal');
@@ -474,11 +471,17 @@
                             dateAdded: new Date().getTime()
                         };
 
-                        cart.push(product);
+                        const existingProduct = cart.find(item => item.article === product.article && item.size === product.size);
+
+                        if (existingProduct) {
+                            existingProduct.quantity += quantity;
+                            alert(`Товар ${productName} вже є у вашому кошику. \nТому кількість даного товару збільшено на ${quantity}. \nТепер у кошику ${existingProduct.quantity}.`);
+                        } else {
+                            cart.push(product);
+                            alert(`Товар ${productName} додано в кошик з кількістю ${quantity}`);
+                        }
 
                         localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
-
-                        alert(`Товар ${productName} додано в кошик з кількістю ${quantity}`);
 
                         modal.style.display = 'none';
                     }

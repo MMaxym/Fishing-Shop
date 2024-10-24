@@ -37,6 +37,7 @@ class CategoryPilkerController extends Controller
         })->max('actual_price');
 
         $products = Product::with('images', 'discount')
+            ->where('is_active', 1)
             ->whereHas('category', function ($query) {
                 $query->where('name', 'Пількери');
             });

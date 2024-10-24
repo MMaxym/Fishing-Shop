@@ -48,8 +48,8 @@
                     <h4 class="text mb-4" style="color: #04396E;">Зворотній звʼязок</h4>
                     <p>Якщо у вас є питання щодо нашого асортименту або послуг, будь ласка, напишіть нам.</p>
                     <div class="position-relative w-100">
-                        <input type="text" class="form-control email-input" placeholder="Ваш email">
-                        <button class="btn btn-email position-absolute top-50 end-0 translate-middle-y">
+                        <input type="email" class="form-control email-input" id="emailInput" placeholder="Ваш email">
+                        <button class="btn btn-email position-absolute top-50 end-0 translate-middle-y" id="sendButton">
                             <i class="fas fa-paper-plane" style="margin-right: 0;"></i>
                         </button>
                     </div>
@@ -76,6 +76,14 @@
 
     </div>
     <script src="https://unpkg.com/@clr/icons@5.7.0/clr-icons.min.js"></script>
+    <script>
+        document.getElementById('sendButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            alert("Дякуємо за повідомлення!\nМи звʼяжемося з Вами як найшвидше!!!");
+            document.getElementById('emailInput').value = '';
+        });
+
+    </script>
 
 </footer>
 
