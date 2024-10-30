@@ -34,8 +34,26 @@
                     <p>Наразі немає активних знижок на замовлення.</p>
                 @endforelse
             </div>
-
+        </div>
+        <div id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-arrow-up"></i>
         </div>
     </div>
+
     @include('layouts.footer-user')
+
+    <script>
+        window.onscroll = function () {
+            const scrollToTopButton = document.getElementById("scrollToTop");
+            if (window.scrollY > 200) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        document.getElementById("scrollToTop").onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+    </script>
 @endsection

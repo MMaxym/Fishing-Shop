@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Google\Client as GoogleClient;
 use Google\Service\PeopleService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
@@ -18,7 +18,6 @@ class GoogleAuthController extends Controller
             ->with(['prompt' => 'select_account'])
             ->redirect();
     }
-
     public function handleGoogleCallback()
     {
         try {

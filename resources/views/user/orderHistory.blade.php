@@ -48,11 +48,22 @@
                             </button>
                         </div>
 
-
                         <div id="order-items-{{ $order->id }}" class="order-items" style="display: none;">
-                            @if($order->products->isEmpty())
+                            <h5>Історія змін:</h5>
+                            <ul class="order-status-history">
+                                @foreach($order->tracking as $tracking)
+                                    <li class="status-item">
+                                        <i class="fa fa-check-circle status-icon" aria-hidden="true"></i>
+                                        <strong>{{ $tracking->status}}</strong> <splan style="margin: 0 10px;"> — </splan> {{ $tracking->updated_at->format('d.m.Y H:i') }}
+                                    </li>
+                                @endforeach
+                            </ul>
+
+
+                        @if($order->products->isEmpty())
                                 <p class="no-items">Це замовлення не містить товарів.</p>
                             @else
+                                <h5 style="margin-top: 40px;">Перелік товарів:</h5>
                                 <ul class="order-products-list">
                                     @foreach($order->products as $item)
                                         <li class="order-product-item">
@@ -65,9 +76,11 @@
                             @endif
                         </div>
                     </div>
-
                 @endforeach
             @endif
+        </div>
+        <div id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-arrow-up"></i>
         </div>
     </div>
 
@@ -76,6 +89,20 @@
             var itemsDiv = document.getElementById('order-items-' + orderId);
             itemsDiv.style.display = (itemsDiv.style.display === 'none') ? 'block' : 'none';
         }
+
+        window.onscroll = function () {
+            const scrollToTopButton = document.getElementById("scrollToTop");
+            if (window.scrollY > 200) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        document.getElementById("scrollToTop").onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
     </script>
 
     @include('layouts.footer-user')

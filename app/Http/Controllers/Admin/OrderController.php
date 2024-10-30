@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Exports\OrdersExport;
-use App\Exports\ProductsExport;
-use App\Exports\UsersExport;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
-use App\Models\PaymentMethod;
-use App\Models\ShippingMethod;
-use App\Models\ProductsInOrder;
+use App\Http\Controllers\Controller;
 use App\Models\Discount;
+use App\Models\Order;
 use App\Models\OrderTracking;
+use App\Models\PaymentMethod;
+use App\Models\ProductsInOrder;
+use App\Models\ShippingMethod;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use League\CommonMark\Node\Query\OrExpr;
 use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller

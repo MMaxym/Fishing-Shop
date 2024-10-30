@@ -26,9 +26,13 @@
             <button class="continue" onclick="window.location.href='{{ route('user.main') }}'">
                 <i class="fas fa-arrow-circle-left"></i>Продовжити покупки
             </button>
-            <button class="place-order" id="place-order">
+            <button class="place-order" id="place-order" onclick="window.location.href='{{ route('user.checkoutPage') }}'">
                 <i class="fas fa-check"></i>Оформити замовлення
             </button>
+        </div>
+
+        <div id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-arrow-up"></i>
         </div>
 
     </div>
@@ -126,7 +130,18 @@
                 }
             }
         });
+
+        window.onscroll = function () {
+            const scrollToTopButton = document.getElementById("scrollToTop");
+            if (window.scrollY > 200) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        document.getElementById("scrollToTop").onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
     </script>
-
-
 @endsection

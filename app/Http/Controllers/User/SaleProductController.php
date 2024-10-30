@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class NewProductController extends Controller
+class SaleProductController extends Controller
 {
     public function index(Request $request)
     {
@@ -24,13 +25,9 @@ class NewProductController extends Controller
             ->whereNotNull('discount_id')
             ->max('actual_price');
 
-
         $products = Product::with('images', 'discount', 'category')
-            ->where('is_active', 1)
-            ->where(function ($query) use ($oneMonthAgo) {
-                $query->where('created_at', '>', $oneMonthAgo)
-                    ->orWhere('updated_at', '>', $oneMonthAgo);
-            });
+        ->where('is_active', 1)
+            ->whereNotNull('discount_id');
 
         if ($minPrice !== null) {
             $products->where('actual_price', '>=', $minPrice);
@@ -59,7 +56,7 @@ class NewProductController extends Controller
         $totalItems = $products->total();
         $itemsShown = ($currentPage - 1) * $perPage + $products->count();
 
-        return view('user.newProducts', compact(
+        return view('user.saleProducts', compact(
             'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
             'sortOrder', 'category', 'minPrice', 'maxPrice', 'minPriceFromDB', 'maxPriceFromDB'
         ));
@@ -79,5 +76,4 @@ class NewProductController extends Controller
 
         return $products;
     }
-
 }

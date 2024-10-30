@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\ProductsInOrder;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\Order;
 use Illuminate\Support\Carbon;
-use function Laravel\Prompts\alert;
 
 class AdminController extends Controller
 {

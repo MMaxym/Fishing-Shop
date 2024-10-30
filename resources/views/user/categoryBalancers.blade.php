@@ -61,6 +61,7 @@
             <div class="products-grid">
                 @foreach($products as $product)
                     <div class="product-card"
+                         data-id="{{$product->id}}"
                          data-name="{{ $product->name }}"
                          data-size="{{ $product->size }}"
                          data-quantity="{{ $product->quantity }}"
@@ -199,6 +200,10 @@
                     {{ $products->links('vendor.pagination.default') }}
                 </ul>
             </div>
+
+            <div id="scrollToTop" class="scroll-to-top">
+                <i class="fas fa-arrow-up"></i>
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -316,11 +321,6 @@
             window.location.href = `?sort=${sort}&min_price=0&max_price=1000`;
         }
 
-
-
-
-
-
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('productModal');
             const closeModal = document.getElementsByClassName('close')[0];
@@ -340,6 +340,7 @@
             });
 
             function openModal(productCard) {
+                const productId = productCard.getAttribute('data-id');
                 const productName = productCard.getAttribute('data-name');
                 const productDescription = productCard.getAttribute('data-description');
                 const productSize = productCard.getAttribute('data-size');
@@ -464,6 +465,7 @@
                         let cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
 
                         const product = {
+                            id: productId,
                             name: productName,
                             description: productDescription,
                             size: productSize,
@@ -505,6 +507,19 @@
                 }
             };
         });
+
+        window.onscroll = function () {
+            const scrollToTopButton = document.getElementById("scrollToTop");
+            if (window.scrollY > 200) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        document.getElementById("scrollToTop").onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
 
     </script>
     @include('layouts.footer-user')

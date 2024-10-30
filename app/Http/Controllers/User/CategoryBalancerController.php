@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class CategoryPilkerController extends Controller
+class CategoryBalancerController extends Controller
 {
     public function index(Request $request)
     {
@@ -29,17 +29,17 @@ class CategoryPilkerController extends Controller
 
 
         $minPriceFromDB = Product::whereHas('category', function ($query) {
-            $query->where('name', 'Пількери');
+            $query->where('name', 'Балансири');
         })->min('actual_price');
 
         $maxPriceFromDB = Product::whereHas('category', function ($query) {
-            $query->where('name', 'Пількери');
+            $query->where('name', 'Балансири');
         })->max('actual_price');
 
         $products = Product::with('images', 'discount')
             ->where('is_active', 1)
             ->whereHas('category', function ($query) {
-                $query->where('name', 'Пількери');
+                $query->where('name', 'Балансири');
             });
 
         if ($minPrice !== null) {
@@ -65,7 +65,7 @@ class CategoryPilkerController extends Controller
         $totalItems = $products->total();
         $itemsShown = ($currentPage - 1) * $perPage + $products->count();
 
-        return view('user.categoryPilkers', compact(
+        return view('user.categoryBalancers', compact(
             'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
             'sortOrder', 'minPrice', 'maxPrice', 'minPriceFromDB', 'maxPriceFromDB'
         ));

@@ -83,6 +83,9 @@
                 </form>
             </div>
         </div>
+        <div id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </div>
     </div>
 
     @include('layouts.footer-user')
@@ -130,6 +133,21 @@
         document.getElementById('back-button').addEventListener('click', function() {
             window.location.href = "{{ route('user.main') }}";
         });
+
+        window.onscroll = function () {
+            const scrollToTopButton = document.getElementById("scrollToTop");
+            if (window.scrollY > 200) {
+                scrollToTopButton.style.display = "block";
+            }
+            else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        document.getElementById("scrollToTop").onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
     </script>
 
 @endsection

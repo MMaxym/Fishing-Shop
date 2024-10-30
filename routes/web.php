@@ -1,28 +1,29 @@
 <?php
 
-use App\Http\Controllers\CategoryBalancerController;
-use App\Http\Controllers\CategoryPilkerController;
-use App\Http\Controllers\CategoryTailSpinnerController;
-use App\Http\Controllers\HeaderUserController;
-use App\Http\Controllers\NewProductController;
-use App\Http\Controllers\OrderHistoryController;
-use App\Http\Controllers\SaleProductController;
-use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\LabController;
+use App\Http\Controllers\User\CategoryBalancerController;
+use App\Http\Controllers\User\CategoryPilkerController;
+use App\Http\Controllers\User\CategoryTailSpinnerController;
+use App\Http\Controllers\User\CheckoutPageController;
+use App\Http\Controllers\User\HeaderUserController;
+use App\Http\Controllers\User\MainUserController;
+use App\Http\Controllers\User\NewProductController;
+use App\Http\Controllers\User\NovaPoshtaController;
+use App\Http\Controllers\User\OrderHistoryController;
+use App\Http\Controllers\User\SaleProductController;
+use App\Http\Controllers\User\ShoppingCartController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Middleware\CheckName;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LabController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductImageController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MainUserController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\GoogleAuthController;
-
 
 
 Route::get('/', function () {
@@ -126,7 +127,6 @@ Route::post('password/reset', [ForgotPasswordController::class, 'reset'])->name(
 Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
 
 
-
 Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
 
@@ -145,8 +145,17 @@ Route::prefix('user/')->group(function () {
     Route::get('/saleProducts', [SaleProductController::class, 'index'])->name('user.saleProducts');
     Route::get('/orderHistory', [OrderHistoryController::class, 'index'])->name('user.orderHistory');
     Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('user.shoppingCart');
+    Route::get('/checkoutPage', [CheckoutPageController::class, 'index'])->name('user.checkoutPage');
+    Route::post('/confirmOrder', [CheckoutPageController::class, 'confirmOrder'])->name('user.confirmOrder');
+    Route::post('/deliveryCost', [CheckoutPageController::class, 'deliveryCost'])->name('user.deliveryCost');
+    Route::get('/showNewProducts', [MainUserController::class, 'showNewProducts'])->name('user.showNewProducts');
+    Route::get('/showDiscountProducts', [MainUserController::class, 'showDiscountProducts'])->name('user.showDiscountProducts');
 });
 
+
+Route::get('/api/novaposhta/cities', [NovaPoshtaController::class, 'getCities']);
+Route::get('/api/novaposhta/warehouses/{cityRef}', [NovaPoshtaController::class, 'getWarehouses']);
+Route::get('/api/novaposhta/delivery-cost/{cityRecipientRef}', [NovaPoshtaController::class, 'getDeliveryCost']);
 
 
 

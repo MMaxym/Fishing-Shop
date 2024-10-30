@@ -43,7 +43,6 @@
                     </a>
                 </div>
 
-
                 <div class="col-lg-2 col-md-6">
                     <h4 class="text mb-4" style="color: #04396E;">Зворотній звʼязок</h4>
                     <p>Якщо у вас є питання щодо нашого асортименту або послуг, будь ласка, напишіть нам.</p>
@@ -59,7 +58,7 @@
             <div class="copyright" style="margin-top: 30px; padding-bottom: 50px;">
                 <div class="row">
                     <div class="col-md-6 text-left text-md-start">
-                        &copy; <a class="border-bottom" href="">FISHING SHOP</a>, Усі права захищені.
+                        &copy; <a class="border-bottom" href="">FISHING SHOP</a>, Усі права захищені. 2024.
                         <br>
                         Розроблено <a class="border-bottom" href="https://github.com/MMaxym">Melnyk Maksym</a>
                     </div>
@@ -73,7 +72,6 @@
                     </div>
                 </div>
             </div>
-
     </div>
     <script src="https://unpkg.com/@clr/icons@5.7.0/clr-icons.min.js"></script>
     <script>
@@ -84,7 +82,6 @@
         });
 
     </script>
-
 </footer>
 
 
