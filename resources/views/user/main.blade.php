@@ -64,7 +64,7 @@
             <b class="fishing-shop-container">
                 <span class="fishing-shop-container1">
                 <span>Магазин «FISHING SHOP» – </span>
-                <span class="fishing-shop"> Інноваційні та технологічні риболовні принади за найкращою ціною, які розроблені спеціально для водойм України !!!</span>
+                <span class="fishing-shop"> Інноваційні та технологічні риболовні приманки за найкращою ціною, які розроблені спеціально для водойм України !!!</span>
                 </span>
             </b>
 

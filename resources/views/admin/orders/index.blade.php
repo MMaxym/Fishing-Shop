@@ -192,7 +192,9 @@
                     @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
-                            <td>{{ $order->user ? $order->user->login : 'Користувача не знайдено' }}</td>
+                            <td>
+                                {{ $order->user ? $order->user->surname . ' ' . $order->user->name . ' (' . $order->user->phone . ')' : 'Користувача не знайдено' }}
+                            </td>
                             <td>{{ $order->paymentMethod ? $order->paymentMethod->name : 'Метод не знайдено' }}</td>
                             <td>{{ $order->shippingMethod ? $order->shippingMethod->name : 'Метод доставки не знайдено' }}</td>
                             <td>{{ $order->discount_id ? ($order->discount ? $order->discount->percentage . '%' : 'Немає') : 'Немає' }}</td>

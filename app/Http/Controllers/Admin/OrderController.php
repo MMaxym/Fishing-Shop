@@ -19,7 +19,9 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Order::with(['user', 'paymentMethod', 'shippingMethod', 'discount']);
+        $query = Order::with(['user', 'paymentMethod', 'shippingMethod', 'discount'])
+            ->orderByDesc('created_at');
+
 
         if ($request->has('search')) {
             $search = $request->input('search');

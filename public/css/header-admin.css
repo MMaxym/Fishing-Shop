@@ -67,3 +67,7 @@
 #logout-btn:hover {
     color: #b62020;
 }
+
+a:hover{
+    text-decoration: none;
+}

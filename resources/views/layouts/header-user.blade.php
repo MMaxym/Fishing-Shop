@@ -11,11 +11,13 @@
         </a>
     </div>
 
-    <div class="search-container d-flex align-items-center">
-        <div class="position-relative w-100">
-            <input type="text" class="form-control search-input" placeholder="Пошук за назвою">
-            <i class="fa fa-search search-icon"></i>
-        </div>
+    <div class="search-container d-flex">
+        <form action="{{ route('search') }}" method="GET" class="position-relative w-100" style="margin: 0;">
+            <input type="text" name="query" class="form-control search-input" placeholder="Пошук за назвою" style="padding-right: 30px;">
+            <button type="submit" class="search-icon-btn">
+                <i id="search" class="fa fa-search" style="cursor: pointer; color: #2c73bb;"></i>
+            </button>
+        </form>
     </div>
 
     <nav class="d-flex align-items-center">
@@ -87,10 +89,10 @@
                 <span class="mr-3" style="font-size: 22px; color: #2C73BB;">
                             {{ Auth::user()->login }}
                            <i class="fas fa-circle-check" style="color: green; margin-left: 5px;"></i>
-                        </span>
+                </span>
             @endif
 
-            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+            <form class="logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="button" class="button" style="margin-top: 15px; border: none; background: transparent;" onClick="confirmLogout()">
                     <i class="fas fa-sign-out-alt" id="logout-btn" style="font-size: 1.3rem; color: #04396E;"></i>
@@ -112,9 +114,34 @@
     <script>
         function confirmLogout() {
             if (confirm("Ви дійсно бажаєте вийти з акаунта?")) {
-                document.querySelector('form').submit();
+                document.querySelector('.logout').submit();
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.querySelector('.search-input');
+            const searchIcon = document.querySelector('.search-icon');
+
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+                } else {
+                    window.location.href = `{{ route('user.main') }}`;
+                }
+            }
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            searchIcon.addEventListener('click', () => {
+                performSearch();
+            });
+        });
+
     </script>
 
 </header>

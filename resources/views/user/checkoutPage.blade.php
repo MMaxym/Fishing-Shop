@@ -457,13 +457,7 @@
         });
 
 
-
-        // ПОШУК
-        
         // ПІДКЛЮЧИТИ ПЛАТІЖНУ СИСТЕМУ
-
-
-
 
 
         document.querySelector('.confirm-order-btn').addEventListener('click', () => {

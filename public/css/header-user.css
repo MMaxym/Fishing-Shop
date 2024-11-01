@@ -207,3 +207,17 @@
     transform: scale(1.2);
 }
 
+.search-icon-btn{
+    background-color: transparent;
+    border: none; position:
+    absolute; right: 0;
+    margin-right: 5px;
+    top: 50%; transform:
+    translateY(-50%);
+    z-index: 1001;
+    padding: 0;
+}
+
+.search-icon-btn:hover{
+    background-color: transparent;
+}

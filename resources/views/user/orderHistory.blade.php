@@ -15,6 +15,9 @@
                 </a>
                 > Історія замовлень користувача {{ Auth::user()->surname }} {{ Auth::user()->name }}
             </p>
+            <p class="contact" style="color:#04396e; font-size:16px; margin-left:1100px; max-width: 430px; text-align: right;">
+                <i class="fas fa-phone" style="margin-right: 8px;"></i>ДЛЯ УТОЧНЕННЯ ДЕТАЛЕЙ ЗАМОВЛЕННЯ ЗВЕРТАЙТЕСЬ ЗА ТЕЛЕФОНОМ: <span style="font-size: 18px; font-weight: 600;">+380 (98) 867 85 45</span>
+            </p>
             <h2 class="page-title">ІСТОРІЯ ЗАМОВЛЕНЬ</h2>
         </div>
 

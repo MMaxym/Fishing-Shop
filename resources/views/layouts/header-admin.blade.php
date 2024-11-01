@@ -6,7 +6,7 @@
 <header class="header-style">
     <div class="d-flex align-items-center ml-4">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="mr-3" style="width: 50px; height: auto;">
-            <h1 class="mb-0" style="font-size: 28px; font-weight: 500; color: #04396E;">Сторінка адміністратора</h1>
+            <a href="{{route('admin.admin')}}" class="mb-0" style="font-size: 28px; font-weight: 500; color: #04396E;">Сторінка адміністратора</a>
     </div>
 
     <nav class="d-flex align-items-center">

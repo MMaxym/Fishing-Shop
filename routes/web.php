@@ -20,6 +20,7 @@ use App\Http\Controllers\User\NewProductController;
 use App\Http\Controllers\User\NovaPoshtaController;
 use App\Http\Controllers\User\OrderHistoryController;
 use App\Http\Controllers\User\SaleProductController;
+use App\Http\Controllers\User\SearchProductController;
 use App\Http\Controllers\User\ShoppingCartController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Middleware\CheckName;
@@ -150,6 +151,8 @@ Route::prefix('user/')->group(function () {
     Route::post('/deliveryCost', [CheckoutPageController::class, 'deliveryCost'])->name('user.deliveryCost');
     Route::get('/showNewProducts', [MainUserController::class, 'showNewProducts'])->name('user.showNewProducts');
     Route::get('/showDiscountProducts', [MainUserController::class, 'showDiscountProducts'])->name('user.showDiscountProducts');
+    Route::get('/searchProduct', [SearchProductController::class, 'index'])->name('user.searchProduct');
+    Route::get('/search', [HeaderUserController::class, 'search'])->name('search');
 });
 
 

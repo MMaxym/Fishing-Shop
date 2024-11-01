@@ -206,8 +206,10 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+
     <script>
         let currentPage = {{ $products->currentPage() }};
         let totalItems = {{ $totalItems }};
@@ -521,8 +523,8 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         };
 
-
     </script>
+
     @include('layouts.footer-user')
 
 @endsection
