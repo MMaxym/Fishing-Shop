@@ -19,27 +19,33 @@
                 > Оформлення замовлення
             </p>
             <h2 class="page-title">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h2>
-
             <div class="container2">
-
                 <div class="payment-shipping">
                     <p class="info-about">Інформація про вас</p>
                     <form style="margin-bottom: 0;">
                         <div class="form-group">
                             <label for="fullname">Прізвище та імʼя</label>
-                            <input type="text" id="fullname" placeholder="Прізвище та імʼя" value="{{Auth::user()->surname}} {{Auth::user()->name}}" required>
-                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
+                            <input type="text" id="fullname" placeholder="Прізвище та імʼя"
+                                   value="@auth {{ Auth::user()->surname }} {{ Auth::user()->name }} @else Данні не введено @endauth" required>
+                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">
+                                *Обовʼязкове поле
+                            </p>
                         </div>
                         <div class="form-group">
                             <label for="email">Електронна пошта</label>
-                            <input type="email" id="email" placeholder="Електронна пошта" value="{{Auth::user()->email}}" required>
-                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
-
+                            <input type="email" id="email" placeholder="Електронна пошта"
+                                   value="@auth {{ Auth::user()->email }} @else Данні не введено @endauth" required>
+                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">
+                                *Обовʼязкове поле
+                            </p>
                         </div>
                         <div class="form-group">
                             <label for="phone">Номер телефону</label>
-                            <input type="text" id="phone" placeholder="Номер телефону" value="{{Auth::user()->phone}}" required>
-                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
+                            <input type="text" id="phone" placeholder="Номер телефону"
+                                   value="@auth {{ Auth::user()->phone }} @else Данні не введено @endauth" required>
+                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">
+                                *Обовʼязкове поле
+                            </p>
                         </div>
                     </form>
                 </div>
@@ -259,7 +265,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const userId = '{{ Auth::user()->id }}';
+            const userId = @auth {{ Auth::user()->id }} @else 'Немає' @endauth;
             const cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
             const orderItemsContainer = document.getElementById('order-items');
             const totalPriceElement = document.getElementById('total-price');
@@ -504,7 +510,7 @@
                 return;
             }
 
-            const userId = {{ Auth::user()->id }};
+            const userId = @auth {{ Auth::user()->id }} @else 'Немає' @endauth;
             let address = '';
             let shippingCost = 0;
 
@@ -587,14 +593,6 @@
                 alert('Загальна сума повинна бути більша за 0 грн.');
                 return;
             }
-
-
-
-
-
-
-
-
 
             fetch('{{ route("user.confirmOrder") }}', {
                 method: 'POST',

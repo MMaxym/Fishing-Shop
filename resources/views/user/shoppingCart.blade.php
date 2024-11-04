@@ -41,7 +41,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const userId = '{{ auth()->user()->id }}';
+            const userId = '{{ auth()->user() ? auth()->user()->id : "Немає" }}';
             const cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
             const cartItemsContainer = document.getElementById('cart-items');
             const placeOrder = document.getElementById('place-order');

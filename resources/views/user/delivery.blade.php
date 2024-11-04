@@ -15,7 +15,7 @@
                 <div class="delivery-card">
                     <img src="{{ asset('images/novaposhta.png') }}" alt="Нова Пошта" class="delivery-icon" style="margin-top: 50px; margin-bottom: 50px;">
                     <h3>Нова Пошта 🚚</h3>
-                    <p>Швидка доставка по Україні через відділення Нової Пошти. <strong>Ціна: 100 грн</strong></p>
+                    <p>Швидка доставка по Україні через відділення Нової Пошти. <strong>Ціна: <span style="color: #b62020; font-weight: normal;">*Залежить від адреси замовлення</span></strong></p>
                 </div>
 
                 <div class="delivery-card">

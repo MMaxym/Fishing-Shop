@@ -24,6 +24,7 @@ class GoogleAuthController extends Controller
             $googleUser = Socialite::driver('google')->user();
 
             $client = new GoogleClient();
+
             $client->setClientId(config('services.google.client_id'));
             $client->setClientSecret(config('services.google.client_secret'));
             $client->setRedirectUri(route('google.callback'));

@@ -97,6 +97,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')->with('success', 'Ви успішно вийшли з акаунту!');
+        return redirect()->route('user.main')->with('success', 'Ви успішно вийшли з акаунту!');
     }
 }

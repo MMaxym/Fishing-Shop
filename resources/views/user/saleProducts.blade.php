@@ -486,10 +486,18 @@
                 const addToCartButton = document.getElementById('addToCart');
 
                 addToCartButton.onclick = function() {
+
+                    const userId = '{{ auth()->user() ? auth()->user()->id : "None" }}';
+
+                    if (userId === "None") {
+                        alert(`Ви не увійшли в акаунт. \nДля подальших дій авторизуйтесь на сайті.`);
+                        return;
+                    }
+
                     if (productQuantity === 0) {
                         alert(`На жаль, даного товару немає в наявності. \nВибачте за незручності.`);
-                    } else {
-                        const userId = '{{ auth()->user()->id }}';
+                    }
+                    else {
                         let cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
 
                         const product = {

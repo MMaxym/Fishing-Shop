@@ -234,4 +234,10 @@
     background-color: #1F5B8A;
 }
 
-
+.empty-history{
+    font-size: 24px;
+    color: #04396e; background-color:
+    #D0DAF3; padding: 20px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.5);
+}

@@ -4,7 +4,7 @@
 </head>
 
 @section('content')
-    <div class="container" style="max-width: 1600px; ">
+    <div class="container" style="max-width: 1600px;">
         @include('layouts.header-user')
         <div style="margin-top: 150px; margin-bottom: 70px;">
             <div class="row">
@@ -518,10 +518,18 @@
                 const addToCartButton = document.getElementById('addToCart');
 
                 addToCartButton.onclick = function() {
+
+                    const userId = '{{ auth()->user() ? auth()->user()->id : "None" }}';
+
+                    if (userId === "None") {
+                        alert(`Ви не увійшли в акаунт. \nДля подальших дій авторизуйтесь на сайті.`);
+                        return;
+                    }
+
                     if (productQuantity === 0) {
                         alert(`На жаль, даного товару немає в наявності. \nВибачте за незручності.`);
-                    } else {
-                        const userId = '{{ auth()->user()->id }}';
+                    }
+                    else {
                         let cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
 
                         const product = {

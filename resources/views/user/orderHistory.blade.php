@@ -13,7 +13,12 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                > Історія замовлень користувача {{ Auth::user()->surname }} {{ Auth::user()->name }}
+                > @if (Auth::check())
+                    Історія замовлень користувача {{ Auth::user()->surname }} {{ Auth::user()->name }}
+                @else
+                    Історія замовлень користувача
+                @endif
+
             </p>
             <p class="contact" style="color:#04396e; font-size:16px; margin-left:1100px; max-width: 430px; text-align: right;">
                 <i class="fas fa-phone" style="margin-right: 8px;"></i>ДЛЯ УТОЧНЕННЯ ДЕТАЛЕЙ ЗАМОВЛЕННЯ ЗВЕРТАЙТЕСЬ ЗА ТЕЛЕФОНОМ: <span style="font-size: 18px; font-weight: 600;">+380 (98) 867 85 45</span>
@@ -23,7 +28,7 @@
 
         <div class="order-history-container">
             @if($orders->isEmpty())
-                <p>У вас ще немає замовлень.</p>
+                <p class="empty-history">У вас ще немає замовлень.</p>
             @else
                 @foreach($orders as $order)
                     <div class="order-card">
