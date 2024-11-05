@@ -613,27 +613,27 @@
         setTimeout(startAutoScroll, delayBetweenScrolls);
 
 
-        const scrollContainer2 = document.getElementById('scroll2');
-        const scrollSpeed2 = 2;
-        const scrollInterval2 = 50;
-        const delayBetweenScrolls2 = 2000;
-
-        function startAutoScroll2() {
-            let scrollAmount2 = 0;
-            const maxScrollLeft2 = scrollContainer2.scrollWidth - scrollContainer2.clientWidth;
-
-            const autoScroll = setInterval(() => {
-                if (scrollContainer2.scrollLeft >= maxScrollLeft2) {
-                    scrollContainer2.scrollLeft = 0;
-                    clearInterval(autoScroll);
-                    setTimeout(startAutoScroll2, delayBetweenScrolls2);
-                } else {
-                    scrollContainer2.scrollLeft += scrollSpeed2;
-                    scrollAmount2 += scrollSpeed2;
-                }
-            }, scrollInterval2);
-        }
-        setTimeout(startAutoScroll2, delayBetweenScrolls2);
+        // const scrollContainer2 = document.getElementById('scroll2');
+        // const scrollSpeed2 = 2;
+        // const scrollInterval2 = 50;
+        // const delayBetweenScrolls2 = 2000;
+        //
+        // function startAutoScroll2() {
+        //     let scrollAmount2 = 0;
+        //     const maxScrollLeft2 = scrollContainer2.scrollWidth - scrollContainer2.clientWidth;
+        //
+        //     const autoScroll = setInterval(() => {
+        //         if (scrollContainer2.scrollLeft >= maxScrollLeft2) {
+        //             scrollContainer2.scrollLeft = 0;
+        //             clearInterval(autoScroll);
+        //             setTimeout(startAutoScroll2, delayBetweenScrolls2);
+        //         } else {
+        //             scrollContainer2.scrollLeft += scrollSpeed2;
+        //             scrollAmount2 += scrollSpeed2;
+        //         }
+        //     }, scrollInterval2);
+        // }
+        // setTimeout(startAutoScroll2, delayBetweenScrolls2);
 
     </script>
     @include('layouts.footer-user')

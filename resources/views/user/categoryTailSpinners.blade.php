@@ -13,9 +13,9 @@
                 <a href="{{ route('user.main') }}" class="breadcrumb-link">
                     <i class="fa fa-home"></i> Головна
                 </a>
-                > Пількери
+                > Тейл-спінери
             </p>
-            <h2 class="page-title">ПІЛЬКЕРИ</h2>
+            <h2 class="page-title">ТЕЙЛ-СПІНЕРИ</h2>
 
             <div class="filter-container">
                 <div class="filter-sort">

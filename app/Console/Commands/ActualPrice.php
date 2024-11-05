@@ -27,7 +27,6 @@ class ActualPrice extends Command
     public function handle()
     {
         DB::statement("call proc_actual_price");
-
         //php artisan schedule:work - для запуска власних команд
     }
 }

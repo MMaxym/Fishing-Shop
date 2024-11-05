@@ -11,9 +11,3 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('app:actual-price')->dailyAt('07:00');
-
-//protected $routeMiddleware = [
-//    'guest' => \App\Http\Middleware\GuestMiddleware::class,
-//    'user' => \App\Http\Middleware\UserMiddleware::class,
-//    'admin' => \App\Http\Middleware\AdminMiddleware::class,
-//];

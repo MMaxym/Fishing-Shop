@@ -120,7 +120,7 @@
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
-                    <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                    <th style="min-width: 110px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
                         onclick="sortTable(0)">
                         Артикул <i id="sortIcon0" class="fas fa-sort"></i>
                     </th>
@@ -128,7 +128,7 @@
                         onclick="sortTable(1)">
                         Назва <i id="sortIcon1" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 150px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                    <th style="min-width: 130px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
                         onclick="sortTable(2)">
                         Категорія <i id="sortIcon2" class="fas fa-sort"></i>
                     </th>
@@ -148,7 +148,7 @@
                         onclick="sortTable(6)">
                         Кількість <i id="sortIcon6" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
+                    <th style="min-width: 90px; position: sticky; top: 0; z-index: 1; cursor: pointer;"
                         onclick="sortTable(7)">
                         Ціна <i id="sortIcon7" class="fas fa-sort"></i>
                     </th>
@@ -290,7 +290,7 @@
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Мережевий запит не був успішним');
+                        throw new Error('Мережевий запит не був успішним !!!');
                     }
                     return response.json();
                 })
