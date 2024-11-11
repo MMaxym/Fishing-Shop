@@ -28,5 +28,6 @@ class ActualPrice extends Command
     {
         DB::statement("call proc_actual_price");
         //php artisan schedule:work - для запуска власних команд
+        //php artisan queue:work - для запуска черги і надсилання повідомлень в фоновому режимі
     }
 }

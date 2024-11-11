@@ -88,7 +88,7 @@
                         <div class="ukrposhta-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="ukrposhta-address">Адреса</label>
-                                <p style="text-align: left; width: 600px !important; font-size: 14px; color: #000000">*Введіть дані у форматі "місто, адреса, код відділення (наприклад 29001)"</p>
+                                <p style="text-align: left; width: 600px !important; font-size: 14px; color: #000000">*Введіть дані у форматі "місто, код відділення (наприклад 29001)"</p>
                                 <input type="text" id="ukrposhta-address" placeholder="Введіть адресу" style="width: 300px;" required>
                                 <p class="error-message-delivery3" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
                             </div>
