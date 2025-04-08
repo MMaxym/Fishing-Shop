@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" href="{{ asset('css/auth/reset.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Fishing Store - Оновлення пароля</title>
+</head>
+
 @section('content')
     <div class="container" style="max-width: 400px; margin: 0 auto; padding-bottom: 50px; margin-top: 150px;">
         <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);">
@@ -63,113 +69,9 @@
                         <p>Згадали пароль? <a href="{{ route('login') }}" id="logBack">Увійти</a></p>
                     </div>
                 </form>
-                <style>
-                    body {
-                        background-image: url('{{ asset('images/log-reg-background.png') }}');
-                        background-attachment: fixed;
-                        background-size: cover;
-                        background-position: center;
-                        min-height: 100vh;
-                    }
 
-                    #btn-update-password {
-                        background-color: #2C73BB;
-                        width: 100%;
-                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-                        border-radius: 5px;
-                        color: white;
-                    }
 
-                    #btn-update-password:hover {
-                        background-color: #266198;
-                        color: white;
-                    }
-
-                    a {
-                        text-decoration: none;
-                        font-size: 14px;
-                    }
-
-                    a:hover {
-                        text-decoration: none;
-                        color: #c53727;
-                    }
-
-                    #logBack {
-                        text-decoration: none;
-                        font-size: 14px;
-                    }
-
-                    #logBack:hover {
-                        text-decoration: none;
-                        color: #c53727;
-                    }
-
-                    p {
-                        text-decoration: none;
-                        font-size: 14px;
-                        color: #666;
-                    }
-
-                    .input-group {
-                        position: relative;
-                    }
-
-                    .input-group .toggle-password {
-                        position: absolute;
-                        right: 12px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        cursor: pointer;
-                    }
-
-                    .input-group .toggle-password-confirmation {
-                        position: absolute;
-                        right: 12px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        cursor: pointer;
-                    }
-
-                    .toggle-password i {
-                        color: #dc3545;
-                    }
-
-                    .toggle-password i.fa-eye-slash {
-                        color: #555555;
-                    }
-
-                    .toggle-password-confirmation i {
-                        color: #dc3545;
-                    }
-
-                    .toggle-password-confirmation i.fa-eye-slash {
-                        color: #555555;
-                    }
-                </style>
-
-                <script>
-                    document.querySelector('.toggle-password').addEventListener('click', function() {
-                        const passwordField = document.getElementById('password');
-                        const passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                        passwordField.setAttribute('type', passwordFieldType);
-
-                        const icon = this.querySelector('i');
-                        icon.classList.toggle('fa-eye-slash');
-                        icon.classList.toggle('fa-eye');
-                    });
-
-                    document.querySelector('.toggle-password-confirmation').addEventListener('click', function() {
-                        const passwordConfirmationField = document.getElementById('password_confirmation');
-                        const passwordFieldType = passwordConfirmationField.getAttribute('type') === 'password' ? 'text' : 'password';
-                        passwordConfirmationField.setAttribute('type', passwordFieldType);
-
-                        const icon = this.querySelector('i');
-                        icon.classList.toggle('fa-eye-slash');
-                        icon.classList.toggle('fa-eye');
-                    });
-
-                </script>
+                <script src="{{ asset('js/auth/reset.js') }}"></script>
 
             </div>
         </div>

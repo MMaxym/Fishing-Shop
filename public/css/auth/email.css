@@ -1,0 +1,45 @@
+body {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+#btn-email{
+    background-color: #2C73BB;
+    width: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    color: white;
+}
+
+#btn-email:hover{
+    background-color: #266198;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #c53727;
+}
+
+#logBack{
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#logBack:hover{
+    text-decoration: none;
+    color: #c53727;
+}
+
+p {
+    text-decoration: none;
+    font-size: 14px;
+    color: #666;
+}

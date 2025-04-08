@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" href="{{ asset('css/auth/email.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Fishing Store - Скидання пароля</title>
+</head>
+
 @section('content')
     <div class="container" style="max-width: 400px; margin: 0 auto; padding-bottom: 50px; margin-top: 190px;">
         <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);">
@@ -34,54 +40,7 @@
                         <p>Згадали пароль? <a href="{{ route('login') }}" id="logBack">Увійти</a></p>
                     </div>
                 </form>
-                <style>
-                    body {
-                        background-image: url('{{ asset('images/log-reg-background.png') }}');
-                        background-attachment: fixed;
-                        background-size: cover;
-                        background-position: center;
-                        min-height: 100vh;
-                    }
 
-                    #btn-email{
-                        background-color: #2C73BB;
-                        width: 100%;
-                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-                        border-radius: 5px;
-                        color: white;
-                    }
-
-                    #btn-email:hover{
-                        background-color: #266198;
-                        color: white;
-                    }
-
-                    a {
-                        text-decoration: none;
-                        font-size: 14px;
-                    }
-
-                    a:hover {
-                        text-decoration: none;
-                        color: #c53727;
-                    }
-
-                    #logBack{
-                        text-decoration: none;
-                        font-size: 14px;
-                    }
-
-                    #logBack:hover{
-                        text-decoration: none;
-                        color: #c53727;
-                    }
-
-                    p {
-                        text-decoration: none;
-                        font-size: 14px;
-                        color: #666;
-                    }
-                </style>
             </div>
         </div>
     </div>

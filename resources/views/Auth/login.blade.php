@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <title>Fishing Shop - Авторизація</title>
+    <title>Fishing Store - Авторизація</title>
 </head>
 
 @section('content')
@@ -50,7 +50,7 @@
                         <a href="{{ route('password.request') }}" class="btn btn-link">Забули пароль?</a>
                     </div>
 
-                    <button type="submit" class="btn btn-login">Увійти</button>
+                    <button type="submit" class="btn-login">Увійти</button>
 
                     <div class="divider" style="margin-bottom: 5px; margin-top: 15px;">Або</div>
 
@@ -62,163 +62,11 @@
                         </a>
                     </div>
 
-
-
                     <div style="margin-top: 20px; text-align: center;">
                         <p>У Вас немає акаунта? <a href="{{ route('register') }}">Зареєструватися</a></p>
                     </div>
                 </form>
-                <style>
-                    body {
-                        background-image: url('{{ asset('images/log-reg-background.png') }}');
-                        background-attachment: fixed;
-                        background-size: cover;
-                        background-position: center;
-                        min-height: 100vh
-                    }
-
-                    .divider {
-                        text-align: center;
-                        margin: 20px 0;
-                        position: relative;
-                    }
-
-                    .divider::before,
-                    .divider::after {
-                        content: '';
-                        display: inline-block;
-                        width: 38%;
-                        height: 1px;
-                        background-color: #b3b3b3;
-                        vertical-align: middle;
-                        margin: 0 10px;
-                    }
-
-                    .btn-google {
-                        background-color: transparent;
-                        color: #2c73bb;
-                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-                        border-radius: 5px;
-                        text-align: center;
-                        padding: 3px 12px;
-                        display: inline-block;
-                        width: 100%;
-                    }
-
-                    .google-btn-link {
-                        color: #2c73bb;
-                        text-decoration: none;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 16px;
-                    }
-
-                    .google-btn-link:hover {
-                        color: #2c73bb;
-                    }
-
-                    .btn-google:hover{
-                        background-color: #e6f1ff;
-                    }
-
-                    .google-icon {
-                        width: 29px;
-                        height: 29px;
-                        margin-right: 8px;
-                        vertical-align: middle;
-                    }
-
-                    .form-group label {
-                        font-weight: 500;
-                        color: #666;
-                    }
-
-                    .form-control {
-                        border: 1px solid #ddd;
-                        border-radius: 5px;
-                        padding: 12px;
-                    }
-
-                    .form-control:focus {
-                        border-color: #2c73bb;
-                        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-                    }
-
-                    .input-group {
-                        position: relative;
-                    }
-
-                    .input-group .toggle-password {
-                        position: absolute;
-                        right: 12px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        cursor: pointer;
-                    }
-
-                    .toggle-password i {
-                        color: #dc3545;
-                    }
-
-                    .toggle-password i.fa-eye-slash {
-                        color: #555555;
-                    }
-
-                    a {
-                        text-decoration: none;
-                        font-size: 14px;
-                        color: #2c73bb;
-                    }
-
-                    a:hover {
-                        text-decoration: none;
-                        color: #c53727;
-                    }
-
-                    p {
-                        text-decoration: none;
-                        font-size: 14px;
-                        color: #666;
-                    }
-
-                    .btn-link{
-                        text-decoration: none;
-                        margin-top: 0;
-                        margin-bottom: 10px;
-                        color: #2c73bb;
-                    }
-
-                    .btn-link:hover{
-                        text-decoration: none;
-                        color: #c53727;
-                    }
-
-                    .btn-login{
-                        background-color: #2C73BB;
-                        width: 100%;
-                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-                        border-radius: 5px;
-                        color: white;
-                    }
-
-                    .btn-login:hover{
-                        background-color: #266198;
-                        color: white;
-                    }
-
-                </style>
-                <script>
-                    document.querySelector('.toggle-password').addEventListener('click', function() {
-                        const passwordField = document.getElementById('password');
-                        const passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                        passwordField.setAttribute('type', passwordFieldType);
-
-                        const icon = this.querySelector('i');
-                        icon.classList.toggle('fa-eye-slash');
-                        icon.classList.toggle('fa-eye');
-                    });
-                </script>
+                <script src="{{ asset('js/auth/login.js') }}"></script>
             </div>
         </div>
     </div>
