@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/user/about.css') }}">
+    <title>Fishing Store - Про нас</title>
 </head>
 
 @section('content')
@@ -56,18 +57,6 @@
     </div>
     @include('layouts.footer-user')
 
-    <script>
-        window.onscroll = function () {
-            const scrollToTopButton = document.getElementById("scrollToTop");
-            if (window.scrollY > 200) {
-                scrollToTopButton.style.display = "block";
-            } else {
-                scrollToTopButton.style.display = "none";
-            }
-        };
+    <script src="{{ asset('js/user/about.js') }}"></script>
 
-        document.getElementById("scrollToTop").onclick = function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        };
-    </script>
 @endsection

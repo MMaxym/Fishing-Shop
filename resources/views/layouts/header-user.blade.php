@@ -103,6 +103,7 @@
         @guest
             <button class="btn btn-login" style="border-radius: 8px;" onclick="window.location.href='{{ route('login') }}'">
                 <i class="fas fa-user mr-2"></i> Увійти
+{{--                <img src="{{ asset('images/v2/icon/UserAllFilled.svg') }}" alt="jj" fill="currentColor" class="mr-3" style="fill: #00d109; width: 30px; height: 30px;"/> Увійти--}}
             </button>
         @endguest
     </div>
@@ -127,7 +128,8 @@
                 if (query) {
                     window.location.href = `/search?query=${encodeURIComponent(query)}`;
                 } else {
-                    window.location.href = `{{ route('user.main') }}`;
+                    {{--window.location.href = `{{ route('user.main') }}`;--}}
+                    window.location.href = `/user/main`;
                 }
             }
 
