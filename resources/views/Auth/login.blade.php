@@ -19,6 +19,15 @@
                 <form id="form-login" action="{{ route('login') }}" method="POST" class="form-login">
                     @csrf
 
+{{--                    @if ($errors->any())--}}
+{{--                        <div class="cancel-parent">--}}
+{{--                            <img class="icon-cancel" alt="Cancel" src="{{ asset('images/v2/icon/CanselOutline.svg') }}">--}}
+{{--                            @foreach ($errors->all() as $error)--}}
+{{--                                <span>{{ $error }}</span>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
+
                     <div class="form-group">
                         <label for="email" class="label-field">Електронна пошта</label>
                         <input type="email" id="email" name="email" class="input-field" value="{{ old('email') }}" placeholder="Введіть email . . ." >

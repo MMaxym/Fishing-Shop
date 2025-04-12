@@ -24,6 +24,9 @@ class ForgotPasswordController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
+        ], [
+            'email.required' => 'Обовʼязкопе поле.',
+            'email.email' => 'Не дійсна електронна пошта.',
         ]);
 
         if ($validator->fails()) {
@@ -34,7 +37,7 @@ class ForgotPasswordController extends Controller
 
         return $response == Password::RESET_LINK_SENT
             ? back()->with('success', 'Посилання для скидання пароля надіслано на вашу електронну адресу.')
-            : back()->withErrors(['email' => 'Не вдалося надіслати посилання для скидання пароля. Спробуйте ще раз.']);
+            : back()->withErrors(['email' => 'Не вдалося надіслати посилання для скидання пароля.']);
     }
 
 

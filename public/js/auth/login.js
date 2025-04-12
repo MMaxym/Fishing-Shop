@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         toggle.setAttribute('src', `/images/v2/icon/${iconPath}`);
     });
 });
+
 let loaderTimeout = setTimeout(() => {
     document.getElementById('global-loader').classList.remove('loader-hidden');
 }, 1000);
