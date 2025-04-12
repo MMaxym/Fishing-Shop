@@ -58,6 +58,11 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string',
+        ], [
+            'email.required' => 'Обовʼязкопе поле.',
+            'email.email' => 'Не дійсна електронна пошта.',
+            'password.required' => 'Обовʼязкопе поле.',
+            'password.string' => 'Поле пароль повинно бути рядком.',
         ]);
 
         if ($validator->fails()) {

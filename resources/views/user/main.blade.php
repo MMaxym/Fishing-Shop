@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/user/main.css') }}">
 </head>
 
+
 @section('content')
     <div class="container" style="max-width: 1600px;">
         @include('layouts.header-user')

@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+
+:root {
+
+    /* Fonts */
+    --font-montserrat: Montserrat;
+
+    /* Gaps */
+    --gap-small: 8px;
+    --gap-medium: 10px;
+    --gap-big: 24px;
+
+    /* Paddings */
+    --padding-small: 8px;
+    --padding-base: 16px;
+    --padding-big: 24px;
+
+    /* Border radiuses */
+    --br-1: 24px;
+
+
+    /* Color Variables */
+    --dark-1: #0d5370;
+    --light-1: #2a8e9e;
+
+    --dark-2: rgba(13, 83, 112, 0.3);
+    --light-2: rgba(42, 142, 158, 0.3);
+
+    --main-dark: #1d1f20;
+    --main-light: #f2f9fa;
+    --white: #f9feff;
+    --white-opasity: rgba(242, 249, 250, 0.8);
+
+    --grey: #919191;
+
+    --helps-blue: #006bdd;
+    --helps-bluelight: #e5eff6;
+    --helps-green: #0bbf0b;
+    --helps-greenlight: #eaf7eb;
+    --helps-orange: #e67c3e;
+    --helps-orangelight: #fcf7e6;
+    --helps-red: #ff1d4e;
+    --helps-redlight: #fbe8e7;
+
+
+    /* Font-weight */
+    --Regular-weight: 400;
+    --Medium-weight: 500;
+    --Semibold-weight: 600;
+    --Bold-weight: 700;
+
+    /* Font-size */
+    --Font-12-size: 12px;
+    --Font-14-size: 14px;
+    --Font-16-size: 16px;
+    --Font-18-size: 18px;
+    --Font-20-size: 20px;
+    --Font-22-size: 22px;
+    --Font-24-size: 24px;
+    --Font-26-size: 26px;
+    --Font-32-size: 32px;
+    --Font-40-size: 40px;
+}

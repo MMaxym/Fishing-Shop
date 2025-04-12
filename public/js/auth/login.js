@@ -1,9 +1,20 @@
-document.querySelector('.toggle-password').addEventListener('click', function() {
-    const passwordField = document.getElementById('password');
-    const passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', passwordFieldType);
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
 
-    const icon = this.querySelector('i');
-    icon.classList.toggle('fa-eye-slash');
-    icon.classList.toggle('fa-eye');
+    toggle.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        const iconPath = type === 'password' ? 'PasswordYes.svg' : 'PasswordNo.svg';
+        toggle.setAttribute('src', `/images/v2/icon/${iconPath}`);
+    });
+});
+let loaderTimeout = setTimeout(() => {
+    document.getElementById('global-loader').classList.remove('loader-hidden');
+}, 1000);
+
+window.addEventListener('load', () => {
+    clearTimeout(loaderTimeout);
+    document.getElementById('global-loader').classList.add('loader-hidden');
 });

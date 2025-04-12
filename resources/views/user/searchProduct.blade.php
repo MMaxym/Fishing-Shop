@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/user/searchProduct.css') }}">
 </head>
 
+
 @section('content')
     @include('layouts.header-user')
     <div class="container" style="margin-top: 110px; margin-bottom: 150px;">

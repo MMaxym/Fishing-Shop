@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
 </head>
 
+
 @section('content')
     <div class="container" style="max-width: 1600px;">
         @include('layouts.header-user')

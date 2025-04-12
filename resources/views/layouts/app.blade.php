@@ -6,42 +6,38 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Fishing Store')</title>
 
-
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" href="{{ asset('images/logo.ico') }}"  type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
-
-    <style>
-        .alert {
-            opacity: 1;
-            transition: opacity 1s ease-out;
-            text-align: center;
-            z-index: 1001;
-        }
-        .alert.fade-out {
-            opacity: 0;
-        }
-    </style>
 </head>
 
-<body style="background-color: #E1E7F6;">
-@if (session('success'))
-    <div class="alert alert-success" id="success-alert">
-        {{ session('success') }}
-    </div>
-@endif
+<body style="background-color: var(--main-light);">
 
-@if (session('error'))
-    <div class="alert alert-danger" id="error-alert">
-        {{ session('error') }}
+    <div id="global-loader" class="loader-hidden">
+        <div class="loader-spinner"></div>
     </div>
-@endif
 
-<div class="container mt-5" style="max-width: 2000px; margin: 0; padding: 0;">
     @yield('content')
-</div>
+
+    @if (session('success'))
+        <div class="success-parent" id="success-alert">
+            <img class="icon-success" alt="Success" src="{{ asset('images/v2/icon/DoneOutline.svg') }}">
+            <div class="alert-success">  {{ session('success') }}</div>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="cancel-parent"  id="cancel-alert">
+            <img class="icon-cancel" alt="Cancel" src="{{ asset('images/v2/icon/CanselOutline.svg') }}">
+            <div class="alert-danger">  {{ session('error') }}</div>
+        </div>
+    @endif
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -49,28 +45,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function() {
-            var successAlert = document.getElementById('success-alert');
-            var errorAlert = document.getElementById('error-alert');
+        const successAlert = document.getElementById('success-alert');
+        const cancelAlert = document.getElementById('cancel-alert');
 
-            if (successAlert) {
-                successAlert.classList.add('fade-out');
-            }
+        if (successAlert) {
+            setTimeout(() => {
+                successAlert.remove();
+            }, 30000);
+        }
 
-            if (errorAlert) {
-                errorAlert.classList.add('fade-out');
-            }
-            setTimeout(function() {
-                if (successAlert) {
-                    successAlert.remove();
-                }
+        if (cancelAlert) {
+            setTimeout(() => {
+                cancelAlert.remove();
+            }, 3000);
+        }
+    });
 
-                if (errorAlert) {
-                    errorAlert.remove();
-                }
-            }, 1000);
-        }, 1500);
+    let loaderTimeout = setTimeout(() => {
+        document.getElementById('global-loader').classList.remove('loader-hidden');
+    }, 500);
+
+    window.addEventListener('load', () => {
+        clearTimeout(loaderTimeout);
+        document.getElementById('global-loader').classList.add('loader-hidden');
     });
 </script>
 </body>
