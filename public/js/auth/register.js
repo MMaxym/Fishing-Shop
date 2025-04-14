@@ -1,58 +1,68 @@
-document.querySelector('.toggle-password').addEventListener('click', function() {
-    const passwordField = document.getElementById('password');
-    const passwordFieldType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', passwordFieldType);
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
 
-    const icon = this.querySelector('i');
-    icon.classList.toggle('fa-eye-slash');
-    icon.classList.toggle('fa-eye');
+    toggle.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        const iconPath = type === 'password' ? 'PasswordYes.svg' : 'PasswordNo.svg';
+        toggle.setAttribute('src', `/images/v2/icon/${iconPath}`);
+    });
 });
 
-document.querySelector('.toggle-password-confirmation').addEventListener('click', function() {
-    const passwordConfirmationField = document.getElementById('password_confirmation');
-    const passwordFieldType = passwordConfirmationField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordConfirmationField.setAttribute('type', passwordFieldType);
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('toggle-password-confirm');
+    const passwordInput = document.getElementById('password_confirmation');
 
-    const icon = this.querySelector('i');
-    icon.classList.toggle('fa-eye-slash');
-    icon.classList.toggle('fa-eye');
+    toggle.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        const iconPath = type === 'password' ? 'PasswordYes.svg' : 'PasswordNo.svg';
+        toggle.setAttribute('src', `/images/v2/icon/${iconPath}`);
+    });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const phoneInputField = document.querySelector("#phone");
-    if (phoneInputField) {
-        const iti = window.intlTelInput(phoneInputField, {
+document.addEventListener("DOMContentLoaded", function () {
+    const input = document.querySelector("#phone");
+    const hiddenInput = document.querySelector("#full_phone");
+
+    if (input && hiddenInput) {
+        const iti = window.intlTelInput(input, {
             initialCountry: "ua",
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-            nationalMode: false,
-            formatOnDisplay: true,
-            autoHideDialCode: false,
+            preferredCountries: [
+                "ua", "pl", "de", "fr", "it", "es", "ro", "cz", "sk", "hu", "nl", "be", "se", "no"
+            ],
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.min.js"
         });
 
-        phoneInputField.addEventListener('input', function(e) {
-            let digits = phoneInputField.value.replace(/\D/g, '');
+        input.addEventListener("input", function () {
+            this.value = this.value.replace(/[^\d]/g, '');
 
-            let countryData = iti.getSelectedCountryData();
-            let countryCode = countryData.dialCode;
-
-            if (countryCode === '380' && digits.length > 3) {
-                let formatted = digits.slice(0, 3);
-                let rest = digits.slice(3);
-                let match = rest.match(/(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
-
-                phoneInputField.value = '+' + formatted + ' ' + (match[1] ? match[1] : '') + (match[2] ? ' ' + match[2] : '') + (match[3] ? ' ' + match[3] : '') + (match[4] ? ' ' + match[4] : '');
+            const maxLength = getMaxLength(iti.getSelectedCountryData().iso2);
+            if (this.value.length > maxLength) {
+                this.value = this.value.slice(0, maxLength);
             }
         });
 
-        phoneInputField.addEventListener('input', function() {
-            let maxDigits = 12;
-            let digits = phoneInputField.value.replace(/\D/g, '');
-            let countryData = iti.getSelectedCountryData();
-            let countryCodeLength = countryData.dialCode.length;
-
-            if (digits.length > (maxDigits + countryCodeLength)) {
-                phoneInputField.value = phoneInputField.value.slice(0, maxDigits + countryCodeLength + 1);
+        input.form.addEventListener("submit", function () {
+            if (iti.isValidNumber()) {
+                hiddenInput.value = iti.getNumber();
+            } else {
+                hiddenInput.value = '';
             }
         });
+
+        function getMaxLength(countryCode) {
+            const lengths = {
+                ua: 9,  pl: 9,  de: 11, fr: 9,
+                it: 10, es: 9,  ro: 9,  cz: 9,
+                sk: 9,  hu: 9,  nl: 9,  be: 9,
+                se: 9,  no: 8
+            };
+            return lengths[countryCode] || 10;
+        }
     }
 });

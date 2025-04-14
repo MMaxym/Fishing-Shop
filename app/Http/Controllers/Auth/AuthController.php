@@ -23,27 +23,58 @@ class AuthController extends Controller
             'surname' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'required|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
+            'full_phone' => 'required|string|max:20',
             'address' => 'required|string|max:255',
+        ], [
+            'login.required' => 'Обовʼязкове поле.',
+            'login.unique' => 'Користувач з таким логіном вже існує.',
+            'login.max' => 'Логін не повинен перевищувати 255 символів.',
+
+            'surname.required' => 'Обовʼязкове поле.',
+            'surname.string' => 'Прізвище повинно бути рядком.',
+            'surname.max' => 'Прізвище не повинно перевищувати 255 символів.',
+
+            'name.required' => 'Обовʼязкове поле.',
+            'name.string' => 'Імʼя повинно бути рядком.',
+            'name.max' => 'Імʼя не повинно перевищувати 255 символів.',
+
+            'email.required' => 'Обовʼязкове поле.',
+            'email.email' => 'Недійсна електронна пошта.',
+            'email.unique' => 'Користувач з такою електронною поштою вже існує.',
+
+            'password.required' => 'Обовʼязкове поле.',
+            'password.string' => 'Поле пароль повинно бути рядком.',
+            'password.min' => 'Пароль повинен містити щонайменше 6 символів.',
+            'password.confirmed' => 'Пароль та підтвердження пароля не співпадають.',
+
+            'password_confirmation.required' => 'Обовʼязкове поле.',
+            'password_confirmation.min' => 'Підтвердження пароля повинно містити щонайменше 6 символів.',
+
+            'full_phone.required' => 'Обовʼязкове поле.',
+            'full_phone.string' => 'Телефон повинен бути рядком.',
+            'full_phone.max' => 'Телефон не повинен перевищувати 255 символів.',
+
+            'address.required' => 'Обовʼязкове поле.',
+            'address.string' => 'Адреса повинна бути рядком.',
+            'address.max' => 'Адреса не повинна перевищувати 255 символів.',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $user = User::create([
+        User::create([
             'login' => $request->login,
             'password' => Hash::make($request->input('password')),
             'surname' => $request->surname,
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => $request->full_phone,
             'address' => $request->address,
             'role_id' => 2,
         ]);
-
-        Auth::login($user);
 
         return redirect()->route('login')->with('success', 'Реєстрація успішна!');
     }

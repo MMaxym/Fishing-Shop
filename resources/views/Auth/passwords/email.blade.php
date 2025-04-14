@@ -14,7 +14,7 @@
         </a>
         <div class="content">
             <section class="section-forgot">
-                <h2 class="title-forgot">Скидання паролю</h2>
+                <h2 class="title-forgot">Скидання пароля</h2>
 
                 <form id="form-forgot" action="{{ route('password.email') }}" method="POST" class="form-forgot">
                     @csrf

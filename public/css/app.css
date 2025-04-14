@@ -16,7 +16,7 @@ body{
     left: 30px;
     border-radius: var(--br-1);
     background-color: var(--helps-redlight);
-    border: 1px solid var(--helps-red);
+    border: 2px solid var(--helps-red);
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -65,7 +65,7 @@ body{
     left: 30px;
     border-radius: var(--br-1);
     background-color: var(--helps-greenlight);
-    border: 1px solid var(--helps-green);
+    border: 2px solid var(--helps-green);
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
