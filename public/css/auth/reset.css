@@ -1,81 +1,316 @@
-body {
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-}
-
-#btn-update-password {
-    background-color: #2C73BB;
+.main-container {
     width: 100%;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    color: white;
-}
-
-#btn-update-password:hover {
-    background-color: #266198;
-    color: white;
-}
-
-a {
-    text-decoration: none;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #c53727;
-}
-
-#logBack {
-    text-decoration: none;
-    font-size: 14px;
-}
-
-#logBack:hover {
-    text-decoration: none;
-    color: #c53727;
-}
-
-p {
-    text-decoration: none;
-    font-size: 14px;
-    color: #666;
-}
-
-.input-group {
+    height: 100%;
+    display: flex;
     position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 32px 100px;
+    box-sizing: border-box;
+    gap: 100px;
+    text-align: left;
 }
 
-.input-group .toggle-password {
+.content {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 110px;
+    gap: 0px;
+}
+
+.logo-link:hover .logo-icon {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(9%) saturate(925%) hue-rotate(170deg) brightness(95%) contrast(88%);
+}
+
+.section-login {
+    width: 400px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 24px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    gap: 24px;
+}
+
+.title-login{
+    align-self: stretch;
+    position: relative;
+    font-size: var(--Font-26-size);
+    line-height: 150%;
+    font-weight: var(--Semibold-weight);
+    text-align: center;
+    color: var(--dark-1);
+}
+
+.form-group {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    margin: 0 !important;
+}
+
+.form-login {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 0 !important;
+}
+
+.label-field {
+    align-self: stretch;
+    position: relative;
+    line-height: 150%;
+    margin: 0;
+    font-size: var(--Font-16-size);
+    font-weight: var(--Medium-weight);
+    color: var(--main-dark);
+    margin-top: 3px;
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-field {
+    position: relative;
+    line-height: 150%;
+    align-self: stretch;
+    border-radius: var(--br-1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 16px;
+    color: var(--dark-1);
+    border: 1px solid var(--light-2);
+    font-size: var(--Font-14-size);
+    font-weight: var(--Regular-weight);
+    width: 100%;
+}
+
+.input-field:focus {
+    border: 1px solid var(--light-1);
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: var(--grey);
+}
+
+#password{
+    padding-right: 40px;
+}
+
+#password-confirm{
+    padding-right: 40px;
+}
+
+.toggle-password-icon {
     position: absolute;
-    right: 12px;
     top: 50%;
+    right: 12px;
     transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.toggle-password-icon:hover {
+    opacity: 1;
+}
+
+.toggle-password-confirm-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.toggle-password-confirm-icon:hover {
+    opacity: 1;
+}
+
+.forgot-password {
+    align-self: stretch;
+    position: relative;
+    color: var(--light-1);
+    margin: 3px 0;
+    font-size: var(--Font-16-size);
+    font-weight: var(--Medium-weight);
+}
+
+.forgot-password:hover {
+    align-self: stretch;
+    position: relative;
+    color: var(--dark-1);
+    text-decoration: none;
     cursor: pointer;
 }
 
-.input-group .toggle-password-confirmation {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+.forgot-password:focus {
+    outline: none;
+}
+
+.buttons {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-login{
+    position: relative;
+    line-height: 150%;
+    align-self: stretch;
+    border-radius: 24px;
+    background-color: var(--light-1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: none;
+    font-size: var(--Font-16-size);
+    font-weight: var(--Medium-weight);
+    color: var(--main-light);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-login:hover{
+    background-color: var(--dark-1);
+}
+
+.btn-login:focus {
+    outline: none;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: var(--Font-14-size);
+    font-weight: var(--Regular-weight);
+    color: var(--grey);
+    gap: 10px;
+}
+
+.divider-line {
+    flex-grow: 1;
+    border-top: 1px solid var(--grey);
+}
+
+.divider-text {
+    padding: 0 5px;
+}
+
+.btn-google {
+    align-self: stretch;
+    border-radius: var(--br-1);
+    background-color: var(--white);
+    border: 1px solid var(--light-2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    gap: 16px;
+    color: var(--main-dark);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.google-icon {
+    width: 32px;
+    position: relative;
+    max-height: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.btn-google-text {
+    position: relative;
+    line-height: 150%;
+    color: var(--dark-1)
+}
+
+.btn-google:hover{
+    background-color: var(--white-opasity);
+    border: 1px solid var(--light-1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-google:focus {
+    border: 1px solid var(--dark-1);
+    outline: none;
+}
+
+.register-link {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: var(--Font-14-size);
+    font-weight: var(--Regular-weight);
+    color: var(--dark-1);
+}
+
+.text-link {
+    position: relative;
+    line-height: 150%;
+    color: var(--main-dark);
+}
+
+.r-link{
+    align-self: stretch;
+    position: relative;
+    color: var(--light-1);
+    font-size: var(--Font-14-size);
+    font-weight: var(--Regular-weight);
+}
+
+.r-link:hover {
+    align-self: stretch;
+    position: relative;
+    color: var(--dark-1);
+    text-decoration: none;
     cursor: pointer;
 }
 
-.toggle-password i {
-    color: #dc3545;
+.r-link:focus {
+    outline: none;
 }
 
-.toggle-password i.fa-eye-slash {
-    color: #555555;
+.input-error{
+    font-size: var(--Font-12-size);
+    font-weight: var(--Medium-weight);
+    color: var(--helps-red);
 }
 
-.toggle-password-confirmation i {
-    color: #dc3545;
-}
-
-.toggle-password-confirmation i.fa-eye-slash {
-    color: #555555;
-}

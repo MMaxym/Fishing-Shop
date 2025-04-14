@@ -11,11 +11,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-let loaderTimeout = setTimeout(() => {
-    document.getElementById('global-loader').classList.remove('loader-hidden');
-}, 1000);
-
-window.addEventListener('load', () => {
-    clearTimeout(loaderTimeout);
-    document.getElementById('global-loader').classList.add('loader-hidden');
-});

@@ -3,77 +3,70 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/auth/reset.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <title>Fishing Store - Оновлення пароля</title>
+    <title>Fishing Store</title>
 </head>
 
 @section('content')
-    <div class="container" style="max-width: 400px; margin: 0 auto; padding-bottom: 50px; margin-top: 150px;">
-        <div class="card" style="box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);">
-            <div class="card-header" style="background-color: #becfff;">
-                <h2>Оновлення пароля</h2>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('password.update') }}" method="POST">
+
+    <div class="main-container">
+        <a href="{{ route('user.main') }}" class="logo-link">
+            <img class="logo-icon" alt="Logo" title="Перейти на головну" src="{{ asset('images/v2/img/logo.svg') }}">
+        </a>
+        <div class="content">
+            <section class="section-login">
+                <h2 class="title-login">Оновлення пароля</h2>
+
+                <form id="form-login" action="{{ route('password.update') }}" method="POST" class="form-login">
                     @csrf
+
                     <input type="hidden" name="token" value="{{ $token }}">
 
-                    @if (session('status'))
-                        <div class="alert alert-success">{{ session('status') }}</div>
-                    @endif
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <div class="form-group">
-                        <label for="email">Електронна пошта</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus>
+                        <label for="email" class="label-field">Електронна пошта</label>
+                        <input type="email" id="email" name="email" class="input-field" value="{{ old('email') }}" placeholder="Введіть email . . ." >
+                        @error('email')
+                        <div class="input-error">* {{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Новий пароль</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" required style="border-radius: 5px;">
-                            <span class="toggle-password" style="cursor: pointer;">
-                                <i class="fas fa-eye-slash"></i>
-                            </span>
+                        <label for="password" class="label-field">Пароль</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" class="input-field" placeholder="Введіть пароль . . .">
+                            <img src="{{ asset('images/v2/icon/PasswordYes.svg') }}" alt="Показати пароль" id="toggle-password" class="toggle-password-icon">
                         </div>
                         @error('password')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="input-error">* {{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">Підтвердити новий пароль</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required style="border-radius: 5px;">
-                            <span class="toggle-password-confirmation" style="cursor: pointer;">
-                                <i class="fas fa-eye-slash"></i>
-                            </span>
+                        <label for="password" class="label-field">Підтвердження пароля</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="input-field" placeholder="Введіть пароль ще раз . . .">
+                            <img src="{{ asset('images/v2/icon/PasswordYes.svg') }}" alt="Показати пароль" id="toggle-password-confirm" class="toggle-password-confirm-icon">
                         </div>
                         @error('password_confirmation')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="input-error">* {{ $message }}</div>
                         @enderror
                     </div>
 
+                    <div class="buttons">
+                        <button type="submit" class="btn-login">Зберегти новий пароль</button>
 
-                    <button type="submit" class="btn btn-email" id="btn-update-password">Оновити пароль</button>
-
-                    <div style="margin-top: 20px; text-align: center;">
-                        <p>Згадали пароль? <a href="{{ route('login') }}" id="logBack">Увійти</a></p>
+                        <div class="register-link">
+                            <span class="text-link">Згадали пароль?</span>
+                            <a href="{{ route('register') }}" id="r-link" class="r-link">Увійти</a>
+                        </div>
                     </div>
                 </form>
+            </section>
 
+            <img class="background-img" alt="Login Image" src="{{ asset('images/v2/img/new-password-img.svg') }}">
 
-                <script src="{{ asset('js/auth/reset.js') }}"></script>
-
-            </div>
         </div>
     </div>
+
+    <script src="{{ asset('js/auth/reset.js') }}"></script>
+
 @endsection

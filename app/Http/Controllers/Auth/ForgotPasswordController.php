@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -33,6 +34,14 @@ class ForgotPasswordController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Користувача з такою електронною адресою не знайдено.',
+            ])->withInput();
+        }
+
         $response = Password::sendResetLink($request->only('email'));
 
         return $response == Password::RESET_LINK_SENT
@@ -47,10 +56,29 @@ class ForgotPasswordController extends Controller
             'email' => 'required|email',
             'password' => 'required|confirmed|min:6',
             'token' => 'required',
+            'password_confirmation' => 'required|min:6',
+        ], [
+            'email.required' => 'Обовʼязкове поле.',
+            'email.email' => 'Недійсна електронна пошта.',
+            'password.required' => 'Обовʼязкове поле.',
+            'password.string' => 'Поле пароль повинно бути рядком.',
+            'password.min' => 'Пароль повинен містити щонайменше 6 символів.',
+            'password.confirmed' => 'Пароль та підтвердження пароля не співпадають.',
+            'password_confirmation.required' => 'Обовʼязкове поле.',
+            'password_confirmation.min' => 'Підтвердження пароля повиненно містити щонайменше 6 символів.',
+            'auth.failed' => 'Ми не можемо знайти користувача з такою електронною адресою.',
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Користувача з такою електронною адресою не знайдено.',
+            ])->withInput();
         }
 
         $response = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function ($user, $password) {
@@ -59,7 +87,7 @@ class ForgotPasswordController extends Controller
         });
 
         return $response == Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', 'Пароль оновлено успішно.')
+            ? redirect()->route('login')->with('success', 'Пароль оновлено успішно.')
             : back()->withErrors(['email' => trans($response)]);
     }
 }

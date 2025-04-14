@@ -42,7 +42,6 @@
                             <input type="password" id="password" name="password" class="input-field" placeholder="Введіть пароль . . .">
                             <img src="{{ asset('images/v2/icon/PasswordYes.svg') }}" alt="Показати пароль" id="toggle-password" class="toggle-password-icon">
                         </div>
-{{--                        <input type="password" id="password" name="password" class="input-field" placeholder="Введіть пароль . . ." >--}}
                         @error('password')
                         <div class="input-error">* {{ $message }}</div>
                         @enderror
