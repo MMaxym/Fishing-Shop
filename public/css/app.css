@@ -105,7 +105,6 @@ body{
     }
 }
 
-
 #global-loader {
     position: fixed;
     inset: 0;
@@ -132,6 +131,35 @@ body{
     animation: spin 1s ease-out infinite;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
+
+/*#global-loader {*/
+/*    position: fixed;*/
+/*    inset: 0;*/
+/*    background-color: rgba(234, 244, 248, 0.6);*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    z-index: 99999;*/
+/*    transition: opacity 0.3s ease;*/
+/*    backdrop-filter: blur(15px);*/
+/*}*/
+
+/*.loader-hidden {*/
+/*    opacity: 0;*/
+/*    pointer-events: none;*/
+/*}*/
+
+/*.loader-spinner {*/
+/*    width: 75px;*/
+/*    height: 75px;*/
+/*    !*border: 7px solid rgb(255, 29, 78, 0.3);*!*/
+/*    !*border-top: 7px solid rgb(255, 29, 78); *!*/
+/*    border: 7px solid rgb(13, 83, 112, 0.3);*/
+/*    border-top: 7px solid rgb(13, 83, 112);*/
+/*    border-radius: 50%;*/
+/*    animation: spin 1s ease-out infinite;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+/*}*/
 
 @keyframes spin {
     0%   { transform: rotate(0deg); }
