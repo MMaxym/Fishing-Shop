@@ -1,87 +1,135 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/footer-user.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/@clr/icons@5.7.0/clr-icons.min.css">
 </head>
 
-<footer class="footer-style" style="width: 100%; background-color: #D0DAF3; padding: 0; margin: 0;">
-    <div class="container" style="max-width:2000px; background: #D0DAF3; color: #2C73BB; padding-top: 80px;  width: 100%; padding-left: 150px; padding-right: 150px;">
-            <div class="row g-5 custom-gap" style="border-bottom: 1px solid #888888; padding-bottom: 20px;">
-                <div class="col-lg-2 col-md-6" style="margin-right: 20px;">
-                    <h4 class="text mb-4" style="color: #04396E;">Наша адреса</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3" style="color:#04396E; margin-right: 10px;"></i> Зарічанська 10, Хмельницький, Україна</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3" style="color:#04396E; margin-right: 10px;"></i> +380988678545</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3" style="color:#04396E; margin-right: 10px;"></i> makspufi@gmail.com</p>
-                    <div class="d-flex pt-3">
-                        <a class="btn btn btn-social" href="https://t.me/maxym_melnyk"><i class="fab fa-telegram"></i></a>
-                        <a class="btn btn btn-social" href="https://www.facebook.com/makspufi"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn btn-social" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn btn-social" href="https://ua.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+<footer class="footer">
+    <div class="footer-info-section">
+        <div class="address-info">
+            <h4 class="address-title">Наша адреса</h4>
+            <div class="address-main">
+                <div class="address-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/LocationOutlineFooter.svg') }}">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">Зарічанська 10,</p>
+                        <p class="address-text-row-description">м.Хмельницький, Україна</p>
                     </div>
                 </div>
-
-                <div class="col-lg-2 col-md-6">
-                    <h4 class="text mb-4" style="color: #04396E;">Години роботи</h4>
-                    <h6 class="text" style="color: #04396E;">Понеділок - Пʼятниця:</h6>
-                    <p class="mb-4">9:00 - 18:00</p>
-                    <h6 class="text" style="color: #04396E;">Субота - Неділя:</h6>
-                    <p class="mb-0">Вихідні дні</p>
+                <div class="address-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/PhoneOutlineFooter.svg') }}">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">+380 (98) 867 85 45</p>
+                    </div>
                 </div>
-
-                <div class="col-lg-2 col-md-6">
-                    <h4 class="category-title">Категорії</h4>
-                    <a class="category-link" href="{{route('user.categoryTailSpinners')}}">
-                        <span class="clarity--fish-line"></span>Тейл-спінери
-                        <i class="fas fa-chevron-right" style="margin-left: 5px;"></i>
-                    </a>
-                    <a class="category-link" href="{{route('user.categoryBalancers')}}">
-                        <span class="clarity--fish-line"></span>Балансири
-                        <i class="fas fa-chevron-right" style="margin-left: 5px;"></i>
-                    </a>
-                    <a class="category-link" href="{{route('user.categoryPilkers')}}">
-                        <span class="clarity--fish-line"></span>Пількери
-                        <i class="fas fa-chevron-right" style="margin-left: 5px;"></i>
-                    </a>
-                </div>
-
-                <div class="col-lg-2 col-md-6">
-                    <h4 class="text mb-4" style="color: #04396E;">Зворотній звʼязок</h4>
-                    <p>Якщо у вас є питання щодо нашого асортименту або послуг, будь ласка, напишіть нам.</p>
-                    <div class="position-relative w-100">
-                        <input type="email" class="form-control email-input" id="emailInput" placeholder="Ваш email">
-                        <button class="btn btn-email position-absolute top-50 end-0 translate-middle-y" id="sendButton">
-                            <i class="fas fa-paper-plane" style="margin-right: 0;"></i>
-                        </button>
+                <div class="address-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/EmailOutlineFooter.svg') }}">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">makspufi@gmail.com</p>
                     </div>
                 </div>
             </div>
-
-            <div class="copyright" style="margin-top: 30px; padding-bottom: 50px;">
-                <div class="row">
-                    <div class="col-md-6 text-left text-md-start">
-                        &copy; <a class="border-bottom" href="">FISHING SHOP</a>, Усі права захищені. 2024.
-                        <br>
-                        Розроблено <a class="border-bottom" href="https://github.com/MMaxym">Melnyk Maksym</a>
+            <div class="social-icon-section">
+                <a href="https://t.me/maxym_melnyk" class="social-icon">
+                    <img class="user-page-icon" alt="Logo" src="{{ asset('images/v2/icon/SocialTelegram.svg') }}">
+                </a>
+                <a href="https://www.instagram.com/accurat.com.ua/" class="social-icon">
+                    <img class="user-page-icon" alt="Logo" src="{{ asset('images/v2/icon/SocialInstagram.svg') }}">
+                </a>
+                <a href="https://ua.linkedin.com/" class="social-icon">
+                    <img class="user-page-icon" alt="Logo" src="{{ asset('images/v2/icon/SocialLinkedin.svg') }}">
+                </a>
+                <a href="https://www.facebook.com/makspufi" class="social-icon">
+                    <img class="user-page-icon" alt="Logo" src="{{ asset('images/v2/icon/SocialFacebook.svg') }}">
+                </a>
+            </div>
+        </div>
+        <div class="address-info">
+            <h4 class="address-title">Графік роботи</h4>
+            <div class="address-main">
+                <div class="address-text">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">Понеділок - П’ятниця</p>
+                        <p class="address-text-row-description">9:00 - 18:00</p>
                     </div>
-                    <div class="col-md-6 text-right text-md-end">
-                        <div class="footer-menu">
-                            <a href="{{ route('user.main') }}">Головна</a> |
-                            <a href="{{ route('user.about') }}">Про нас</a> |
-                            <a href="{{ route('user.discount') }}">Знижки</a> |
-                            <a href="{{ route('user.delivery') }}">Доставка</a>
-                        </div>
+                </div>
+                <div class="address-text">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">Субота - Неділя</p>
+                        <p class="address-text-row-description">Вихідні дні</p>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="address-info">
+            <h4 class="address-title">Категорії</h4>
+            <div class="address-main">
+                <div class="address-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/FishFooter.svg') }}">
+                    <a href="{{route('user.categoryPilkers')}}" class="address-link-row">
+                            <p class="address-link-row-title">Пількери</p>
+                    </a>
+                </div>
+                <div class="address-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/FishFooter.svg') }}">
+                    <a href="{{route('user.categoryTailSpinners')}}" class="address-link-row">
+                        <p class="address-link-row-title">Тейл-спінери</p>
+                    </a>
+                </div>
+                <div class="address-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/FishFooter.svg') }}">
+                    <a href="{{route('user.categoryBalancers')}}" class="address-link-row">
+                        <p class="address-link-row-title">Балансири</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="address-info" id="contact-section">
+            <h4 class="address-title">Зворотній звʼязок</h4>
+            <div class="address-main" id="contact-main">
+                <div class="address-text" id="contact-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/PhoneOutlineFooter.svg') }}">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">+380 (98) 867 85 45</p>
+                    </div>
+                </div>
+                <div class="address-text" id="contact-text">
+                    <img class="address-icon" alt="Logo" src="{{ asset('images/v2/icon/PhoneOutlineFooter.svg') }}">
+                    <div class="address-text-row">
+                        <p class="address-text-row-title">+380 (97) 225 02 48</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="address-text" id="contact-text">
+                <p class="address-text-row-title" id="contact-text-row">* Якщо у вас є питання щодо нашого асортименту або послуг, будь ласка, зателефонуйте нам.</p>
+            </div>
+        </div>
     </div>
-    <script src="https://unpkg.com/@clr/icons@5.7.0/clr-icons.min.js"></script>
-    <script>
-        document.getElementById('sendButton').addEventListener('click', function (event) {
-            event.preventDefault();
-            alert("Дякуємо за повідомлення!\nМи звʼяжемося з Вами як найшвидше!!!");
-            document.getElementById('emailInput').value = '';
-        });
-
-    </script>
+    <div class="footer-info-section" id="second-section">
+        <a href="{{ route('user.main') }}" class="logo-link" id="logo-link-footer">
+            <img class="logo-icon" alt="Logo" title="Перейти на головну" src="{{ asset('images/v2/img/logo.svg') }}">
+        </a>
+        <div class="address-text-row" id="pages-links-footer">
+            <a href="{{route('user.main')}}" class="address-link-row">
+                <p class="address-link-row-title">Головна</p>
+            </a>
+            <div class="vertical-line">|</div>
+            <a href="{{route('user.about')}}" class="address-link-row">
+                <p class="address-link-row-title">Про нас</p>
+            </a>
+            <div class="vertical-line">|</div>
+            <a href="{{route('user.discount')}}" class="address-link-row">
+                <p class="address-link-row-title">Знижки</p>
+            </a>
+            <div class="vertical-line">|</div>
+            <a href="{{route('user.delivery')}}" class="address-link-row">
+                <p class="address-link-row-title">Доставка</p>
+            </a>
+        </div>
+        <p class="footer-info-dev">
+            Розроблено <a href="https://github.com/MMaxym" class="footer-info-dev-link" id="link-fs">Melnyk Maksym. </a>
+            <a href="{{ route('user.main') }}" class="footer-info-dev-link" >FISHING STORE. </a> © Усі права захищені. 2025
+        </p>
+    </div>
 </footer>
 
 

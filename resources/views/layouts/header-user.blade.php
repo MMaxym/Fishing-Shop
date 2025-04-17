@@ -1,6 +1,5 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/header-user.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <header class="header-user">
@@ -39,16 +38,16 @@
     <div class="user-pages">
         @auth
             <a href="{{ route('user.main') }}" class="link-icon">
-                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку" src="{{ asset('images/v2/icon/LikeFilledHeader.svg') }}">
+                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Улюблені товари" src="{{ asset('images/v2/icon/LikeFilledHeader.svg') }}">
             </a>
             <a href="{{ route('user.shoppingCart') }}" class="link-icon">
-                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку" src="{{ asset('images/v2/icon/BasketFilledHeader.svg') }}">
+                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Кошик" src="{{ asset('images/v2/icon/BasketFilledHeader.svg') }}">
             </a>
             <a href="{{ route('user.orderHistory') }}" class="link-icon">
-                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку" src="{{ asset('images/v2/icon/HistoryHeader.svg') }}">
+                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Історія замовлень" src="{{ asset('images/v2/icon/HistoryHeader.svg') }}">
             </a>
             <a href="{{ route('user.editProfile') }}" class="link-icon">
-                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку" src="{{ asset('images/v2/icon/UserAllFilledHeader.svg') }}">
+                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Персональний кабінет" src="{{ asset('images/v2/icon/UserAllFilledHeader.svg') }}">
             </a>
         @endauth
 
