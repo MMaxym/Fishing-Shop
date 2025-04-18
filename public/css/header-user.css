@@ -166,6 +166,7 @@
     font-size: var(--Font-16-size);
     font-weight: var(--Medium-weight);
     transition: all 0.2s ease;
+    border: none;
 }
 
 .btn-link-login:hover{
