@@ -11,3 +11,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('app:actual-price')->dailyAt('07:00');
+//Schedule::command('app:actual-price')->everyMinute();

@@ -57,7 +57,6 @@ class CategoryBalancerController extends Controller
         foreach ($products as $product) {
             $product->isDiscounted = !is_null($product->discount);
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
-            $product->actual_price = $product->discountedPrice() ;
         }
 
         $currentPage = $products->currentPage();

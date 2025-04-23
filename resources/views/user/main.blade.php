@@ -203,16 +203,15 @@
                                     @endif
                                 </div>
                                 <div class="product-card-name">{{ $product->name }} (арт. {{$product->article}})</div>
-{{--                                <div class="product-card-size">{{ $product2->size }} г</div>--}}
 
-                                @if($product->discount)
+                                @if ($product->discount && $product->discount->end_date >= now())
                                     <div class="product-card-prices">
                                         <span class="old-price">{{ number_format($product->price, 2, ',', ' ') }} грн</span>
-                                        <span class="new-price">{{ number_format($product->discount ? $product->discountedPrice() : $product->price, 2, ',', ' ') }} грн</span>
+                                        <span class="new-price">{{ number_format($product->actual_price, 2, ',', ' ') }} грн</span>
                                     </div>
                                 @else
                                     <div class="product-card-prices">
-                                        <span class="product-price">{{ number_format($product->price, 2, ',', ' ') }} грн</span>
+                                        <span class="product-price">{{ number_format($product->actual_price, 2, ',', ' ') }} грн</span>
                                     </div>
                                 @endif
 
@@ -294,16 +293,16 @@
                                     @endif
                                 </div>
                                 <div class="product-card-name">{{ $product2->name }} (арт. {{$product2->article}})</div>
-                                {{--                                <div class="product-card-size">{{ $product2->size }} г</div>--}}
 
-                                @if($product2->discount)
-                                    <div class="product-card-prices">
+                                @if ($product2->discount && $product2->discount->end_date >= now())
+
+                                <div class="product-card-prices">
                                         <span class="old-price">{{ number_format($product2->price, 2, ',', ' ') }} грн</span>
-                                        <span class="new-price">{{ number_format($product2->discount ? $product2->discountedPrice() : $product2->price, 2, ',', ' ') }} грн</span>
+                                        <span class="new-price">{{ number_format($product2->actual_price, 2, ',', ' ') }} грн</span>
                                     </div>
                                 @else
                                     <div class="product-card-prices">
-                                        <span class="product-price">{{ number_format($product2->price, 2, ',', ' ') }} грн</span>
+                                        <span class="product-price">{{ number_format($product2->actual_price, 2, ',', ' ') }} грн</span>
                                     </div>
                                 @endif
 
@@ -334,7 +333,6 @@
         <section class="main-row">
             <div class="faqs-wrapper">
                 <h2 class="row-title">НАЙПОПУЛЯРНІШІ ПИТАННЯ</h2>
-
 
 
             </div>

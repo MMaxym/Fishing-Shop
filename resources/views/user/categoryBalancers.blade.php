@@ -91,13 +91,13 @@
 
                         <h3>{{ $product->name }} ({{ $product->size}}) - {{ $product->article }}</h3>
 
-                        @if($product->discount)
+                        @if ($product->discount && $product->discount->end_date >= now())
                             @if($product->quantity == 0)
                                 <p style="text-decoration: line-through; font-size: 14px;">
                                     {{ number_format($product->price, 2) }} грн
                                 </p>
                                 <p style="color: red;">
-                                    {{ number_format($product->discountedPrice(), 2) }} грн
+                                    {{ number_format($product->actual_price, 2) }} грн
                                 </p>
                                 <p style="color: red; font-weight: normal; font-size: 14px;">*Немає в наявності</p>
                             @elseif($product->quantity < 50)
@@ -105,7 +105,7 @@
                                     {{ number_format($product->price, 2) }} грн
                                 </p>
                                 <p style="color: red;">
-                                    {{ number_format($product->discountedPrice(), 2) }} грн
+                                    {{ number_format($product->actual_price, 2) }} грн
                                 </p>
                                 <p style="color: #ff8800; font-weight: normal; font-size: 14px;">*Товар закінчується</p>
                             @else
@@ -113,18 +113,18 @@
                                     {{ number_format($product->price, 2) }} грн
                                 </p>
                                 <p style="color: red; padding-bottom: 14px;">
-                                    {{ number_format($product->discountedPrice(), 2) }} грн
+                                    {{ number_format($product->actual_price, 2) }} грн
                                 </p>
                             @endif
                         @else
                             @if($product->quantity == 0)
-                                <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->price, 2) }} грн</p>
+                                <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->actual_price, 2) }} грн</p>
                                 <p style="color: red; font-weight: normal; font-size: 14px; padding-bottom: 7px;">*Немає в наявності</p>
                             @elseif($product->quantity < 50)
-                                <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->price, 2) }} грн</p>
+                                <p style="padding-top: 15px; padding-bottom: 5px;">{{ number_format($product->actual_price, 2) }} грн</p>
                                 <p style="color: #ff8800; font-weight: normal; font-size: 14px; padding-bottom: 7px;">*Товар закінчується</p>
                             @else
-                                <p style="padding-top: 26px; padding-bottom: 27px;">{{ number_format($product->price, 2) }} грн</p>
+                                <p style="padding-top: 26px; padding-bottom: 27px;">{{ number_format($product->actual_price, 2) }} грн</p>
                             @endif
                         @endif
                         <button class="open-modal">

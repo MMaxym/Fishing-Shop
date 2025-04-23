@@ -49,6 +49,7 @@ class MainUserController extends Controller
 
         $products = Product::with('images', 'discount', 'category')
             ->where('is_active', 1)
+            ->where('quantity', '>', 0)
             ->where(function ($query) use ($oneMonthAgo) {
                 $query->where('created_at', '>', $oneMonthAgo)
                     ->orWhere('updated_at', '>', $oneMonthAgo);
@@ -59,24 +60,25 @@ class MainUserController extends Controller
 
         foreach ($products as $product) {
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
-            $product->actual_price = $product->discountedPrice();
         }
 
         return $products;
     }
 
-    public function showDiscountProducts(){
-
-        $products2 = Product::with('images', 'discount', 'category')
+    public function showDiscountProducts()
+    {
+        $products2 = Product::with(['images', 'discount', 'category'])
             ->where('is_active', 1)
-            ->whereNotNull('discount_id')
+            ->where('quantity', '>', 0)
+            ->whereHas('discount', function ($query) {
+                $query->where('end_date', '>=', Carbon::today());
+            })
             ->orderBy('updated_at', 'desc')
             ->limit(12)
             ->get();
 
-        foreach ($products2 as $product2){
-            $product2->isDiscounted = !is_null($product2->discount);
-            $product2->actual_price = $product2->discountedPrice();
+        foreach ($products2 as $product2) {
+            $product2->isDiscounted = true;
         }
 
         return $products2;
