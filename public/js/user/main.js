@@ -57,8 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const scrollContainer = document.getElementById('new-products-scroll-container');
     let scrollSpeed = 0.5;
@@ -73,4 +71,31 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(autoScroll);
     }
     autoScroll();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollContainer = document.getElementById('sail-products-scroll-container');
+    let scrollSpeed = 0;
+    function autoScroll() {
+
+        scrollContainer.scrollLeft += scrollSpeed;
+
+        if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
+            scrollContainer.scrollLeft = 0;
+        }
+
+        requestAnimationFrame(autoScroll);
+    }
+    autoScroll();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            item.classList.toggle('open');
+        });
+    });
 });

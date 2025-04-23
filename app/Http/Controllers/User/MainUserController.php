@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
+use App\Models\Faq;
 use App\Models\Product;
 use Illuminate\Support\Carbon;
 
@@ -13,7 +14,8 @@ class MainUserController extends Controller
     {
         $products = $this->showNewProducts();
         $products2 = $this->showDiscountProducts();
-        return view('user.main', compact('products', 'products2'));
+        $faqs = $this->showFAQS();
+        return view('user.main', compact('products', 'products2', 'faqs'));
     }
 
     public function showAbout()
@@ -82,5 +84,15 @@ class MainUserController extends Controller
         }
 
         return $products2;
+    }
+
+    public function showFAQS()
+    {
+        $faqs = Faq::select('question', 'answer')
+            ->orderBy('updated_at', 'desc')
+            ->limit(10)
+            ->get();
+
+        return $faqs;
     }
 }

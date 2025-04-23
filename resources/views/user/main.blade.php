@@ -149,7 +149,6 @@
             </div>
         </section>
 
-
         <section class="main-row">
             <div class="products-wrapper">
                 <h2 class="row-title">НОВИНКИ</h2>
@@ -245,7 +244,7 @@
             <div class="products-wrapper">
                 <h2 class="row-title">АКЦІЙНІ ТОВАРИ</h2>
 
-                <div class="products-scroll-container">
+                <div class="products-scroll-container" id="sail-products-scroll-container">
                     <div class="products-cards">
                         @foreach($products2 as $product2)
                             <div class="product-card"
@@ -328,59 +327,30 @@
             </div>
         </section>
 
-
-
         <section class="main-row">
             <div class="faqs-wrapper">
                 <h2 class="row-title">НАЙПОПУЛЯРНІШІ ПИТАННЯ</h2>
-
-
+                <div class="faq-list">
+                    @foreach($faqs as $index => $faq)
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span class="faq-number">{{ $index + 1 }}</span>
+                                <span class="faq-question-text">{{ $faq->question }}</span>
+                                <button class="toggle-answer" aria-label="Toggle answer">
+                                    <img  class="arrow-icon" src="{{ asset('images/v2/icon/ArrowSmallDownFAQ.svg') }}" alt="ArrowIcon">
+                                </button>
+                            </div>
+                            <div class="faq-answer">
+                                {{ $faq->answer }}
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-
         </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @include('layouts.footer-user')
 

@@ -24,6 +24,10 @@
 
         @yield('content')
 
+        <div id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+
         @if (session('success'))
             <div class="success-parent" id="success-alert">
                 <img class="icon-success" alt="Success" src="{{ asset('images/v2/icon/DoneOutline.svg') }}">
@@ -94,6 +98,27 @@
 
             // showLoaderWithDelay(); перед ajax запитом
             // hideLoader(); після ajax запиту
+
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const scrollBtn = document.getElementById("scrollToTop");
+
+                window.addEventListener("scroll", () => {
+                    if (window.scrollY > 300) {
+                        scrollBtn.classList.add("show");
+                    } else {
+                        scrollBtn.classList.remove("show");
+                    }
+                });
+
+                scrollBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            });
 
 
         </script>
