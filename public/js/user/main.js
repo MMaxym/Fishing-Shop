@@ -35,3 +35,42 @@ function showMainSlides(n) {
 setInterval(function() {
     moveMainSlide(1);
 }, 5000);
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.like-btn .like-icon').forEach(function (icon) {
+        icon.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            const outlineSrc = icon.dataset.outline;
+            const filledSrc = icon.dataset.filled;
+            const btn = icon.closest('.like-btn');
+
+            if (icon.getAttribute('src') === outlineSrc) {
+                icon.setAttribute('src', filledSrc);
+            } else {
+                icon.setAttribute('src', outlineSrc);
+            }
+
+            btn.classList.toggle('liked');
+        });
+    });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollContainer = document.getElementById('new-products-scroll-container');
+    let scrollSpeed = 0.5;
+    function autoScroll() {
+
+        scrollContainer.scrollLeft += scrollSpeed;
+
+        if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
+            scrollContainer.scrollLeft = 0;
+        }
+
+        requestAnimationFrame(autoScroll);
+    }
+    autoScroll();
+});

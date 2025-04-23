@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::unprepared('DROP TRIGGER IF EXISTS `trigger_actual_price`;`');
+        DB::unprepared('DROP TRIGGER IF EXISTS `trigger_actual_price`;');
         DB::unprepared('CREATE TRIGGER trigger_actual_price BEFORE INSERT ON categories
             FOR EACH ROW
             BEGIN
