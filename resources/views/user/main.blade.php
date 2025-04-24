@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
 <head>
     <link rel="stylesheet" href="{{ asset('css/user/main.css') }}">
 </head>
+
 @section('content')
 
     @include('layouts.header-user')
@@ -348,8 +350,6 @@
                 </div>
             </div>
         </section>
-
-
     </main>
 
     @include('layouts.footer-user')

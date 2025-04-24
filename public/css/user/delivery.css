@@ -1,97 +1,134 @@
-body {
-    background-color: #f0f4f8;
-    color: #333;
-    margin: 0;
-    padding: 0;
+.main-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    box-sizing: border-box;
+    gap: 40px;
 }
 
-.container {
-    padding: 0 15px;
-}
-
-h2 {
-    font-size: 2.5rem;
-    color: #04396E;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border-bottom: 4px solid #04396E;
-    display: inline-block;
-    padding-bottom: 10px;
-    font-weight: 700;
+.main-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+    padding: 50px 120px;
+    box-sizing: border-box;
 }
 
 .delivery-section {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 70px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.delivery-headers {
+    text-align: center;
+}
+
+.delivery-title {
+    font-size: var(--Font-40-size);
+    font-weight: var(--Semibold-weight);
+    margin-bottom: 20px;
+    color: var(--main-dark);
+    line-height: 150%;
+}
+
+.delivery-description {
+    font-size: var(--Font-20-size);
+    font-weight: var(--Medium-weight);
+    color: var(--dark-1);
+    max-width: 885px;
+}
+
+.delivery-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    width: 80%;
+    padding: 0 110px;
 }
 
 .delivery-card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    width: 500px;
-    height: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--white);
+    border-radius: var(--br-1);
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(13, 83, 112, 0.2);
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #04396E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .delivery-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgb(44, 115, 187, 0.7);
+    box-shadow: 0 6px 18px rgba(13, 83, 112, 0.4);
+    transform: translateY(-6px);
 }
 
-.delivery-icon {
+.delivery-img {
     width: 300px;
-    height: auto;
-    margin-bottom: 20px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.delivery-card h3 {
-    font-size: 22px;
+.delivery-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#delivery-img-ukrposhta{
+    width: 250px;
+}
+
+#delivery-img-pickup{
+    height: 220px;
+    margin-bottom: 15px;
+}
+
+#delivery-img-courier{
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+.delivery-name {
+    font-size: var(--Font-26-size);
+    font-weight: var(--Semibold-weight);
+    margin-bottom: 18px;
+    color: var(--main-dark);
+}
+
+.delivery-text {
+    font-size: var(--Font-18-size);
+    color: var(--dark-1);
+    font-weight: var(--Medium-weight);
+    margin-bottom: 18px;
+}
+
+.delivery-price {
+    font-size: var(--Font-20-size);
+    font-weight: var(--Semibold-weight);
     margin-bottom: 10px;
-    color: #2c73bb;
 }
 
-.delivery-card p {
-    font-size: 16px;
-    color: #555;
+.delivery-price.red {
+    color: var(--helps-red);
 }
 
-.scroll-to-top {
-    display: none;
-    position: fixed;
-    bottom: 40px;
-    right: 30px;
-    background-color: #2c73bb;
-    color: #fff;
-    padding: 15px 18px;
-    border-radius: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    transition: opacity 0.3s;
+.delivery-price.free {
+    color: #2a9d8f;
 }
 
-.scroll-to-top:hover {
-    background-color: #1F5B8A;
-}
-
-
-@media (max-width: 768px) {
-    .delivery-card {
-        width: 100%;
-        max-width: 350px;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
+.delivery-price-warning{
+    color: var(--grey);
+    font-weight: var(--Regular-weight);
+    font-size: var(--Font-14-size);
+    margin-bottom: 10px;
 }

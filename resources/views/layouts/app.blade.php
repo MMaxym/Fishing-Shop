@@ -25,7 +25,7 @@
         @yield('content')
 
         <div id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-arrow-up"></i>
+            <img  class="arrow-scroll-icon" src="{{ asset('images/v2/icon/ArrowBigUpScrollToTop.svg') }}" alt="ArrowIcon">
         </div>
 
         @if (session('success'))
@@ -105,7 +105,7 @@
                 const scrollBtn = document.getElementById("scrollToTop");
 
                 window.addEventListener("scroll", () => {
-                    if (window.scrollY > 300) {
+                    if (window.scrollY > 200) {
                         scrollBtn.classList.add("show");
                     } else {
                         scrollBtn.classList.remove("show");

@@ -2,46 +2,65 @@
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/user/delivery.css') }}">
-    <title>Fishing Store - Доставка</title>
 </head>
 
 @section('content')
 
-    <div class="container" style="max-width: 1600px;">
-        @include('layouts.header-user')
-        <div style="margin-top: 150px; margin-bottom: 100px; text-align: center;">
-            <h2 style="margin-bottom: 50px;">Методи доставки</h2>
+    @include('layouts.header-user')
 
+    <main class="main-section">
+        <section class="main-row">
             <div class="delivery-section">
-                <div class="delivery-card">
-                    <img src="{{ asset('images/novaposhta.png') }}" alt="Нова Пошта" class="delivery-icon" style="margin-top: 50px; margin-bottom: 50px;">
-                    <h3>Нова Пошта 🚚</h3>
-                    <p>Швидка доставка по Україні через відділення Нової Пошти. <strong>Ціна: <span style="color: #b62020; font-weight: normal;">*Залежить від адреси замовлення</span></strong></p>
+                <div class="delivery-headers">
+                    <h2 class="delivery-title">Доставка у нашому магазині</h2>
+                    <p class="delivery-description">
+                        Ми подбали про зручність кожного рибалки, тож пропонуємо кілька варіантів доставки на Ваш вибір
+                    </p>
                 </div>
 
-                <div class="delivery-card">
-                    <img src="{{ asset('images/ukrposhta.png') }}" alt="Укрпошта" class="delivery-icon">
-                    <h3>Укрпошта 📦</h3>
-                    <p>Економна доставка по всій території України через відділення Укрпошти. <strong>Ціна: 50 грн</strong></p>
-                </div>
+                <div class="delivery-cards">
+                    <div class="delivery-card">
+                        <div class="delivery-img">
+                            <img src="{{ asset('images/novaposhta.png') }}" alt="Нова Пошта" class="delivery-logo">
+                        </div>
+                        <h3 class="delivery-name">Нова Пошта</h3>
+                        <p class="delivery-text">Швидка доставка по Україні через відділення Нової Пошти</p>
+                        <p class="delivery-price red">Від 100 грн</p>
+                        <span class="delivery-price-warning">* Залежить від адреси замовлення</span>
+                    </div>
 
-                <div class="delivery-card">
-                    <img src="{{ asset('images/pickup.png') }}" alt="Самовивіз" class="delivery-icon" style="margin-top: 20px; margin-bottom: 60px;">
-                    <h3>Самовивіз 🏠</h3>
-                    <p>Безкоштовно заберіть своє замовлення з нашого магазину. <strong>Ціна: 0 грн</strong></p>
-                </div>
+                    <div class="delivery-card">
+                        <div class="delivery-img" id="delivery-img-ukrposhta">
+                            <img src="{{ asset('images/ukrposhta2.png') }}" alt="Укрпошта" class="delivery-logo">
+                        </div>
+                        <h3 class="delivery-name">Укрпошта</h3>
+                        <p class="delivery-text">Економна доставка по всій території України через відділення Укрпошти</p>
+                        <p class="delivery-price red">Від 50 грн</p>
+                        <span class="delivery-price-warning">* Залежить від адреси замовлення</span>
+                    </div>
 
-                <div class="delivery-card">
-                    <img src="{{ asset('images/courier.png') }}" alt="Доставка кур'єром" class="delivery-icon">
-                    <h3>Доставка кур'єром 🚴‍♂️</h3>
-                    <p>Зручна доставка замовлення прямо до вашого дому або офісу. <strong>Ціна: 200 грн</strong></p>
+                    <div class="delivery-card">
+                        <div class="delivery-img" id="delivery-img-pickup">
+                            <img src="{{ asset('images/v2/img/pickup-img.svg') }}" alt="Самовивіз" class="delivery-logo">
+                        </div>
+                        <h3 class="delivery-name">Самовивіз</h3>
+                        <p class="delivery-text">Безкоштовно заберіть своє замовлення з нашого магазину</p>
+                        <p class="delivery-price red">Безкоштовно</p>
+                    </div>
+
+                    <div class="delivery-card">
+                        <div class="delivery-img" id="delivery-img-courier">
+                            <img src="{{ asset('images/v2/img/courier-img.svg') }}" alt="Самовивіз" class="delivery-logo">
+                        </div>
+                        <h3 class="delivery-name">Доставка кур'єром</h3>
+                        <p class="delivery-text">Зручна доставка замовлення прямо до вашого дому або офісу</p>
+                        <p class="delivery-price red">250 грн</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-arrow-up"></i>
-        </div>
-    </div>
+        </section>
+    </main>
+
     @include('layouts.footer-user')
 
     <script src="{{ asset('js/user/delivery.js') }}"></script>
