@@ -2,59 +2,139 @@
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/user/about.css') }}">
-    <title>Fishing Store - Про нас</title>
 </head>
 
 @section('content')
 
-    <div class="container">
-        @include('layouts.header-user')
+    @include('layouts.header-user')
 
-        <section class="about-hero" style="background-image: url('{{ asset('images/about-1.jpg') }}');">
-            <div class="hero-content">
-                <h1 class="about-title">Про нас</h1>
-                <p class="about-subtitle">Ласкаво просимо до «Fishing Shop» — магазину, де починається ваша ідеальна риболовля!</p>
+    <main class="main-section">
+        <section class="main-row">
+            <div class="main-content-text">
+                <h2 class="main-title">Перевірені приманки<br>для справжнього улову</h2>
+                <p class="main-description">
+                    Тейлспінери, пількери, балансири – тільки робочі рішення.<br>
+                    У світі риболовлі немає місця випадковостям — важлива кожна деталь.
+                    Саме тому ми обираємо лише ті приманки, які відмінно працюють, перевірені
+                    в реальних умовах, на різних водоймах і за різної активності риби.
+                </p>
+            </div>
+            <div class="main-image-wrapper">
+                <img src="{{ asset('images/v2/img/about-img-1.svg') }}" alt="Перевірені приманки" class="main-image" />
             </div>
         </section>
 
-        <section class="about-details">
-            <div class="about-block">
-                <h2 class="about-heading">🎣 Інноваційні принади</h2>
-                <p class="about-text">
-                    Наш магазин пропонує інноваційні та надійні рибальські приманки, розроблені спеціально для водойм України.
+        <section class="main-row">
+            <div class="main-benefits-wrapper">
+                <h2 class="benefits-title">100% НАДІЙНІСТЬ</h2>
+                <p class="benefits-subtitle">
+                    Ми дбаємо про те, щоб кожна ваша риболовля була успішною. У нашому магазині ви знайдете тільки перевірені тейлспінери, пількери та балансири, які показали себе на водоймах України та за її межами. Ми самі рибалки — і обираємо найкраще!
                 </p>
-            </div>
-            <div class="about-block">
-                <h2 class="about-heading">📦 Широкий асортимент</h2>
-                <p class="about-text">
-                    В «Fishing Shop» ви знайдете широкий вибір сучасних приладь: від силіконових приманок до балансирів і тейл-спінерів.
-                </p>
-            </div>
-            <div class="about-block">
-                <h2 class="about-heading">💬 Професійна підтримка</h2>
-                <p class="about-text">
-                    Наші експерти завжди готові надати професійну консультацію, допомогти у виборі спорядження та поділитися секретами успішної риболовлі.
-                </p>
-            </div>
-            <div class="about-block">
-                <h2 class="about-heading">💸 Знижки та акції</h2>
-                <p class="about-text">
-                    Ми регулярно проводимо акції та пропонуємо знижки для постійних клієнтів.
-                </p>
-            </div>
-            <div class="about-block">
-                <h2 class="about-heading">🤝 Надійний партнер</h2>
-                <p class="about-text">
-                    «Fishing Shop» — це не просто магазин, це спільнота однодумців, закоханих у риболовлю.
-                </p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutPercent.svg') }}" alt="Перевага 1" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>100% Робочі приманки</h3>
+                            <p>Тестовані досвідом, перевірені в польових умовах</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutPay.svg') }}" alt="Перевага 2" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Безпечна оплата</h3>
+                            <p>Ваші кошти — під захистом</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutPhoneFilled.svg') }}" alt="Перевага 3" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Постійна підтримка</h3>
+                            <p>Маєте питання — ми завжди на зв’язку</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutSmile.svg') }}" alt="Перевага 4" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Задоволені клієнти</h3>
+                            <p>Рибалки з усієї України нам довіряють</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutFish.svg') }}" alt="Перевага 5" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Приманки для будь-якої риби</h3>
+                            <p>Від окуня до щуки — знайдеться на всіх</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutSaleOutline.svg') }}" alt="Перевага 6" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Знижки на замовлення</h3>
+                            <p>При замовленні від 1000 гривень, ще й знижки!</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutSupport.svg') }}" alt="Перевага 7" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Миттєвий зв’язок з нами</h3>
+                            <p>Телеграм, вайбер, пошта — як вам зручно</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon-section">
+                            <img src="{{ asset('images/v2/icon/AboutBatter.svg') }}" alt="Перевага 8" class="benefit-icon">
+                        </div>
+                        <div class="text">
+                            <h3>Гарантований улов</h3>
+                            <p>Ви не повернетеся з порожніми руками!</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-arrow-up"></i>
+        <div class="decoration-row">
+            <img src="{{ asset('images/v2/img/decoration-img.svg') }}" alt="Розділювач" class="decoration-img">
         </div>
 
-    </div>
+        <section class="main-row" id="about-row-2">
+            <div class="fishing-image">
+                <img src="{{ asset('images/v2/img/about-img-2.svg') }}" alt="Про нас" class="about-img">
+            </div>
+            <div class="fishing-text">
+                <h2>Трохи душі</h2>
+                <p>
+                    Ми віримо, що риболовля — це не лише про улов.<br>
+                    Це — про спокій, пригоди, дружбу і незабутні моменти. І наша місія — <br> зробити ці моменти ще яскравішими, допомагаючи кожному рибалці <br>
+                    знайти “свою” приманку.
+                </p>
+                <p class="last-line">Закинь з нами — і відчуй різницю!</p>
+            </div>
+        </section>
+    </main>
+
     @include('layouts.footer-user')
 
     <script src="{{ asset('js/user/about.js') }}"></script>

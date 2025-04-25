@@ -31,25 +31,25 @@
 }
 
 .delivery-title {
-    font-size: var(--Font-40-size);
+    font-size: var(--Font-36-size);
     font-weight: var(--Semibold-weight);
     margin-bottom: 20px;
-    color: var(--main-dark);
+    color: var(--dark-1);
     line-height: 150%;
 }
 
 .delivery-description {
-    font-size: var(--Font-20-size);
+    font-size: var(--Font-18-size);
     font-weight: var(--Medium-weight);
     color: var(--dark-1);
-    max-width: 885px;
+    max-width: 950px;
 }
 
 .delivery-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 50px;
-    width: 80%;
+    gap: 70px;
+    width: 90%;
     padding: 0 110px;
 }
 
