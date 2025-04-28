@@ -52,6 +52,7 @@ body {
     --Medium-weight: 500;
     --Semibold-weight: 600;
     --Bold-weight: 700;
+    --ExtraBold-weight: 999;
 
     /* Font-size */
     --Font-12-size: 12px;
@@ -65,5 +66,6 @@ body {
     --Font-32-size: 32px;
     --Font-36-size: 36px;
     --Font-40-size: 40px;
+    --Font-42-size: 42px;
     --Font-46-size: 46px;
 }
