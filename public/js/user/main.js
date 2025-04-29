@@ -42,20 +42,62 @@ document.addEventListener("DOMContentLoaded", function () {
         icon.addEventListener('click', function (e) {
             e.stopPropagation();
 
+            const btn = icon.closest('.like-btn');
+            const productId = btn.dataset.id;
             const outlineSrc = icon.dataset.outline;
             const filledSrc = icon.dataset.filled;
-            const btn = icon.closest('.like-btn');
 
-            if (icon.getAttribute('src') === outlineSrc) {
-                icon.setAttribute('src', filledSrc);
-            } else {
-                icon.setAttribute('src', outlineSrc);
-            }
+            fetch(`/user/favorite-products/toggle/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            showToast('Щоб додати товар в улюблені, спочатку увійдіть в акаунт!', 'warning');
+                            return;
+                        }
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data) return;
 
-            btn.classList.toggle('liked');
+                    if (data.status === 'added') {
+                        showToast('Товар додано в улюблені!', 'success');
+                        const allButtons = document.querySelectorAll(`.like-btn[data-id='${productId}']`);
+                        allButtons.forEach(button => {
+                            const icon = button.querySelector('.like-icon');
+                            const filledSrc = icon.getAttribute('data-filled');
+                            icon.setAttribute('src', filledSrc);
+                            button.classList.add('liked');
+                        });
+
+                    }
+                    else if (data.status === 'removed') {
+                        showToast('Товар видалено з улюблених!', 'info');
+                        const allButtons = document.querySelectorAll(`.like-btn[data-id='${productId}']`);
+                        allButtons.forEach(button => {
+                            const icon = button.querySelector('.like-icon');
+                            const outlineSrc = icon.getAttribute('data-outline');
+                            icon.setAttribute('src', outlineSrc);
+                            button.classList.remove('liked');
+                        });
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     });
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const scrollContainer = document.getElementById('new-products-scroll-container');
@@ -99,3 +141,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+

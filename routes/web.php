@@ -14,6 +14,7 @@ use App\Http\Controllers\User\CategoryBalancerController;
 use App\Http\Controllers\User\CategoryPilkerController;
 use App\Http\Controllers\User\CategoryTailSpinnerController;
 use App\Http\Controllers\User\CheckoutPageController;
+use App\Http\Controllers\User\FavoriteProductController;
 use App\Http\Controllers\User\HeaderUserController;
 use App\Http\Controllers\User\MainUserController;
 use App\Http\Controllers\User\NewProductController;
@@ -153,6 +154,9 @@ Route::prefix('user/')->group(function () {
     Route::get('/showDiscountProducts', [MainUserController::class, 'showDiscountProducts'])->name('user.showDiscountProducts');
     Route::get('/searchProduct', [SearchProductController::class, 'index'])->name('user.searchProduct');
     Route::get('/search', [HeaderUserController::class, 'search'])->name('search');
+
+
+    Route::post('/favorite-products/toggle/{product}', [FavoriteProductController::class, 'toggle']);
 });
 
 

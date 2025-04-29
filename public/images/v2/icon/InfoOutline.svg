@@ -1,9 +1,10 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-<g id="state=outline">
-<g id="Group">
-<path id="Vector" d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="black"/>
-<path id="Vector_2" d="M8 5H8.00667" stroke="black" stroke-linecap="round"/>
-<path id="Vector_3" d="M6.80029 7.40002H8.00029V10.4M6.80029 10.4H9.20029" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <mask id="cutout">
+            <rect width="16" height="16" fill="white"/>
+            <circle cx="8" cy="5" r="0.75" fill="black"/>
+            <rect x="7.25" y="7" width="1.5" height="4.5" rx="0.75" fill="black"/>
+        </mask>
+    </defs>
+    <circle cx="8" cy="8" r="6" fill="#006bdd" mask="url(#cutout)" />
 </svg>

@@ -218,11 +218,14 @@
 
 
                                 <div class="product-card-buttons">
-                                    <button class="like-btn" type="button">
-                                        <img src="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}" alt="Like" class="like-icon"
-                                            data-outline="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}"
-                                            data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}" >
+                                    <button class="like-btn" type="button" data-id="{{ $product->id }}">
+                                        <img src="{{ $product->isLiked ? asset('images/v2/icon/LikeFilledCard.svg') : asset('images/v2/icon/LikeOutlineCard.svg') }}"
+                                             alt="Like"
+                                             class="like-icon"
+                                             data-outline="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}"
+                                             data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}">
                                     </button>
+
                                     <button class="buy-btn" type="button">Купити
                                         <img  class="buy-btn-icon" src="{{ asset('images/v2/icon/BasketOutlineCard.svg') }}" alt="ByIcon">
                                     </button>
@@ -309,10 +312,12 @@
 
 
                                 <div class="product-card-buttons">
-                                    <button class="like-btn" type="button">
-                                        <img src="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}" alt="Like" class="like-icon"
+                                    <button class="like-btn" type="button" data-id="{{ $product2->id }}">
+                                        <img src="{{ $product2->isLiked ? asset('images/v2/icon/LikeFilledCard.svg') : asset('images/v2/icon/LikeOutlineCard.svg') }}"
+                                             alt="Like"
+                                             class="like-icon"
                                              data-outline="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}"
-                                             data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}" >
+                                             data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}">
                                     </button>
                                     <button class="buy-btn" type="button">Купити
                                         <img  class="buy-btn-icon" src="{{ asset('images/v2/icon/BasketOutlineCard.svg') }}" alt="ByIcon">

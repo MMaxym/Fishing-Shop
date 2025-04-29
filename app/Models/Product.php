@@ -46,6 +46,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function favoriteProduct()
+    {
+        return $this->hasMany(FavoriteProduct::class);
+    }
+
     public function discountedPrice()
     {
         if ($this->discount) {

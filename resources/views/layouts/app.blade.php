@@ -14,6 +14,8 @@
         <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     </head>
 
     <body style="background-color: var(--main-light);">
@@ -28,25 +30,13 @@
             <img  class="arrow-scroll-icon" src="{{ asset('images/v2/icon/ArrowBigUpScrollToTop.svg') }}" alt="ArrowIcon">
         </div>
 
-        @if (session('success'))
-            <div class="success-parent" id="success-alert">
-                <img class="icon-success" alt="Success" src="{{ asset('images/v2/icon/DoneOutline.svg') }}">
-                <div class="alert-success">  {{ session('success') }}</div>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="cancel-parent"  id="cancel-alert">
-                <img class="icon-cancel" alt="Cancel" src="{{ asset('images/v2/icon/CanselOutline.svg') }}">
-                <div class="alert-danger">  {{ session('error') }}</div>
-            </div>
-        @endif
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
         <script>
 
@@ -99,8 +89,6 @@
             // showLoaderWithDelay(); перед ajax запитом
             // hideLoader(); після ajax запиту
 
-
-
             document.addEventListener("DOMContentLoaded", () => {
                 const scrollBtn = document.getElementById("scrollToTop");
 
@@ -120,6 +108,69 @@
                 });
             });
 
+
+
+            function showToast(message, type = 'success') {
+                const icons = {
+                    success: "{{ asset('images/v2/icon/DoneFilled.svg') }}",
+                    warning: "{{ asset('images/v2/icon/WarningFilled.svg') }}",
+                    info: "{{ asset('images/v2/icon/InfoOutline.svg') }}",
+                    error: "{{ asset('images/v2/icon/CanselFilled.svg') }}"
+                };
+
+                const icon = icons[type] || 'ℹ️';
+
+                Toastify({
+                    node: createCustomToast(icon, message, type),
+                    duration: 5000,
+                    gravity: "bottom",
+                    position: "left",
+                    stopOnFocus: true,
+                    close: false,
+                    style: {
+                        background: "none",
+                        boxShadow: "none"
+                    },
+                    offset: {
+                        x: 0,
+                        y: 0
+                    }
+                }).showToast();
+            }
+
+            function createCustomToast(iconSrc, message, type) {
+                const toast = document.createElement('div');
+                toast.className = `custom-toast toast-${type}`;
+
+                toast.innerHTML = `
+                     <span class="toast-icon">
+                        <img src="${iconSrc}" alt="icon" width="28" height="28">
+                    </span>
+                    <span class="toast-message">${message}</span>
+                    <button class="toast-close">&times;</button>
+                `;
+
+                toast.querySelector('.toast-close').addEventListener('click', () => {
+                    toast.parentElement?.remove();
+                });
+
+                return toast;
+            }
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                @if (session('success'))
+                showToast(@json(session('success')), 'success');
+                @endif
+
+                @if (session('warning'))
+                showToast(@json(session('warning')), 'warning');
+                @endif
+
+                @if (session('error'))
+                showToast(@json(session('error')), 'error');
+                @endif
+            });
 
         </script>
     </body>

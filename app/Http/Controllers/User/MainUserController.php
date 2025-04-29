@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
 use App\Models\Faq;
+use App\Models\FavoriteProduct;
 use App\Models\Product;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class MainUserController extends Controller
 {
@@ -45,11 +47,20 @@ class MainUserController extends Controller
         return view('user.delivery');
     }
 
+    private function addLikeInfoToProducts($products, $likedProductIds)
+    {
+        foreach ($products as $product) {
+            $product->isLiked = in_array($product->id, $likedProductIds);
+        }
+
+        return $products;
+    }
+
     public function showNewProducts()
     {
         $oneMonthAgo = \Carbon\Carbon::now()->subMonth();
 
-        $products = Product::with('images', 'discount', 'category')
+        $products = Product::with(['images', 'discount', 'category'])
             ->where('is_active', 1)
             ->where('quantity', '>', 0)
             ->where(function ($query) use ($oneMonthAgo) {
@@ -59,6 +70,16 @@ class MainUserController extends Controller
             ->orderBy('updated_at', 'desc')
             ->limit(12)
             ->get();
+
+        $likedProductIds = [];
+
+        if (Auth::check()) {
+            $likedProductIds = FavoriteProduct::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
+
+        $products = $this->addLikeInfoToProducts($products, $likedProductIds);
 
         foreach ($products as $product) {
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
@@ -79,12 +100,23 @@ class MainUserController extends Controller
             ->limit(12)
             ->get();
 
+        $likedProductIds = [];
+
+        if (Auth::check()) {
+            $likedProductIds = FavoriteProduct::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
+
+        $products2 = $this->addLikeInfoToProducts($products2, $likedProductIds);
+
         foreach ($products2 as $product2) {
             $product2->isDiscounted = true;
         }
 
         return $products2;
     }
+
 
     public function showFAQS()
     {
