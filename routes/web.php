@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\LabController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CategoryBalancerController;
 use App\Http\Controllers\User\CategoryPilkerController;
 use App\Http\Controllers\User\CategoryTailSpinnerController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\User\MainUserController;
 use App\Http\Controllers\User\NewProductController;
 use App\Http\Controllers\User\NovaPoshtaController;
 use App\Http\Controllers\User\OrderHistoryController;
+use App\Http\Controllers\User\ProductDetailsController;
 use App\Http\Controllers\User\SaleProductController;
 use App\Http\Controllers\User\SearchProductController;
 use App\Http\Controllers\User\ShoppingCartController;
@@ -155,6 +157,8 @@ Route::prefix('user/')->group(function () {
     Route::get('/searchProduct', [SearchProductController::class, 'index'])->name('user.searchProduct');
     Route::get('/search', [HeaderUserController::class, 'search'])->name('search');
 
+    Route::get('/product/{id}', [ProductDetailsController ::class, 'showDetails'])->name('product.showDetails');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 
     Route::post('/favorite-products/toggle/{product}', [FavoriteProductController::class, 'toggle']);
 });

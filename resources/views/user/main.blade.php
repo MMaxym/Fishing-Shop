@@ -226,7 +226,7 @@
                                              data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}">
                                     </button>
 
-                                    <button class="buy-btn" type="button">Купити
+                                    <button class="buy-btn" type="button" onclick="window.location.href='{{ route('product.showDetails', ['id' => $product->id]) }}'">Купити
                                         <img  class="buy-btn-icon" src="{{ asset('images/v2/icon/BasketOutlineCard.svg') }}" alt="ByIcon">
                                     </button>
                                 </div>
@@ -319,7 +319,7 @@
                                              data-outline="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}"
                                              data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}">
                                     </button>
-                                    <button class="buy-btn" type="button">Купити
+                                    <button class="buy-btn" type="button" onclick="window.location.href='{{ route('product.showDetails', ['id' => $product2->id]) }}'">Купити
                                         <img  class="buy-btn-icon" src="{{ asset('images/v2/icon/BasketOutlineCard.svg') }}" alt="ByIcon">
                                     </button>
                                 </div>

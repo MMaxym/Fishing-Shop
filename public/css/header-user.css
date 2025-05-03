@@ -158,6 +158,33 @@
     transform: scale(1.1);
 }
 
+.shopping-cart-icon {
+    transition: all 0.2s ease;
+}
+
+.shopping-cart-icon:hover{
+    transform: scale(1.1);
+}
+
+.cart-badge {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: -7px;
+    right: -7px;
+    background-color: var(--helps-red);
+    color: var(--white);
+    font-size: var(--Font-12-size);
+    padding: 3px 6px;
+    border-radius: 50%;
+    font-weight: var(--Semibold-weight);
+    line-height: 1;
+    width: 18px;
+    height: 18px;
+    transition: all 0.2s ease;
+}
+
 .btn-link-login{
     padding: 10px 24px;
     background-color: var(--light-1);

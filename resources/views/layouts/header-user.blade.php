@@ -40,8 +40,17 @@
             <a href="{{ route('user.main') }}" class="link-icon">
                 <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Улюблені товари" src="{{ asset('images/v2/icon/LikeFilledHeader.svg') }}">
             </a>
-            <a href="{{ route('user.shoppingCart') }}" class="link-icon">
-                <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Кошик" src="{{ asset('images/v2/icon/BasketFilledHeader.svg') }}">
+            <a href="{{ route('user.shoppingCart') }}" class="link-icon position-relative">
+                <div class="shopping-cart-icon">
+                    <img class="user-page-cart-icon" alt="Logo" title="Перейти на сторінку Кошик" src="{{ asset('images/v2/icon/BasketFilledHeader.svg') }}">
+                    @php
+                        $cart = session('cart', []);
+                        $cartCount = count($cart);
+                    @endphp
+                    @if ($cartCount > 0)
+                        <span class="cart-badge">{{ $cartCount }}</span>
+                    @endif
+                </div>
             </a>
             <a href="{{ route('user.orderHistory') }}" class="link-icon">
                 <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Історія замовлень" src="{{ asset('images/v2/icon/HistoryHeader.svg') }}">
