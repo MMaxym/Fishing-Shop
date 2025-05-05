@@ -217,6 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
             price: parseFloat(addToCartBtn.dataset.price),
             actualPrice: parseFloat(addToCartBtn.dataset.actualPrice),
             quantity: quantity,
+            discountPercentage: addToCartBtn.dataset.discountPercentage,
+            discountEndDate: addToCartBtn.dataset.discountEndDate,
             image: addToCartBtn.dataset.image
         };
 

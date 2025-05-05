@@ -47,9 +47,7 @@
                         $cart = session('cart', []);
                         $cartCount = count($cart);
                     @endphp
-                    @if ($cartCount > 0)
-                        <span class="cart-badge">{{ $cartCount }}</span>
-                    @endif
+                    <span class="cart-badge">{{ $cartCount }}</span>
                 </div>
             </a>
             <a href="{{ route('user.orderHistory') }}" class="link-icon">

@@ -7,142 +7,234 @@
 
 @section('content')
 
-    <div class="container" style="max-width: 1600px;">
-        @include('layouts.header-user')
-        <div style="margin-top: 120px; margin-bottom: 30px; text-align: center;">
-            <p class="navigate">
-                <a href="{{ route('user.main') }}" class="breadcrumb-link">
-                    <i class="fa fa-home"></i> Головна
-                </a>
-                > Кошик
-            </p>
-            <h2 class="page-title">КОШИК</h2>
+    @include('layouts.header-user')
+
+    <main class="main-section">
+        <section class="main-row" id="main-row-product-details">
+            <div class="main-row-wrapper">
+                <nav aria-label="breadcrumb" class="page-navigation">
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('user.main') }}">
+                                <img src="{{ asset('images/v2/icon/HomeFilled.svg') }}" alt="Home Icon">
+                                Головна
+                            </a>
+                            <span class="breadcrumb-separator">
+                                <img src="{{ asset('images/v2/icon/ArrowSmallRightNav.svg') }}" alt="Arrow Icon">
+                            </span>
+                        </li>
+                        <li class="current-product"> Кошик</li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <section class="main-row">
+            <div class="products-wrapper">
+                <h2 class="row-title">КОШИК</h2>
+                <div class="cart-products">
+                    <div class="cart-items-container">
+                        @php
+                            $cart = session('cart', []);
+                        @endphp
+
+                        @if(count($cart) > 0)
+                            <div class="cart-table-head">
+                                <div class="col product-title">Товар</div>
+                                <div class="col price-title">Ціна</div>
+                                <div class="col quantity-title">К-сть</div>
+                                <div class="col total-title">Вартість</div>
+                            </div>
+                        @endif
+
+                        @forelse ($cart as $item)
+                            <div class="cart-item"
+                                 data-id="{{ $item['id'] }}"
+                                 data-price="{{ $item['price'] }}"
+                                 data-actual-price="{{ $item['actualPrice'] }}"
+                                 data-quantity="{{ $item['quantity'] }}">
+
+                                <div class="cart-item-image">
+                                    <a href="{{ route('product.showDetails', ['id' => $item['id']]) }}">
+                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}">
+                                    </a>
+                                </div>
+                                <div class="cart-item-details">
+                                    <a href="{{ route('product.showDetails', ['id' => $item['id']]) }}" class="cart-item-link">
+                                        <div class="cart-item-name">{{ $item['name'] }}</div>
+                                    </a>
+                                    <div class="cart-item-article">арт. {{ $item['article'] }}</div>
+                                </div>
+
+                                @php
+                                    $hasDiscount = $item['discountPercentage'] && $item['discountEndDate'] && \Carbon\Carbon::parse($item['discountEndDate'])->isFuture();
+                                @endphp
+
+                                <div class="cart-item-price" data-actual-price="{{ $item['actualPrice'] }}">
+                                    @if ($hasDiscount)
+                                        <div class="old-price-section">
+                                            <span class="old-price">
+                                                {{ number_format($item['price'], 0, ' ', ' ') }} грн
+                                            </span>
+                                            <span class="discount-badge">
+                                                - {{ $item['discountPercentage'] }}%
+                                            </span>
+                                        </div>
+                                        <div class="new-price">
+                                            {{ number_format($item['actualPrice'], 0, ' ', ' ') }} грн
+                                        </div>
+                                    @else
+                                        <span class="product-price">
+                                            {{ number_format($item['actualPrice'], 0, ' ', ' ') }} грн
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="cart-item-quantity" data-id="{{ $item['id'] }}">
+                                    <button class="quantity-decrease">
+                                        <img class="qty-btn-icon" src="{{ asset('images/v2/icon/ZnakMinus.svg') }}" alt="-">
+                                    </button>
+                                    <span class="quantity-value">{{ $item['quantity'] }}</span>
+                                    <button class="quantity-increase">
+                                        <img class="qty-btn-icon" src="{{ asset('images/v2/icon/ZnakPlus.svg') }}" alt="+">
+                                    </button>
+                                </div>
+
+                                <div class="cart-item-total" >{{ number_format($item['actualPrice'] * $item['quantity'], 0, ' ', ' ') }} грн</div>
+
+                                <button class="cart-item-remove">
+                                    <img class="remove-item-icon" src="{{ asset('images/v2/icon/ZnakPlus.svg') }}" alt="+">
+                                </button>
+                            </div>
+                        @empty
+                            <div class="empty-cart">
+                                <p class="empty-cart-text">Ви не додали у кошик жодного товару. Кошик порожній.</p>
+                                <button class="empty-cart-btn" onclick="window.location.href='{{ route('user.main') }}'">Продовжити покупки
+                                    <img  class="empty-cart-btn-icon" src="{{ asset('images/v2/icon/ArrowBigRightHomeLink.svg') }}" alt="moreIcon">
+                                </button>
+                                <img  class="empty-cart-img" src="{{ asset('images/v2/img/not-found-products-img.svg') }}" alt="emptyIcon">
+                            </div>
+                        @endforelse
+                    </div>
+
+                    @if(count($cart) > 0)
+                        @php
+                            $pr1 = array_sum(array_map(fn($i) => (float)$i['price'] * (int)$i['quantity'], $cart));
+                            $pr2 = array_sum(array_map(fn($i) => (float)$i['actualPrice'] * (int)$i['quantity'], $cart));
+
+                            $discount = round($pr1 - $pr2);
+
+                            $pr1Formatted = number_format($pr1, 0, '.', ' ');
+                            $pr2Formatted = number_format($pr2, 0, '.', ' ');
+                            $discountFormatted = number_format($discount, 0, '.', ' ');
+                        @endphp
+
+                        <div class="cart-summary">
+                            <h3 class="summary-title">Замовлення</h3>
+                            <div class="summary-line"><span>Сума:</span> <span id="summary-total-price">{{ $pr1Formatted }} грн</span></div>
+                            <div class="summary-line"><span>Знижка:</span> <span id="summary-discount">- {{ $discountFormatted }} грн</span></div>
+                            <div class="summary-line total"><span>ВСЬОГО:</span> <span id="summary-final-price">{{ $pr2Formatted }} грн</span></div>
+                            <button class="checkout-button">Оформити замовлення
+                                <img  class="icon-cart" src="{{ asset('images/v2/icon/PayCart.svg') }}" alt="PayIcon">
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </section>
+
+        <div class="decoration-row" id="decoration-row-details-product">
+            <img src="{{ asset('images/v2/img/decoration-img.svg') }}" alt="Розділювач" class="decoration-img">
         </div>
 
-        <div id="cart-items" class="cart-container"></div>
+        @if($recentlyViewedProducts->isNotEmpty())
+            <section class="main-row">
+                <div class="recently-products-wrapper">
+                    <h2 class="row-title">НЕЩОДАВНО ПЕРЕГЛЯНУТІ</h2>
+                    <div class="recently-products-scroll-container" id="recently-products-scroll-container">
+                        <div class="recently-products-cards">
+                            @foreach($recentlyViewedProducts as $recentlyViewedProduct)
+                                <div class="recently-product-card"
+                                     data-id="{{$recentlyViewedProduct->id}}"
+                                     data-name="{{ $recentlyViewedProduct->name }}"
+                                     data-size="{{ $recentlyViewedProduct->size }}"
+                                     data-quantity="{{ $recentlyViewedProduct->quantity }}"
+                                     data-description="{{ $recentlyViewedProduct->description }}"
+                                     data-image="{{ $recentlyViewedProduct->images->isNotEmpty() ? implode(',', $recentlyViewedProduct->images->map(fn($img) => asset('storage/' . $img->image_url))->toArray()) : '' }}"
+                                     data-article="{{ $recentlyViewedProduct->article }}"
+                                     data-price="{{ $recentlyViewedProduct->price }}"
+                                     data-discounted-price="{{ $recentlyViewedProduct->discount ? $recentlyViewedProduct->discountedPrice() : $recentlyViewedProduct->price }}"
+                                     data-actual-price="{{$recentlyViewedProduct->actual_price}}">
 
-        <p class="total" id="total">Загальна сума замовлення: <span id="total-price" style="margin-left: 20px;">0 грн</span></p>
+                                    {{-- Вміст карточки --}}
+                                    @if($recentlyViewedProduct->isNew)
+                                        <img  class="recently-product-card-badge" src="{{ asset('images/v2/icon/NewGreen.svg') }}" alt="SaleIcon">
+                                    @elseif($recentlyViewedProduct->discount)
+                                        <img  class="recently-product-card-badge" src="{{ asset('images/v2/icon/SaleOrange.svg') }}" alt="SaleIcon">
+                                    @endif
 
-        <div id="container-button" class="container-button">
-            <button class="continue" onclick="window.location.href='{{ route('user.main') }}'">
-                <i class="fas fa-arrow-circle-left"></i>Продовжити покупки
-            </button>
-            <button class="place-order" id="place-order" onclick="window.location.href='{{ route('user.checkoutPage') }}'">
-                <i class="fas fa-check"></i>Оформити замовлення
-            </button>
-        </div>
+                                    @if($recentlyViewedProduct->images->isNotEmpty())
+                                        <img src="{{ $recentlyViewedProduct->images->first() ? asset('storage/' . $recentlyViewedProduct->images->first()->image_url) : '/images/no-image.png' }}"
+                                             alt="{{ $recentlyViewedProduct->name }}"
+                                             class="recently-product-card-img">
+                                    @else
+                                        <span id="notImageProduct">Немає зображення</span>
+                                    @endif
 
-        <div id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-arrow-up"></i>
-        </div>
+                                    <div class="recently-product-card-status
+                                    @if($recentlyViewedProduct->quantity == 0)
+                                        recently-out-stock
+                                    @elseif($recentlyViewedProduct->quantity < 50)
+                                        recently-low-stock
+                                    @else
+                                        recently-in-stock
+                                    @endif
+                                ">
+                                        @if($recentlyViewedProduct->quantity == 0)
+                                            Немає в наявності <img src="{{ asset('images/v2/icon/CanselFilledStatus.svg') }}" alt="нема" class="recently-status-icon">
+                                        @elseif($recentlyViewedProduct->quantity < 50)
+                                            Товар закінчується <img src="{{ asset('images/v2/icon/SaleFilledStatus.svg') }}" alt="мало" class="recently-status-icon">
+                                        @else
+                                            Є в наявності <img src="{{ asset('images/v2/icon/DoneFilledStatus.svg') }}" alt="є" class="recently-status-icon">
+                                        @endif
+                                    </div>
+                                    <div class="recently-product-card-name">{{ $recentlyViewedProduct->name }} (арт. {{$recentlyViewedProduct->article}})</div>
 
-    </div>
+                                    @if ($recentlyViewedProduct->discount && $recentlyViewedProduct->discount->end_date >= now())
+
+                                        <div class="recently-product-card-prices">
+                                            <span class="recently-old-price">{{ number_format($recentlyViewedProduct->price, 0, ',', ' ') }} грн</span>
+                                            <span class="recently-new-price">{{ number_format($recentlyViewedProduct->actual_price, 0, ',', ' ') }} грн</span>
+                                        </div>
+                                    @else
+                                        <div class="recently-product-card-prices">
+                                            <span class="recently-product-price">{{ number_format($recentlyViewedProduct->actual_price, 0, ',', ' ') }} грн</span>
+                                        </div>
+                                    @endif
+                                    <div class="recently-product-card-buttons">
+                                        <button class="recently-like-btn" type="button" data-id="{{ $recentlyViewedProduct->id }}">
+                                            <img src="{{ $recentlyViewedProduct->isLiked ? asset('images/v2/icon/LikeFilledCard.svg') : asset('images/v2/icon/LikeOutlineCard.svg') }}"
+                                                 alt="Like"
+                                                 class="recently-like-icon"
+                                                 data-outline="{{ asset('images/v2/icon/LikeOutlineCard.svg') }}"
+                                                 data-filled="{{ asset('images/v2/icon/LikeFilledCard.svg') }}">
+                                        </button>
+                                        <button class="recently-buy-btn" type="button" onclick="window.location.href='{{ route('product.showDetails', ['id' => $recentlyViewedProduct->id]) }}'">Купити
+                                            <img  class="recently-buy-btn-icon" src="{{ asset('images/v2/icon/BasketOutlineCard.svg') }}" alt="ByIcon">
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+    </main>
+{{--    <pre>{{ print_r(session()->all(), true) }}</pre>--}}
 
     @include('layouts.footer-user')
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const userId = '{{ auth()->user() ? auth()->user()->id : "Немає" }}';
-            const cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
-            const cartItemsContainer = document.getElementById('cart-items');
-            const placeOrder = document.getElementById('place-order');
-            const totalPriceElement = document.getElementById('total-price');
-            const total = document.getElementById('total');
+    <script src="{{ asset('js/user/shoppingCart.js') }}"></script>
 
-            let totalOrderPrice = 0;
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="empty-cart">Ваш кошик порожній.</p>';
-                placeOrder.style.display = 'none';
-                total.style.display = 'none';
-            } else {
-                cart.forEach(product => {
-                    const totalPrice = (product.actualPrice * product.quantity).toFixed(2);
-                    totalOrderPrice += parseFloat(totalPrice);
-
-                    const productElement = `
-                <div class="cart-item">
-                    <div class="cart-item-info">
-                        <img src="${product.images[0]}" alt="${product.name}" class="cart-item-image" />
-                        <div class="cart-item-details">
-                            <h3 class="product-name">${product.name} (${product.article})</h3>
-                            <p class="product-weight">Вага: ${product.size} г</p>
-                            <div class="quantity-control">
-                                <div class="row-price">
-                                    <div class="quantity-decrease" style="padding: 2px 12px; background-color: #2c73bb; color: white; cursor: pointer;">-</div>
-                                    <span class="quantity-value">${product.quantity}</span>
-                                    <div class="quantity-increase" style="padding: 2px 12px; background-color: #2c73bb; color: white; cursor: pointer;">+</div>
-                                </div>
-                            </div>
-                            ${
-                        product.price === product.actualPrice
-                            ? `<p class="product-price" style="font-size: 18px; font-weight: bold;">${product.actualPrice} грн</p>`
-                            : `
-                                        <span class="product-price" style="text-decoration: line-through;">${product.price} грн</span>
-                                        <span class="product-actual-price" style="font-size: 18px; margin-left: 10px;">${product.actualPrice} грн</span>
-                                      `
-                    }
-                            <p class="total-price">Разом: ${totalPrice} грн</p>
-                        </div>
-                        <button class="remove-item">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-                    cartItemsContainer.innerHTML += productElement;
-                });
-
-                totalPriceElement.innerText = `${totalOrderPrice.toFixed(2)} грн`;
-            }
-
-            document.querySelectorAll('.quantity-decrease').forEach((button, index) => {
-                button.addEventListener('click', () => updateQuantity(index, -1));
-            });
-
-            document.querySelectorAll('.quantity-increase').forEach((button, index) => {
-                button.addEventListener('click', () => updateQuantity(index, 1));
-            });
-
-            function updateQuantity(index, change) {
-                const newQuantity = cart[index].quantity + change;
-
-                if (newQuantity > 0 && newQuantity <= cart[index].quantityDB) {
-                    cart[index].quantity = newQuantity;
-                    localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
-                    location.reload();
-                } else {
-                    alert('Ви не можете додати більше товарів, ніж є в наявності.');
-                }
-            }
-
-            document.querySelectorAll('.remove-item').forEach((button, index) => {
-                const productName = cart[index].name;
-                button.addEventListener('click', () => removeItem(index, productName));
-            });
-
-            function removeItem(index, productName) {
-                const confirmDelete = confirm(`Ви дійсно хочете видалити товар ${productName} з кошика?`);
-
-                if (confirmDelete) {
-                    cart.splice(index, 1);
-                    localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
-                    location.reload();
-                }
-            }
-        });
-
-        window.onscroll = function () {
-            const scrollToTopButton = document.getElementById("scrollToTop");
-            if (window.scrollY > 200) {
-                scrollToTopButton.style.display = "block";
-            } else {
-                scrollToTopButton.style.display = "none";
-            }
-        };
-
-        document.getElementById("scrollToTop").onclick = function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        };
-    </script>
 @endsection

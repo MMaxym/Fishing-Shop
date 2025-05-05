@@ -129,6 +129,8 @@
                                 data-size="{{ $product->size }}"
                                 data-price="{{ $product->price }}"
                                 data-actual-price="{{ $product->actual_price }}"
+                                data-discount-percentage="{{ $product->discount->percentage ?? ''}}"
+                                data-discount-end-date="{{ $product->discount->end_date ?? ''}}"
                                 data-image="{{ asset('storage/' . ($product->images->first()->image_url ?? '')) }}"
                             >
                                 Додати до кошику
@@ -152,7 +154,6 @@
         </div>
 
         @if($recentlyViewedProducts->isNotEmpty())
-
             <section class="main-row">
                 <div class="recently-products-wrapper">
                     <h2 class="row-title">НЕЩОДАВНО ПЕРЕГЛЯНУТІ</h2>

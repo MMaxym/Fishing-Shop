@@ -334,7 +334,7 @@ button i {
 }
 
 .qty-btn:hover {
-    background-color: var(--light-2);
+    background-color: var(--main-light);
 }
 
 .qty-btn:focus{
@@ -351,7 +351,7 @@ button i {
     margin: 0 20px;
     font-size: var(--Font-18-size);
     font-weight: var(--Semibold-weight);
-    color: var(--light-1);
+    color: var(--main-dark);
     min-width: 20px;
     text-align: center;
 }

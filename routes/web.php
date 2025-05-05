@@ -158,7 +158,10 @@ Route::prefix('user/')->group(function () {
     Route::get('/search', [HeaderUserController::class, 'search'])->name('search');
 
     Route::get('/product/{id}', [ProductDetailsController ::class, 'showDetails'])->name('product.showDetails');
+
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+    Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
     Route::post('/favorite-products/toggle/{product}', [FavoriteProductController::class, 'toggle']);
 });
