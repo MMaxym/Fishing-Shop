@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/user/shoppingCart.css') }}">
 </head>
 
-
 @section('content')
 
     @include('layouts.header-user')
@@ -31,7 +30,7 @@
 
         <section class="main-row">
             <div class="products-wrapper">
-                <h2 class="row-title">КОШИК</h2>
+                <h2 class="row-title">Кошик</h2>
                 <div class="cart-products">
                     <div class="cart-items-container">
                         @php
@@ -108,7 +107,7 @@
                             </div>
                         @empty
                             <div class="empty-cart">
-                                <p class="empty-cart-text">Ви не додали у кошик жодного товару. Кошик порожній.</p>
+                                <p class="empty-cart-text">Ваш кошик порожній. Ви не додали у кошик жодного товару.</p>
                                 <button class="empty-cart-btn" onclick="window.location.href='{{ route('user.main') }}'">Продовжити покупки
                                     <img  class="empty-cart-btn-icon" src="{{ asset('images/v2/icon/ArrowBigRightHomeLink.svg') }}" alt="moreIcon">
                                 </button>

@@ -45,6 +45,8 @@ body {
     --helps-orangelight: #fcf7e6;
     --helps-red: #ff1d4e;
     --helps-redlight: #fbe8e7;
+    --helps-yellow: #efd31f;
+    --helps-yellowlight: #fffed6;
 
 
     /* Font-weight */
@@ -69,3 +71,7 @@ body {
     --Font-42-size: 42px;
     --Font-46-size: 46px;
 }
+
+
+
+

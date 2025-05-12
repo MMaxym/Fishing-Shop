@@ -711,8 +711,14 @@ button i {
 
 .toggle-answer {
     background-color: transparent;
-    border: none;
-    padding: 0;
+    border: 1px solid var(--light-2);
+    border-radius: 50%;
+    padding: 4px;
+    transition: all 0.2s ease;
+}
+
+.toggle-answer:hover{
+    background-color: var(--main-light);
 }
 
 .toggle-answer:focus {

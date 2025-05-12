@@ -1,100 +1,174 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.app')
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/user/orderHistory.css') }}">
-    <title>Fishing Store - Історія замовлень</title>
 </head>
 
 @section('content')
 
-    <div class="container" style="max-width: 1600px;">
-        @include('layouts.header-user')
-        <div style="margin-top: 120px; margin-bottom: 30px; text-align: center;">
-            <p class="navigate">
-                <a href="{{ route('user.main') }}" class="breadcrumb-link">
-                    <i class="fa fa-home"></i> Головна
-                </a>
-                > @if (Auth::check())
-                    Історія замовлень користувача {{ Auth::user()->surname }} {{ Auth::user()->name }}
-                @else
-                    Історія замовлень користувача
-                @endif
+    @include('layouts.header-user')
 
-            </p>
-            <p class="contact" style="color:#04396e; font-size:16px; margin-left:1100px; max-width: 430px; text-align: right;">
-                <i class="fas fa-phone" style="margin-right: 8px;"></i>ДЛЯ УТОЧНЕННЯ ДЕТАЛЕЙ ЗАМОВЛЕННЯ ЗВЕРТАЙТЕСЬ ЗА ТЕЛЕФОНОМ: <span style="font-size: 18px; font-weight: 600;">+380 (98) 867 85 45</span>
-            </p>
-            <h2 class="page-title">ІСТОРІЯ ЗАМОВЛЕНЬ</h2>
-        </div>
+    <main class="main-section">
+        <section class="main-row" id="main-row-product-details">
+            <div class="main-row-wrapper">
+                <nav aria-label="breadcrumb" class="page-navigation">
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('user.main') }}">
+                                <img src="{{ asset('images/v2/icon/HomeFilled.svg') }}" alt="Home Icon">
+                                Головна
+                            </a>
+                            <span class="breadcrumb-separator">
+                                <img src="{{ asset('images/v2/icon/ArrowSmallRightNav.svg') }}" alt="Arrow Icon">
+                            </span>
+                        </li>
+                        <li class="current-product"> Історія замовлень</li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
 
-        <div class="order-history-container">
-            @if($orders->isEmpty())
-                <p class="empty-history">У вас ще немає замовлень.</p>
-            @else
-                @foreach($orders as $order)
-                    <div class="order-card">
-                        <div class="order-info">
-                            <div class="order-header" style="font-size: 20px;">
-                                <span>Замовлення <strong>№{{ $order->id }}</strong></span>
+        <section class="main-row">
+            <div class="products-wrapper">
+                <h2 class="row-title">Історія замовлень</h2>
+
+                <div class="history-products">
+                    <div class="history-items-container">
+
+                        @if($orders->isNotEmpty())
+                            <div class="history-table-head">
+                                <div class="col number-title">Номер</div>
+                                <div class="col date-title">Дата</div>
+                                <div class="col status-title">Статус</div>
+                                <div class="col quantity-title">К-сть</div>
+                                <div class="col total-title">Вартість</div>
                             </div>
-                            <div class="order-date" style="font-size: 16px; color: #686868; margin-bottom: 10px; margin-top: 5px;">
-                                <span class="date">від {{ $order->created_at->format('d.m.Y H:i') }}</span>
-                            </div>
-                            <div class="order-status" style="margin-bottom: 10px;">
-                                <strong>{{ $order->status }}</strong>
-                            </div>
-                            <div class="order-summary">
-                                <div class="order-items-count">
-                                    <span>{{ $order->products->count() }} {{ $order->productCountLabel }}</span>
+                        @endif
+
+                        @if($orders->isNotEmpty())
+                            @foreach($orders as $order)
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        @php
+                                            $statusClassMap = [
+                                                'В обробці' => 'status-in-process',
+                                                'Очікує на оплату' => 'status-awaiting-payment',
+                                                'Доставлено' => 'status-delivered',
+                                                'Завершено' => 'status-completed',
+                                                'Скасовано' => 'status-cancelled',
+                                            ];
+                                            $statusClass = $statusClassMap[$order->status] ?? 'status-unknown';
+                                        @endphp
+                                        <span class="faq-number">№ {{ $order->id }}</span>
+                                        <span class="faq-date">від {{ $order->created_at->format('d.m.Y H:i') }}</span>
+                                        <span class="faq-status {{ $statusClass }}">{{ $order->status }}</span>
+                                        <span class="faq-count">{{ $order->products->count() }} {{ $order->productCountLabel }}</span>
+                                        <span class="faq-price">{{ number_format($order->total_amount,  0, ' ', ' ') }} грн</span>
+                                        <button class="toggle-answer" aria-label="Toggle answer">
+                                            <img class="arrow-icon"
+                                                 src="{{ asset('images/v2/icon/ArrowSmallDownFAQ.svg') }}"
+                                                 alt="ArrowIcon">
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <div class="order-statuses">
+                                            <h3 class="order-statuses-title">Історія змін</h3>
+                                            <div class="order-statuses-wrapper">
+                                                <ul class="order-statuses-stepper">
+                                                    @foreach($order->tracking as $tracking)
+                                                        @php
+                                                            $statusClassMap = [
+                                                                'В обробці' => 'in-process',
+                                                                'Очікує на оплату' => 'awaiting-payment',
+                                                                'Доставлено' => 'delivered',
+                                                                'Завершено' => 'completed',
+                                                                'Скасовано' => 'cancelled',
+                                                            ];
+                                                            $statusSlug = $statusClassMap[$tracking->status] ?? 'unknown-status';
+                                                        @endphp
+                                                        <li class="step {{ $statusSlug }}">
+                                                            <div class="circle">
+                                                                <div class="inner-circle"></div>
+                                                            </div>
+                                                            <div class="label">
+                                                                <span class="status-name">{{ $tracking->status }}</span>
+                                                                <span
+                                                                    class="status-time">{{ $tracking->updated_at->format('d.m.Y H:i') }}</span>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="order-products">
+                                            <h3 class="order-products-title">Перелік товарів</h3>
+
+                                            @foreach($order->products as $item)
+                                                <div class="order-product-item">
+                                                    <div class="product-image">
+                                                        <img src="{{ $item->product->images->first() ? asset('storage/' . $item->product->images->first()->image_url) : '/images/no-image.png' }}"
+                                                             alt="{{ $item->product->name }}">
+                                                    </div>
+                                                    <div class="product-item-details">
+                                                        <div class="product-name">{{ $item->product->name }}</div>
+                                                        <div class="product-article">арт. {{ $item->product->article}}</div>
+                                                    </div>
+                                                    <div class="product-quantity">Кількість: {{ $item->quantity }}</div>
+                                                    <div class="product-price">{{ number_format($item->price,  0, ' ', ' ') }} грн</div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="order-total-amount">
-                                    <span class="order-total">Разом:</span>
-                                    <strong>{{ number_format($order->total_amount, 0) }} грн</strong>
-                                </div>
-                            </div>
-                            <button class="btn-details" onclick="toggleOrderItems({{ $order->id }})">
-                                <i class="fa fa-list"></i> Деталі замовлення
-                            </button>
-                        </div>
-
-                        <div id="order-items-{{ $order->id }}" class="order-items" style="display: none;">
-                            <h5>Історія змін:</h5>
-                            <ul class="order-status-history">
-                                @foreach($order->tracking as $tracking)
-                                    <li class="status-item">
-                                        <i class="fa fa-check-circle status-icon" aria-hidden="true"></i>
-                                        <strong>{{ $tracking->status}}</strong> <splan style="margin: 0 10px;"> — </splan> {{ $tracking->updated_at->format('d.m.Y H:i') }}
-                                    </li>
-                                @endforeach
-                            </ul>
-
-
-                        @if($order->products->isEmpty())
-                                <p class="no-items">Це замовлення не містить товарів.</p>
-                            @else
-                                <h5 style="margin-top: 40px;">Перелік товарів:</h5>
-                                <ul class="order-products-list">
-                                    @foreach($order->products as $item)
-                                        <li class="order-product-item">
-                                            <span class="product-name">{{ $item->product->name }}</span>
-                                            <span class="product-quantity">Кількість: {{ $item->quantity }}</span>
-                                            <span class="product-price">{{ number_format($item->price, 2) }} грн</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
+                            @endforeach
+                        @else
+                             <div class="empty-cart">
+                                <p class="empty-cart-text">У вас ще немає замовлень.</p>
+                                <button class="empty-cart-btn" onclick="window.location.href='{{ route('user.main') }}'">Продовжити покупки
+                                   <img  class="empty-cart-btn-icon" src="{{ asset('images/v2/icon/ArrowBigRightHomeLink.svg') }}" alt="moreIcon">
+                                </button>
+                                <img  class="empty-cart-img" src="{{ asset('images/v2/img/not-found-products-img.svg') }}" alt="emptyIcon">
+                             </div>
+                        @endif
                     </div>
-                @endforeach
-            @endif
-        </div>
-        <div id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-arrow-up"></i>
-        </div>
-    </div>
+
+                    @if($orders->isNotEmpty())
+                        <div class="col-section">
+                            <h4 class="col-title">Зворотній звʼязок</h4>
+                            <div class="col-main">
+                                <div class="col-text">
+                                    <img class="col-icon" alt="Logo"
+                                         src="{{ asset('images/v2/icon/PhoneOutlineFooter.svg') }}">
+                                    <div class="col-text-row">
+                                        <p class="col-text-row-title">+380 (98) 867 85 45</p>
+                                    </div>
+                                </div>
+                                <div class="col-text">
+                                    <img class="col-icon" alt="Logo"
+                                         src="{{ asset('images/v2/icon/PhoneOutlineFooter.svg') }}">
+                                    <div class="col-text-row">
+                                        <p class="col-text-row-title">+380 (97) 225 02 48</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-text">
+                                <p class="col-text-row-title" id="col-text-row-title">* Для уточнення деталей замовлення або
+                                    оформлення повернення замовлення, будь ласка, зателефонуйте нам.</p>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script src="{{ asset('js/user/orderHistory.js') }}"></script>
 
     @include('layouts.footer-user')
 
 @endsection
+

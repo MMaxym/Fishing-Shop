@@ -1,17 +1,12 @@
-function toggleOrderItems(orderId) {
-    var itemsDiv = document.getElementById('order-items-' + orderId);
-    itemsDiv.style.display = (itemsDiv.style.display === 'none') ? 'block' : 'none';
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
 
-window.onscroll = function () {
-    const scrollToTopButton = document.getElementById("scrollToTop");
-    if (window.scrollY > 200) {
-        scrollToTopButton.style.display = "block";
-    } else {
-        scrollToTopButton.style.display = "none";
-    }
-};
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            item.classList.toggle('open');
+        });
+    });
+});
 
-document.getElementById("scrollToTop").onclick = function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-};
+

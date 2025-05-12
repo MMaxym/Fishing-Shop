@@ -175,7 +175,7 @@
 
         buttons2.forEach(button => {
             button.addEventListener('click', function() {
-                buttons2    .forEach(btn => btn.classList.remove('active'));
+                buttons2.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
             });
         });
@@ -462,9 +462,6 @@
                 }
             });
         });
-
-
-        // ПІДКЛЮЧИТИ ПЛАТІЖНУ СИСТЕМУ
 
 
         document.querySelector('.confirm-order-btn').addEventListener('click', () => {

@@ -118,7 +118,7 @@
 }
 
 .cart-table-head .col {
-    max-width: 100px;
+    max-width: 130px;
     text-align: left;
     padding: 0;
 }
@@ -130,17 +130,17 @@
 
 .price-title {
     text-align: left;
-    padding-left: 330px !important;
+    padding-left: 320px !important;
 }
 
 .quantity-title {
     text-align: left;
-    padding-left: 55px !important;
+    padding-left: 80px !important;
 }
 
 .total-title {
     text-align: left;
-    margin-right: 50px !important;
+    margin-right: 20px !important;
 }
 
 .cart-products{
