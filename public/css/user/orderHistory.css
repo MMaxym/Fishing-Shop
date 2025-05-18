@@ -564,11 +564,6 @@
     border-bottom: none;
 }
 
-.order-product-item:hover{
-    background-color: var(--main-light);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 .product-image img {
     width: 110px;
     height: 60px;

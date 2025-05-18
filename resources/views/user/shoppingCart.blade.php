@@ -133,7 +133,7 @@
                             <div class="summary-line"><span>Сума:</span> <span id="summary-total-price">{{ $pr1Formatted }} грн</span></div>
                             <div class="summary-line"><span>Знижка:</span> <span id="summary-discount">- {{ $discountFormatted }} грн</span></div>
                             <div class="summary-line total"><span>ВСЬОГО:</span> <span id="summary-final-price">{{ $pr2Formatted }} грн</span></div>
-                            <button class="checkout-button">Оформити замовлення
+                            <button class="checkout-button" onclick="window.location.href='{{ route('user.checkoutPage') }}'">Оформити замовлення
                                 <img  class="icon-cart" src="{{ asset('images/v2/icon/PayCart.svg') }}" alt="PayIcon">
                             </button>
                         </div>

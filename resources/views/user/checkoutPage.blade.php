@@ -8,167 +8,386 @@
 
 @section('content')
 
-    <div class="container" style="max-width: 1600px;">
-        @include('layouts.header-user')
-        <div style="margin-top: 130px; margin-bottom: 30px; text-align: center;">
-            <p class="navigate">
-                <a href="{{ route('user.main') }}" class="breadcrumb-link">
-                    <i class="fa fa-home"></i> Головна
-                </a>
-                >
-                <a href="{{ route('user.shoppingCart') }}" class="breadcrumb-link" style="margin-left: 5px;"> Кошик</a>
-                > Оформлення замовлення
-            </p>
-            <h2 class="page-title">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h2>
-            <div class="container2">
-                <div class="payment-shipping">
-                    <p class="info-about">Інформація про вас</p>
-                    <form style="margin-bottom: 0;">
-                        <div class="form-group">
-                            <label for="fullname">Прізвище та імʼя</label>
-                            <input type="text" id="fullname" placeholder="Прізвище та імʼя"
-                                   value="@auth {{ Auth::user()->surname }} {{ Auth::user()->name }} @else Данні не введено @endauth" required>
-                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">
-                                *Обовʼязкове поле
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Електронна пошта</label>
-                            <input type="email" id="email" placeholder="Електронна пошта"
-                                   value="@auth {{ Auth::user()->email }} @else Данні не введено @endauth" required>
-                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">
-                                *Обовʼязкове поле
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Номер телефону</label>
-                            <input type="text" id="phone" placeholder="Номер телефону"
-                                   value="@auth {{ Auth::user()->phone }} @else Данні не введено @endauth" required>
-                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">
-                                *Обовʼязкове поле
-                            </p>
-                        </div>
-                    </form>
-                </div>
+    @include('layouts.header-user')
 
-                <div class="payment-shipping">
-                    <h3>Доставка</h3>
-                    <div class="shipping-method">
-                        <button class="active" data-method="nova-poshta">Нова Пошта</button>
-                        <button data-method="ukrposhta">Укрпошта</button>
-                        <button data-method="pickup">Самовивіз</button>
-                        <button data-method="courier">Кур'єром</button>
-                    </div>
-
-                    <div class="shipping-fields">
-                        <div class="nova-poshta-fields">
-                            <div class="checkout-container">
+    <main class="main-section">
+        <section class="main-row" id="main-row-product-details">
+            <div class="main-row-wrapper">
+                <nav aria-label="breadcrumb" class="page-navigation">
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('user.main') }}">
+                                <img src="{{ asset('images/v2/icon/HomeFilled.svg') }}" alt="Home Icon">
+                                Головна
+                            </a>
+                            <span class="breadcrumb-separator">
+                                <img src="{{ asset('images/v2/icon/ArrowSmallRightNav.svg') }}" alt="Arrow Icon">
+                            </span>
+                            <a href="{{ route('user.orderHistory') }}">
+                                Кошик
+                            </a>
+                            <span class="breadcrumb-separator">
+                                <img src="{{ asset('images/v2/icon/ArrowSmallRightNav.svg') }}" alt="Arrow Icon">
+                            </span>
+                        </li>
+                        <li class="current-product"> Оформлення замовлення</li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="main-row">
+            <div class="products-wrapper">
+                <h2 class="row-title">Оформлення замовлення</h2>
+                <div class="checkout-products">
+                    <div class="checkout-items-container">
+                        <div class="payment-shipping">
+                            <p class="info-about">Інформація про вас</p>
+                            <form class="personal-info">
                                 <div class="form-group">
-                                    <label for="city">Оберіть місто:</label>
-                                    <select id="cityNP" name="city" style="width: 500px; padding: 12px; border: 2px solid #cdcdcd; border-radius: 8px; font-size: 16px; color: #7c7c7c;" required>
-                                        <option value="">Оберіть місто</option>
-                                    </select>
-                                    <p class="error-message-delivery" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
+                                    <label for="fullname">Прізвище та імʼя</label>
+                                    <input type="text" id="fullname" placeholder="Прізвище та імʼя"
+                                           value="@auth{{ Auth::user()->surname }} {{ Auth::user()->name }} @else Данні не введено @endauth" required>
+                                    <p class="error-message">
+                                        *Обовʼязкове поле
+                                    </p>
                                 </div>
-
                                 <div class="form-group">
-                                    <label for="warehouse">Оберіть відділення:</label>
-                                    <select id="warehouse" name="warehouse" style="width: 500px; padding: 12px; border: 2px solid #cdcdcd; border-radius: 8px; font-size: 16px; color: #7c7c7c;" required>
-                                        <option value="">Оберіть відділення</option>
-                                    </select>
-                                    <p class="error-message-delivery2" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
+                                    <label for="email">Електронна пошта</label>
+                                    <input type="email" id="email" placeholder="Електронна пошта"
+                                           value="@auth{{ Auth::user()->email }} @else Данні не введено @endauth" required>
+                                    <p class="error-message">
+                                        *Обовʼязкове поле
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Номер телефону</label>
+                                    <input type="text" id="phone" placeholder="Номер телефону"
+                                           value="@auth{{ Auth::user()->phone }} @else Данні не введено @endauth" required>
+                                    <p class="error-message">
+                                        *Обовʼязкове поле
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="payment-shipping">
+                            <p class="info-about">Оберіть спосіб доставки</p>
+
+                            <div class="shipping-methods">
+                                <div class="shipping-method">
+                                    <div class="shipping-btn">
+                                        <button class="active" data-method="nova-poshta"></button>
+                                        <p class="shipping-name"> Нова Пошта</p>
+                                    </div>
+                                    <div class="shipping-btn">
+                                        <button data-method="ukrposhta"></button>
+                                        <p class="shipping-name"> Укрпошта</p>
+                                    </div>
+                                    <div class="shipping-btn">
+                                        <button data-method="pickup"></button>
+                                        <p class="shipping-name"> Самовивіз</p>
+                                    </div>
+                                    <div class="shipping-btn">
+                                        <button data-method="courier"></button>
+                                        <p class="shipping-name"> Кур'єром</p>
+                                    </div>
                                 </div>
 
-                                <div style="text-align: left;">
-                                    <label for="deliveryCost">Вартість доставки:</label>
-                                    <span id="deliveryCost">0</span> грн
+                                <div class="shipping-fields">
+                                    <div class="nova-poshta-fields">
+                                        <div class="checkout-container">
+                                            <div class="form-group">
+                                                <label for="city">Оберіть місто:</label>
+                                                <select id="cityNP" name="city" style="width: 500px;
+                                                    border-radius: var(--br-1) !important;
+                                                    color: var(--dark-1) !important;
+                                                    border: 1px solid var(--light-2) !important;
+                                                    font-size: var(--Font-14-size) !important;
+                                                    font-weight: var(--Regular-weight)!important;
+                                                    text-align: left;
+                                                    padding: 10px 16px !important;
+                                                    margin: 0 !important; " required>
+                                                    <option value="">Оберіть місто</option>
+                                                </select>
+                                                <p class="error-message-delivery">* Обовʼязкове поле</p>
+                                            </div>
+
+                                            <div class="form-group" style="margin-top: 20px !important;">
+                                                <label for="warehouse">Оберіть відділення:</label>
+                                                <select id="warehouse" name="warehouse" style="width: 500px;
+                                                    border-radius: var(--br-1) !important;
+                                                    color: var(--dark-1) !important;
+                                                    border: 1px solid var(--light-2) !important;
+                                                    font-size: var(--Font-14-size) !important;
+                                                    font-weight: var(--Regular-weight)!important;
+                                                    text-align: left;
+                                                    padding: 10px 16px !important;
+                                                    margin: 0 !important;" required>
+                                                    <option value="">Оберіть відділення</option>
+                                                </select>
+                                                <p class="error-message-delivery2">* Обовʼязкове поле</p>
+                                            </div>
+
+                                            <div class="delivery-cost-name" style="margin-top: 20px !important;">
+                                                <label class="delivery-cost-name" for="deliveryCost">Вартість доставки:</label>
+                                                <span id="deliveryCost"> 0</span> грн
+                                            </div>
+                                            <p class="delivery-warning">* Доставка Новою Поштою відбувається протягом 1-2 робочих днів</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="ukrposhta-fields" style="display: none;">
+                                        <div class="form-group">
+                                            <label for="ukrposhta-address">Адреса</label>
+                                            <p style="text-align: left; min-width: 500px; font-size: var(--Font-14-size); font-weight:var(--Medium-weight); color: var(--main-dark)">* Введіть дані у форматі "місто, код відділення (наприклад 29001)"</p>
+                                            <input type="text" id="ukrposhta-address" placeholder="Введіть адресу" required>
+                                            <p class="error-message-delivery3">* Обовʼязкове поле</p>
+                                        </div>
+                                        <p class="delivery-warning-2">* Доставка Укрпоштою відбувається протягом 3-5 робочих днів</p>
+                                    </div>
+
+                                    <div class="courier-fields" style="display: none;">
+                                        <div class="form-group">
+                                            <label for="courier-address">Адреса</label>
+                                            <input type="text" id="courier-address" placeholder="Введіть адресу" required>
+                                            <p class="error-message-delivery4">* Обовʼязкове поле</p>
+                                        </div>
+                                        <p class="delivery-warning-2">* Доставка кур’єром доступна лише у м. Хмельницький</p>
+                                    </div>
+
+                                    <div class="pickup-fields" style="display: none;">
+                                        <p class="pickup-fields-title">Самовивіз доступний з нашого магазину за адресою м.Хмельницький, вул.Зарічанська, б.10</p>
+                                        <div id="map" style="width: 520px; height: 440px; margin-top: 15px; border-radius: 24px;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="ukrposhta-fields" style="display: none;">
-                            <div class="form-group">
-                                <label for="ukrposhta-address">Адреса</label>
-                                <p style="text-align: left; width: 600px !important; font-size: 14px; color: #000000">*Введіть дані у форматі "місто, код відділення (наприклад 29001)"</p>
-                                <input type="text" id="ukrposhta-address" placeholder="Введіть адресу" style="width: 300px;" required>
-                                <p class="error-message-delivery3" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
+                    <div class="col-section">
+                        <div class="col-main">
+                            <p class="col-title">Перелік товарів в замовленні</p>
+                            <div class="col-text">
+                                <div class="order-summary">
+                                    <table>
+                                        <tbody id="order-items">
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="courier-fields" style="display: none;">
-                            <div class="form-group">
-                                <label for="courier-address">Адреса</label>
-                                <p style="text-align: left; width: 400px !important; font-size: 14px; color: #000000">*Курʼєрська доставка тільки по м.Хмельницький</p>
-                                <input type="text" id="courier-address" placeholder="Введіть адресу" style="width: 300px;" required>
-                                <p class="error-message-delivery4" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>
+                            <div class="col-text">
+                                <div class="payment-shipping">
+                                    <p class="col-title">Спосіб оплати</p>
+                                    <div class="payment-method">
+                                        <div class="payment-btn">
+                                            <button class="active"></button>
+                                            <p class="payment-name"> Visa/Mastercard</p>
+                                        </div>
+                                        <div class="payment-btn">
+                                            <button></button>
+                                            <p class="payment-name"> Післяплата</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="total-summary">
+                                <div class="row">
+                                    <span>Сума:</span>
+                                    <span id="total-price">0 грн</span>
+                                </div>
+                                <div class="row delivery">
+                                    <span>Доставка:</span>
+                                    <span id="delivery_cost">безкоштовно</span>
+                                </div>
+                                <div class="row discount">
+                                    <span>Знижка:</span>
+                                    <span id="discount">немає</span>
+                                </div>
+                                <div class="row total">
+                                    <span>ВСЬОГО:</span>
+                                    <span id="sum">0 грн</span>
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div class="pickup-fields" style="display: none; text-align: left; font-size: 16px; color: #2c73bb;">
-                            <p style="width: 420px;">Самовивіз доступний з нашого магазину за адресою: вул. Зарічанська 10, м.Хмельницький</p>
+                        <div class="col-buttons">
+                            <button class="confirm-order-btn">Оформити замовлення
+                                <img  class="icon-cart" src="{{ asset('images/v2/icon/PayCart.svg') }}" alt="PayIcon">
+                            </button>
+                            <button class="cancel-order-btn" onclick="window.location.href='{{ route('user.main') }}'">
+                                Скасувати
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <div class="payment-shipping">
-                    <h3>Оплата</h3>
-                    <div class="payment-method">
-                        <button class="active">Visa/Mastercard</button>
-                        <button>Післяплата</button>
-                    </div>
-                </div>
-
-                <div class="order-summary">
-                    <h3>Підтвердження замовлення</h3>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Назва</th>
-                            <th>К-сть</th>
-                            <th>Ціна</th>
-                            <th>Загальна ціна</th>
-                        </tr>
-                        </thead>
-                        <tbody id="order-items">
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="total-summary">
-                    <div class="row">
-                        <span>Вартість товарів:</span>
-                        <span id="total-price">0 грн</span>
-                    </div>
-                    <div class="row delivery">
-                        <span>Вартість доставки:</span>
-                        <span id="delivery_cost">0 грн</span>
-                    </div>
-                    <div class="row discount">
-                        <span>Знижка:</span>
-                        <span>Немає</span>
-                    </div>
-                    <div class="row total">
-                        <span>Разом до сплати:</span>
-                        <span id="sum">0 грн</span>
-                    </div>
-                </div>
-
-                <div class="row" style="padding: 0 20px;">
-                    <button class="cancel-order-btn" onclick="window.location.href='{{ route('user.main') }}'">
-                        <i class="fas fa-cancel" style="margin-right: 5px;" ></i> Скасувати
-                    </button>
-                    <button class="confirm-order-btn">
-                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i> Підтвердити замовлення
-                    </button>
                 </div>
             </div>
-        </div>
-        <div id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-arrow-up"></i>
-        </div>
-    </div>
+        </section>
+    </main>
+
+{{--    <div class="container" style="max-width: 1600px;">--}}
+{{--        <div style="margin-top: 130px; margin-bottom: 30px; text-align: center;">--}}
+{{--            <p class="navigate">--}}
+{{--                <a href="{{ route('user.main') }}" class="breadcrumb-link">--}}
+{{--                    <i class="fa fa-home"></i> Головна--}}
+{{--                </a>--}}
+{{--                >--}}
+{{--                <a href="{{ route('user.shoppingCart') }}" class="breadcrumb-link" style="margin-left: 5px;"> Кошик</a>--}}
+{{--                > Оформлення замовлення--}}
+{{--            </p>--}}
+{{--            <h2 class="page-title">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h2>--}}
+{{--            <div class="container2">--}}
+{{--                <div class="payment-shipping">--}}
+{{--                    <p class="info-about">Інформація про вас</p>--}}
+{{--                    <form style="margin-bottom: 0;">--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="fullname">Прізвище та імʼя</label>--}}
+{{--                            <input type="text" id="fullname" placeholder="Прізвище та імʼя"--}}
+{{--                                   value="@auth {{ Auth::user()->surname }} {{ Auth::user()->name }} @else Данні не введено @endauth" required>--}}
+{{--                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">--}}
+{{--                                *Обовʼязкове поле--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="email">Електронна пошта</label>--}}
+{{--                            <input type="email" id="email" placeholder="Електронна пошта"--}}
+{{--                                   value="@auth {{ Auth::user()->email }} @else Данні не введено @endauth" required>--}}
+{{--                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">--}}
+{{--                                *Обовʼязкове поле--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="phone">Номер телефону</label>--}}
+{{--                            <input type="text" id="phone" placeholder="Номер телефону"--}}
+{{--                                   value="@auth {{ Auth::user()->phone }} @else Данні не введено @endauth" required>--}}
+{{--                            <p class="error-message" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">--}}
+{{--                                *Обовʼязкове поле--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+
+{{--                <div class="payment-shipping">--}}
+{{--                    <h3>Доставка</h3>--}}
+{{--                    <div class="shipping-method">--}}
+{{--                        <button class="active" data-method="nova-poshta">Нова Пошта</button>--}}
+{{--                        <button data-method="ukrposhta">Укрпошта</button>--}}
+{{--                        <button data-method="pickup">Самовивіз</button>--}}
+{{--                        <button data-method="courier">Кур'єром</button>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="shipping-fields">--}}
+{{--                        <div class="nova-poshta-fields">--}}
+{{--                            <div class="checkout-container">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="city">Оберіть місто:</label>--}}
+{{--                                    <select id="cityNP" name="city" style="width: 500px; padding: 12px; border: 2px solid #cdcdcd; border-radius: 8px; font-size: 16px; color: #7c7c7c;" required>--}}
+{{--                                        <option value="">Оберіть місто</option>--}}
+{{--                                    </select>--}}
+{{--                                    <p class="error-message-delivery" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>--}}
+{{--                                </div>--}}
+
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="warehouse">Оберіть відділення:</label>--}}
+{{--                                    <select id="warehouse" name="warehouse" style="width: 500px; padding: 12px; border: 2px solid #cdcdcd; border-radius: 8px; font-size: 16px; color: #7c7c7c;" required>--}}
+{{--                                        <option value="">Оберіть відділення</option>--}}
+{{--                                    </select>--}}
+{{--                                    <p class="error-message-delivery2" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>--}}
+{{--                                </div>--}}
+
+{{--                                <div style="text-align: left;">--}}
+{{--                                    <label for="deliveryCost">Вартість доставки:</label>--}}
+{{--                                    <span id="deliveryCost">0</span> грн--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="ukrposhta-fields" style="display: none;">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="ukrposhta-address">Адреса</label>--}}
+{{--                                <p style="text-align: left; width: 600px !important; font-size: 14px; color: #000000">*Введіть дані у форматі "місто, код відділення (наприклад 29001)"</p>--}}
+{{--                                <input type="text" id="ukrposhta-address" placeholder="Введіть адресу" style="width: 300px;" required>--}}
+{{--                                <p class="error-message-delivery3" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="courier-fields" style="display: none;">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="courier-address">Адреса</label>--}}
+{{--                                <p style="text-align: left; width: 400px !important; font-size: 14px; color: #000000">*Курʼєрська доставка тільки по м.Хмельницький</p>--}}
+{{--                                <input type="text" id="courier-address" placeholder="Введіть адресу" style="width: 300px;" required>--}}
+{{--                                <p class="error-message-delivery4" style="text-align: left; width: 130px !important; font-size: 14px; color: #c53727; margin: 0; display: none;">*Обовʼязкове поле</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="pickup-fields" style="display: none; text-align: left; font-size: 16px; color: #2c73bb;">--}}
+{{--                            <p style="width: 420px;">Самовивіз доступний з нашого магазину за адресою: вул. Зарічанська 10, м.Хмельницький</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="payment-shipping">--}}
+{{--                    <h3>Оплата</h3>--}}
+{{--                    <div class="payment-method">--}}
+{{--                        <button class="active">Visa/Mastercard</button>--}}
+{{--                        <button>Післяплата</button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="order-summary">--}}
+{{--                    <h3>Підтвердження замовлення</h3>--}}
+{{--                    <table>--}}
+{{--                        <thead>--}}
+{{--                        <tr>--}}
+{{--                            <th>Назва</th>--}}
+{{--                            <th>К-сть</th>--}}
+{{--                            <th>Ціна</th>--}}
+{{--                            <th>Загальна ціна</th>--}}
+{{--                        </tr>--}}
+{{--                        </thead>--}}
+{{--                        <tbody id="order-items">--}}
+{{--                        </tbody>--}}
+{{--                    </table>--}}
+{{--                </div>--}}
+
+{{--                <div class="total-summary">--}}
+{{--                    <div class="row">--}}
+{{--                        <span>Вартість товарів:</span>--}}
+{{--                        <span id="total-price">0 грн</span>--}}
+{{--                    </div>--}}
+{{--                    <div class="row delivery">--}}
+{{--                        <span>Вартість доставки:</span>--}}
+{{--                        <span id="delivery_cost">0 грн</span>--}}
+{{--                    </div>--}}
+{{--                    <div class="row discount">--}}
+{{--                        <span>Знижка:</span>--}}
+{{--                        <span>Немає</span>--}}
+{{--                    </div>--}}
+{{--                    <div class="row total">--}}
+{{--                        <span>Разом до сплати:</span>--}}
+{{--                        <span id="sum">0 грн</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="row" style="padding: 0 20px;">--}}
+{{--                    <button class="cancel-order-btn" onclick="window.location.href='{{ route('user.main') }}'">--}}
+{{--                        <i class="fas fa-cancel" style="margin-right: 5px;" ></i> Скасувати--}}
+{{--                    </button>--}}
+{{--                    <button class="confirm-order-btn">--}}
+{{--                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i> Підтвердити замовлення--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        --}}
+{{--        <pre>{{ print_r(session()->all(), true) }}</pre>--}}
+
+{{--    </div>--}}
 
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHKSG3mfEn6Tya-F1pQSqz9dxo29v8lT0&callback=initMap" async defer></script>
+
+    <script src="{{ asset('js/user/checkoutPage.js') }}"></script>
+
 
     <script>
         const buttons2 = document.querySelectorAll('.payment-method button');
@@ -265,31 +484,39 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const userId = @auth {{ Auth::user()->id }} @else 'Немає' @endauth;
-            const cart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            showLoaderWithDelay();
+            const cart = @json($cart);
             const orderItemsContainer = document.getElementById('order-items');
             const totalPriceElement = document.getElementById('total-price');
 
             let totalOrderPrice = 0;
 
             cart.forEach(product => {
-                const totalPrice = (product.actualPrice * product.quantity).toFixed(2);
+                const totalPrice = (product.actualPrice * product.quantity).toFixed(0);
                 totalOrderPrice += parseFloat(totalPrice);
+
+                const imageUrl = product.image ? product.image : '/images/no-image.png';
 
                 const row = `
                 <tr>
+                    <td><img src="${imageUrl}" alt="${product.name}" style="width: 80px; height: 50px; object-fit: contain;"></td>
                     <td>${product.name}</td>
-                    <td>${product.quantity}</td>
-                    <td>${product.actualPrice}.00 грн</td>
+                    <td>${product.quantity} шт</td>
+<!--                    <td>${parseFloat(product.actualPrice).toFixed(0)} грн</td>-->
                     <td>${totalPrice} грн</td>
                 </tr>
             `;
                 orderItemsContainer.innerHTML += row;
             });
 
-            totalPriceElement.innerText = `${totalOrderPrice.toFixed(2)} грн`;
+            totalPriceElement.innerText = `${totalOrderPrice.toFixed(0)} грн`;
         });
+
 
         document.addEventListener('DOMContentLoaded', function() {
             const deliveryCostElement = document.getElementById('delivery_cost');
@@ -302,7 +529,7 @@
                         .then(response => response.json())
                         .then(data => {
                             const cost = data.cost || 0;
-                            deliveryCostElement.textContent = `${cost}.00 грн`;
+                            deliveryCostElement.textContent = `${cost} грн`;
                         })
                         .catch(error => console.error('Помилка отримання ціни доставки:', error));
                 }
@@ -325,7 +552,7 @@
                         toggleFields('nova-poshta');
                     }
                     else if (method === 'ukrposhta') {
-                        deliveryCostElement.textContent = '50.00 грн';
+                        deliveryCostElement.textContent = '50 грн';
                         toggleFields('ukrposhta');
                     }
                     else if (method === 'pickup') {
@@ -333,7 +560,7 @@
                         toggleFields('pickup');
                     }
                     else if (method === 'courier') {
-                        deliveryCostElement.textContent = '150.00 грн';
+                        deliveryCostElement.textContent = '150 грн';
                         toggleFields('courier');
                     }
                 });
@@ -367,10 +594,10 @@
 
                 if (discount > 0) {
                     const discountAmount = (totalPrice * discount) / 100;
-                    discountElement.textContent = `${discount}% (-${discountAmount.toFixed(2)} грн)`;
+                    discountElement.textContent = `${discount}% (-${discountAmount.toFixed(0)} грн)`;
                 }
                 else {
-                    discountElement.textContent = 'Немає';
+                    discountElement.textContent = 'немає';
                 }
             }
 
@@ -399,10 +626,10 @@
                 const finalAmount = totalPrice + deliveryCost - discountAmount;
 
                 if (discountAmount > 0) {
-                    totalAmountElement.textContent = `${finalAmount.toFixed(2)} грн`;
+                    totalAmountElement.textContent = `${finalAmount.toFixed(0)} грн`;
                 }
                 else {
-                    totalAmountElement.textContent = `${(totalPrice + deliveryCost).toFixed(2)} грн`;
+                    totalAmountElement.textContent = `${(totalPrice + deliveryCost).toFixed(0)} грн`;
                 }
 
                 fetch('{{ route("user.deliveryCost") }}', {
@@ -560,7 +787,7 @@
                 shippingCost = 0.00;
             }
 
-            const products = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
+
             const totalAmount = parseFloat(document.getElementById('sum').innerText.replace(' грн', '')) || 0;
 
             const discountElement = document.querySelector('.discount span:last-child');
@@ -592,50 +819,49 @@
                 return;
             }
 
-            fetch('{{ route("user.confirmOrder") }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify({
-                    shipping_method: selectedShippingMethod.getAttribute('data-method'),
-                    payment_method: selectedPaymentMethod.innerText === 'Visa/Mastercard' ? 'visa' : 'postpaid',
-                    address,
-                    shipping_cost: shippingCost,
-                    total_amount: totalAmount,
-                    discount_id: discountId,
-                    products,
-                    fullname,
-                    email,
-                    phone
-                })
-            })
+            fetch(`/user/cart/session`)
                 .then(response => response.json())
-                .then(data => {
-                    alert(data.message);
-                    localStorage.removeItem(`cart_${userId}`);
-                    window.location.href = '{{ route("user.main") }}';
+                .then(products => {
+                    fetch('{{ route("user.confirmOrder") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            shipping_method: selectedShippingMethod.getAttribute('data-method'),
+                            payment_method: selectedPaymentMethod.innerText === 'Visa/Mastercard' ? 'visa' : 'postpaid',
+                            address,
+                            shipping_cost: shippingCost,
+                            total_amount: totalAmount,
+                            discount_id: discountId,
+                            products,
+                            fullname,
+                            email,
+                            phone
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.payment_url) {
+                                window.location.href = data.payment_url;
+                            } else {
+                                alert(data.message);
+                                window.location.href = '{{ route("user.main") }}';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    console.error('Не вдалося отримати товари з сесії:', error);
                 });
+
         });
-
-        window.onscroll = function () {
-            const scrollToTopButton = document.getElementById("scrollToTop");
-            if (window.scrollY > 200) {
-                scrollToTopButton.style.display = "block";
-            } else {
-                scrollToTopButton.style.display = "none";
-            }
-        };
-
-        document.getElementById("scrollToTop").onclick = function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        };
 
     </script>
 
     @include('layouts.footer-user')
+
 @endsection

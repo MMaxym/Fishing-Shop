@@ -53,7 +53,9 @@
                                         @php
                                             $statusClassMap = [
                                                 'В обробці' => 'status-in-process',
+                                                'Створено' => 'status-in-process',
                                                 'Очікує на оплату' => 'status-awaiting-payment',
+                                                'Оплачено' => 'status-awaiting-payment',
                                                 'Доставлено' => 'status-delivered',
                                                 'Завершено' => 'status-completed',
                                                 'Скасовано' => 'status-cancelled',
@@ -80,7 +82,9 @@
                                                         @php
                                                             $statusClassMap = [
                                                                 'В обробці' => 'in-process',
+                                                                'Створено' => 'status-in-process',
                                                                 'Очікує на оплату' => 'awaiting-payment',
+                                                                'Оплачено' => 'status-awaiting-payment',
                                                                 'Доставлено' => 'delivered',
                                                                 'Завершено' => 'completed',
                                                                 'Скасовано' => 'cancelled',

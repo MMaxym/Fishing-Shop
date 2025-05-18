@@ -164,6 +164,14 @@ Route::prefix('user/')->group(function () {
     Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
     Route::post('/favorite-products/toggle/{product}', [FavoriteProductController::class, 'toggle']);
+
+
+
+    Route::get('/cart/session', [CheckoutPageController::class, 'getCartFromSession']);
+    Route::get('/order/{order}/pay', [CheckoutPageController::class, 'pay'])->name('user.pay');
+    Route::post('/liqpay/callback', [CheckoutPageController::class, 'callback'])->name('liqpay.callback');
+    Route::get('/liqpay/result', function () { return view('payment.result'); })->name('liqpay.result');
+
 });
 
 

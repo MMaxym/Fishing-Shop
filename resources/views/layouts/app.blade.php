@@ -62,7 +62,7 @@
             function showLoaderWithDelay() {
                 loaderTimeout = setTimeout(() => {
                     document.getElementById('global-loader')?.classList.remove('loader-hidden');
-                }, 500);
+                }, 100);
             }
 
             function hideLoader() {

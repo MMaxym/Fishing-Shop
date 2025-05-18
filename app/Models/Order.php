@@ -21,6 +21,7 @@ class Order extends Model
         'address',
         'total_amount',
         'status',
+        'transaction_id',
         'created',
     ];
 
