@@ -384,7 +384,10 @@
 {{--    </div>--}}
 
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHKSG3mfEn6Tya-F1pQSqz9dxo29v8lT0&callback=initMap" async defer></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initMap"
+        async defer>
+    </script>
 
     <script src="{{ asset('js/user/checkoutPage.js') }}"></script>
 
