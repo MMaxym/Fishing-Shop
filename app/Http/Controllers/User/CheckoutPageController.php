@@ -18,27 +18,18 @@ use Illuminate\Support\Facades\Storage;
 
 class CheckoutPageController extends Controller
 {
-    /**
-     * Відображення сторінки оформлення замовлення.
-     */
     public function index()
     {
         $cart = session('cart', []);
         return view('user.checkoutPage', ['cart' => $cart]);
     }
 
-    /**
-     * Збереження вартості доставки у сесії.
-     */
     public function deliveryCost(Request $request)
     {
         session(['deliveryCost' => $request->input('deliveryCost')]);
         return response()->json(['message' => 'Delivery cost saved in session']);
     }
 
-    /**
-     * Підтвердження замовлення, створення Order, відправка PDF, редірект на оплату або email.
-     */
     public function confirmOrder(Request $request)
     {
         try {
@@ -68,7 +59,6 @@ class CheckoutPageController extends Controller
             $email = $request->input('email');
 
             if ($paymentMethodId === 1) {
-                // Оплата карткою — редірект на оплату
                 $order->status = 'Очікує на оплату';
                 $order->save();
 
@@ -78,14 +68,17 @@ class CheckoutPageController extends Controller
                     'updated' => now(),
                 ]);
 
+                $this->sendReceiptEmailAsync($email, $order, Auth::user(), $products, $request->input('shipping_method'), $pdfPath);
+                $this->clearCartSession();
+
                 return response()->json(['payment_url' => route('user.pay', ['order' => $order->id])]);
             }
 
-            // Оплата при отриманні — надсилаємо email
             $this->sendReceiptEmailAsync($email, $order, Auth::user(), $products, $request->input('shipping_method'), $pdfPath);
+            $this->clearCartSession();
 
             return response()->json([
-                'message' => "Замовлення \"{$order->id}\" успішно створено! Чек на замовлення надіслано на Вашу електронну пошту"
+                'message' => "Замовлення \"{$order->id}\" успішно оформлено! Чек на замовлення надіслано на Вашу електронну пошту"
             ], 200);
         } catch (\Exception $e) {
             Log::error('Помилка підтвердження замовлення: ' . $e->getMessage());
@@ -93,18 +86,12 @@ class CheckoutPageController extends Controller
         }
     }
 
-    /**
-     * Відображення форми LiqPay.
-     */
     public function pay(Order $order, LiqPayService $liqPayService)
     {
         $form = $liqPayService->generatePaymentForm($order);
         return view('payment.form', compact('form'));
     }
 
-    /**
-     * Callback від LiqPay — оновлення статусу замовлення.
-     */
     public function callback(Request $request)
     {
         try {
@@ -126,13 +113,24 @@ class CheckoutPageController extends Controller
                 return response('Order not found', 404);
             }
 
-            $order->status = match ($decodedData['status']) {
+            $newStatus = match ($decodedData['status']) {
                 'success', 'sandbox', 'wait_accept' => 'Оплачено',
                 'failure', 'error', 'expired', 'reversed' => 'Оплата при отриманні',
                 default => 'Очікує на оплату',
             };
 
+            if (in_array($decodedData['status'], ['success', 'sandbox', 'wait_accept'])) {
+                $order->transaction_id = $decodedData['transaction_id'] ?? null;
+            }
+
+            $order->status = $newStatus;
             $order->save();
+
+            OrderTracking::create([
+                'order_id' => $order->id,
+                'status' => $newStatus,
+                'updated' => now(),
+            ]);
 
             return response('Callback processed', 200);
         } catch (\Exception $e) {
@@ -141,11 +139,6 @@ class CheckoutPageController extends Controller
         }
     }
 
-    // ------------------- Приватні допоміжні методи -------------------
-
-    /**
-     * Мапінг методу доставки на ID.
-     */
     private function mapShippingMethod(string $method): int
     {
         return match ($method) {
@@ -157,9 +150,6 @@ class CheckoutPageController extends Controller
         };
     }
 
-    /**
-     * Додає продукти до замовлення та зменшує їх кількість.
-     */
     private function storeProductsInOrder(array $products, Order $order): void
     {
         foreach ($products as $product) {
@@ -180,9 +170,6 @@ class CheckoutPageController extends Controller
         }
     }
 
-    /**
-     * Генерує PDF квитанцію про замовлення.
-     */
     private function generateReceiptPdf(Order $order, $user, array $products, string $shippingMethod): string
     {
         $pdfPath = 'temp/order-receipt-' . $order->id . '.pdf';
@@ -191,9 +178,6 @@ class CheckoutPageController extends Controller
         return $pdfPath;
     }
 
-    /**
-     * Асинхронне надсилання PDF-чека на email.
-     */
     private function sendReceiptEmailAsync($email, $order, $user, $products, $shippingMethod, $pdfPath): void
     {
         dispatch(function () use ($email, $order, $user, $products, $shippingMethod, $pdfPath) {
@@ -208,4 +192,8 @@ class CheckoutPageController extends Controller
         return response()->json($cart);
     }
 
+    public function clearCartSession(): void
+    {
+        session()->forget('cart');
+    }
 }

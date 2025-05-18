@@ -10,9 +10,9 @@
             padding: 0;
         }
         .container {
-            width: 320px;
+            width: 370px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 15px 10px;
             border: 1px solid #ccc;
         }
         h2, p {
@@ -82,26 +82,26 @@
         @if(!empty($products) && is_iterable($products))
             @foreach($products as $productInOrder)
                 <tr>
-                    <td>{{ $productInOrder['name'] }} ({{ $productInOrder['size'] }})</td>
+                    <td style="max-width: 200px;">{{ $productInOrder['name'] }} (арт. {{ $productInOrder['article'] }})</td>
                     <td>{{ $productInOrder['quantity'] }}</td>
-                    <td>{{ number_format($productInOrder['price'], 2) }} грн</td>
+                    <td>{{ number_format($productInOrder['price'], 0, ' ', ' ') }} грн</td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align: right;">
                         @if($productInOrder['price'] === $productInOrder['actualPrice'])
-                            <span class="final-price">{{ number_format($productInOrder['actualPrice'] * $productInOrder['quantity'], 2) }} грн</span>
+                            <span class="final-price">{{ number_format($productInOrder['actualPrice'] * $productInOrder['quantity'], 0, ' ', ' ') }} грн</span>
                         @endif
                         @if($productInOrder['price'] !== $productInOrder['actualPrice'])
-                            <span class="discount-price">{{ number_format($productInOrder['price'] * $productInOrder['quantity'], 2) }} грн</span>
+                            <span class="discount-price">{{ number_format($productInOrder['price'] * $productInOrder['quantity'], 0, ' ', ' ') }} грн</span>
                             <br>
-                            <span class="final-price">{{ number_format($productInOrder['actualPrice'] * $productInOrder['quantity'], 2) }} грн</span>
+                            <span class="final-price">{{ number_format($productInOrder['actualPrice'] * $productInOrder['quantity'], 0, ' ', ' ') }} грн</span>
                         @endif
                     </td>
                 </tr>
             @endforeach
         @else
             <tr>
-                <td colspan="3" style="text-align: center;">Немає товарів у замовленні</td>
+                <td colspan="3" style="text-align: center;">* Немає товарів у замовленні</td>
             </tr>
         @endif
         </tbody>
@@ -122,9 +122,11 @@
 
         if ($totalPrice >= 3000) {
             $orderDiscountPercentage = 10;
-        } elseif ($totalPrice >= 2000) {
+        }
+        elseif ($totalPrice >= 2000) {
             $orderDiscountPercentage = 5;
-        } elseif ($totalPrice >= 1000) {
+        }
+        elseif ($totalPrice >= 1000) {
             $orderDiscountPercentage = 3;
         }
 
@@ -138,26 +140,26 @@
     <hr style="border: 1px solid black; margin: 20px 0;">
 
     <p class="total"  style="font-weight: bold;">
-        Вартість товарів: {{ number_format(array_reduce($products, function($carry, $product) {
+        Сума: {{ number_format(array_reduce($products, function($carry, $product) {
         $discount = isset($product['discount']) ? $product['discount']['percentage'] : 0;
         $actualPrice = $product['actualPrice'];
         $quantity = $product['quantity'];
 
         $totalPrice = $actualPrice * $quantity * (1 - ($discount / 100));
         return $carry + $totalPrice;
-    }, 0), 2) }} грн
+    }, 0), 0, ' ', ' ') }} грн
     </p>
 
     <p class="total" style="color: #808080;">
-        Вартість доставки: {{ number_format($deliveryCost, 2) }} грн
+        Доставка: {{ number_format($deliveryCost, 0, ' ', ' ') }} грн
     </p>
 
     <p class="total" style="color: #c53727;">
-        Знижка на замовлення: {{ $orderDiscountPercentage }}% (-{{ number_format($orderDiscountAmount, 2) }} грн)
+        Знижка: {{ $orderDiscountPercentage }}% (-{{ number_format($orderDiscountAmount, 0, ' ', ' ') }} грн)
     </p>
 
     <p class="total" style="font-weight: bold; font-size: 16px;">
-        ДО СПЛАТИ: {{ number_format($finalTotal, 2) }} грн
+        ДО СПЛАТИ: {{ number_format($finalTotal, 0, ' ', ' ') }} грн
     </p>
 
 

@@ -200,7 +200,7 @@
 .cart-item-image img {
     width: 120px;
     height: 80px;
-    object-fit: fill;
+    object-fit: contain;
 }
 
 .cart-item-image img:focus{

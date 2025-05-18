@@ -180,11 +180,15 @@
                                     <p class="col-title">Спосіб оплати</p>
                                     <div class="payment-method">
                                         <div class="payment-btn">
-                                            <button class="active"></button>
+                                            <button class="active">
+                                                <span style="display: none;">Visa/Mastercard</span>
+                                            </button>
                                             <p class="payment-name"> Visa/Mastercard</p>
                                         </div>
                                         <div class="payment-btn">
-                                            <button></button>
+                                            <button>
+                                                <span style="display: none;">Післяплата</span>
+                                            </button>
                                             <p class="payment-name"> Післяплата</p>
                                         </div>
                                     </div>
@@ -726,14 +730,17 @@
             }
 
             const selectedShippingMethod = document.querySelector('.shipping-method button.active');
-            const selectedPaymentMethod = document.querySelector('.payment-method button.active');
+            const selectedPaymentButton = document.querySelector('.payment-method button.active');
+            const methodText = selectedPaymentButton.querySelector('span')?.textContent?.trim();
+            const payment_method = methodText === 'Visa/Mastercard' ? 'visa' : 'postpaid';
+
 
             if (!selectedShippingMethod) {
                 alert('Будь ласка, оберіть метод доставки.');
                 return;
             }
 
-            if (!selectedPaymentMethod) {
+            if (!selectedPaymentButton) {
                 alert('Будь ласка, оберіть метод оплати.');
                 return;
             }
@@ -772,7 +779,7 @@
                     window.scrollTo(0, 400);
                     return;
                 }
-                shippingCost = 50.00;
+                shippingCost = 50;
             }
             else if (selectedShippingMethod.getAttribute('data-method') === 'courier') {
                 address = 'м.Хмельницький, ' + document.getElementById('courier-address').value;
@@ -783,11 +790,11 @@
                     window.scrollTo(0, 400);
                     return;
                 }
-                shippingCost = 150.00;
+                shippingCost = 150;
             }
             else if (selectedShippingMethod.getAttribute('data-method') === 'pickup') {
                 address = 'Самовивіз';
-                shippingCost = 0.00;
+                shippingCost = 0;
             }
 
 
@@ -822,6 +829,8 @@
                 return;
             }
 
+
+
             fetch(`/user/cart/session`)
                 .then(response => response.json())
                 .then(products => {
@@ -833,7 +842,7 @@
                         },
                         body: JSON.stringify({
                             shipping_method: selectedShippingMethod.getAttribute('data-method'),
-                            payment_method: selectedPaymentMethod.innerText === 'Visa/Mastercard' ? 'visa' : 'postpaid',
+                            payment_method,
                             address,
                             shipping_cost: shippingCost,
                             total_amount: totalAmount,
@@ -847,11 +856,17 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.payment_url) {
-                                window.location.href = data.payment_url;
+                                showToast('Замовлення успішно оформлено!', 'success');
+                                setTimeout(() => {
+                                    window.location.href = data.payment_url;
+                                }, 1500);
                             } else {
-                                alert(data.message);
-                                window.location.href = '{{ route("user.main") }}';
+                                showToast('Замовлення успішно оформлено!', 'success');
+                                setTimeout(() => {
+                                    window.location.href = '{{ route("user.main") }}';
+                                }, 1500);
                             }
+
                         })
                         .catch(error => {
                             console.error('Error:', error);

@@ -169,7 +169,7 @@ Route::prefix('user/')->group(function () {
 
     Route::get('/cart/session', [CheckoutPageController::class, 'getCartFromSession']);
     Route::get('/order/{order}/pay', [CheckoutPageController::class, 'pay'])->name('user.pay');
-    Route::post('/liqpay/callback', [CheckoutPageController::class, 'callback'])->name('liqpay.callback');
+    Route::post('/liqpay/callback', [CheckoutPageController::class, 'callback'])->name('liqpay.callback')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
     Route::get('/liqpay/result', function () { return view('payment.result'); })->name('liqpay.result');
 
 });

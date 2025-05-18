@@ -18,6 +18,7 @@ class LiqPayService
         $params = [
             'action'         => 'pay',
             'amount'         => $order->total_amount,
+//            'amount'         => 1.02,
             'currency'       => 'UAH',
             'description'    => 'Оплата замовлення #' . $order->id,
             'order_id'       => $order->id,
