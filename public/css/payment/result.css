@@ -1,0 +1,77 @@
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 32px 100px;
+    box-sizing: border-box;
+    gap: 50px;
+    text-align: left;
+}
+
+.content {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 110px;
+    gap: 0px;
+}
+
+.logo-link:hover .logo-icon {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(9%) saturate(925%) hue-rotate(170deg) brightness(95%) contrast(88%);
+}
+
+.background-img{
+    width: 45%;
+}
+
+.icon-done{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.payment-title{
+    font-weight: var(--Semibold-weight);
+    font-size: var(--Font-32-size);
+    color: var(--main-dark);
+    margin-bottom: 20px;
+}
+
+.payment-description{
+    font-weight: var(--Regular-weight);
+    font-size: var(--Font-20-size);
+    color: var(--main-dark);
+    margin-bottom: 20px;
+}
+
+.redirect-to-main{
+    padding: 12px 24px;
+    background-color: var(--light-1);
+    border-radius: var(--br-1);
+    color: var(--main-light);
+    border-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+    margin-bottom: 30px;
+}
+
+.redirect-to-main:hover{
+    text-decoration: none;
+    background-color: var(--dark-1);
+    color: var(--main-light);
+}
+
+.redirect-to-main:focus {
+    outline: none;
+}
+
+.icon-arrow-right{
+    margin-left: 10px;
+    width: 22px;
+}
+

@@ -108,7 +108,6 @@
             });
 
 
-
             function showToast(message, type = 'success') {
                 const icons = {
                     success: "{{ asset('images/v2/icon/DoneFilled.svg') }}",

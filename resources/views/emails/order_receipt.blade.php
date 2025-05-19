@@ -10,7 +10,7 @@
             padding: 0;
         }
         .container {
-            width: 370px;
+            width: 330px;
             margin: 0 auto;
             padding: 15px 10px;
             border: 1px solid #ccc;
@@ -82,7 +82,7 @@
         @if(!empty($products) && is_iterable($products))
             @foreach($products as $productInOrder)
                 <tr>
-                    <td style="max-width: 200px;">{{ $productInOrder['name'] }} (арт. {{ $productInOrder['article'] }})</td>
+                    <td style="max-width: 150px;">{{ $productInOrder['name'] }} (арт. {{ $productInOrder['article'] }})</td>
                     <td>{{ $productInOrder['quantity'] }}</td>
                     <td>{{ number_format($productInOrder['price'], 0, ' ', ' ') }} грн</td>
                 </tr>
