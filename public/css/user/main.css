@@ -61,6 +61,7 @@
 }
 
 .navigate-link:hover {
+    border-left: 4px solid var(--light-1);
     background-color: var(--light-2);
     cursor: pointer;
     text-decoration: none;
@@ -73,6 +74,10 @@
     height: 100%;
     padding: 0 20px;
     box-sizing: border-box;
+}
+
+.navigate-link-content:hover{
+    padding-left: 16.5px;
 }
 
 #navigate-link-content-top:hover{

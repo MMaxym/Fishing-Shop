@@ -27,7 +27,7 @@
 }
 
 .background-img{
-    width: 65%;
+    width: 60%;
 }
 
 .description {
@@ -41,6 +41,8 @@
 }
 
 .description-text{
+    line-height: 1.5;
+    text-align: center;
     color: var(--main-dark);
     font-weight: var(--Medium-weight);
     font-size: var(--Font-22-size);
