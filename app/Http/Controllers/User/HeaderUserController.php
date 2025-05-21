@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\FavoriteProduct;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class HeaderUserController extends Controller
@@ -79,6 +81,14 @@ class HeaderUserController extends Controller
         $query = $request->input('query');
         $oneMonthAgo = Carbon::now()->subMonth();
 
+        $likedProductIds = [];
+
+        if (Auth::check()) {
+            $likedProductIds = FavoriteProduct::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
+
         if (empty($query)) {
             return redirect()->route('user.main');
         }
@@ -93,6 +103,7 @@ class HeaderUserController extends Controller
             $product->isDiscounted = !is_null($product->discount);
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
             $product->actual_price = $product->discountedPrice();
+            $product->isLiked = in_array($product->id, $likedProductIds);
         }
 
         $currentPage = $products->currentPage();
@@ -100,12 +111,40 @@ class HeaderUserController extends Controller
         $totalItems = $products->total();
         $itemsShown = ($currentPage - 1) * $perPage + $products->count();
 
+        $likedProductIds2 = [];
+
+        if (Auth::check()) {
+            $likedProductIds2 = FavoriteProduct::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
+
+        $recentlyViewed = session()->get('recently_viewed', []);
+        $recentlyViewedProducts = Product::with('images')
+            ->whereIn('id', $recentlyViewed)
+            ->get()
+            ->sortBy(function ($product) use ($recentlyViewed) {
+                return array_search($product->id, $recentlyViewed);
+            });
+
+        $oneMonthAgo = \Carbon\Carbon::now()->subMonth();
+
+        foreach ($recentlyViewedProducts as $item) {
+            $item->isNew = $item->created_at > $oneMonthAgo || $item->updated_at > $oneMonthAgo;
+            $item->isLiked = in_array($item->id, $likedProductIds2);
+        }
+
+
         if ($products->isEmpty()) {
-            return view('user.searchProduct', ['message' => 'Нажаль, нічого не знайдено.', 'query' => $query]);
+            return view('user.searchProduct', [
+                'message' => 'Упс... Рибка не клюнула! Спробуйте інший запит 🎣',
+                'query' => $query,
+                'recentlyViewedProducts' => $recentlyViewedProducts,
+            ]);
         }
 
         return view('user.searchProduct', compact(
-            'products', 'query', 'currentPage', 'perPage', 'totalItems', 'itemsShown'
+            'products', 'query', 'currentPage', 'perPage', 'totalItems', 'itemsShown', 'recentlyViewedProducts',
         ));
     }
 }

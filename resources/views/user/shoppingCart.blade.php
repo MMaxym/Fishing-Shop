@@ -149,7 +149,7 @@
         @if($recentlyViewedProducts->isNotEmpty())
             <section class="main-row">
                 <div class="recently-products-wrapper">
-                    <h2 class="row-title">НЕЩОДАВНО ПЕРЕГЛЯНУТІ</h2>
+                    <h2 class="row-title">Нещодавно переглянуті</h2>
                     <div class="recently-products-scroll-container" id="recently-products-scroll-container">
                         <div class="recently-products-cards">
                             @foreach($recentlyViewedProducts as $recentlyViewedProduct)

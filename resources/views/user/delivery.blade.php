@@ -25,7 +25,7 @@
                         </div>
                         <h3 class="delivery-name">Нова Пошта</h3>
                         <p class="delivery-text">Швидка доставка по Україні через відділення Нової Пошти</p>
-                        <p class="delivery-price red">Від 100 грн</p>
+                        <p class="delivery-price red">Від 80 грн</p>
                         <span class="delivery-price-warning">* Залежить від адреси замовлення</span>
                     </div>
 
@@ -54,7 +54,7 @@
                         </div>
                         <h3 class="delivery-name">Доставка кур'єром</h3>
                         <p class="delivery-text">Зручна доставка замовлення прямо до вашого дому або офісу</p>
-                        <p class="delivery-price red">250 грн</p>
+                        <p class="delivery-price red">150 грн</p>
                     </div>
                 </div>
             </div>

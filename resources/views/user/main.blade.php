@@ -75,7 +75,7 @@
 
         <section class="main-row">
             <div class="advantages-wrapper">
-                <h2 class="row-title">ПРАЦЮЄМО ДЛЯ ВАС</h2>
+                <h2 class="row-title">Працюємо для вас</h2>
                 <div class="advantages">
                     <div class="advantage">
                         <img src="{{ asset('images/v2/img/advantage-img-1.svg') }}" alt="Перевага 1" class="advantage-img">
@@ -107,7 +107,7 @@
 
         <section class="main-row">
             <div class="categories-wrapper">
-                <h2 class="row-title">КАТЕГОРІЇ</h2>
+                <h2 class="row-title">Категорії</h2>
                 <div class="categories">
                     <a href="{{route('user.categoryPilkers')}}" class="category-card">
                         <div class="category-top">
@@ -153,8 +153,7 @@
 
         <section class="main-row">
             <div class="products-wrapper">
-                <h2 class="row-title">НОВИНКИ</h2>
-
+                <h2 class="row-title">Новинки</h2>
                 <div class="products-scroll-container" id="new-products-scroll-container">
                     <div class="products-cards" id="new-products-container" >
                         @foreach($products as $product)
@@ -247,8 +246,7 @@
 
         <section class="main-row">
             <div class="products-wrapper">
-                <h2 class="row-title">АКЦІЙНІ ТОВАРИ</h2>
-
+                <h2 class="row-title">Акційні товари</h2>
                 <div class="products-scroll-container" id="sail-products-scroll-container">
                     <div class="products-cards">
                         @foreach($products2 as $product2)
@@ -336,7 +334,7 @@
 
         <section class="main-row">
             <div class="faqs-wrapper">
-                <h2 class="row-title">НАЙПОПУЛЯРНІШІ ПИТАННЯ</h2>
+                <h2 class="row-title">Найпопулярніші запитанння</h2>
                 <div class="faq-list">
                     @foreach($faqs as $index => $faq)
                         <div class="faq-item">
