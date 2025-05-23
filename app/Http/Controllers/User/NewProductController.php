@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\FavoriteProduct;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewProductController extends Controller
 {
@@ -45,20 +47,37 @@ class NewProductController extends Controller
             $products->where('category_id', $category);
         }
 
+        $likedProductIds = [];
+
+        if (Auth::check()) {
+            $likedProductIds = FavoriteProduct::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
+
         $products = $this->applySorting($products, $sortOrder);
 
         $products = $products->paginate(12);
+
 
         foreach ($products as $product) {
             $product->isDiscounted = !is_null($product->discount);
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
             $product->actual_price = $product->discountedPrice();
+            $product->isLiked = in_array($product->id, $likedProductIds);
         }
 
         $currentPage = $products->currentPage();
         $perPage = $products->perPage();
         $totalItems = $products->total();
         $itemsShown = ($currentPage - 1) * $perPage + $products->count();
+
+        if ($request->ajax()) {
+            return response()->view('partials.products', compact(
+                'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
+                'sortOrder', 'category', 'minPrice', 'maxPrice', 'minPriceFromDB', 'maxPriceFromDB'
+            ));
+        }
 
         return view('user.newProducts', compact(
             'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
@@ -70,11 +89,14 @@ class NewProductController extends Controller
     {
         if ($sortOrder == 'low_to_high') {
             return $products->orderBy('actual_price', 'asc');
-        } elseif ($sortOrder == 'high_to_low') {
+        }
+        elseif ($sortOrder == 'high_to_low') {
             return $products->orderBy('actual_price', 'desc');
-        } elseif ($sortOrder == 'a_to_z') {
+        }
+        elseif ($sortOrder == 'a_to_z') {
             return $products->orderBy('name', 'asc');
-        } elseif ($sortOrder == 'z_to_a') {
+        }
+        elseif ($sortOrder == 'z_to_a') {
             return $products->orderBy('name', 'desc');
         }
 

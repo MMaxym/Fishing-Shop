@@ -50,8 +50,8 @@
 .search-input {
     width: 100%;
     padding: 8px 8px 8px 40px !important;
-    color: var(--dark-1);
-    border: 1px solid var(--light-1);
+    color: var(--dark-1) !important;
+    border: 1px solid var(--light-1) !important;
     border-radius: var(--br-1);
     font-size: var(--Font-14-size);
     font-weight: var(--Regular-weight);
@@ -59,12 +59,12 @@
 }
 
 .search-input:focus {
-    border: 1px solid var(--dark-1);
+    border: 1px solid var(--dark-1) !important;;
     outline: none;
 }
 
 .search-input::placeholder {
-    color: var(--light-1);
+    color: var(--light-1) !important;;
 }
 
 .search-btn {

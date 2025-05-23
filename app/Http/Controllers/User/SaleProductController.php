@@ -66,11 +66,14 @@ class SaleProductController extends Controller
     {
         if ($sortOrder == 'low_to_high') {
             return $products->orderBy('actual_price', 'asc');
-        } elseif ($sortOrder == 'high_to_low') {
+        }
+        elseif ($sortOrder == 'high_to_low') {
             return $products->orderBy('actual_price', 'desc');
-        } elseif ($sortOrder == 'a_to_z') {
+        }
+        elseif ($sortOrder == 'a_to_z') {
             return $products->orderBy('name', 'asc');
-        } elseif ($sortOrder == 'z_to_a') {
+        }
+        elseif ($sortOrder == 'z_to_a') {
             return $products->orderBy('name', 'desc');
         }
 

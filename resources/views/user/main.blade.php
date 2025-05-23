@@ -112,7 +112,7 @@
                     <a href="{{route('user.categoryPilkers')}}" class="category-card">
                         <div class="category-top">
                             <div class="category-bg-shape"></div>
-                            <img src="{{ asset('images/v2/img/category-pilker-img.svg') }}" alt="Пількери" class="category-img">
+                            <img src="{{ asset('images/v2/img/category-pilker.png') }}" alt="Пількери" class="category-img" style="max-height: 100%;">
                         </div>
                         <div class="category-bottom">
                             <h3 class="category-name">Пількери</h3>
