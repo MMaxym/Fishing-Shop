@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\FavoriteProduct;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryTailSpinnerController extends Controller
 {
@@ -15,17 +17,6 @@ class CategoryTailSpinnerController extends Controller
         $sortOrder = $request->get('sort', 'none');
         $minPrice = $request->get('min_price', null);
         $maxPrice = $request->get('max_price', null);
-
-//        DB::statement("UPDATE products, ".
-//            "(select  p.id,(price * (1 - d.percentage / 100)) as actual ".
-//            "from products p, discounts d ".
-//            "where p.discount_id IS NOT NULL and p.discount_id = d.id ".
-//            "union ".
-//            "select  p.id,(price) as actual ".
-//            "from products p ".
-//            "where p.discount_id IS NULL ) test ".
-//            "SET actual_price = test.actual ".
-//            "WHERE products.id = test.id");
 
 
         $minPriceFromDB = Product::whereHas('category', function ($query) {
@@ -51,19 +42,33 @@ class CategoryTailSpinnerController extends Controller
         }
 
         $products = $this->applySorting($products, $sortOrder);
-
         $products = $products->paginate(12);
+
+        $likedProductIds = [];
+
+        if (Auth::check()) {
+            $likedProductIds = FavoriteProduct::where('user_id', Auth::id())
+                ->pluck('product_id')
+                ->toArray();
+        }
 
         foreach ($products as $product) {
             $product->isDiscounted = !is_null($product->discount);
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
-            $product->actual_price = $product->discountedPrice() ;
+            $product->isLiked = in_array($product->id, $likedProductIds);
         }
 
         $currentPage = $products->currentPage();
         $perPage = $products->perPage();
         $totalItems = $products->total();
         $itemsShown = ($currentPage - 1) * $perPage + $products->count();
+
+        if ($request->ajax()) {
+            return response()->view('partials.products', compact(
+                'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
+                'sortOrder', 'minPrice', 'maxPrice', 'minPriceFromDB', 'maxPriceFromDB'
+            ));
+        }
 
         return view('user.categoryTailSpinners', compact(
             'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
