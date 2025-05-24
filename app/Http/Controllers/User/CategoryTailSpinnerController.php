@@ -18,7 +18,6 @@ class CategoryTailSpinnerController extends Controller
         $minPrice = $request->get('min_price', null);
         $maxPrice = $request->get('max_price', null);
 
-
         $minPriceFromDB = Product::whereHas('category', function ($query) {
             $query->where('name', 'Тейл-спінери');
         })->min('actual_price');

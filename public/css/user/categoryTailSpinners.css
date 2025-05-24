@@ -625,6 +625,9 @@ select:focus{
     background-color: var(--white);
 }
 
+#loadMore:focus{
+    outline: none;
+}
 
 #button-paggination:hover{
     background-color: var(--white);
