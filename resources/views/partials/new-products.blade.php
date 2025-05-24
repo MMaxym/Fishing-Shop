@@ -11,7 +11,7 @@
                              data-image="{{ $product->images->isNotEmpty() ? implode(',', $product->images->map(fn($img) => asset('storage/' . $img->image_url))->toArray()) : '' }}"
                              data-article="{{ $product->article }}"
                              data-price="{{ $product->price }}"
-                             data-discounted-price="{{ $product->discount ? $product->discountedPrice() : $product->price }}"
+                             data-discounted-price="{{ $product->actual_price }}"
                              data-actual-price="{{$product->actual_price}}">
 
                             @if($product->isNew)
@@ -85,7 +85,7 @@
                 <div class="no-products-message">
                     <p class="empty-cart-text">За обраними фільтрами товари не знайдено.</p>
                     <button class="empty-cart-btn" onclick="resetFilters()">Скинути фільтрацію
-                        <img  class="empty-cart-btn-icon" src="{{ asset('images/v2/icon/ArrowBigRightHomeLink.svg') }}" alt="moreIcon">
+{{--                        <img  class="empty-cart-btn-icon" src="{{ asset('images/v2/icon/ArrowBigRightHomeLink.svg') }}" alt="moreIcon">--}}
                     </button>
                     <img  class="empty-cart-img" src="{{ asset('images/v2/img/not-found-products-img.svg') }}" alt="emptyIcon">
                 </div><br>

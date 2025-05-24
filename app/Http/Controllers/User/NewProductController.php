@@ -56,14 +56,11 @@ class NewProductController extends Controller
         }
 
         $products = $this->applySorting($products, $sortOrder);
-
         $products = $products->paginate(12);
-
 
         foreach ($products as $product) {
             $product->isDiscounted = !is_null($product->discount);
             $product->isNew = $product->created_at > $oneMonthAgo || $product->updated_at > $oneMonthAgo;
-            $product->actual_price = $product->discountedPrice();
             $product->isLiked = in_array($product->id, $likedProductIds);
         }
 
@@ -73,7 +70,7 @@ class NewProductController extends Controller
         $itemsShown = ($currentPage - 1) * $perPage + $products->count();
 
         if ($request->ajax()) {
-            return response()->view('partials.products', compact(
+            return response()->view('partials.new-products', compact(
                 'products', 'currentPage', 'perPage', 'totalItems', 'itemsShown',
                 'sortOrder', 'category', 'minPrice', 'maxPrice', 'minPriceFromDB', 'maxPriceFromDB'
             ));

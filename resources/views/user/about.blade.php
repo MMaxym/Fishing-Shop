@@ -18,6 +18,9 @@
                     Саме тому ми обираємо лише ті приманки, які відмінно працюють, перевірені
                     в реальних умовах, на різних водоймах і за різної активності риби.
                 </p>
+                <button class="empty-cart-btn" onclick="window.location.href='{{ route('user.main') }}'">Перейти до покупок
+                    <img  class="empty-cart-btn-icon" src="{{ asset('images/v2/icon/ArrowBigRightHomeLink.svg') }}" alt="moreIcon">
+                </button>
             </div>
             <div class="main-image-wrapper">
                 <img src="{{ asset('images/v2/img/about-img-1.svg') }}" alt="Перевірені приманки" class="main-image" />

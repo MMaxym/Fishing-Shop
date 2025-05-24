@@ -109,7 +109,7 @@
                     </div>
 
                     <div id="productList">
-                        @include('partials.products', ['products' => $products])
+                        @include('partials.new-products', ['products' => $products])
                     </div>
                 </div>
             </div>
