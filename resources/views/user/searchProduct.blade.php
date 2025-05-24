@@ -64,7 +64,7 @@
                                      data-image="{{ $product->images->isNotEmpty() ? implode(',', $product->images->map(fn($img) => asset('storage/' . $img->image_url))->toArray()) : '' }}"
                                      data-article="{{ $product->article }}"
                                      data-price="{{ $product->price }}"
-                                     data-discounted-price="{{ $product->discount ? $product->discountedPrice() : $product->price }}"
+                                     data-discounted-price="{{ $product->actual_price }}"
                                      data-actual-price="{{$product->actual_price}}">
 
                                     {{-- Вміст карточки --}}
@@ -164,7 +164,7 @@
                                      data-image="{{ $recentlyViewedProduct->images->isNotEmpty() ? implode(',', $recentlyViewedProduct->images->map(fn($img) => asset('storage/' . $img->image_url))->toArray()) : '' }}"
                                      data-article="{{ $recentlyViewedProduct->article }}"
                                      data-price="{{ $recentlyViewedProduct->price }}"
-                                     data-discounted-price="{{ $recentlyViewedProduct->discount ? $recentlyViewedProduct->discountedPrice() : $recentlyViewedProduct->price }}"
+                                     data-discounted-price="{{ $recentlyViewedProduct->actual_price }}"
                                      data-actual-price="{{$recentlyViewedProduct->actual_price}}">
 
                                     {{-- Вміст карточки --}}
