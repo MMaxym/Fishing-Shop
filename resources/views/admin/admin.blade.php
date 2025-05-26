@@ -119,7 +119,7 @@
 
                     <div class="col-md-14">
 {{--                        <div class="card mb-3 shadow" style="height: 573px;">--}}
-                        <div class="card mb-3 shadow" style="height: 700px;">
+                        <div class="card mb-3 shadow" style="height: min-content;">
                             <div class="card-header text-white" style="background-color: #04396E;">
                                 <h5 class="mb-0">Аналітика інтернет-магазину</h5>
                             </div>

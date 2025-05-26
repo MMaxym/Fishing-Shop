@@ -15,7 +15,6 @@ class ProductImageController extends Controller
         return view('admin.products.images.create', compact('product'));
     }
 
-
     public function store(Request $request, Product $product)
     {
         $request->validate([
@@ -32,7 +31,6 @@ class ProductImageController extends Controller
         return redirect()->route('admin.products.index', $product)->with('success', 'Зображення додано успішно !!!');
     }
 
-
     public function edit(Product $product)
     {
         $images = $product->images;
@@ -48,6 +46,5 @@ class ProductImageController extends Controller
 
         return redirect()->route('admin.products.images.edit', ['product' => $product->id])->with('error', 'Зображення видалено успішно !!!');
     }
-
 
 }

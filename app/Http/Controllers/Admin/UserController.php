@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -17,6 +18,10 @@ class UserController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку адміністратора.');
+        }
+
         $users = User::with('role')->get();
         $roles = Role::all();
         return view('admin.users.index', compact('users', 'roles'));

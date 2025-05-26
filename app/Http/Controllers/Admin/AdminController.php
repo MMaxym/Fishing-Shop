@@ -7,11 +7,16 @@ use App\Models\Order;
 use App\Models\ProductsInOrder;
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку адміністратора.');
+        }
+
         $newOrders = Order::all();
 
         $currentDate = Carbon::now();

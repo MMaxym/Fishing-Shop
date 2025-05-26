@@ -359,7 +359,7 @@
                         <td>${order.status}</td>
                         <td>${order.created_at.split('T')[0]+" "+ order.created_at.split('T')[1].substring(0,8)}</td>
                         <td style="text-align: center;">
-                            <a href="/admin/orders/${order.id}" class="btn btn-info btn-sm">
+                            <a href="/admin/orders/${order.id}/products" class="btn btn-info btn-sm">
                                 <i class="fas fa-list-ul"></i>
                             </a>
 

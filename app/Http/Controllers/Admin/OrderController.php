@@ -13,12 +13,17 @@ use App\Models\ShippingMethod;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
     public function index(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку адміністратора.');
+        }
+
         $query = Order::with(['user', 'paymentMethod', 'shippingMethod', 'discount'])
             ->orderByDesc('created_at');
 

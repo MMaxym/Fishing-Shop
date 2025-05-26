@@ -9,6 +9,7 @@ use App\Models\Discount;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,6 +17,10 @@ class ProductController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку адміністратора.');
+        }
+
         $categories = Category::all();
         $products = Product::all();
         return view('admin.products.index', compact('products', 'categories'));
