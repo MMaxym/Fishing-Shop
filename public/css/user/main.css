@@ -739,4 +739,6 @@ button i {
     transform: rotate(180deg);
 }
 
-
+.product-card-img:hover{
+    cursor: pointer;
+}

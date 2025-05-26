@@ -486,6 +486,10 @@ button i {
     transition: transform 0.2s ease;
 }
 
+.recently-product-card-img:hover{
+    cursor: pointer;
+}
+
 #notImageProduct{
     text-align: center;
     align-items: center;

@@ -520,3 +520,11 @@
 .recently-buy-btn:focus{
     outline: none;
 }
+
+.product-card-img:hover{
+    cursor: pointer;
+}
+
+.recently-product-card-img:hover{
+    cursor: pointer;
+}

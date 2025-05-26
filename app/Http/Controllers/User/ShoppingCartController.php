@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class ShoppingCartController extends Controller
 {
     public function index(){
+        if (!Auth::check()) {
+            return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку кошику.');
+        }
 
         $likedProductIds = [];
 

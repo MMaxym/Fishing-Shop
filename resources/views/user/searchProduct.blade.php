@@ -78,7 +78,8 @@
                                     @if($product->images->isNotEmpty())
                                         <img src="{{ $product->images->first() ? asset('storage/' . $product->images->first()->image_url) : '/images/no-image.png' }}"
                                              alt="{{ $product->name }}"
-                                             class="product-card-img">
+                                             class="product-card-img"
+                                             onclick="window.location.href='{{ route('product.showDetails', ['id' => $product->id]) }}'">
                                     @else
                                         <span id="notImageProduct">Немає зображення</span>
                                     @endif
@@ -177,7 +178,8 @@
                                     @if($recentlyViewedProduct->images->isNotEmpty())
                                         <img src="{{ $recentlyViewedProduct->images->first() ? asset('storage/' . $recentlyViewedProduct->images->first()->image_url) : '/images/no-image.png' }}"
                                              alt="{{ $recentlyViewedProduct->name }}"
-                                             class="recently-product-card-img">
+                                             class="recently-product-card-img"
+                                             onclick="window.location.href='{{ route('product.showDetails', ['id' => $recentlyViewedProduct->id]) }}'">
                                     @else
                                         <span id="notImageProduct">Немає зображення</span>
                                     @endif

@@ -37,7 +37,7 @@
 
     <div class="user-pages">
         @auth
-            <a href="{{ route('user.main') }}" class="link-icon">
+            <a href="{{ route('user.favoriteProducts') }}" class="link-icon">
                 <img class="user-page-icon" alt="Logo" title="Перейти на сторінку Улюблені товари" src="{{ asset('images/v2/icon/LikeFilledHeader.svg') }}">
             </a>
             <a href="{{ route('user.shoppingCart') }}" class="link-icon position-relative">

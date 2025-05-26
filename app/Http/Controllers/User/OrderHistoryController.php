@@ -10,6 +10,10 @@ class OrderHistoryController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку історії замовлень.');
+        }
+
         $orders = Order::where('user_id', Auth::id())
             ->with(['products.product'])
             ->orderBy('created_at', 'desc')

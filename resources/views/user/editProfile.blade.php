@@ -42,10 +42,10 @@
                             <span class="navigate-text">Головна</span>
                         </div>
                     </a>
-                    <a href="{{route('user.main')}}" class="navigate-link">
+                    <a href="{{route('user.favoriteProducts')}}" class="navigate-link">
                         <div class="navigate-link-content">
                             <img src="{{ asset('images/v2/icon/LikeOutlineEditPorfile.svg') }}" alt="Акційні товари" class="navigate-icon">
-                            <span class="navigate-text">Улюблені</span>
+                            <span class="navigate-text">Улюблені товари</span>
                         </div>
                     </a>
                     <a href="{{route('user.shoppingCart')}}" class="navigate-link">

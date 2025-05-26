@@ -57,7 +57,7 @@
 
                             <div class="discount-heading-products">
                                 <strong>{{ $discount->name }}!</strong>
-                                <span class="discount-link-products"> -{{ $discount->percentage }}% на всі категорії товарів</span>
+                                <span class="discount-link-products"> -{{ $discount->percentage }}% на певні вибрані товари</span>
                             </div>
                             <div class="discount-period-products">
                                 Акція діє з {{ $discount->start_date->format('d.m.Y') }} по {{ $discount->end_date->format('d.m.Y') }}
