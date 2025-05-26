@@ -51,11 +51,12 @@
 
             <section class="slider-section">
                 <div class="main-slider-wrapper">
-                    <div class="main-slide"><img src="{{ asset('images/slider-1.jpg') }}" alt="Photo 1"></div>
-                    <div class="main-slide"><img src="{{ asset('images/slider-2.jpg') }}" alt="Photo 2"></div>
-                    <div class="main-slide"><img src="{{ asset('images/slider-3.jpg') }}" alt="Photo 3"></div>
-                    <div class="main-slide"><img src="{{ asset('images/slider-4.jpg') }}" alt="Photo 4"></div>
-                    <div class="main-slide"><img src="{{ asset('images/slider-5.jpg') }}" alt="Photo 5"></div>
+                    <div class="main-slide"><img src="{{ asset('images/v2/img/photo-main-slider-1.png') }}" alt="Photo 1"></div>
+                    <div class="main-slide"><img src="{{ asset('images/v2/img/photo-main-slider-2.png') }}" alt="Photo 2"></div>
+                    <div class="main-slide"><img src="{{ asset('images/v2/img/photo-main-slider-3.png') }}" alt="Photo 3"></div>
+                    <div class="main-slide"><img src="{{ asset('images/v2/img/photo-main-slider-4.png') }}" alt="Photo 4"></div>
+                    <div class="main-slide"><img src="{{ asset('images/v2/img/photo-main-slider-5.png') }}" alt="Photo 5"></div>
+                    <div class="main-slide"><img src="{{ asset('images/v2/img/photo-main-slider-6.png') }}" alt="Photo 6"></div>
                 </div>
                 <button class="main-prev" onclick="moveMainSlide(-1)">
                     <i class="fas fa-chevron-left"></i>
