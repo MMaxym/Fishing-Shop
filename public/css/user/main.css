@@ -62,7 +62,7 @@
 
 .navigate-link:hover {
     border-left: 4px solid var(--light-1);
-    background-color: var(--light-2);
+    background-color: rgba(42, 142, 158, 0.2);
     cursor: pointer;
     text-decoration: none;
 }

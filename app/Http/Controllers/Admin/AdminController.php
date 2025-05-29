@@ -17,7 +17,7 @@ class AdminController extends Controller
             return redirect()->route('user.main')->with('error', 'Будь ласка, увійдіть в акаунт, щоб перейти на сторінку адміністратора.');
         }
 
-        $newOrders = Order::all();
+        $newOrders = Order::orderBy('created_at', 'desc')->get();
 
         $currentDate = Carbon::now();
         $lastMonth = Carbon::now()->subMonth();
@@ -36,37 +36,31 @@ class AdminController extends Controller
             ->where('created_at', '<=', $currentDate)
             ->count();
 
-        $salesByMonth = Order::selectRaw('SUM(total_amount) as total, MONTH(created_at) as month')
-            ->where('created_at', '<', $currentDate)
+
+        Carbon::setLocale('uk');
+
+        $from = Carbon::now()->subMonths(11)->startOfMonth();
+        $to = Carbon::now()->endOfMonth();
+
+        $salesRaw = Order::whereBetween('created_at', [$from, $to])
             ->where('status', 'Завершено')
-            ->groupBy('month')
-            ->orderBy('month')
+            ->selectRaw('SUM(total_amount) as total, DATE_FORMAT(created_at, "%Y-%m") as ym')
+            ->groupByRaw('DATE_FORMAT(created_at, "%Y-%m")')
+            ->orderByRaw('DATE_FORMAT(created_at, "%Y-%m")')
             ->get()
-            ->pluck('total', 'month')
-            ->toArray();
+            ->pluck('total', 'ym');
 
-        $monthNames = [
-            1 => 'Січень',
-            2 => 'Лютий',
-            3 => 'Березень',
-            4 => 'Квітень',
-            5 => 'Травень',
-            6 => 'Червень',
-            7 => 'Липень',
-            8 => 'Серпень',
-            9 => 'Вересень',
-            10 => 'Жовтень',
-            11 => 'Листопад',
-            12 => 'Грудень',
-        ];
-
-        $salesByMonthFormatted = [];
-        foreach ($salesByMonth as $month => $total) {
-            $salesByMonthFormatted[$monthNames[$month]] = $total;
+        $salesByMonth = [];
+        $current = $from->copy();
+        while ($current <= $to) {
+            $ym = $current->format('Y-m');
+            $label = $current->translatedFormat('F Y');
+            $salesByMonth[$label] = $salesRaw->get($ym, 0);
+            $current->addMonth();
         }
 
-        $categories = array_keys($salesByMonthFormatted);
-        $quantities = array_values($salesByMonthFormatted);
+        $categories = array_keys($salesByMonth);
+        $quantities = array_values($salesByMonth);
 
         return view('admin.admin', compact(
             'newOrders',

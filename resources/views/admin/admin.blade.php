@@ -1,114 +1,158 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" href="{{ asset('css/admin/adminMain.css') }}">
+    <title>Fishing Store</title>
+</head>
+
 @section('content')
-    <div class="container" style="max-width: 1600px;">
-        @include('layouts.header-admin')
 
-        <div style="margin-top: 150px; margin-bottom: 50px;">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="row mt-6">
-                        <div class="col-md-12">
-                            <div class="card text-white mb-4 shadow" style="background-color: #2C73BB;">
-                                <div class="card-header">
-                                    <i class="fas fa-users"></i> Користувачі
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Управління користувачами <i class="fas fa-user-cog"></i>
-                                    </h5>
-                                    <p class="card-text"> Додавайте, редагуйте або видаляйте користувачів системи.</p>
-                                    <a href="{{ route('admin.users.index') }}" class="btn btn-light" style="margin-top: 27px;">
-                                        Перейти <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
+    @include('layouts.header-admin')
+
+    <main class="main-section">
+
+        <section class="main-row">
+            <div class="nav-section">
+                <nav class="navigate-category">
+                    <a href="{{route('admin.admin')}}" class="navigate-link active" id="navigate-link-content-top">
+                        <div class="navigate-link-content" id="navigate-link-content-top">
+                            <img src="{{ asset('images/v2/icon/HomeFilled.svg') }}" alt="Новинки" class="navigate-icon">
+                            <span class="navigate-text">Головна</span>
+                        </div>
+                    </a>
+                    <a href="{{route('admin.users.index')}}" class="navigate-link">
+                        <div class="navigate-link-content">
+                            <img src="{{ asset('images/v2/icon/UserFilled.svg') }}" alt="Акційні товари" class="navigate-icon">
+                            <span class="navigate-text">Користувачі</span>
+                        </div>
+                    </a>
+                    <a href="{{route('admin.products.index')}}" class="navigate-link">
+                        <div class="navigate-link-content">
+                            <img src="{{ asset('images/v2/icon/PriceFilled.svg') }}" alt="Балансири" class="navigate-icon">
+                            <span class="navigate-text">Товари</span>
+                        </div>
+                    </a>
+                    <a href="{{route('admin.orders.index')}}" class="navigate-link">
+                        <div class="navigate-link-content">
+                            <img src="{{ asset('images/v2/icon/BasketFilled.svg') }}" alt="Балансири" class="navigate-icon">
+                            <span class="navigate-text">Замовлення</span>
+                        </div>
+                    </a>
+                    <a href="{{route('admin.discounts.index')}}" class="navigate-link">
+                        <div class="navigate-link-content">
+                            <img src="{{ asset('images/v2/icon/SaleFilled.svg') }}" alt="Балансири" class="navigate-icon">
+                            <span class="navigate-text">Знижки</span>
+                        </div>
+                    </a>
+                    <a href="{{route('admin.admin')}}" class="navigate-link">
+                        <div class="navigate-link-content">
+                            <img src="{{ asset('images/v2/icon/OrderlistButton.svg') }}" alt="Тейл-спінери" class="navigate-icon" style="width: 28px; height: 28px;">
+                            <span class="navigate-text">Популярні запитання</span>
+                        </div>
+                    </a>
+                    <a href="#" class="navigate-link" id="logout-link">
+                        <div class="navigate-link-content">
+                            <img src="{{ asset('images/v2/icon/LogOutOutlineEditProfile.svg') }}" alt="Вийти" class="navigate-icon">
+                            <span class="navigate-text">Вийти з акаунту</span>
+                        </div>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </nav>
+            </div>
+
+            <section class="slider-section">
+                <h2 class="admin-title">Адмін-панель</h2>
+                <div class="dashboard-widgets">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-content">
+                                <span class="widget-title">Нові замовлення</span>
+                                <div class="widget-value">{{ $orderCountLastMonth ?? 0 }}</div>
+                            </div>
+                            <div class="widget-icon blue">
+                                <img src="{{ asset('images/v2/icon/BasketFilledWidget.svg') }}" alt="Балансири" class="widget-icon-icon">
                             </div>
                         </div>
+                        <div class="widget-subtext">Аналітика за останній місяць</div>
+                    </div>
 
-                        <div class="col-md-12">
-                            <div class="card text-white bg-secondary mb-4 shadow">
-                                <div class="card-header">
-                                    <i class="fas fa-box"></i> Товари
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Управління товарами <i class="fas fa-box-open"></i>
-                                    </h5>
-                                    <p class="card-text">Додавайте, редагуйте або видаляйте товари.</p>
-                                    <a href="{{ route('admin.products.index') }}" class="btn btn-light" style="margin-top: 27px;">
-                                        Перейти <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-content">
+                                <span class="widget-title">Сума продажів</span>
+                                <div class="widget-value">{{  number_format($totalSalesLastMonth, 0, ' ', ' ') ?? 0 }} грн</div>
+                            </div>
+                            <div class="widget-icon green">
+                                <img src="{{ asset('images/v2/icon/PriceFilledWidget.svg') }}" alt="Балансири" class="widget-icon-icon">
                             </div>
                         </div>
+                        <div class="widget-subtext">Аналітика за останній місяць</div>
+                    </div>
 
-                        <div class="col-md-12">
-                            <div class="card text-white mb-4 shadow" style="background-color: #2C73BB;">
-                                <div class="card-header">
-                                    <i class="fas fa-shopping-cart"></i> Замовлення
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Управління замовленнями <i class="fas fa-clipboard-list"></i>
-                                    </h5>
-                                    <p class="card-text">Переглядайте та обробляйте інформацію про замовлення.
-                                    </p>
-                                    <a href="{{ route('admin.orders.index') }}" class="btn btn-light" style="margin-top: 27px;">
-                                        Перейти <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
+                    <div class="widget">
+                        <div class="widget-header">
+                            <div class="widget-content">
+                                <span class="widget-title">Нові клієнти</span>
+                                <div class="widget-value">{{ $newCustomersLastMonth ?? 0 }}</div>
+                            </div>
+                            <div class="widget-icon red">
+                                <img src="{{ asset('images/v2/icon/UserFilledWidget.svg') }}" alt="Балансири" class="widget-icon-icon">
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="card text-white bg-secondary mb-4 shadow">
-                                <div class="card-header">
-                                    <i class="fas fa-percent"></i> Знижки
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Управління знижками <i class="fas fa-tags"></i>
-                                    </h5>
-                                    <p class="card-text">Переглядайте та обробляйте інформацію про знижки.
-                                    </p>
-                                    <a href="{{ route('admin.discounts.index') }}" class="btn btn-light" style="margin-top: 28px;">
-                                        Перейти <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="widget-subtext">Аналітика за останній місяць</div>
                     </div>
                 </div>
+                <section class="order-card">
+                    <div class="order-card__header">
+                        <h5 class="order-card__title">Нові замовлення <span class="order-card__title-now">За сьогодні ({{ now()->format('d.m.Y') }})</span></h5>
+                    </div>
+                    <div class="order-card__body">
+                        <div class="order-table">
+                            <div class="history-table-head">
+                                <div class="col number-title">№ замовлення</div>
+                                <div class="col customer-title">Замовник</div>
+                                <div class="col status-title">Статус</div>
+                                <div class="col total-title">Вартість</div>
+                                <div class="col date-title">Дата</div>
+                                <div class="col details-title">Деталі</div>
+                            </div>
 
-
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow" style="height: 300px; margin-bottom: 20px;">
-                        <div class="card-header bg-info text-white">
-                            <h5 class="mb-0">Нові замовлення за сьогодні ({{ now()->format('d.m.Y') }})</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group" style="max-height: 200px; overflow-y: auto;">
-                                @if($newOrders->isEmpty() || !$newOrders->contains(function ($order) {
-                                    return $order->status === 'В обробці' && \Carbon\Carbon::parse($order->created_at)->isToday();
-                                }))
-                                    <li class="list-group-item text-center">
-                                        <em>Нових замовлень за сьогодні немає.</em>
+                            <ul class="order-list">
+                                @if($newOrders->isEmpty() || !$newOrders->contains(fn ($order) => \Carbon\Carbon::parse($order->created_at)->isToday()))
+                                    <li class="order-list__item empty">
+                                        <div class="col">—</div>
+                                        <div class="col" colspan="5"><em>* Нових замовлень за сьогодні немає.</em></div>
                                     </li>
                                 @else
                                     @foreach($newOrders as $order)
-                                        @if($order->status === 'В обробці' && \Carbon\Carbon::parse($order->created_at)->isToday())
-                                            <li class="list-group-item d-flex justify-content-between align-items-center border-bottom">
-                                                <div>
-                                                    <strong>Замовлення:</strong> #{{ $order->id }}
-                                                    <span class="mx-2">|</span>
-                                                    <strong>Статус:</strong> {{ $order->status }}
-                                                    <span class="mx-2">|</span>
-                                                    <strong>Створено:</strong> {{ $order->created_at->format('d.m.Y H:i') }}
+                                        @if(\Carbon\Carbon::parse($order->created_at)->isToday())
+                                            @php
+                                                $statusClassMap = [
+                                                    'В обробці' => 'status-in-process',
+                                                    'Створено' => 'status-in-process',
+                                                    'Очікує на оплату' => 'status-awaiting-payment',
+                                                    'Оплачено' => 'status-completed',
+                                                    'Доставлено' => 'status-delivered',
+                                                    'Завершено' => 'status-completed',
+                                                    'Скасовано' => 'status-cancelled',
+                                                ];
+                                                $statusClass = $statusClassMap[$order->status] ?? 'status-unknown';
+                                            @endphp
+                                            <li class="order-list__item">
+                                                <div class="col">#{{ $order->id }}</div>
+                                                <div class="col">{{ $order->user->surname }} {{ $order->user->name }} ({{$order->user->phone}})</div>
+                                                <div class="col">
+                                                    <span class="faq-status {{ $statusClass }}">{{ $order->status }}</span>
                                                 </div>
-                                                <a href="{{ route('admin.orders.products', $order->id) }}"
-                                                   class="btn btn-info btn-sm">
-                                                    <i class="fas fa-list-ul"></i>
-                                                </a>
+                                                <div class="col">{{ number_format($order->total_amount, 0, ' ', ' ') }} грн</div>
+                                                <div class="col">{{ $order->created_at->format('d.m.Y H:i') }}</div>
+                                                <div class="col">
+                                                    <a href="{{ route('admin.orders.products', $order->id) }}" class="view-btn" title="Переглянути">
+                                                        <i class="fas fa-list-ul"></i>
+                                                    </a>
+                                                </div>
                                             </li>
                                         @endif
                                     @endforeach
@@ -116,94 +160,154 @@
                             </ul>
                         </div>
                     </div>
+                </section>
 
-                    <div class="col-md-14">
-{{--                        <div class="card mb-3 shadow" style="height: 573px;">--}}
-                        <div class="card mb-3 shadow" style="height: min-content;">
-                            <div class="card-header text-white" style="background-color: #04396E;">
-                                <h5 class="mb-0">Аналітика інтернет-магазину</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="card text-white bg-success mb-3 shadow">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title"><i class="fas fa-shopping-cart"></i> Кількість замовлень</h5>
-                                                <p class="card-text" style="font-size: 24px;">{{ $orderCountLastMonth ?? 0 }}</p>
-                                                <small>За останній місяць</small>
-                                            </div>
-                                        </div>
-                                    </div>
+                <section class="order-card" style="height: 500px;">
+                    <div class="order-card__header">
+                        <h5 class="order-card__title">Динаміка прибутку інтернет-магазину <span class="order-card__title-now">За останні 12 місяців</span></h5>
+                    </div>
+                    <div class="order-card__body">
+                        <div class="graphic"></div>
+                        <div class="graphic-wrapper">
+                            <canvas id="graphic" width="400" height="155" style="padding: 14px;"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const ctx = document.getElementById('graphic').getContext('2d');
 
-                                    <div class="col-md-4">
-                                        <div class="card text-white bg-success mb-3 shadow">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title"><i class="fas fa-dollar-sign"></i> Загальна сума продажів</h5>
-                                                <p class="card-text" style="font-size: 24px;">{{ number_format($totalSalesLastMonth ?? 0, 2) }} грн</p>
-                                                <small>За останній місяць</small>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                                    gradient.addColorStop(0, 'rgba(42, 142, 158, 0.3)');
+                                    gradient.addColorStop(1, 'rgba(42, 142, 158, 0)');
 
-                                    <div class="col-md-4">
-                                        <div class="card text-white bg-success mb-3 shadow">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title"><i class="fas fa-user-plus"></i> Нові клієнти в магазині</h5>
-                                                <p class="card-text" style="font-size: 24px;">{{ $newCustomersLastMonth ?? 0 }}</p>
-                                                <small>За останній місяць</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="graphic"></div>
-                                    <h4 style="margin-top: 30px;">Динаміка прибутку інтернет-магазину (за останні 12 місяців)</h4>
-                                    <canvas id="graphic" width="400" height="200"></canvas>
-                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function () {
-                                            var ctx = document.getElementById('graphic').getContext('2d');
-                                            var chart = new Chart(ctx, {
-                                                type: 'line',
-                                                data: {
-                                                    labels: @json($categories),
-                                                    datasets: [{
-                                                        label: 'Динаміка прибутку',
-                                                        data: @json($quantities),
-                                                        borderColor: '#2C73BB',
-                                                        borderWidth: 3,
-                                                        fill: false
-                                                    }]
+                                    const chart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: @json($categories),
+                                            datasets: [{
+                                                label: 'Динаміка прибутку',
+                                                data: @json($quantities),
+                                                borderColor: '#2a8e9e',
+                                                backgroundColor: gradient,
+                                                pointBackgroundColor: '#2a8e9e',
+                                                pointBorderColor: '#fff',
+                                                pointRadius: 5,
+                                                pointHoverRadius: 10,
+                                                tension: 0.4,
+                                                fill: true,
+                                                borderWidth: 3,
+                                                hoverBorderWidth: 5,
+                                            }]
+                                        },
+                                        options: {
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            interaction: {
+                                                mode: 'nearest',
+                                                intersect: true,
+                                            },
+                                            plugins: {
+                                                legend: {
+                                                    display: true,
+                                                    position: 'top',
+                                                    labels: {
+                                                        color: '#333',
+                                                        font: {
+                                                            size: 14,
+                                                            weight: 'bold'
+                                                        }
+                                                    }
                                                 },
-                                                options: {
-                                                    responsive: true,
-                                                    scales: {
-                                                        y: {
-                                                            beginAtZero: true
+                                                tooltip: {
+                                                    enabled: true,
+                                                    backgroundColor: '#2a8e9e',
+                                                    titleColor: '#fff',
+                                                    bodyColor: '#fff',
+                                                    borderWidth: 1,
+                                                    borderColor: '#fff',
+                                                    padding: 10,
+                                                    animation: true,
+                                                    animationDuration: 400,
+                                                    callbacks: {
+                                                        label: function(context) {
+                                                            return `Прибуток: ${context.formattedValue} грн`;
                                                         }
                                                     }
                                                 }
-                                            });
-                                        });
-                                    </script>
-                            </div>
+                                            },
+                                            scales: {
+                                                x: {
+                                                    ticks: {
+                                                        color: '#555'
+                                                    },
+                                                    grid: {
+                                                        display: false
+                                                    }
+                                                },
+                                                y: {
+                                                    beginAtZero: true,
+                                                    ticks: {
+                                                        color: '#555'
+                                                    },
+                                                    grid: {
+                                                        color: 'rgba(0, 0, 0, 0.05)'
+                                                    }
+                                                }
+                                            },
+                                            animation: {
+                                                duration: 2000,
+                                                easing: 'easeOutQuart'
+                                            },
+                                            hover: {
+                                                onHover: function(event, elements) {
+                                                    const point = elements[0];
+                                                    if (point) {
+                                                        ctx.canvas.style.cursor = 'pointer';
+                                                    } else {
+                                                        ctx.canvas.style.cursor = 'default';
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        plugins: [{
+                                            id: 'pulsePoint',
+                                            afterDraw(chart) {
+                                                const ctx = chart.ctx;
+                                                const points = chart.getDatasetMeta(0).data;
 
-                            </div>
+                                                points.forEach(point => {
+                                                    if (point.$context.hover) {
+                                                        const pulseRadius = point._model ? point._model.radius + 10 : 15;
+                                                        let alpha = 0.3;
+
+                                                        let pulseAnimation = () => {
+                                                            alpha = (alpha >= 0.7) ? 0.3 : alpha + 0.02;
+                                                            ctx.save();
+                                                            ctx.beginPath();
+                                                            ctx.arc(point.x, point.y, pulseRadius, 0, Math.PI * 2);
+                                                            ctx.strokeStyle = `rgba(42, 142, 158, ${alpha})`;
+                                                            ctx.lineWidth = 3;
+                                                            ctx.stroke();
+                                                            ctx.restore();
+                                                            if (point.$context.hover) {
+                                                                requestAnimationFrame(pulseAnimation);
+                                                            }
+                                                        };
+
+                                                        pulseAnimation();
+                                                    }
+                                                });
+                                            }
+                                        }]
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </section>
+            </section>
+        </section>
+    </main>
 
-    <style>
-        .card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-    </style>
+    <script src="{{ asset('js/admin/adminMain.js') }}"></script>
 
 @endsection
