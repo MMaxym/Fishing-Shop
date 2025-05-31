@@ -313,6 +313,7 @@
     margin: 0;
     padding: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     flex-grow: 1;
 }
 
@@ -336,7 +337,11 @@
     color: var(--main-dark);
 }
 
-/* Статус */
+.col-empty{
+    width: 500px !important;
+    color: var(--main-dark);
+}
+
 .faq-status {
     padding: 4px 8px;
     border-radius: var(--br-1);
@@ -366,7 +371,6 @@
     text-decoration: none;
 }
 
-/* Порожнє повідомлення */
 .order-list__item.empty {
     justify-content: start;
     color: var(--grey);

@@ -65,7 +65,6 @@
     <h2>Чек на замовлення №{{ $order->id }}</h2>
     <p>Дата: {{ $order->created_at->format('Y-m-d H:i:s') }}</p>
     <p>Магазин: Fishing Shop</p>
-{{--    <p>Продавець: {{ Auth::check() ? Auth::user()->surname . ' ' . Auth::user()->name : 'Продавець 1' }}</p>--}}
     <p>Продавець: Продавець 1</p>
     <p>Номер каси: інтернет-магазин</p>
 
@@ -132,7 +131,7 @@
 
         $orderDiscountAmount = ($totalPrice * $orderDiscountPercentage) / 100;
 
-       $deliveryCost = session('deliveryCost', 0);
+       $deliveryCost = session('delivery_cost', 80);
 
         $finalTotal = $totalPrice + $deliveryCost - $orderDiscountAmount;
     @endphp

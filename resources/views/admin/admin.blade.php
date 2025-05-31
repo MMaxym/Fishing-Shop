@@ -122,8 +122,7 @@
                             <ul class="order-list">
                                 @if($newOrders->isEmpty() || !$newOrders->contains(fn ($order) => \Carbon\Carbon::parse($order->created_at)->isToday()))
                                     <li class="order-list__item empty">
-                                        <div class="col">—</div>
-                                        <div class="col" colspan="5"><em>* Нових замовлень за сьогодні немає.</em></div>
+                                        <div class="col-empty"><em>* Нових замовлень за сьогодні немає.</em></div>
                                     </li>
                                 @else
                                     @foreach($newOrders as $order)
@@ -203,7 +202,7 @@
                                             maintainAspectRatio: false,
                                             interaction: {
                                                 mode: 'nearest',
-                                                intersect: true,
+                                                intersect: false,
                                             },
                                             plugins: {
                                                 legend: {

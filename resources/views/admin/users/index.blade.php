@@ -2,66 +2,68 @@
 
 @section('content')
     @include('layouts.header-admin')
-    <div class="container" style="max-width: 1300px; margin-top: 130px;">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="container" style="max-width: 1400px; margin-top: 110px;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
             <h1 class="mb-0">Користувачі</h1>
         </div>
-
-        <div class="row mb-4">
-            <div class="col-md-4 d-flex align-items-end">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success"
-                   style="width: 260px; white-space: nowrap;">
+        <div class="row align-items-end mb-4 g-2 flex-wrap">
+            <div class="col-auto">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-success" style="height: 100%;">
                     <i class="fas fa-plus"></i> Додати нового користувача
-                </a>
-                <a href="{{ route('pdf.export') }}" class="btn me-2" id="pdf">
-                    <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
-                </a>
-                <a href="{{ route('admin.users.excelExport', request()->all()) }}" class="btn btn-secondary me-2" style="z-index:1000; width: 230px; margin-left: 20px; white-space: nowrap;">
-                    <i class="fas fa-file-alt"></i> Експортувати дані в .xslx
                 </a>
             </div>
 
-            <div class="col-md-4">
-                <label for="user-role-filter" class="form-label" style="margin-left: 335px; width: 240px;">Фільтр за
-                    типом користувача</label>
-                <div class="input-group" style="width: 240px; margin-left: 335px; z-index:1000;">
+            <div class="col-auto">
+                <a href="{{ route('pdf.export') }}" class="btn btn-primary">
+                    <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <a href="{{ route('admin.users.excelExport', request()->all()) }}" class="btn btn-secondary">
+                    <i class="fas fa-file-excel"></i> Експортувати дані в .xlsx
+                </a>
+            </div>
+
+            <div class="col-auto">
+                <label for="role-filter" class="form-label mb-1">Тип користувача</label>
+                <div class="input-group" style="width: max-content;">
                     <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-filter"></i>
-                </span>
+                        <span class="input-group-text">
+                            <i class="fas fa-filter"></i>
+                        </span>
                     </div>
                     <select id="role-filter" class="form-control">
-                        <option value="">Усі користувачі</option>
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
+                            <option value="">Усі користувачі</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                     <div class="input-group-append">
                         <button id="reset-filter" class="btn btn-outline-secondary" type="button">
-                            <i class="fas fa-times"></i>
+                                <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 d-flex align-items-end">
+            <div class="col-auto ms-auto">
                 <div class="input-group" style="width: 240px; margin-left: auto;">
                     <input type="text" class="form-control" id="search" placeholder="Пошук за логіном">
                     <div class="input-group-append">
-                <span class="input-group-text">
-                    <i class="fas fa-search"></i>
-                </span>
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div id="no-results" class="alert alert-info" style="display: none; text-align: center;">
             Користувачів не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 535px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 580px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
@@ -245,7 +247,6 @@
                 }
             }
         }
-
     </script>
 
 @endsection
