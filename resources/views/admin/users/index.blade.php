@@ -133,10 +133,9 @@
 
     <style>
         #pdf{
-            white-space: nowrap;
             background-color: #2C73BB;
             color: white;
-            border: none;
+            border: 1px solid #2C73BB;
         }
 
         #pdf:hover{

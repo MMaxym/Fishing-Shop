@@ -63,7 +63,7 @@
     <h2>Чек на замовлення №{{ $order->id }}</h2>
     <p>Дата: {{ $order->created_at->format('Y-m-d H:i:s') }}</p>
     <p>Магазин: Fishing Shop</p>
-    <p>Продавець: {{ Auth::check() ? Auth::user()->surname . ' ' . Auth::user()->name : 'Продавець 1' }}</p>
+    <p>Продавець: Продавець 1</p>
     <p>Номер каси: інтернет-магазин</p>
 
     <h3 style="margin-top: 30px;">Список товарів:</h3>
@@ -77,17 +77,17 @@
         </thead>
         <tbody>
         @foreach($products as $productInOrder)
-            <tr>
-                <td>{{ $productInOrder->product->name }} ({{ $productInOrder->product->size }})</td>
+            <tr style="justify-content: space-between;">
+                <td style="max-width: 150px;">{{ $productInOrder->product->name }} ({{ $productInOrder->product->size }})</td>
                 <td>{{ $productInOrder->quantity }}</td>
-                <td>{{ number_format($productInOrder->product->price, 2) }} грн</td>
+                <td>{{ number_format($productInOrder->product->price, 0, ',', ' ') }} грн</td>
             </tr>
             @if($productInOrder->product->discount)
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <span class="discount-price">{{ number_format($productInOrder->product->price * $productInOrder->quantity, 2) }} грн</span>
+                        <span class="discount-price">{{ number_format($productInOrder->product->price * $productInOrder->quantity,  0, ',', ' ') }} грн</span>
                         <br>
-                        <span class="final-price">{{ number_format($productInOrder->product->price * (1 - $productInOrder->product->discount->percentage / 100) * $productInOrder->quantity, 2) }} грн</span>
+                        <span class="final-price">{{ number_format($productInOrder->product->price * (1 - $productInOrder->product->discount->percentage / 100) * $productInOrder->quantity,  0, ',', ' ') }} грн</span>
                     </td>
                 </tr>
             @endif
@@ -95,8 +95,8 @@
         </tbody>
     </table>
 
-    <p class="total" style="border-top: 1px solid #000000;">Загальна знижка: {{ number_format($products->sum(fn($p) => ($p->product->discount ? ($p->product->price * $p->quantity) - ($p->product->price * (1 - $p->product->discount->percentage / 100) * $p->quantity) : 0)), 2) }} грн</p>
-    <p class="total">Загальна сума (зі знижкою): {{ number_format($products->sum(fn($p) => ($p->product->price * (1 - ($p->product->discount->percentage ?? 0) / 100)) * $p->quantity), 2) }} грн</p>
+    <p class="total" style="border-top: 1px solid #000000;">Загальна знижка: {{ number_format($products->sum(fn($p) => ($p->product->discount ? ($p->product->price * $p->quantity) - ($p->product->price * (1 - $p->product->discount->percentage / 100) * $p->quantity) : 0)),  0, ',', ' ') }} грн</p>
+    <p class="total">Загальна сума (зі знижкою): {{ number_format($products->sum(fn($p) => ($p->product->price * (1 - ($p->product->discount->percentage ?? 0) / 100)) * $p->quantity),  0, ',', ' ') }} грн</p>
 
     <div class="footer-info" style="margin-top: 30px;">
         <p>Дякуємо за покупку!</p>

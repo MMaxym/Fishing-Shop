@@ -178,7 +178,7 @@
                         <td>{{ $product->size }}</td>
                         <td>{{ $product->other }}</td>
                         <td>{{ $product->quantity }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ number_format($product->price, 0, ',', ' ') }} грн</td>
                         <td>{{ $product->discount ? $product->discount->percentage . '%' : 'Немає' }}</td>
                         <td>{{ $product->is_active ? 'Активний' : 'Неактивний' }}</td>
                         <td style="width: 140px; white-space: nowrap;">
@@ -277,6 +277,13 @@
             fetchProducts();
         });
 
+        function numberFormat2(number, decimals = 0, dec_point = '.', thousands_sep = ',') {
+            number = parseFloat(number);
+            if (!isFinite(number)) return '0';
+
+            return number.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
+        }
+
         function fetchProducts(query = '') {
             const category = document.getElementById('category-filter').value;
             const priceMin = document.getElementById('price-min').value;
@@ -312,7 +319,7 @@
                         <td>${product.size}</td>
                         <td>${product.other}</td>
                         <td>${product.quantity}</td>
-                        <td>${product.price}</td>
+                        <td>${numberFormat2(product.price, 0, ',', ' ') + ' грн'}</td>
                         <td>${product.discount ? product.discount.percentage + '%' : 'Немає'}</td>
                         <td>${product.is_active ? 'Активний' : 'Неактивний'}</td>
                         <td style="width: 140px; white-space: nowrap;">
@@ -320,7 +327,7 @@
                                 <a href="/admin/products/${product.id}/images/add" class="btn btn-success btn-sm mb-2">
                                     <i class="fas fa-plus"></i> Додати
                                 </a>
-                                <a href="/admin/products/${product.id}/images/edit" class="btn btn-primary btn-sm mb-2">
+                                <a href="/admin/products/${product.id}/images/edit" class="btn btn-warning btn-sm mb-2">
                                     <i class="fas fa-edit"></i> Редагувати
                                 </a>
                             </div>

@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="max-width: 1400px;">
+    <div class="container" style="max-width: 1500px; margin-top: 40px;">
         <div style="display: flex; align-items: center; margin-bottom: 30px;">
             <h1 style="margin-right: 30px;">Товари для замовлення №{{ $order->id }}</h1>
             <a href="{{ route('admin.orders.exportProductsPdf', $order->id) }}" class="btn me-2" id="pdf">
                 <i class="fas fa-file-alt"></i> Сформувати чек в .pdf
             </a>
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary" style="white-space: nowrap; margin-left: 30px;">
+            <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary" style="white-space: nowrap; margin-left: 40px;">
                 <i class="fas fa-arrow-left"></i> Назад до замовлень
             </a>
-            <a href="{{ route('admin.admin') }}" class="btn btn-danger" style="white-space: nowrap; margin-left: 30px;">
+            <a href="{{ route('admin.admin') }}" class="btn btn-danger" style="white-space: nowrap; margin-left: 40px;">
                 <i class="fas fa-arrow-left"></i> На головну сторінку
             </a>
         </div>
@@ -19,13 +19,16 @@
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
+                    <th style="position: sticky; top: 0; z-index: 1;">
+                        Зображення
+                    </th>
                     <th style="min-width: 110px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(0)">
                         Артикул <i id="sortIcon0" class="fas fa-sort"></i>
                     </th>
                     <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(1)">
                         Назва <i id="sortIcon1" class="fas fa-sort"></i>
                     </th>
-                    <th style="position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(2)">
+                    <th style="min-width: 130px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(2)">
                         Категорія <i id="sortIcon2" class="fas fa-sort"></i>
                     </th>
                     <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(3)">
@@ -46,14 +49,19 @@
                     <th style="min-width: 110px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(8)">
                         Знижка <i id="sortIcon7" class="fas fa-sort"></i>
                     </th>
-                    <th style="position: sticky; top: 0; z-index: 1;">
-                        Зображення
-                    </th>
+
                 </tr>
                 </thead>
                 <tbody id="product-table-body">
                 @foreach ($products as $productInOrder)
                     <tr>
+                        <td style="width: 100px;">
+                            @if($productInOrder->product->images->isNotEmpty())
+                                <img src="{{ asset('storage/' . $productInOrder->product->images[0]->image_url) }}" alt="{{ $productInOrder->product->name }}" style="width: 100px; height: auto;">
+                            @else
+                                <span>Немає зображення</span>
+                            @endif
+                        </td>
                         <td>{{ $productInOrder->product->article }}</td>
                         <td>{{ $productInOrder->product->name }}</td>
                         <td>{{ $productInOrder->product->category->name }}</td>
@@ -63,13 +71,6 @@
                         <td>{{ $productInOrder->quantity }}</td>
                         <td>{{ $productInOrder->price }} грн</td>
                         <td>{{ $productInOrder->product->discount ? $productInOrder->product->discount->percentage . '%' : 'Немає' }}</td>
-                        <td style="width: 100px;">
-                            @if($productInOrder->product->images->isNotEmpty())
-                                <img src="{{ asset('storage/' . $productInOrder->product->images[0]->image_url) }}" alt="{{ $productInOrder->product->name }}" style="width: 100px; height: auto;">
-                            @else
-                                <span>Немає зображення</span>
-                            @endif
-                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -79,7 +80,7 @@
 
     <style>
         #pdf{
-            width: 220px;
+            width: min-content;
             margin-left: 20px;
             white-space: nowrap;
             background-color: #2C73BB;
@@ -129,18 +130,3 @@
         }
     </script>
 @endsection
-
-
-
-{{--     // ДЛЯ ВИВЕДЕННЯ ВСІХ ІСНУЮЧИХ КАРТИНОК--}}
-                    {{--                    <td>--}}
-{{--                        @if($productInOrder->product->images->isNotEmpty())--}}
-{{--                            @foreach($productInOrder->product->images as $image)--}}
-{{--                                <img src="{{ asset('storage/' . $image->image_url) }}" alt="{{ $productInOrder->product->name }}" style="width: 50px; height: auto; margin-right: 5px;">--}}
-{{--                            @endforeach--}}
-{{--                        @else--}}
-{{--                            <span>Немає зображень</span>--}}
-{{--                        @endif--}}
-{{--                    </td>--}}
-
-
