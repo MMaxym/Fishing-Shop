@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-auto">
-                <a href="{{ route('pdf.export') }}" class="btn btn-primary">
+                <a href="{{ route('pdf.export') }}" id="pdf" class="btn btn-primary">
                     <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
                 </a>
             </div>
@@ -40,7 +40,7 @@
                             @endforeach
                         </select>
                     <div class="input-group-append">
-                        <button id="reset-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-filter" class="btn btn-secondary" type="button">
                                 <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -133,12 +133,10 @@
 
     <style>
         #pdf{
-            width: 220px;
-            margin-left: 20px;
             white-space: nowrap;
             background-color: #2C73BB;
             color: white;
-            z-index:1000;
+            border: none;
         }
 
         #pdf:hover{

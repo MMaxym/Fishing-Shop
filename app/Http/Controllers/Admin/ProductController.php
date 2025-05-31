@@ -139,8 +139,8 @@ class ProductController extends Controller
             $products->where('is_active', $status === 'active');
         }
 
-        if ($quantity) {
-            $products->where('quantity', '>=', $quantity);
+        if ($quantity !== null) {
+            $products->where('quantity', '<=', $quantity);
         }
 
         return response()->json([

@@ -2,20 +2,20 @@
 
 @section('content')
     @include('layouts.header-admin')
-    <div class="container" style="max-width: 1500px; margin-top: 130px;">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="container" style="max-width: 1550px; margin-top: 110px;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="mb-0">Товари</h1>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb-3" style="padding: 0;">
             <div class="col-md-12 d-flex align-items-center">
-                <a href="{{ route('admin.products.create') }}" class="btn btn-success me-2">
+                <a href="{{ route('admin.products.create') }}" class="btn btn-success me-2" style="width: max-content; white-space: nowrap;">
                     <i class="fas fa-plus"></i> Додати новий товар
                 </a>
-                <a href="{{ route('pdf.export.product') }}" class="btn me-2" id="pdf">
+                <a href="{{ route('pdf.export.product') }}" class="btn me-2" id="pdf" style="width: max-content; margin-left: 30px;">
                     <i class="fas fa-file-alt"></i> Сформувати звіт в .pdf
                 </a>
-                <a href="{{ route('admin.products.export', request()->all()) }}" class="btn btn-secondary me-2" style="z-index:1000; width: 230px; margin-left: 20px; white-space: nowrap;">
+                <a href="{{ route('admin.products.export', request()->all()) }}" class="btn btn-secondary me-2" style="width: max-content; margin-left: 30px;  white-space: nowrap;">
                     <i class="fas fa-file-alt"></i> Експортувати дані в .xslx
                 </a>
                 <div class="ms-auto" style="width: 300px; margin-left: 482px;">
@@ -31,14 +31,14 @@
             </div>
         </div>
 
-        <div class="row mb-4" style="max-width: 1500px;">
-            <div class="col-md-3">
+        <div class="d-flex flex-wrap mb-4" style="max-width: 1550px; gap: 5rem;">
+            <div class="d-flex flex-column flex-grow-1" style="min-width: 250px;">
                 <label for="category-filter" class="form-label">Фільтр за категорією</label>
-                <div class="input-group" style="width: 250px;">
+                <div class="input-group">
                     <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-tags"></i>
-                </span>
+                        <span class="input-group-text">
+                            <i class="fas fa-tags"></i>
+                        </span>
                     </div>
                     <select id="category-filter" class="form-control">
                         <option value="">Усі категорії</option>
@@ -47,38 +47,38 @@
                         @endforeach
                     </select>
                     <div class="input-group-append">
-                        <button id="reset-category-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-category-filter" class="btn btn-secondary" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <label for="price-filter" class="form-label" style="margin-left: 10px;">Фільтр за ціною</label>
-                <div class="input-group" style="width: 310px; margin-left: 10px;">
+            <div class="d-flex flex-column flex-grow-1" style="min-width: 250px; max-width: 400px;">
+                <label for="price-filter" class="form-label">Фільтр за ціною</label>
+                <div class="input-group">
                     <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-dollar-sign"></i>
-                </span>
+                    <span class="input-group-text">
+                        <i class="fas fa-dollar-sign"></i>
+                    </span>
                     </div>
                     <input type="number" id="price-min" class="form-control" placeholder="Мін. ціна">
                     <input type="number" id="price-max" class="form-control" placeholder="Макс. ціна">
                     <div class="input-group-append">
-                        <button id="reset-price-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-price-filter" class="btn btn-secondary" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <label for="status-filter" class="form-label" style="margin-left: 70px;">Фільтр за статусом</label>
-                <div class="input-group" style="width: 250px; margin-left: 70px;">
+            <div class="d-flex flex-column flex-grow-1" style="min-width: 250px;">
+                <label for="status-filter" class="form-label">Фільтр за статусом</label>
+                <div class="input-group">
                     <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-check-circle"></i>
-                </span>
+                    <span class="input-group-text">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
                     </div>
                     <select id="status-filter" class="form-control">
                         <option value="">Усі товари</option>
@@ -86,37 +86,36 @@
                         <option value="inactive">Неактивні</option>
                     </select>
                     <div class="input-group-append">
-                        <button id="reset-status-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-status-filter" class="btn btn-secondary" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <label for="quantity-filter" class="form-label" style="margin-left: 95px;">Фільтр за кількістю</label>
-                <div class="input-group" style="width: 250px; margin-left: 95px;">
+            <div class="d-flex flex-column flex-grow-1" style="min-width: 250px; max-width: 250px;">
+                <label for="quantity-filter" class="form-label">Фільтр за кількістю</label>
+                <div class="input-group">
                     <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="fas fa-sort-numeric-up"></i>
-                </span>
+                    <span class="input-group-text">
+                        <i class="fas fa-sort-numeric-up"></i>
+                    </span>
                     </div>
-                    <input type="number" id="quantity-filter" class="form-control" placeholder="Мін. кількість">
+                    <input type="number" id="quantity-filter" class="form-control" placeholder="Макс. кількість">
                     <div class="input-group-append">
-                        <button id="reset-quantity-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-quantity-filter" class="btn btn-secondary" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div id="no-results" class="alert alert-info" style="display: none; text-align: center;">
             Товарів не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 482px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 515px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
