@@ -141,6 +141,12 @@
         #pdf:hover{
             background-color: #235b93;
         }
+
+        #user-table-body tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
     </style>
 
     <script>

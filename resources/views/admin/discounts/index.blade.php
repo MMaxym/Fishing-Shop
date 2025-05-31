@@ -2,20 +2,19 @@
 
 @section('content')
     @include('layouts.header-admin')
-    <div class="container" style="max-width: 1000px; margin-top: 130px;">
-        <div class="d-flex justify-content-left align-items-center mb-4">
+    <div class="container" style="max-width: 1200px; margin-top: 110px;">
+        <div class="d-flex justify-content-between align-items-end  mb-4">
             <h1 class="mb-0">Знижки</h1>
-        </div>
-        <div class="d-flex justify-content-between mb-3">
             <a href="{{ route('admin.discounts.create') }}" class="btn btn-success">
                 <i class="fas fa-plus"></i> Додати нову знижку
             </a>
         </div>
 
+
         <div class="d-flex justify-content-between mb-4">
             <div>
                 <label for="discount-type-filter" class="form-label">Фільтр за типом знижки</label>
-                <div class="input-group" style="width: 250px;">
+                <div class="input-group" style="width: 300px;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                             <i class="fas fa-tags"></i>
@@ -30,7 +29,7 @@
                         </option>
                     </select>
                     <div class="input-group-append">
-                        <button id="reset-type-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-type-filter" class="btn btn-secondary" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -39,7 +38,7 @@
 
             <div>
                 <label for="discount-status-filter" class="form-label">Фільтр за статусом знижки</label>
-                <div class="input-group" style="width: 280px;">
+                <div class="input-group" style="width: 300px;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                             <i class="fas fa-check-circle"></i>
@@ -55,7 +54,7 @@
                         </option>
                     </select>
                     <div class="input-group-append">
-                        <button id="reset-status-filter" class="btn btn-outline-secondary" type="button">
+                        <button id="reset-status-filter" class="btn btn-secondary" type="button">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -78,7 +77,7 @@
             Знижки не знайдено.
         </div>
 
-        <div class="table-responsive" style="max-height: 480px; overflow-y: auto;">
+        <div class="table-responsive" style="max-height: 565px; overflow-y: auto;">
             <table class="table table-bordered" style="background-color: #ffffff;">
                 <thead class="thead-light">
                 <tr>
@@ -134,6 +133,14 @@
             </table>
         </div>
     </div>
+
+    <style>
+        #discount-table-body tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+    </style>
 
     <script>
         function fetchDiscounts(query = '', filterType = '', filterStatus = '') {
