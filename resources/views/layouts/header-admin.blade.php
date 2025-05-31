@@ -29,7 +29,7 @@
                 <a href="{{ route('admin.discounts.index') }}" class="nav-link {{ request()->routeIs('admin.discounts.index') ? 'active' : '' }}">Знижки</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('user.delivery') }}" class="nav-link {{ request()->routeIs('user.delivery') ? 'active' : '' }}">Запитання</a>
+                <a href="{{ route('admin.questions.index') }}" class="nav-link {{ request()->routeIs('admin.questions.index') ? 'active' : '' }}">Запитання</a>
             </li>
         </ul>
     </div>

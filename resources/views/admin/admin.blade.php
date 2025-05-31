@@ -44,7 +44,7 @@
                             <span class="navigate-text">Знижки</span>
                         </div>
                     </a>
-                    <a href="{{route('admin.admin')}}" class="navigate-link">
+                    <a href="{{route('admin.questions.index')}}" class="navigate-link">
                         <div class="navigate-link-content">
                             <img src="{{ asset('images/v2/icon/OrderlistButton.svg') }}" alt="Тейл-спінери" class="navigate-icon" style="width: 28px; height: 28px;">
                             <span class="navigate-text">Популярні запитання</span>

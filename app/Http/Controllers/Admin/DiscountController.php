@@ -36,7 +36,7 @@ class DiscountController extends Controller
 
         Discount::create($validated);
 
-        return redirect()->route('admin.discounts.index')->with('success', 'Знижка створена успішно !!!');
+        return redirect()->route('admin.discounts.index')->with('success', 'Знижка створена успішно!!!');
     }
 
     public function edit(Discount $discount)
@@ -56,13 +56,13 @@ class DiscountController extends Controller
 
         $discount->update($validated);
 
-        return redirect()->route('admin.discounts.index')->with('success', 'Знижка оновлена успішно !!!');
+        return redirect()->route('admin.discounts.index')->with('success', 'Знижка оновлена успішно!!!');
     }
 
     public function destroy(Discount $discount)
     {
         $discount->delete();
-        return redirect()->route('admin.discounts.index')->with('error', 'Знижку успішно видалено !!!');
+        return redirect()->route('admin.discounts.index')->with('error', 'Знижку успішно видалено!!!');
     }
 
     public function search(Request $request)
