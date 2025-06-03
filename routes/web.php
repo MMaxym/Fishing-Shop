@@ -152,20 +152,26 @@ Route::prefix('user/')->group(function () {
     Route::get('/about', [MainUserController::class, 'showAbout'])->name('user.about');
     Route::get('/discount', [MainUserController::class, 'showDiscount'])->name('user.discount');
     Route::get('/delivery', [MainUserController::class, 'showDelivery'])->name('user.delivery');
+
     Route::get('/editProfile', [HeaderUserController::class, 'editProfile'])->name('user.editProfile');
     Route::put('/{user}', [HeaderUserController::class, 'userUpdate'])->name('user.update');
+
     Route::get('/categoryBalancers', [CategoryBalancerController::class, 'index'])->name('user.categoryBalancers');
     Route::get('/categoryPilkers', [CategoryPilkerController::class, 'index'])->name('user.categoryPilkers');
     Route::get('/categoryTailSpinners', [CategoryTailSpinnerController::class, 'index'])->name('user.categoryTailSpinners');
     Route::get('/newProducts', [NewProductController::class, 'index'])->name('user.newProducts');
     Route::get('/saleProducts', [SaleProductController::class, 'index'])->name('user.saleProducts');
+
     Route::get('/orderHistory', [OrderHistoryController::class, 'index'])->name('user.orderHistory');
     Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('user.shoppingCart');
+
     Route::get('/checkoutPage', [CheckoutPageController::class, 'index'])->name('user.checkoutPage');
     Route::post('/confirmOrder', [CheckoutPageController::class, 'confirmOrder'])->name('user.confirmOrder');
     Route::post('/deliveryCost', [CheckoutPageController::class, 'deliveryCost'])->name('user.deliveryCost');
+
     Route::get('/showNewProducts', [MainUserController::class, 'showNewProducts'])->name('user.showNewProducts');
     Route::get('/showDiscountProducts', [MainUserController::class, 'showDiscountProducts'])->name('user.showDiscountProducts');
+
     Route::get('/searchProduct', [SearchProductController::class, 'index'])->name('user.searchProduct');
     Route::get('/search', [HeaderUserController::class, 'search'])->name('search');
 
@@ -178,14 +184,12 @@ Route::prefix('user/')->group(function () {
     Route::post('/favorite-products/toggle/{product}', [FavoriteProductController::class, 'toggle']);
     Route::get('/favoriteProducts', [FavoriteProductController::class, 'favoriteProducts'])->name('user.favoriteProducts');
 
-
     Route::get('/cart/session', [CheckoutPageController::class, 'getCartFromSession']);
     Route::get('/order/{order}/pay', [CheckoutPageController::class, 'pay'])->name('user.pay');
 
     Route::post('/liqpay/callback', [CheckoutPageController::class, 'callback'])->name('liqpay.callback')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
     Route::get('/liqpay/result', function () { return view('payment.result'); })->name('liqpay.result');
 });
-
 
 Route::get('/api/novaposhta/cities', [NovaPoshtaController::class, 'getCities']);
 Route::get('/api/novaposhta/warehouses/{cityRef}', [NovaPoshtaController::class, 'getWarehouses']);

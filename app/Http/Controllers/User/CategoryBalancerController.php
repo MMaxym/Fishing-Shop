@@ -22,9 +22,13 @@ class CategoryBalancerController extends Controller
             $query->where('name', 'Балансири');
         })->min('actual_price');
 
+        $minPriceFromDB = intval(round($minPriceFromDB));
+
         $maxPriceFromDB = Product::whereHas('category', function ($query) {
             $query->where('name', 'Балансири');
         })->max('actual_price');
+
+        $maxPriceFromDB = intval(round($maxPriceFromDB));
 
         $products = Product::with('images', 'discount')
             ->where('is_active', 1)

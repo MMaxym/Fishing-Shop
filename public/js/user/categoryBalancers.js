@@ -126,9 +126,9 @@ $(document).ready(function() {
 
 priceRangeSlider.noUiSlider.on('update', function (values, handle) {
     if (handle === 0) {
-        minPriceInput.value = values[0];
+        minPriceInput.value = parseInt(values[0]);
     } else {
-        maxPriceInput.value = values[1];
+        maxPriceInput.value = parseInt(values[1]);
     }
 });
 

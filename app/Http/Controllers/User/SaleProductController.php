@@ -23,9 +23,13 @@ class SaleProductController extends Controller
             ->whereNotNull('discount_id')
             ->min('actual_price');
 
+        $minPriceFromDB = intval(round($minPriceFromDB));
+
         $maxPriceFromDB = Product::where('is_active', 1)
             ->whereNotNull('discount_id')
             ->max('actual_price');
+
+        $maxPriceFromDB = intval(round($maxPriceFromDB));
 
         $products = Product::with('images', 'discount', 'category')
         ->where('is_active', 1)

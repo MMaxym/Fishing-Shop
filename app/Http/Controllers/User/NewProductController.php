@@ -20,12 +20,24 @@ class NewProductController extends Controller
         $maxPrice = $request->get('max_price', null);
 
         $minPriceFromDB = Product::where('is_active', 1)
-            ->whereNotNull('discount_id')
+            ->where('is_active', 1)
+            ->where(function ($query) use ($oneMonthAgo) {
+                $query->where('created_at', '>', $oneMonthAgo)
+                    ->orWhere('updated_at', '>', $oneMonthAgo);
+            })
             ->min('actual_price');
 
+        $minPriceFromDB = intval(round($minPriceFromDB));
+
         $maxPriceFromDB = Product::where('is_active', 1)
-            ->whereNotNull('discount_id')
+            ->where('is_active', 1)
+            ->where(function ($query) use ($oneMonthAgo) {
+                $query->where('created_at', '>', $oneMonthAgo)
+                    ->orWhere('updated_at', '>', $oneMonthAgo);
+            })
             ->max('actual_price');
+
+        $maxPriceFromDB = intval(round($maxPriceFromDB));
 
 
         $products = Product::with('images', 'discount', 'category')
@@ -34,6 +46,7 @@ class NewProductController extends Controller
                 $query->where('created_at', '>', $oneMonthAgo)
                     ->orWhere('updated_at', '>', $oneMonthAgo);
             });
+
 
         if ($minPrice !== null) {
             $products->where('actual_price', '>=', $minPrice);

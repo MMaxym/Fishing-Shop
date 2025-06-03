@@ -22,9 +22,13 @@ class CategoryTailSpinnerController extends Controller
             $query->where('name', 'Тейл-спінери');
         })->min('actual_price');
 
+        $minPriceFromDB = intval(round($minPriceFromDB));
+
         $maxPriceFromDB = Product::whereHas('category', function ($query) {
             $query->where('name', 'Тейл-спінери');
         })->max('actual_price');
+
+        $maxPriceFromDB = intval(round($maxPriceFromDB));
 
         $products = Product::with('images', 'discount')
             ->where('is_active', 1)

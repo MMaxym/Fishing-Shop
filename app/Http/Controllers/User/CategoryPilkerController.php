@@ -22,9 +22,13 @@ class CategoryPilkerController extends Controller
             $query->where('name', 'Пількери');
         })->min('actual_price');
 
+        $minPriceFromDB = intval(round($minPriceFromDB));
+
         $maxPriceFromDB = Product::whereHas('category', function ($query) {
             $query->where('name', 'Пількери');
         })->max('actual_price');
+
+        $maxPriceFromDB = intval(round($maxPriceFromDB));
 
         $products = Product::with('images', 'discount')
             ->where('is_active', 1)

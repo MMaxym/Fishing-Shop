@@ -97,11 +97,11 @@
                                 <div class="column-price">
                                     <div class="row-price">
                                         <label for="minPriceInput">Мін:</label>
-                                        <input type="number" id="minPriceInput" value="{{ $minPrice ?? 0 }}" oninput="syncMinPriceRange(this.value)" class="price-input">
+                                        <input type="number" id="minPriceInput" value="{{  number_format($minPrice, 0, ',', ' ') ?? 0 }}" oninput="syncMinPriceRange(this.value)" class="price-input">
                                     </div>
                                     <div class="row-price">
                                         <label for="maxPriceInput">Макс:</label>
-                                        <input type="number" id="maxPriceInput" value="{{ $maxPrice ?? 1000 }}" oninput="syncMaxPriceInput(this.value)" class="price-input">
+                                        <input type="number" id="maxPriceInput" value="{{  number_format($maxPrice, 0, ',', ' ') ?? 1000 }}" oninput="syncMaxPriceInput(this.value)" class="price-input">
                                     </div>
                                 </div>
                             </div>

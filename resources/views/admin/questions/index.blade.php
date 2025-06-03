@@ -66,6 +66,14 @@
         </div>
     </div>
 
+    <style>
+        #question-table-body tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+    </style>
+
     <script>
 
         function confirmDelete(discountName) {
@@ -75,7 +83,7 @@
         let sortOrder = {};
 
         function sortTable(columnIndex) {
-            const table = document.getElementById("discount-table-body");
+            const table = document.getElementById("question-table-body");
             const rows = Array.from(table.getElementsByTagName("tr"));
 
             let ascending = sortOrder[columnIndex] === "asc" ? false : true;
@@ -109,7 +117,6 @@
                 }
             }
         }
-
 
         function fetchDiscounts(query = '') {
             fetch(`{{ route('admin.questions.search') }}?query=${encodeURIComponent(query)}`)
