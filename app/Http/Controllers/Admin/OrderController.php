@@ -73,7 +73,7 @@ class OrderController extends Controller
             'updated' => now(),
         ]);
 
-        return redirect()->route('admin.orders.index')->with('success', 'Замовлення створено успішно !!!');
+        return redirect()->route('admin.orders.index')->with('success', 'Замовлення створено успішно!!!');
     }
 
 
@@ -106,14 +106,14 @@ class OrderController extends Controller
             'updated' => now(),
         ]);
 
-        return redirect()->route('admin.orders.index')->with('success', 'Статус замовлення оновлено успішно !!!');
+        return redirect()->route('admin.orders.index')->with('success', 'Статус замовлення оновлено успішно!!!');
     }
 
 
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('admin.orders.index')->with('error', 'Замовлення видалено успішно !!!');
+        return redirect()->route('admin.orders.index')->with('error', 'Замовлення видалено успішно!!!');
     }
 
     public function showProducts($orderId)

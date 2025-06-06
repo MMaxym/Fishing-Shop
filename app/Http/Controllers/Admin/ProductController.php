@@ -55,7 +55,7 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->route('admin.products.index')->with('success', 'Товар створено успішно !!!');
+        return redirect()->route('admin.products.index')->with('success', 'Товар створено успішно!!!');
     }
 
     public function edit(Product $product)
@@ -87,14 +87,14 @@ class ProductController extends Controller
         $product->is_active = $request->has('is_active') ? 1 : 0;
         $product->update($request->except('is_active'));
         $product->save();
-        return redirect()->route('admin.products.index')->with('success', 'Товар оновлено успішно !!!');
+        return redirect()->route('admin.products.index')->with('success', 'Товар оновлено успішно!!!');
     }
 
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('admin.products.index')->with('error', 'Товар успішно видалено !!!');
+        return redirect()->route('admin.products.index')->with('error', 'Товар успішно видалено!!!');
     }
 
     public function search(Request $request)

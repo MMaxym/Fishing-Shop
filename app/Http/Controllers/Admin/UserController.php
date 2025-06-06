@@ -61,7 +61,7 @@ class UserController extends Controller
             'role_id' => $request->input('role_id'),
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Користувач створений успішно !!!');
+        return redirect()->route('admin.users.index')->with('success', 'Користувач створений успішно!!!');
     }
 
 
@@ -104,13 +104,13 @@ class UserController extends Controller
             'role_id' => $validated['role_id'],
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Данні користувача оновлено успішно !!!');
+        return redirect()->route('admin.users.index')->with('success', 'Данні користувача оновлено успішно!!!');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')->with('error', 'Користувача успішно видалено !!!');
+        return redirect()->route('admin.users.index')->with('error', 'Користувача успішно видалено!!!');
     }
 
     public function search(Request $request)

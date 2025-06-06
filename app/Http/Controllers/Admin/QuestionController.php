@@ -69,5 +69,4 @@ class QuestionController extends Controller
             'questions' => $questions
         ]);
     }
-
 }

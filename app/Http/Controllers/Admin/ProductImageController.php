@@ -28,7 +28,7 @@ class ProductImageController extends Controller
             'image_url' => $imagePath,
         ]);
 
-        return redirect()->route('admin.products.index', $product)->with('success', 'Зображення додано успішно !!!');
+        return redirect()->route('admin.products.index', $product)->with('success', 'Зображення додано успішно!!!');
     }
 
     public function edit(Product $product)
@@ -44,7 +44,7 @@ class ProductImageController extends Controller
         }
         $image->delete();
 
-        return redirect()->route('admin.products.images.edit', ['product' => $product->id])->with('error', 'Зображення видалено успішно !!!');
+        return redirect()->route('admin.products.images.edit', ['product' => $product->id])->with('error', 'Зображення видалено успішно!!!');
     }
 
 }

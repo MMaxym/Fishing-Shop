@@ -20,7 +20,7 @@ class AdminController extends Controller
         $newOrders = Order::orderBy('created_at', 'desc')->get();
 
         $currentDate = Carbon::now();
-        $lastMonth = Carbon::now()->subMonth();
+        $lastMonth =  Carbon::now()->startOfMonth();
 
         $orderCountLastMonth = Order::where('created_at', '>=', $lastMonth)
             ->where('created_at', '<=', $currentDate)
