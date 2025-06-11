@@ -903,7 +903,7 @@ button i {
     .faq-list {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
     }
 
     .faq-number {

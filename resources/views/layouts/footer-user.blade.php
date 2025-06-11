@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="address-info">
+        <div class="address-info" id="footer-categories">
             <h4 class="address-title">Категорії</h4>
             <div class="address-main">
                 <div class="address-text">
