@@ -293,3 +293,26 @@
     color: var(--helps-red);
 }
 
+
+@media (max-width: 768px) {
+
+    .main-container {
+        padding: 30px;
+        gap: 110px;
+    }
+
+    .content {
+        padding: 0 20px;
+    }
+
+    .background-img{
+        display: none;
+    }
+
+    .logo-icon{
+        width: 120px;
+    }
+
+}
+
+
