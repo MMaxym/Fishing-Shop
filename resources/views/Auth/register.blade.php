@@ -40,9 +40,10 @@
                         </div>
 
                         <div class="form-group-column">
-                            <label for="password" class="label-field">Підтвердження пароля</label>
+                            <label for="password" class="label-field" id="password_confirmation_desktop">Підтвердження пароля</label>
+                            <label for="password" class="label-field" id="password_confirmation_mobile">Пароль ще раз</label>
                             <div class="password-wrapper">
-                                <input type="password" id="password_confirmation" name="password_confirmation" class="input-field" placeholder="Повторіть пароль . . .">
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="input-field" placeholder="Повторіть пароль . . ." style="padding-right: 40px;">
                                 <img src="{{ asset('images/v2/icon/PasswordYes.svg') }}" alt="Показати пароль" id="toggle-password-confirm" class="toggle-password-confirm-icon">
                             </div>
                             @error('password_confirmation')

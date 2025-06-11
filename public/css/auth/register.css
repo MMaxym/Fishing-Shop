@@ -347,3 +347,40 @@
     font-weight: var(--Regular-weight);
 }
 
+#password_confirmation_mobile{
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    #password_confirmation_mobile{
+        display: flex;
+    }
+
+    #password_confirmation_desktop{
+        display: none;
+    }
+
+    .main-container {
+        padding: 30px;
+        gap: 40px;
+        width: 430px;
+    }
+
+    .content {
+        padding: 0;
+    }
+
+    .section-login {
+        width: 400px;
+    }
+
+    .background-img{
+        display: none;
+    }
+
+    .logo-icon{
+        width: 120px;
+    }
+
+}
