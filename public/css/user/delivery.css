@@ -132,3 +132,79 @@
     font-size: var(--Font-14-size);
     margin-bottom: 10px;
 }
+
+
+@media (max-width: 768px) {
+
+    .main-section {
+        padding: 20px 0;
+        gap: 30px;
+    }
+
+    .main-row {
+        padding: 20px 30px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .delivery-title {
+        font-size: var(--Font-30-size);
+    }
+
+    .delivery-description {
+        font-size: var(--Font-16-size);
+    }
+
+    .delivery-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 0;
+    }
+
+    .delivery-card {
+        padding: 16px;
+    }
+
+    .delivery-img {
+        width: 200px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #delivery-img-ukrposhta{
+        width: 200px;
+    }
+
+    #delivery-img-pickup{
+        height: 180px;
+        margin-bottom: 15px;
+    }
+
+    #delivery-img-courier{
+        height: 160px;
+        margin-bottom: 30px;
+    }
+
+    .delivery-name {
+        font-size: var(--Font-22-size);
+        margin-bottom: 12px;
+    }
+
+    .delivery-text {
+        font-size: var(--Font-16-size);
+        margin-bottom: 12px;
+    }
+
+    .delivery-price {
+        font-size: var(--Font-18-size);
+        margin-bottom: 10px;
+    }
+
+    .delivery-price-warning{
+        font-size: var(--Font-12-size);
+        margin-bottom: 10px;
+    }
+}
