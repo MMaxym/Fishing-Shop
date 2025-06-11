@@ -216,3 +216,69 @@
     color: var(--helps-red);
 }
 
+@media (max-width: 768px) {
+
+    .main-section {
+        padding: 20px 0;
+        gap: 30px;
+    }
+
+    .main-row {
+        padding: 20px 30px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .discount-title {
+        font-size: var(--Font-30-size);
+    }
+
+    .discount-subtitle {
+        font-size: var(--Font-16-size);
+    }
+
+    .discount-content {
+        gap: 30px;
+    }
+
+    .discount-cards {
+        gap: 20px;
+    }
+
+    .discount-card {
+        padding: 16px;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .discount-percent {
+        width: 60px;
+        height: 60px;
+        font-size: var(--Font-22-size);
+    }
+
+    .discount-date {
+        font-size: var(--Font-18-size);
+    }
+
+    .discount-text {
+        font-size: var(--Font-16-size);
+    }
+
+    .discount-left-products-text{
+        width: 120px;
+    }
+
+    .discount-left-products {
+        flex: 1;
+        padding: 26px 60px;
+    }
+
+    .discount-percent-products {
+        font-size: var(--Font-32-size);
+    }
+
+    .discount-name-products {
+        font-size: var(--Font-18-size);
+    }
+}
