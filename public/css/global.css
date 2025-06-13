@@ -57,6 +57,7 @@ body {
     --ExtraBold-weight: 999;
 
     /* Font-size */
+    --Font-10-size: 10px;
     --Font-12-size: 12px;
     --Font-14-size: 14px;
     --Font-16-size: 16px;
