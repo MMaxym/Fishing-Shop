@@ -23,7 +23,7 @@
                             <span class="breadcrumb-separator">
                                 <img src="{{ asset('images/v2/icon/ArrowSmallRightNav.svg') }}" alt="Arrow Icon">
                             </span>
-                            <a href="{{ route('user.orderHistory') }}">
+                            <a href="{{ route('user.shoppingCart') }}">
                                 Кошик
                             </a>
                             <span class="breadcrumb-separator">
@@ -139,7 +139,7 @@
                                     <div class="ukrposhta-fields" style="display: none;">
                                         <div class="form-group">
                                             <label for="ukrposhta-address">Адреса</label>
-                                            <p style="text-align: left; min-width: 500px; font-size: var(--Font-14-size); font-weight:var(--Medium-weight); color: var(--main-dark)">* Введіть дані у форматі "місто, код відділення (наприклад 29001)"</p>
+                                            <p id="ukrposhta-text" style="text-align: left; min-width: 500px; font-size: var(--Font-14-size); font-weight:var(--Medium-weight); color: var(--main-dark)">* Введіть дані у форматі "місто, код відділення (наприклад 29001)"</p>
                                             <input type="text" id="ukrposhta-address" placeholder="Введіть адресу" required>
                                             <p class="error-message-delivery3">* Обовʼязкове поле</p>
                                         </div>

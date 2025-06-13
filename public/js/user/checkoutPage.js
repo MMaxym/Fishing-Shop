@@ -164,11 +164,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const row = `
                 <tr>
-                    <td><img src="${imageUrl}" alt="${product.name}" style="width: 80px; height: 50px; object-fit: contain;"></td>
+                    <td><img id="product-img" src="${imageUrl}" alt="${product.name}" style="width: 80px; height: 50px; object-fit: contain;"></td>
                     <td>${product.name}</td>
-                    <td>${product.quantity} шт</td>
+                    <td id="product-quantity">${product.quantity} шт</td>
 <!--                    <td>${parseFloat(product.actualPrice).toFixed(0)} грн</td>-->
-                    <td>${totalPrice} грн</td>
+                    <td id="product-totalPrice">${totalPrice} грн</td>
                 </tr>
             `;
         orderItemsContainer.innerHTML += row;
