@@ -846,4 +846,8 @@ button i {
     .recently-products-cards {
         gap: 20px;
     }
+
+    .decoration-row {
+        margin: 10px 0;
+    }
 }
