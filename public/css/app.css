@@ -189,4 +189,14 @@ body{
         bottom: 20px;
         right: 20px;
     }
+
+    .custom-toast {
+        position: fixed;
+        bottom: 20px;
+        left: 10px;
+        font-size: var(--Font-14-size);
+        min-width: 300px !important;
+        max-width: 70% !important;
+        word-break: break-word !important;
+    }
 }
