@@ -909,6 +909,7 @@ button i {
     }
 
     .faq-answer {
+        padding: 0 12px;
         font-size: var(--Font-14-size);
     }
 
