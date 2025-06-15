@@ -71,3 +71,40 @@
     margin-left: 10px;
     width: 22px;
 }
+
+
+
+@media (max-width: 768px) {
+
+    .main-container {
+        padding: 20px 30px;
+        gap: 120px;
+        text-align: left;
+    }
+
+    .content {
+        padding: 20px 0;
+    }
+
+    .payment-title{
+        font-size: var(--Font-28-size);
+        margin-bottom: 30px;
+    }
+
+    .background-img{
+        width: 100%;
+        padding: 0;
+    }
+
+    .logo-icon{
+        width: 120px;
+    }
+
+    .description-text{
+        font-size: var(--Font-18-size);
+    }
+
+    .redirect-to-main {
+        padding: 8px 16px;
+    }
+}

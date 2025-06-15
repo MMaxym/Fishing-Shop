@@ -15,7 +15,7 @@
             <img class="background-img" alt="404 Image" src="{{ asset('images/v2/img/404-img.svg') }}">
             <div class="description">
                 <h2 class="description-text">Нема кльову - Сторінка не клює... <br>Сторінку не знайдено.</h2>
-                <a class="redirect-to-main" href="{{route('user.main')}}">Повернутися на головну <img class="icon-arrow-right" alt="arrow" src="{{ asset('images/v2/icon/ArrowSmallRight.svg') }}"></a>
+                <a class="redirect-to-main" href="{{route('user.main')}}">Повернутися на головну <img class="icon-arrow-right" alt="arrow" src="{{ asset('images/v2/icon/ArrowSmallRightPay.svg') }}"></a>
             </div>
         </div>
     </div>
