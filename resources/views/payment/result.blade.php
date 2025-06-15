@@ -19,7 +19,7 @@
             <p class="payment-description">Ми отримали ваше замовлення. Найближчим часом з вами зв'яжеться наш менеджер.</p>
             <a class="redirect-to-main" href="{{route('user.main')}}">
                 Повернутися на головну
-                <img class="icon-arrow-right" alt="arrow" src="{{ asset('images/v2/icon/ArrowSmallRight.svg') }}">
+                <img class="icon-arrow-right" alt="arrow" src="{{ asset('images/v2/icon/ArrowSmallRightPay.svg') }}">
             </a>
             <img class="background-img" alt="Pay Image" src="{{ asset('images/v2/img/payment-img.svg') }}">
         </div>

@@ -75,3 +75,52 @@
     width: 22px;
 }
 
+@media (max-width: 768px) {
+
+    .main-container {
+        padding: 20px 30px;
+        gap: 50px;
+        text-align: left;
+    }
+
+    .content {
+        padding: 20px 0;
+    }
+
+    .payment-title{
+        text-align: center;
+        font-size: var(--Font-26-size);
+        margin-bottom: 30px;
+    }
+
+    .icon-done{
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .background-img{
+        width: 100%;
+    }
+
+    .logo-icon{
+        width: 120px;
+    }
+
+    .payment-description{
+        text-align: center;
+        font-size: var(--Font-16-size);
+        margin-bottom: 20px;
+    }
+
+    .redirect-to-main{
+        padding: 8px 16px;
+        background-color: var(--light-1);
+        border-radius: var(--br-1);
+        color: var(--main-light);
+        border-color: transparent;
+        transition: background-color 0.3s ease-in-out;
+        margin-bottom: 30px;
+    }
+}
+
