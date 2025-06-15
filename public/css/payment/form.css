@@ -40,3 +40,30 @@
 .liqpay-form-wrapper{
     margin-bottom: 20px;
 }
+
+
+@media (max-width: 768px) {
+
+    .main-container {
+        padding: 20px 30px;
+        gap: 80px;
+        text-align: left;
+    }
+
+    .content {
+        padding: 20px 0;
+    }
+
+    .payment-title{
+        font-size: var(--Font-28-size);
+        margin-bottom: 30px;
+    }
+
+    .background-img{
+        width: 100%;
+    }
+
+    .logo-icon{
+        width: 120px;
+    }
+}
