@@ -92,7 +92,7 @@
     </div>
 
     @guest
-        <button class="btn-link-login" onclick="window.location.href='{{ route('login') }}'">Увійти</button>
+        <button class="btn-link-login" id="btn-link-login-mobile" onclick="window.location.href='{{ route('login') }}'">Увійти</button>
         <button type="button" class="search-btn-mobile-only" id="searchToggleBtn">
             <img src="{{ asset('images/v2/icon/SearchMobile.svg') }}" alt="Пошук" class="search-icon-mobile-only">
         </button>

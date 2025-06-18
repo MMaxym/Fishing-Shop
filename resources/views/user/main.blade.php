@@ -70,6 +70,7 @@
                     <span class="main-dot" onclick="currentMainSlide(3)"></span>
                     <span class="main-dot" onclick="currentMainSlide(4)"></span>
                     <span class="main-dot" onclick="currentMainSlide(5)"></span>
+                    <span class="main-dot" onclick="currentMainSlide(6)"></span>
                 </div>
             </section>
         </section>

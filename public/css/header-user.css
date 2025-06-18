@@ -214,6 +214,10 @@
     display: none;
 }
 
+#btn-link-login-mobile{
+    display: none;
+}
+
 .search-btn-mobile-only{
     border: none;
     background: transparent;
@@ -236,6 +240,10 @@
     .user-pages.desktop,
     .search-section{
         display: none;
+    }
+
+    #btn-link-login-mobile{
+        display: flex;
     }
 
     .burger-menu {
