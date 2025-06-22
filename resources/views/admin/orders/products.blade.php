@@ -37,9 +37,6 @@
                     <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(4)">
                         Розмір <i id="sortIcon4" class="fas fa-sort"></i>
                     </th>
-                    <th style="min-width: 100px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(5)">
-                        Інше <i id="sortIcon3" class="fas fa-sort"></i>
-                    </th>
                     <th style="min-width: 120px; position: sticky; top: 0; z-index: 1; cursor: pointer;" onclick="sortTable(6)">
                         Кількість <i id="sortIcon5" class="fas fa-sort"></i>
                     </th>
@@ -67,7 +64,6 @@
                         <td>{{ $productInOrder->product->category->name }}</td>
                         <td>{{ $productInOrder->product->description }}</td>
                         <td>{{ $productInOrder->size }}</td>
-                        <td>{{ $productInOrder->product->other }}</td>
                         <td>{{ $productInOrder->quantity }}</td>
                         <td>{{ $productInOrder->price }} грн</td>
                         <td>{{ $productInOrder->product->discount ? $productInOrder->product->discount->percentage . '%' : 'Немає' }}</td>

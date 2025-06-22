@@ -338,7 +338,7 @@
 
         <section class="main-row">
             <div class="faqs-wrapper">
-                <h2 class="row-title">Найпопулярніші запитанння</h2>
+                <h2 class="row-title">Найпопулярніші запитання</h2>
                 <div class="faq-list">
                     @foreach($faqs as $index => $faq)
                         <div class="faq-item">
